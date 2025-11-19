@@ -18,8 +18,8 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-20 container mx-auto px-4 text-center animate-fade-in -mt-12">
         <div className="max-w-4xl mx-auto">
-          {/* Badge and Headline - moved up 100px */}
-          <div className="space-y-8 -mt-[100px]">
+          {/* Badge and Headline - moved up 70px */}
+          <div className="space-y-8 -mt-[70px]">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm border border-[hsl(var(--text-dark-blue))]/20 rounded-full px-4 py-2 text-[hsl(var(--text-dark-blue))] text-sm shadow-lg">
               <Shield className="w-4 h-4" />
@@ -32,8 +32,8 @@ const Hero = () => {
             </h1>
           </div>
 
-          {/* Subheadline and Button - moved down 300px */}
-          <div className="space-y-8 mt-[300px]">
+          {/* Subheadline and Button - moved down 250px */}
+          <div className="space-y-8 mt-[250px]">
             {/* CTA Button */}
             <div className="flex items-center justify-center">
               <Button 
