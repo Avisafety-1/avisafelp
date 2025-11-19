@@ -27,7 +27,7 @@ const Hero = () => {
             </div>
 
             {/* Headline */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-[hsl(var(--text-dark-blue))] leading-tight drop-shadow-sm">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-[hsl(var(--text-dark-blue))] leading-tight drop-shadow-sm break-words px-4">
               Sikkerhetsstyringssystem<br />bygget for fremtiden
             </h1>
           </div>
@@ -51,7 +51,7 @@ const Hero = () => {
 
             {/* Subheadline */}
             <p className="text-xl md:text-2xl text-[hsl(var(--text-dark-blue))]/90 max-w-2xl mx-auto leading-relaxed font-medium">
-              AviSafe gir luftfartsaktører omfattende verktøy for sikkerhetsstyring for tryggere og mer effektiv drift
+              AviSafe bidrar til tryggere og mer effektiv drift ved å gi luftfartsaktører omfattende verktøy for sikkerhetsstyring
             </p>
           </div>
         </div>
