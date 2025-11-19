@@ -21,12 +21,12 @@ const Hero = () => {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 text-white text-sm">
             <Shield className="w-4 h-4" />
-            <span>Aviation Safety Management System</span>
+            <span>AviSafe</span>
           </div>
 
           {/* Headline */}
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
-            Enhance Safety and<br />Operational Efficiency
+            Et sikkerhetsstyringssystem<br />bygget for fremtiden
           </h1>
 
           {/* Subheadline */}
@@ -51,22 +51,6 @@ const Hero = () => {
             >
               Learn More
             </Button>
-          </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-12 max-w-3xl mx-auto">
-            <div className="text-center space-y-2">
-              <div className="text-4xl font-bold text-white">99.9%</div>
-              <div className="text-white/80">System Uptime</div>
-            </div>
-            <div className="text-center space-y-2">
-              <div className="text-4xl font-bold text-white">24/7</div>
-              <div className="text-white/80">Support Available</div>
-            </div>
-            <div className="text-center space-y-2">
-              <div className="text-4xl font-bold text-white">ISO</div>
-              <div className="text-white/80">Certified Compliance</div>
-            </div>
           </div>
         </div>
       </div>
