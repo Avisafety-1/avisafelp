@@ -5,9 +5,9 @@ import heroDrone from "@/assets/hero-drone.png";
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Overlay */}
+      {/* Background Image with Subtle Overlay */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-secondary/90 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-background/80 z-10" />
         <img 
           src={heroDrone} 
           alt="Drone flying over misty mountains" 
