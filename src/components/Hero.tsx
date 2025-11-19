@@ -32,8 +32,8 @@ const Hero = () => {
             </h1>
           </div>
 
-          {/* Subheadline and Button - moved down 100px */}
-          <div className="space-y-8 mt-[100px]">
+          {/* Subheadline and Button - moved down 300px */}
+          <div className="space-y-8 mt-[300px]">
             {/* Subheadline */}
             <p className="text-xl md:text-2xl text-[hsl(var(--text-dark-blue))]/90 max-w-2xl mx-auto leading-relaxed font-medium">
               AviSafe gir luftfartsprofesjonelle omfattende verktøy for sikkerhetsstyring for tryggere og mer effektiv drift
