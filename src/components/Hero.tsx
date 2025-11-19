@@ -32,8 +32,8 @@ const Hero = () => {
             </h1>
           </div>
 
-          {/* Subheadline and Button - moved down 150px */}
-          <div className="space-y-8 mt-[150px]">
+          {/* Subheadline and Button - moved down 200px */}
+          <div className="space-y-8 mt-[200px]">
             {/* CTA Button */}
             <div className="flex items-center justify-center">
               <Button 
