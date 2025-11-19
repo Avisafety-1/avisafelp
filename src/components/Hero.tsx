@@ -28,7 +28,7 @@ const Hero = () => {
 
             {/* Headline */}
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-[hsl(var(--text-dark-blue))] leading-tight drop-shadow-sm break-words px-4">
-              Sikkerhetsstyringssystem<br />bygget for fremtiden
+              Sikkerhetsstyringsverktøy<br />bygget for fremtiden
             </h1>
           </div>
 
