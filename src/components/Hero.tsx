@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Shield, TrendingUp } from "lucide-react";
+import { ArrowRight, Shield } from "lucide-react";
 import heroDrone from "@/assets/hero-drone.png";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-start justify-center overflow-hidden pt-32 md:pt-40">
       {/* Background Image with Subtle Overlay */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-background/80 z-10" />
@@ -16,40 +16,33 @@ const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-20 container mx-auto px-4 py-20 text-center animate-fade-in">
+      <div className="relative z-20 container mx-auto px-4 text-center animate-fade-in">
         <div className="max-w-4xl mx-auto space-y-8">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 text-white text-sm">
+          <div className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm border border-primary/20 rounded-full px-4 py-2 text-primary text-sm shadow-lg">
             <Shield className="w-4 h-4" />
-            <span>AviSafe</span>
+            <span className="font-semibold">AviSafe</span>
           </div>
 
           {/* Headline */}
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-primary leading-tight drop-shadow-sm">
             Et sikkerhetsstyringssystem<br />bygget for fremtiden
           </h1>
 
           {/* Subheadline */}
-          <p className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed">
-            Avisafe empowers aviation professionals with comprehensive safety management tools for a safer, more efficient operation
+          <p className="text-xl md:text-2xl text-primary/90 max-w-2xl mx-auto leading-relaxed font-medium">
+            AviSafe gir luftfartsprofesjonelle omfattende verktøy for sikkerhetsstyring for tryggere og mer effektiv drift
           </p>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+          {/* CTA Button */}
+          <div className="flex items-center justify-center pt-4">
             <Button 
               variant="hero" 
               size="xl"
-              className="bg-white text-primary hover:bg-white/95 hover:shadow-2xl group"
+              className="bg-primary text-white hover:bg-primary/90 hover:shadow-2xl group shadow-xl"
             >
-              Contact Us Today
+              Kontakt oss i dag
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button 
-              variant="outline" 
-              size="xl"
-              className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm"
-            >
-              Learn More
             </Button>
           </div>
         </div>
