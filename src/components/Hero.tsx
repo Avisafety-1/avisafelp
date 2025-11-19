@@ -16,21 +16,21 @@ const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-20 container mx-auto px-4 text-center animate-fade-in">
+      <div className="relative z-20 container mx-auto px-4 text-center animate-fade-in -mt-12">
         <div className="max-w-4xl mx-auto space-y-8">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm border border-primary/20 rounded-full px-4 py-2 text-primary text-sm shadow-lg">
+          <div className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm border border-[hsl(var(--text-dark-blue))]/20 rounded-full px-4 py-2 text-[hsl(var(--text-dark-blue))] text-sm shadow-lg">
             <Shield className="w-4 h-4" />
             <span className="font-semibold">AviSafe</span>
           </div>
 
           {/* Headline */}
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-primary leading-tight drop-shadow-sm">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-[hsl(var(--text-dark-blue))] leading-tight drop-shadow-sm">
             Et sikkerhetsstyringssystem<br />bygget for fremtiden
           </h1>
 
           {/* Subheadline */}
-          <p className="text-xl md:text-2xl text-primary/90 max-w-2xl mx-auto leading-relaxed font-medium">
+          <p className="text-xl md:text-2xl text-[hsl(var(--text-dark-blue))]/90 max-w-2xl mx-auto leading-relaxed font-medium">
             AviSafe gir luftfartsprofesjonelle omfattende verktøy for sikkerhetsstyring for tryggere og mer effektiv drift
           </p>
 
@@ -40,9 +40,12 @@ const Hero = () => {
               variant="hero" 
               size="xl"
               className="bg-primary text-white hover:bg-primary/90 hover:shadow-2xl group shadow-xl"
+              asChild
             >
-              Kontakt oss i dag
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <a href="mailto:rikard.vb.alfakrav@gmail.com">
+                Kontakt oss i dag
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </a>
             </Button>
           </div>
         </div>
