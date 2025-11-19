@@ -43,6 +43,7 @@ All colors MUST be HSL.
     --hero-glow: 0 20px 60px -15px hsl(210 100% 45% / 0.3);
     --card-shadow: 0 4px 20px -4px hsl(210 50% 50% / 0.1);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --text-dark-blue: 210 45% 12%;
 
     --sidebar-background: 0 0% 98%;
 
