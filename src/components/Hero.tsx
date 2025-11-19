@@ -34,25 +34,25 @@ const Hero = () => {
 
           {/* Subheadline and Button - moved down 300px */}
           <div className="space-y-8 mt-[300px]">
-            {/* Subheadline */}
-            <p className="text-xl md:text-2xl text-[hsl(var(--text-dark-blue))]/90 max-w-2xl mx-auto leading-relaxed font-medium">
-              AviSafe gir luftfartsprofesjonelle omfattende verktøy for sikkerhetsstyring for tryggere og mer effektiv drift
-            </p>
-
             {/* CTA Button */}
-            <div className="flex items-center justify-center pt-4">
+            <div className="flex items-center justify-center">
               <Button 
                 variant="hero" 
                 size="xl"
                 className="bg-primary text-white hover:bg-primary/90 hover:shadow-2xl group shadow-xl"
                 asChild
               >
-                <a href="mailto:rikard.vb.alfakrav@gmail.com">
+                <a href="mailto:rikardvb@gmail.com">
                   Kontakt oss i dag
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </a>
               </Button>
             </div>
+
+            {/* Subheadline */}
+            <p className="text-xl md:text-2xl text-[hsl(var(--text-dark-blue))]/90 max-w-2xl mx-auto leading-relaxed font-medium">
+              AviSafe gir luftfartsprofesjonelle omfattende verktøy for sikkerhetsstyring for tryggere og mer effektiv drift
+            </p>
           </div>
         </div>
       </div>
