@@ -42,7 +42,7 @@ const Hero = () => {
                 className="bg-primary text-white hover:bg-primary/90 hover:shadow-2xl group shadow-xl"
                 asChild
               >
-                <a href="mailto:rikardvb@gmail.com">
+                <a href="mailto:kontakt@avisafe.no">
                   Kontakt oss i dag
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </a>
