@@ -26,10 +26,13 @@ const CTA = () => {
               variant="hero" 
               size="xl"
               className="bg-white text-primary hover:bg-white/95 hover:shadow-2xl group"
+              asChild
             >
-              <Mail className="w-5 h-5" />
-              Contact Us Today
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <a href="mailto:kontakt@avisafe.no">
+                <Mail className="w-5 h-5" />
+                Contact Us Today
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </a>
             </Button>
             <Button 
               variant="outline" 
