@@ -12,7 +12,7 @@ const teamMembers = [
       "15 års erfaring fra maritim redningsstjeneste (kaptein og redningsmann)",
       "Bachelor i Nautikk",
       "Bachelor i Maritim Økonomi og ledelse",
-      "Sikkerhetsleder Redbull Cliff Dive Oslo"
+      "Sikkerhetsleder Redbull Cliff Dive Oslo",
       "Human Factors in Aircraft Investigation fra Southern California Safety Institue"
     ]
   },
@@ -35,7 +35,7 @@ const teamMembers = [
       "Ekspert innen digital kriminalitet, IT-sikkerhet, beredskap og virksomhetsstyring",
       "Mastergrad i informasjonssikkerhet fra NTNU",
       "Bachelor, Politihøyskolen",
-      "Tilleggsutdanning i økonomi, ledelse og juss"
+      "Tilleggsutdanning i økonomi, ledelse og juss",
       "Sertifisert for implementering av ISO 270001 (ISMS)"
     ]
   }
