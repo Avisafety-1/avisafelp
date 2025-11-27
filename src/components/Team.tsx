@@ -5,7 +5,7 @@ import teamMember3 from "@/assets/team-member-3.jpg";
 
 const teamMembers = [
   {
-    name: "Erik Johansen",
+    name: "Rikard Bjørklund",
     title: "Safety Management Director",
     image: teamMember1,
     cv: [
