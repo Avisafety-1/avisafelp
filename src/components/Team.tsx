@@ -6,35 +6,37 @@ import teamMember3 from "@/assets/team-member-3.jpg";
 const teamMembers = [
   {
     name: "Rikard Bjørklund",
-    title: "Safety Management Director",
+    title: "Quality Manager",
     image: teamMember1,
     cv: [
-      "20+ års erfaring innen luftfartssikkerhet",
-      "Tidligere Safety Manager hos SAS",
-      "Sertifisert SMS Auditor",
-      "Master i Aviation Safety Management"
+      "15 års erfaring fra maritim redningsstjeneste (kaptein og redningsmann)",
+      "Bachelor i Nautikk",
+      "Bachelor i Maritim Økonomi og ledelse",
+      "Sikkerhetsleder Redbull Cliff Dive Oslo"
+      "Human Factors in Aircraft Investigation fra Southern California Safety Institue"
     ]
   },
   {
-    name: "Maria Berg",
-    title: "Operations & Compliance Lead",
+    name: "Gard Haug-Hansen",
+    title: "Safety Manager",
     image: teamMember2,
     cv: [
-      "15 års erfaring fra luftfartsoperasjoner",
-      "Tidligere Quality Manager hos Norwegian",
-      "EASA Part-145 spesialist",
-      "Siviling. Luftfart, NTNU"
+      "13 års erfaring som pilot",
+      "Bachelor i luftmakt og ledelse fra Luftkrigskolen",
+      "2 års erfaring som Safety Manager",
+      "Accident investigation og human factors course"
     ]
   },
   {
-    name: "Thomas Andreassen",
-    title: "Technical Safety Specialist",
+    name: "Ivar Moen",
+    title: "IT Security Manager",
     image: teamMember3,
     cv: [
-      "12 års erfaring innen flysikkerhet",
-      "Tidligere Flight Operations Officer",
-      "Human Factors & SMS sertifisering",
-      "Bachelor i Aviation Management"
+      "Ekspert innen digital kriminalitet, IT-sikkerhet, beredskap og virksomhetsstyring",
+      "Mastergrad i informasjonssikkerhet fra NTNU",
+      "Bachelor, Politihøyskolen",
+      "Tilleggsutdanning i økonomi, ledelse og juss"
+      "Sertifisert for implementering av ISO 270001 (ISMS)"
     ]
   }
 ];
