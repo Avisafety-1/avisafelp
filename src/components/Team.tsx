@@ -2,34 +2,61 @@ import { Card } from "@/components/ui/card";
 import teamMember1 from "@/assets/team-member-1.jpg";
 import teamMember2 from "@/assets/team-member-2.jpg";
 import teamMember3 from "@/assets/team-member-3.jpg";
-const teamMembers = [{
-  name: "Rikard Bjørklund",
-  title: "Quality Manager",
-  image: teamMember1,
-  cv: ["15 års erfaring fra maritim redningsstjeneste (kaptein og redningsmann)", "Bachelor i Nautikk", "Bachelor i Maritim Økonomi og ledelse", "Sikkerhetsleder Redbull Cliff Dive Oslo", "Human Factors in Aircraft Investigation fra Southern California Safety Institue"]
-}, {
-  name: "Gard Haug-Hansen",
-  title: "Safety Manager",
-  image: teamMember2,
-  cv: ["13 års erfaring som pilot", "Bachelor i luftmakt og ledelse fra Luftkrigskolen", "2 års erfaring som Safety Manager", "Aircraft Accident Investigation (AAI) og Human Factors in Accident Investigation (HFAI) fra Southern California Safety Institue (SCSI)"]
-}, {
-  name: "Ivar Moen",
-  title: "IT Security Manager",
-  image: teamMember3,
-  cv: ["Ekspert innen digital kriminalitet, IT-sikkerhet, beredskap og virksomhetsstyring", "Mastergrad i informasjonssikkerhet fra NTNU", "Bachelor, Politihøyskolen", "Tilleggsutdanning i økonomi, ledelse og juss", "Sertifisert for implementering av ISO 270001 (ISMS)"]
-}];
+const teamMembers = [
+  {
+    name: "Rikard Bjørklund",
+    title: "Salg & Markedsføring",
+    image: teamMember1,
+    cv: [
+      "15 års erfaring fra maritim redningsstjeneste (kaptein og redningsmann)",
+      "Bachelor i Nautikk",
+      "Bachelor i Maritim Økonomi og ledelse",
+      "Sikkerhetsleder Redbull Cliff Dive Oslo",
+      "Human Factors in Aircraft Investigation fra Southern California Safety Institue",
+    ],
+  },
+  {
+    name: "Gard Haug-Hansen",
+    title: "Produktutvikling",
+    image: teamMember2,
+    cv: [
+      "13 års erfaring som pilot",
+      "Bachelor i luftmakt og ledelse fra Luftkrigskolen",
+      "2 års erfaring som Safety Manager",
+      "Aircraft Accident Investigation (AAI) og Human Factors in Accident Investigation (HFAI) fra Southern California Safety Institue (SCSI)",
+    ],
+  },
+  {
+    name: "Ivar Moen",
+    title: "IT-sikkerhet",
+    image: teamMember3,
+    cv: [
+      "Ekspert innen digital kriminalitet, IT-sikkerhet, beredskap og virksomhetsstyring",
+      "Mastergrad i informasjonssikkerhet fra NTNU",
+      "Bachelor, Politihøyskolen",
+      "Tilleggsutdanning i økonomi, ledelse og juss",
+      "Sertifisert for implementering av ISO 270001 (ISMS)",
+    ],
+  },
+];
 const Team = () => {
-  return <section className="py-24 bg-background">
+  return (
+    <section className="py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16 animate-slide-up">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Møt teamet i AviSafe          </h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Møt teamet i AviSafe </h2>
           <p className="text-xl text-muted-foreground">Erfarne eksperter dedikert til å gjøre luftfarten tryggere</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {teamMembers.map((member, index) => <Card key={index} className="p-8 hover:shadow-card-custom transition-all duration-300 hover:-translate-y-1 bg-card border-border animate-fade-in" style={{
-          animationDelay: `${index * 0.1}s`
-        }}>
+          {teamMembers.map((member, index) => (
+            <Card
+              key={index}
+              className="p-8 hover:shadow-card-custom transition-all duration-300 hover:-translate-y-1 bg-card border-border animate-fade-in"
+              style={{
+                animationDelay: `${index * 0.1}s`,
+              }}
+            >
               <div className="flex flex-col items-center text-center mb-6">
                 <div className="w-32 h-32 rounded-full overflow-hidden mb-4 ring-4 ring-primary/20">
                   <img src={member.image} alt={member.name} className="w-full h-full object-cover object-top" />
@@ -39,14 +66,18 @@ const Team = () => {
               </div>
 
               <ul className="space-y-3 text-left">
-                {member.cv.map((item, i) => <li key={i} className="flex items-start text-muted-foreground text-sm">
+                {member.cv.map((item, i) => (
+                  <li key={i} className="flex items-start text-muted-foreground text-sm">
                     <span className="text-primary mr-2 mt-1">•</span>
                     <span>{item}</span>
-                  </li>)}
+                  </li>
+                ))}
               </ul>
-            </Card>)}
+            </Card>
+          ))}
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
 export default Team;
