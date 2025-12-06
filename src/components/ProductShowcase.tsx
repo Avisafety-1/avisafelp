@@ -8,9 +8,7 @@ import {
   Cloud, 
   Route,
   ChevronLeft,
-  ChevronRight,
-  Pause,
-  Play
+  ChevronRight
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -184,27 +182,6 @@ const ProductShowcase = () => {
           </p>
         </div>
 
-        {/* Auto-scroll toggle */}
-        <div className="flex justify-center mb-6">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setIsAutoScrolling(!isAutoScrolling)}
-            className="gap-2"
-          >
-            {isAutoScrolling ? (
-              <>
-                <Pause className="w-4 h-4" />
-                Pause
-              </>
-            ) : (
-              <>
-                <Play className="w-4 h-4" />
-                Auto-scroll
-              </>
-            )}
-          </Button>
-        </div>
       </div>
 
       {/* Scroll Container */}
