@@ -71,7 +71,7 @@ const PhoneMockup = ({
           <Icon className="w-5 h-5" />
           <span className="font-semibold text-sm">{feature.title}</span>
         </div>
-        <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3">
+        <p className="text-xs text-[hsl(var(--text-dark-blue))] leading-relaxed line-clamp-3">
           {feature.description}
         </p>
       </div>
