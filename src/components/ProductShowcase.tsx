@@ -10,6 +10,18 @@ import appOppdrag from "@/assets/app-oppdrag.jpeg";
 import appFlyforhold from "@/assets/app-flyforhold.jpeg";
 import appRuteplanlegging from "@/assets/app-ruteplanlegging.jpeg";
 const features = [{
+  id: "ruteplanlegging",
+  icon: Route,
+  title: "Ruteplanlegging",
+  description: "Planlegg flyruter visuelt på kartet med automatisk beregning av distanse og luftromssjekk.",
+  image: appRuteplanlegging
+}, {
+  id: "flyforhold",
+  icon: Cloud,
+  title: "Værdata og flyforhold",
+  description: "Sanntids værdata fra MET Norway med advarsler om luftromsbegrensninger.",
+  image: appFlyforhold
+}, {
   id: "droner",
   icon: Plane,
   title: "Droneadministrasjon",
@@ -45,18 +57,6 @@ const features = [{
   title: "Oppdragsstyring",
   description: "Planlegg og følg opp kommende oppdrag med SORA-vurderinger og risikonivå.",
   image: appOppdrag
-}, {
-  id: "flyforhold",
-  icon: Cloud,
-  title: "Værdata og flyforhold",
-  description: "Sanntids værdata fra MET Norway med advarsler om luftromsbegrensninger.",
-  image: appFlyforhold
-}, {
-  id: "ruteplanlegging",
-  icon: Route,
-  title: "Ruteplanlegging",
-  description: "Planlegg flyruter visuelt på kartet med automatisk beregning av distanse og luftromssjekk.",
-  image: appRuteplanlegging
 }];
 const PhoneMockup = ({
   feature
