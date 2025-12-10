@@ -8,11 +8,12 @@ const teamMembers = [
     title: "Salg & Markedsføring",
     image: teamMember1,
     cv: [
-      "15 års erfaring fra maritim redningsstjeneste (kaptein og redningsmann)",
+      "Bakgrunn fra shipping og maritim redningstjeneste",
+      "2 års erfaring som Quality Assurance",
       "Bachelor i Nautikk",
-      "Bachelor i Maritim Økonomi og ledelse",
       "Sikkerhetsleder Redbull Cliff Dive Oslo",
       "Human Factors in Aircraft Investigation fra Southern California Safety Institue",
+      "Godkjent revisjonsleder - ISO 9001",
     ],
   },
   {
