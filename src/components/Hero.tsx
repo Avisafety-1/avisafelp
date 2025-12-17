@@ -14,10 +14,6 @@ const Hero = () => {
       </div>
 
       {/* Background Image with Subtle Overlay */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-background/80 z-10" />
-        <img src={heroDrone} alt="Drone flying over misty mountains" className="w-full h-full object-cover" />
-      </div>
 
       {/* Content */}
       <div className="relative z-20 container mx-auto px-4 text-center animate-fade-in -mt-12">
@@ -31,7 +27,7 @@ const Hero = () => {
             </div>
 
             {/* Headline */}
-            <h1 className="mt-8 text-4xl md:text-6xl lg:text-7xl font-bold text-[hsl(var(--text-dark-blue))] leading-tight drop-shadow-sm break-words px-4">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-[hsl(var(--text-dark-blue))] leading-tight drop-shadow-sm break-words px-4">
               Sikkerhetsstyring
               <br />
               bygget for fremtiden
