@@ -9,26 +9,14 @@ const Hero = () => {
     <section className="relative min-h-screen flex items-start justify-center overflow-hidden pt-32 md:pt-40">
       {/* Partner Logos - Top Left */}
       <div className="absolute top-4 left-4 z-30 flex items-center gap-4">
-        <img 
-          src={dronetagLogo} 
-          alt="Dronetag" 
-          className="h-6 md:h-8 w-auto"
-        />
-        <img 
-          src={safeskyLogo} 
-          alt="SafeSky" 
-          className="h-8 md:h-10 w-auto rounded-lg"
-        />
+        <img src={dronetagLogo} alt="Dronetag" className="h-10 md:h-12 w-auto" />
+        <img src={safeskyLogo} alt="SafeSky" className="h-10 md:h-12 w-auto rounded-lg" />
       </div>
 
       {/* Background Image with Subtle Overlay */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-background/80 z-10" />
-        <img 
-          src={heroDrone} 
-          alt="Drone flying over misty mountains" 
-          className="w-full h-full object-cover"
-        />
+        <img src={heroDrone} alt="Drone flying over misty mountains" className="w-full h-full object-cover" />
       </div>
 
       {/* Content */}
@@ -44,7 +32,9 @@ const Hero = () => {
 
             {/* Headline */}
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-[hsl(var(--text-dark-blue))] leading-tight drop-shadow-sm break-words px-4">
-              Sikkerhetsstyring<br />bygget for fremtiden
+              Sikkerhetsstyring
+              <br />
+              bygget for fremtiden
             </h1>
           </div>
 
@@ -52,8 +42,8 @@ const Hero = () => {
           <div className="space-y-8 mt-[200px]">
             {/* CTA Button */}
             <div className="flex items-center justify-center">
-              <Button 
-                variant="hero" 
+              <Button
+                variant="hero"
                 size="xl"
                 className="bg-primary text-white hover:bg-primary/90 hover:shadow-2xl group shadow-xl"
                 asChild
@@ -67,7 +57,8 @@ const Hero = () => {
 
             {/* Subheadline */}
             <p className="text-xl md:text-2xl text-[hsl(var(--text-dark-blue))]/90 max-w-2xl mx-auto leading-relaxed font-medium">
-              AviSafe bidrar til tryggere og mer effektiv drift ved å gi luftfartsaktører omfattende verktøy for sikkerhetsstyring
+              AviSafe bidrar til tryggere og mer effektiv drift ved å gi luftfartsaktører omfattende verktøy for
+              sikkerhetsstyring
             </p>
           </div>
         </div>
