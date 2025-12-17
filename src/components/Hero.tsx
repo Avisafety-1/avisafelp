@@ -1,10 +1,26 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield } from "lucide-react";
 import heroDrone from "@/assets/hero-drone.png";
+import dronetagLogo from "@/assets/dronetag-logo.png";
+import safeskyLogo from "@/assets/safesky-logo.png";
 
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-start justify-center overflow-hidden pt-32 md:pt-40">
+      {/* Partner Logos - Top Left */}
+      <div className="absolute top-4 left-4 z-30 flex items-center gap-4">
+        <img 
+          src={dronetagLogo} 
+          alt="Dronetag" 
+          className="h-6 md:h-8 w-auto"
+        />
+        <img 
+          src={safeskyLogo} 
+          alt="SafeSky" 
+          className="h-8 md:h-10 w-auto rounded-lg"
+        />
+      </div>
+
       {/* Background Image with Subtle Overlay */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-background/80 z-10" />

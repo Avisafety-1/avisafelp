@@ -9,6 +9,7 @@ import appStatistikk from "@/assets/app-statistikk.jpeg";
 import appOppdrag from "@/assets/app-oppdrag.jpeg";
 import appFlyforhold from "@/assets/app-flyforhold.jpeg";
 import appRuteplanlegging from "@/assets/app-ruteplanlegging.jpeg";
+import dronetagMini from "@/assets/dronetag-mini.jpeg";
 const features = [{
   id: "ruteplanlegging",
   icon: Route,
@@ -176,6 +177,17 @@ const ProductShowcase = () => {
           
           {/* Right Spacer */}
           <div className="flex-shrink-0 w-[calc(50vw-160px)] md:w-[calc(50vw-180px)]" />
+        </div>
+      </div>
+
+      {/* Dronetag Mini Section */}
+      <div className="container mx-auto px-4 mt-12 md:mt-16">
+        <div className="relative rounded-2xl overflow-hidden shadow-xl">
+          <img 
+            src={dronetagMini} 
+            alt="Dronetag Mini - Make the drone visible to anyone, anywhere, anytime" 
+            className="w-full h-auto object-cover"
+          />
         </div>
       </div>
     </section>;
