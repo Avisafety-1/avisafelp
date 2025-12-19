@@ -26,10 +26,14 @@ const Hero = () => {
         </video>
         {/* Video Overlay for better text readability */}
         <div className="absolute inset-0 bg-background/30" />
+        {/* Bottom gradient for smooth transition to image */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 md:h-48 bg-gradient-to-t from-[#d4c4b0] via-[#d4c4b0]/70 to-transparent z-10" />
       </div>
 
       {/* Drone Landscape Image */}
-      <div className="relative w-full">
+      <div className="relative w-full -mt-16 md:-mt-24">
+        {/* Top gradient for smooth transition from video */}
+        <div className="absolute top-0 left-0 right-0 h-32 md:h-48 bg-gradient-to-b from-[#d4c4b0] via-[#d4c4b0]/70 to-transparent z-10" />
         <img 
           src={droneLandscape} 
           alt="Drone flying over mountains" 
