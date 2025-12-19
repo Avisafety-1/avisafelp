@@ -6,13 +6,17 @@ import safeskyLogo from "@/assets/safesky-logo.png";
 const Hero = () => {
   return (
     <section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden">
-      {/* Background Video - responsive with object-position adjustments */}
+      {/* Background Video - responsive scaling for different devices */}
       <video
         autoPlay
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover z-0 object-center md:object-center"
+        className="absolute inset-0 w-full h-full object-cover z-0 
+          object-[70%_center] 
+          sm:object-[60%_center] 
+          md:object-center 
+          lg:object-center"
       >
         <source src="/hero-video.mp4" type="video/mp4" />
       </video>
