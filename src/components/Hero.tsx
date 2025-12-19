@@ -4,7 +4,7 @@ import droneLandscape from "@/assets/drone-landscape.png";
 
 const Hero = () => {
   return (
-    <section className="relative flex flex-col overflow-hidden bg-hero-bg">
+    <section className="relative flex flex-col overflow-hidden bg-transparent">
       {/* Video Section with fade-out bottom */}
       <div className="relative w-full">
         <video
