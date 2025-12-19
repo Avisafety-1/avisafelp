@@ -43,12 +43,12 @@ const Hero = () => {
         />
         
         {/* CTA Buttons - Positioned at bottom of image */}
-        <div className="absolute bottom-8 sm:bottom-12 md:bottom-16 left-1/2 -translate-x-1/2 z-10 animate-fade-in">
+        <div className="absolute -bottom-6 sm:-bottom-7 md:-bottom-8 left-1/2 -translate-x-1/2 z-10 animate-fade-in">
           <div className="flex flex-row items-center justify-center gap-4">
             <Button
               variant="hero"
               size="xl"
-              className="bg-primary text-white hover:bg-primary/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-6 sm:px-10 h-12 sm:h-14"
+              className="bg-[hsl(var(--text-dark-blue))] text-white hover:bg-[hsl(var(--text-dark-blue))]/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-6 sm:px-10 h-12 sm:h-14"
               asChild
             >
               <a href="mailto:kontakt@avisafe.no">
@@ -59,7 +59,7 @@ const Hero = () => {
             <Button
               variant="hero"
               size="xl"
-              className="bg-primary text-white hover:bg-primary/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-6 sm:px-10 h-12 sm:h-14"
+              className="bg-[hsl(var(--text-dark-blue))] text-white hover:bg-[hsl(var(--text-dark-blue))]/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-6 sm:px-10 h-12 sm:h-14"
               onClick={() => {
                 document.getElementById('team-section')?.scrollIntoView({ behavior: 'smooth' });
               }}
