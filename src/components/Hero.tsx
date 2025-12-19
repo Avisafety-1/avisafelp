@@ -13,7 +13,7 @@ const Hero = () => {
         <img src={safeskyLogo} alt="SafeSky" className="h-6 sm:h-8 md:h-10 w-auto rounded-lg" />
       </div>
 
-      {/* Video Section */}
+      {/* Video Section with fade-out bottom */}
       <div className="relative w-full">
         <video
           autoPlay
@@ -21,27 +21,32 @@ const Hero = () => {
           muted
           playsInline
           className="w-full h-auto"
+          style={{
+            maskImage: 'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)'
+          }}
         >
           <source src="/hero-video.mp4" type="video/mp4" />
         </video>
         {/* Video Overlay for better text readability */}
-        <div className="absolute inset-0 bg-background/30" />
+        <div 
+          className="absolute inset-0 bg-background/30"
+          style={{
+            maskImage: 'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)'
+          }}
+        />
       </div>
 
-      {/* Transition zone - overlapping area with blur and opacity blend */}
-      <div className="relative w-full h-24 md:h-40 -mt-24 md:-mt-40 z-10">
-        <div className="absolute inset-0 backdrop-blur-md bg-white/10" />
-      </div>
-
-      {/* Drone Landscape Image */}
-      <div className="relative w-full -mt-12 md:-mt-20">
+      {/* Drone Landscape Image with fade-in top */}
+      <div className="relative w-full -mt-32 md:-mt-48 lg:-mt-64">
         <img 
           src={droneLandscape} 
           alt="Drone flying over mountains" 
           className="w-full h-auto"
           style={{
-            maskImage: 'linear-gradient(to bottom, transparent 0%, black 15%)',
-            WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%)'
+            maskImage: 'linear-gradient(to bottom, transparent 0%, black 30%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 30%)'
           }}
         />
         
