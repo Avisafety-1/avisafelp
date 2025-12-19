@@ -1,18 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import dronetagLogo from "@/assets/dronetag-logo.png";
-import safeskyLogo from "@/assets/safesky-logo.png";
 import droneLandscape from "@/assets/drone-landscape.png";
 
 const Hero = () => {
   return (
     <section className="relative flex flex-col overflow-hidden bg-background">
-      {/* Partner Logos - Top Left - responsive sizing and positioning */}
-      <div className="absolute top-3 left-3 md:top-4 md:left-4 z-30 flex items-center gap-2 md:gap-4">
-        <img src={dronetagLogo} alt="Dronetag" className="h-5 sm:h-6 md:h-8 w-auto" />
-        <img src={safeskyLogo} alt="SafeSky" className="h-6 sm:h-8 md:h-10 w-auto rounded-lg" />
-      </div>
-
       {/* Video Section with fade-out bottom */}
       <div className="relative w-full">
         <video
