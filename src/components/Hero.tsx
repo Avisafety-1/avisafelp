@@ -1,32 +1,36 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Shield } from "lucide-react";
-import heroDrone from "@/assets/hero-drone.png";
+import { ArrowRight } from "lucide-react";
 import dronetagLogo from "@/assets/dronetag-logo.png";
 import safeskyLogo from "@/assets/safesky-logo.png";
 
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-start justify-center overflow-hidden pt-32 md:pt-40">
+      {/* Background Video */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover z-0"
+      >
+        <source src="/hero-video.mp4" type="video/mp4" />
+      </video>
+      
+      {/* Video Overlay for better text readability */}
+      <div className="absolute inset-0 bg-background/30 z-5" />
+
       {/* Partner Logos - Top Left */}
       <div className="absolute top-4 left-4 z-30 flex items-center gap-4">
         <img src={dronetagLogo} alt="Dronetag" className="h-6 md:h-8 w-auto" />
         <img src={safeskyLogo} alt="SafeSky" className="h-8 md:h-10 w-auto rounded-lg" />
       </div>
 
-      {/* Background Image with Subtle Overlay */}
-
       {/* Content */}
       <div className="relative z-20 container mx-auto px-4 text-center animate-fade-in -mt-12">
         <div className="max-w-4xl mx-auto">
-          {/* Badge and Headline - moved up 70px */}
-          <div className="space-y-8 -mt-[70px]">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm border border-[hsl(var(--text-dark-blue))]/20 rounded-full px-4 py-2 text-[hsl(var(--text-dark-blue))] text-sm shadow-lg">
-              <Shield className="w-4 h-4" />
-              <span className="font-semibold">AviSafe</span>
-            </div>
-
-            {/* Headline */}
+          {/* Headline - moved up 70px */}
+          <div className="-mt-[70px]">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-[hsl(var(--text-dark-blue))] leading-tight drop-shadow-sm break-words px-4">
               Sikkerhetsstyring
               <br />
