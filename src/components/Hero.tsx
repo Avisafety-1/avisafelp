@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowDown } from "lucide-react";
 import droneLandscape from "@/assets/drone-landscape.png";
-import avisafeLogo from "@/assets/avisafe-logo-white.png";
+import avisafeLogo from "@/assets/avisafe-logo-dark.png";
 
 const Hero = () => {
   return <section className="relative flex flex-col overflow-hidden bg-transparent">
