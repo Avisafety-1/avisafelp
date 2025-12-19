@@ -3,7 +3,7 @@ import { ArrowRight, Mail } from "lucide-react";
 
 const CTA = () => {
   return (
-    <section className="py-12 md:py-16 bg-gradient-to-br from-primary via-primary to-secondary relative overflow-hidden">
+    <section className="py-8 md:py-10 bg-gradient-to-br from-primary via-primary to-secondary relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
