@@ -38,15 +38,15 @@ const Hero = () => {
         />
       </div>
 
-      {/* Drone Landscape Image with fade-in top */}
+      {/* Drone Landscape Image with fade-in top and fade-out to white at bottom */}
       <div className="relative w-full -mt-32 md:-mt-48 lg:-mt-64">
         <img 
           src={droneLandscape} 
           alt="Drone flying over mountains" 
           className="w-full h-auto"
           style={{
-            maskImage: 'linear-gradient(to bottom, transparent 0%, black 30%)',
-            WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 30%)'
+            maskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 70%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 70%, transparent 100%)'
           }}
         />
         
