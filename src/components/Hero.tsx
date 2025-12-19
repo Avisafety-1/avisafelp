@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowDown } from "lucide-react";
 import droneLandscape from "@/assets/drone-landscape.png";
+import avisafeLogo from "@/assets/avisafe-logo-white.png";
+
 const Hero = () => {
   return <section className="relative flex flex-col overflow-hidden bg-transparent">
       {/* Video Section with fade-out bottom */}
@@ -16,6 +18,19 @@ const Hero = () => {
         maskImage: 'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)',
         WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)'
       }} />
+        
+        {/* AviSafe Logo Overlay */}
+        <div className="absolute inset-0 flex items-center justify-center z-10">
+          <img 
+            src={avisafeLogo} 
+            alt="AviSafe" 
+            className="w-[280px] sm:w-[400px] md:w-[500px] lg:w-[600px] h-auto animate-fade-in drop-shadow-2xl"
+            style={{
+              animationDelay: '0.3s',
+              animationFillMode: 'both'
+            }}
+          />
+        </div>
       </div>
 
       {/* Drone Landscape Image with fade-in top and fade-out to white at bottom */}
