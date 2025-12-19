@@ -32,17 +32,18 @@ const teamMembers = [
     title: "IT-sikkerhet",
     image: teamMember3,
     cv: [
+      "Operativ og strategisk erfaring med fysisk og digital sikkerhet fra politiet, finanssektoren og maritim virksomhet",
       "Ekspert innen digital kriminalitet, IT-sikkerhet, beredskap og virksomhetsstyring",
       "Mastergrad i informasjonssikkerhet fra NTNU",
       "Bachelor, Politihøyskolen",
       "Tilleggsutdanning i økonomi, ledelse og juss",
-      "Sertifisert for implementering av ISO 270001 (ISMS)",
+      "Sertifisert for implementering av ISO 27001 (ISMS)",
     ],
   },
 ];
 const Team = () => {
   return (
-    <section className="py-24 bg-gradient-to-b from-transparent to-hero-bg/50">
+    <section className="py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16 animate-slide-up">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Møt teamet i AviSafe </h2>
