@@ -135,7 +135,7 @@ const ProductShowcase = () => {
   const handleInteraction = () => {
     setIsAutoScrolling(false);
   };
-  return <section className="relative z-30 pt-8 md:pt-12 pb-0 overflow-hidden">
+  return <section className="relative z-30 pt-0 pb-0 overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-8">
