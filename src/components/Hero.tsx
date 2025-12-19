@@ -42,14 +42,6 @@ const Hero = () => {
           }}
         />
         
-        {/* Headline overlay on the image */}
-        <div className="absolute inset-0 flex items-end justify-center pb-8 sm:pb-16 md:pb-24 lg:pb-32">
-          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-foreground leading-tight text-center break-words px-4">
-            Sikkerhetsstyring
-            <br />
-            bygget for fremtiden
-          </h1>
-        </div>
       </div>
 
       {/* Content section below the image */}
