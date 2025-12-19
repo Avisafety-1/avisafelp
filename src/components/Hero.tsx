@@ -39,7 +39,7 @@ const Hero = () => {
       </div>
 
       {/* Drone Landscape Image with fade-in top and fade-out to white at bottom */}
-      <div className="relative w-full -mt-32 md:-mt-48 lg:-mt-64">
+      <div className="relative w-full -mt-12 sm:-mt-20 md:-mt-32 lg:-mt-48">
         <img 
           src={droneLandscape} 
           alt="Drone flying over mountains" 
