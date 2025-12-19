@@ -49,41 +49,39 @@ const Hero = () => {
             WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 70%, transparent 100%)'
           }}
         />
-        
-        {/* Content overlay on the image */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="container mx-auto px-4 sm:px-6 text-center animate-fade-in">
-            <div className="max-w-4xl mx-auto">
-              {/* Headline */}
-              <div className="mb-6 md:mb-8">
-                <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight drop-shadow-lg break-words">
-                  Sikkerhetsstyring
-                  <br />
-                  bygget for fremtiden
-                </h1>
-              </div>
+      </div>
 
-              {/* CTA Button */}
-              <div className="flex items-center justify-center mb-6 md:mb-8">
-                <Button
-                  variant="hero"
-                  size="xl"
-                  className="bg-primary text-white hover:bg-primary/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-6 sm:px-10 h-12 sm:h-14"
-                  asChild
-                >
-                  <a href="mailto:kontakt@avisafe.no">
-                    Kontakt oss i dag
-                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
-                  </a>
-                </Button>
-              </div>
+      {/* Content section below the image */}
+      <div className="container mx-auto px-4 sm:px-6 text-center py-12 md:py-16 animate-fade-in">
+        <div className="max-w-4xl mx-auto">
+          {/* Headline */}
+          <div className="mb-6 md:mb-8">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight break-words">
+              Sikkerhetsstyring
+              <br />
+              bygget for fremtiden
+            </h1>
+          </div>
 
-              {/* Subheadline */}
-              <p className="text-base sm:text-xl md:text-2xl text-white/90 max-w-xs sm:max-w-lg md:max-w-2xl mx-auto leading-relaxed font-medium px-2 drop-shadow-md">
-                AviSafe bidrar til tryggere og mer effektiv drift ved å gi luftfartsaktører omfattende verktøy for
-                sikkerhetsstyring
-              </p>
-            </div>
+          {/* Subheadline */}
+          <p className="text-base sm:text-xl md:text-2xl text-muted-foreground max-w-xs sm:max-w-lg md:max-w-2xl mx-auto leading-relaxed font-medium px-2 mb-8 md:mb-10">
+            AviSafe bidrar til tryggere og mer effektiv drift ved å gi luftfartsaktører omfattende verktøy for
+            sikkerhetsstyring
+          </p>
+
+          {/* CTA Button */}
+          <div className="flex items-center justify-center">
+            <Button
+              variant="hero"
+              size="xl"
+              className="bg-primary text-white hover:bg-primary/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-6 sm:px-10 h-12 sm:h-14"
+              asChild
+            >
+              <a href="mailto:kontakt@avisafe.no">
+                Kontakt oss i dag
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </Button>
           </div>
         </div>
       </div>
