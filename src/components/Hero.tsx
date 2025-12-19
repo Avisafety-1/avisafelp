@@ -72,7 +72,7 @@ const Hero = () => {
       </div>
 
       {/* Content section below the image */}
-      <div className="container mx-auto px-4 sm:px-6 text-center py-8 md:py-12 animate-fade-in">
+      <div className="container mx-auto px-4 sm:px-6 text-center pt-16 pb-8 md:pt-20 md:pb-12 animate-fade-in">
         <div className="max-w-4xl mx-auto">
           {/* Subheadline */}
           <p className="text-base sm:text-xl md:text-2xl text-muted-foreground max-w-xs sm:max-w-lg md:max-w-2xl mx-auto leading-relaxed font-medium px-2">
