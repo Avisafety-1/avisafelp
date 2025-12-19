@@ -5,7 +5,6 @@ const Security = () => {
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
             Bygget med fokus på sikkerhet
-            Bygget med sikkerhet i fokus
           </h2>
         </div>
 
