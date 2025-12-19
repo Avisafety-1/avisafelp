@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowDown } from "lucide-react";
 import droneLandscape from "@/assets/drone-landscape.png";
 
 const Hero = () => {
@@ -54,7 +54,7 @@ const Hero = () => {
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col items-center justify-center gap-4">
+          <div className="flex flex-row items-center justify-center gap-4">
             <Button
               variant="hero"
               size="xl"
@@ -75,7 +75,7 @@ const Hero = () => {
               }}
             >
               Hvem er vi?
-              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowDown className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-y-1 transition-transform" />
             </Button>
           </div>
         </div>
