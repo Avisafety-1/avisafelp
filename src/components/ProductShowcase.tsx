@@ -169,7 +169,7 @@ const ProductShowcase = () => {
         msOverflowStyle: "none"
       }} onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)} onTouchStart={handleInteraction} onWheel={handleInteraction}>
           {/* Left Spacer */}
-          <div className="flex-shrink-0 w-[calc(50vw-160px)] md:w-[calc(50vw-180px)] my-0" />
+          <div className="flex-shrink-0 w-[calc(50vw-160px)] md:w-[calc(50vw-180px)]" />
           
           {features.map(feature => <div key={feature.id} className="snap-center">
               <PhoneMockup feature={feature} />
@@ -183,7 +183,11 @@ const ProductShowcase = () => {
       {/* Dronetag Mini Section */}
       <div className="container mx-auto px-4 mt-12 md:mt-16">
         <div className="relative rounded-2xl overflow-hidden shadow-xl">
-          <img src={dronetagMini} alt="Dronetag Mini - Make the drone visible to anyone, anywhere, anytime" className="w-full h-auto object-cover" />
+          <img 
+            src={dronetagMini} 
+            alt="Dronetag Mini - Make the drone visible to anyone, anywhere, anytime" 
+            className="w-full h-auto object-cover"
+          />
         </div>
       </div>
     </section>;
