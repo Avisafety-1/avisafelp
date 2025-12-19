@@ -49,20 +49,20 @@ const Hero = () => {
             WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 70%, transparent 100%)'
           }}
         />
+        
+        {/* Headline overlay on the image */}
+        <div className="absolute inset-0 flex items-end justify-center pb-16 md:pb-24 lg:pb-32">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight text-center drop-shadow-lg break-words px-4">
+            Sikkerhetsstyring
+            <br />
+            bygget for fremtiden
+          </h1>
+        </div>
       </div>
 
       {/* Content section below the image */}
-      <div className="container mx-auto px-4 sm:px-6 text-center py-12 md:py-16 animate-fade-in">
+      <div className="container mx-auto px-4 sm:px-6 text-center py-8 md:py-12 animate-fade-in">
         <div className="max-w-4xl mx-auto">
-          {/* Headline */}
-          <div className="mb-6 md:mb-8">
-            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight break-words">
-              Sikkerhetsstyring
-              <br />
-              bygget for fremtiden
-            </h1>
-          </div>
-
           {/* Subheadline */}
           <p className="text-base sm:text-xl md:text-2xl text-muted-foreground max-w-xs sm:max-w-lg md:max-w-2xl mx-auto leading-relaxed font-medium px-2 mb-8 md:mb-10">
             AviSafe bidrar til tryggere og mer effektiv drift ved å gi luftfartsaktører omfattende verktøy for
