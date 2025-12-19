@@ -182,6 +182,11 @@ const ProductShowcase = () => {
 
       {/* Dronetag Mini Section */}
       <div className="container mx-auto px-4 mt-12 md:mt-16">
+        <div className="text-center mb-8">
+          <p className="text-lg md:text-xl text-foreground max-w-3xl mx-auto">
+            AviSafe, offisiell forhandler av Dronetag i Norge. I vår plattform er Dronetag og SafeSky ferdig integrert.
+          </p>
+        </div>
         <div className="relative rounded-2xl overflow-hidden shadow-xl">
           <img 
             src={dronetagMini} 
