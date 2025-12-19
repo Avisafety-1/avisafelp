@@ -53,8 +53,8 @@ const Hero = () => {
             sikkerhetsstyring
           </p>
 
-          {/* CTA Button */}
-          <div className="flex items-center justify-center">
+          {/* CTA Buttons */}
+          <div className="flex flex-col items-center justify-center gap-4">
             <Button
               variant="hero"
               size="xl"
@@ -65,6 +65,17 @@ const Hero = () => {
                 Kontakt oss i dag
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
               </a>
+            </Button>
+            <Button
+              variant="hero"
+              size="xl"
+              className="bg-primary text-white hover:bg-primary/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-6 sm:px-10 h-12 sm:h-14"
+              onClick={() => {
+                document.getElementById('team-section')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              Hvem er vi?
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>
         </div>
