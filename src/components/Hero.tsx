@@ -42,18 +42,8 @@ const Hero = () => {
           }}
         />
         
-      </div>
-
-      {/* Content section below the image */}
-      <div className="container mx-auto px-4 sm:px-6 text-center py-8 md:py-12 animate-fade-in">
-        <div className="max-w-4xl mx-auto">
-          {/* Subheadline */}
-          <p className="text-base sm:text-xl md:text-2xl text-muted-foreground max-w-xs sm:max-w-lg md:max-w-2xl mx-auto leading-relaxed font-medium px-2 mb-8 md:mb-10">
-            AviSafe bidrar til tryggere og mer effektiv drift ved å gi luftfartsaktører omfattende verktøy for
-            sikkerhetsstyring
-          </p>
-
-          {/* CTA Buttons */}
+        {/* CTA Buttons - Positioned at bottom of image */}
+        <div className="absolute bottom-8 sm:bottom-12 md:bottom-16 left-1/2 -translate-x-1/2 z-10 animate-fade-in">
           <div className="flex flex-row items-center justify-center gap-4">
             <Button
               variant="hero"
@@ -78,6 +68,17 @@ const Hero = () => {
               <ArrowDown className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-y-1 transition-transform" />
             </Button>
           </div>
+        </div>
+      </div>
+
+      {/* Content section below the image */}
+      <div className="container mx-auto px-4 sm:px-6 text-center py-8 md:py-12 animate-fade-in">
+        <div className="max-w-4xl mx-auto">
+          {/* Subheadline */}
+          <p className="text-base sm:text-xl md:text-2xl text-muted-foreground max-w-xs sm:max-w-lg md:max-w-2xl mx-auto leading-relaxed font-medium px-2">
+            AviSafe bidrar til tryggere og mer effektiv drift ved å gi luftfartsaktører omfattende verktøy for
+            sikkerhetsstyring
+          </p>
         </div>
       </div>
     </section>
