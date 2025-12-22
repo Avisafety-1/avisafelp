@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowDown } from "lucide-react";
 import droneLandscape from "@/assets/drone-landscape.png";
-import avisafeLogo from "@/assets/avisafe-logo-dark.png";
+import avisafeLogoBlack from "@/assets/avisafe-logo-black.png";
 
 const Hero = () => {
   return <section className="relative flex flex-col overflow-hidden bg-transparent">
@@ -12,12 +12,12 @@ const Hero = () => {
           WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)'
         }} />
         
-        {/* AviSafe Logo Overlay */}
-        <div className="absolute inset-0 flex items-center justify-center z-10">
+        {/* AviSafe Logo at bottom of image */}
+        <div className="absolute bottom-8 sm:bottom-12 md:bottom-16 left-1/2 -translate-x-1/2 z-10">
           <img 
-            src={avisafeLogo} 
+            src={avisafeLogoBlack} 
             alt="AviSafe" 
-            className="w-[280px] sm:w-[400px] md:w-[500px] lg:w-[600px] h-auto animate-fade-in drop-shadow-2xl"
+            className="w-[200px] sm:w-[280px] md:w-[360px] lg:w-[440px] h-auto animate-fade-in"
             style={{
               animationDelay: '0.3s',
               animationFillMode: 'both'
