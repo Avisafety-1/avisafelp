@@ -181,6 +181,20 @@ const ProductShowcase = () => {
         </div>
       </div>
 
+      {/* Demo Video Section */}
+      <div className="container mx-auto px-4 mt-12 md:mt-16">
+        <div className="relative rounded-2xl overflow-hidden shadow-xl max-w-4xl mx-auto">
+          <video 
+            src="/avisafe-demo.mp4" 
+            controls 
+            className="w-full h-auto"
+            poster=""
+          >
+            Din nettleser støtter ikke videoavspilling.
+          </video>
+        </div>
+      </div>
+
       {/* Dronetag Mini Section */}
       <div className="container mx-auto px-4 mt-12 md:mt-16">
         <div className="text-center mb-8">
