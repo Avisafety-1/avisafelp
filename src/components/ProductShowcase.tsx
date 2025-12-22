@@ -1,15 +1,16 @@
 import { useRef, useEffect, useState } from "react";
-import { Plane, ClipboardList, Calendar, BarChart3, MapPin, Cloud, Route, ChevronLeft, ChevronRight } from "lucide-react";
+import { Plane, ClipboardList, BarChart3, Cloud, Route, ChevronLeft, ChevronRight, FileText, AlertTriangle, CheckSquare, Navigation } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import appDroner from "@/assets/app-droner.jpeg";
-import appDroneDetaljer from "@/assets/app-drone-detaljer.jpeg";
-import appLoggbok from "@/assets/app-loggbok.jpeg";
-import appKalender from "@/assets/app-kalender.jpeg";
-import appStatistikk from "@/assets/app-statistikk.jpeg";
-import appOppdrag from "@/assets/app-oppdrag.jpeg";
-import appFlyforhold from "@/assets/app-flyforhold.jpeg";
-import appRuteplanlegging from "@/assets/app-ruteplanlegging.jpeg";
+import appRuteplanlegging from "@/assets/app-ruteplanlegging.jpg";
+import appDashboard from "@/assets/app-dashboard.jpg";
+import appStatistikk from "@/assets/app-statistikk.jpg";
+import appDokumenter from "@/assets/app-dokumenter.jpg";
+import appHendelse from "@/assets/app-hendelse.jpg";
+import appFlyforhold from "@/assets/app-flyforhold.jpg";
+import appSjekkliste from "@/assets/app-sjekkliste.jpg";
+import appStartflytur from "@/assets/app-startflytur.jpg";
 import dronetagMini from "@/assets/dronetag-mini.jpeg";
+
 const features = [{
   id: "ruteplanlegging",
   icon: Route,
@@ -17,35 +18,17 @@ const features = [{
   description: "Planlegg flyruter visuelt på kartet med automatisk beregning av distanse og luftromssjekk.",
   image: appRuteplanlegging
 }, {
+  id: "dashboard",
+  icon: Plane,
+  title: "Dashboard",
+  description: "Oversikt over pågående flytur, ressursstatus og nyheter samlet på ett sted.",
+  image: appDashboard
+}, {
   id: "flyforhold",
   icon: Cloud,
   title: "Værdata og flyforhold",
-  description: "Sanntids værdata fra MET Norway med advarsler om luftromsbegrensninger.",
+  description: "Sanntids værdata med advarsler om luftromsbegrensninger og prognoser.",
   image: appFlyforhold
-}, {
-  id: "droner",
-  icon: Plane,
-  title: "Droneadministrasjon",
-  description: "Hold oversikt over alle droner og utstyr med status, flyvetimer og vedlikeholdsintervaller.",
-  image: appDroner
-}, {
-  id: "detaljer",
-  icon: ClipboardList,
-  title: "Detaljert oversikt",
-  description: "Se all informasjon om hver drone inkludert spesifikasjoner, inspeksjoner og tilknyttet utstyr.",
-  image: appDroneDetaljer
-}, {
-  id: "loggbok",
-  icon: ClipboardList,
-  title: "Digital loggbok",
-  description: "Automatisk loggføring av alle aktiviteter med mulighet for eksport til PDF.",
-  image: appLoggbok
-}, {
-  id: "kalender",
-  icon: Calendar,
-  title: "Månedsoversikt",
-  description: "Visualiser alle oppdrag, hendelser, vedlikehold og dokumenter i en fargekodett kalender.",
-  image: appKalender
 }, {
   id: "statistikk",
   icon: BarChart3,
@@ -53,11 +36,29 @@ const features = [{
   description: "Få innsikt i totale oppdrag, flyvetimer, hendelsesfrekvens og aktive ressurser.",
   image: appStatistikk
 }, {
-  id: "oppdrag",
-  icon: MapPin,
-  title: "Oppdragsstyring",
-  description: "Planlegg og følg opp kommende oppdrag med SORA-vurderinger og risikonivå.",
-  image: appOppdrag
+  id: "dokumenter",
+  icon: FileText,
+  title: "Dokumenthåndtering",
+  description: "Søk og organiser regelverk, prosedyrer, sjekklister og rapporter.",
+  image: appDokumenter
+}, {
+  id: "hendelser",
+  icon: AlertTriangle,
+  title: "Hendelsesrapportering",
+  description: "Rapporter og følg opp hendelser med detaljert logging og kommentarer.",
+  image: appHendelse
+}, {
+  id: "sjekkliste",
+  icon: CheckSquare,
+  title: "Sjekklister",
+  description: "Digitale sjekklister for før takeoff og andre operasjonelle prosedyrer.",
+  image: appSjekkliste
+}, {
+  id: "startflytur",
+  icon: Navigation,
+  title: "Start flytur",
+  description: "Start flytur med SafeSky-integrasjon for live posisjonsdeling.",
+  image: appStartflytur
 }];
 const PhoneMockup = ({
   feature
