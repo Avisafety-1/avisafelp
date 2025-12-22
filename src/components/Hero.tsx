@@ -26,7 +26,7 @@ const Hero = () => {
         </div>
         
         {/* CTA Buttons - Positioned at bottom of image */}
-        <div className="absolute -bottom-6 sm:-bottom-7 md:-bottom-8 left-1/2 -translate-x-1/2 z-10 animate-fade-in">
+        <div className="absolute -bottom-14 sm:-bottom-15 md:-bottom-16 left-1/2 -translate-x-1/2 z-10 animate-fade-in">
           <div className="flex flex-row items-center justify-center gap-4">
             <Button variant="hero" size="xl" className="bg-[hsl(var(--text-dark-blue))] text-white hover:bg-[hsl(var(--text-dark-blue))]/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-6 sm:px-10 h-12 sm:h-14" asChild>
               <a href="mailto:kontakt@avisafe.no" className="shadow-none opacity-100 rounded-md bg-[#123b87]">
