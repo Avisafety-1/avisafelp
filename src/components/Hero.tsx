@@ -13,11 +13,11 @@ const Hero = () => {
         }} />
         
         {/* AviSafe Logo at bottom of image */}
-        <div className="absolute bottom-8 sm:bottom-12 md:bottom-16 left-1/2 -translate-x-1/2 z-10">
+        <div className="absolute bottom-8 sm:bottom-12 md:bottom-16 left-1/2 -translate-x-1/2 z-10 w-[85%] max-w-5xl px-4">
           <img 
             src={avisafeLogoBlack} 
             alt="AviSafe" 
-            className="w-[200px] sm:w-[280px] md:w-[360px] lg:w-[440px] h-auto animate-fade-in"
+            className="w-full h-auto animate-fade-in"
             style={{
               animationDelay: '0.3s',
               animationFillMode: 'both'
