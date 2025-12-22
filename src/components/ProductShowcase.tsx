@@ -169,15 +169,9 @@ const ProductShowcase = () => {
         scrollbarWidth: "none",
         msOverflowStyle: "none"
       }} onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)} onTouchStart={handleInteraction} onWheel={handleInteraction}>
-          {/* Left Spacer */}
-          <div className="flex-shrink-0 w-[calc(50vw-160px)] md:w-[calc(50vw-180px)]" />
-          
           {features.map(feature => <div key={feature.id} className="snap-center">
               <PhoneMockup feature={feature} />
             </div>)}
-          
-          {/* Right Spacer */}
-          <div className="flex-shrink-0 w-[calc(50vw-160px)] md:w-[calc(50vw-180px)]" />
         </div>
       </div>
 
@@ -186,9 +180,11 @@ const ProductShowcase = () => {
         <div className="relative rounded-2xl overflow-hidden shadow-xl max-w-4xl mx-auto">
           <video 
             src="/avisafe-demo.mp4" 
-            controls 
+            autoPlay
+            loop
+            muted
+            playsInline
             className="w-full h-auto"
-            poster=""
           >
             Din nettleser støtter ikke videoavspilling.
           </video>
