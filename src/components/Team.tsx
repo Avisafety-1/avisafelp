@@ -64,7 +64,7 @@ const Team = () => {
                   <img 
                     src={member.image} 
                     alt={member.name} 
-                    className={`w-full h-full object-cover ${index === 0 ? 'scale-150 object-[center_5%]' : 'object-top'}`} 
+                    className={`w-full h-full object-cover ${index === 0 ? 'scale-150 object-[center_-5%]' : 'object-top'}`} 
                   />
                 </div>
                 <h3 className="text-xl font-semibold text-card-foreground mb-1">{member.name}</h3>
