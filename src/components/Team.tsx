@@ -61,7 +61,11 @@ const Team = () => {
             >
               <div className="flex flex-col items-center text-center mb-6">
                 <div className="w-32 h-32 rounded-full overflow-hidden mb-4 ring-4 ring-primary/20">
-                  <img src={member.image} alt={member.name} className="w-full h-full object-cover object-top" />
+                  <img 
+                    src={member.image} 
+                    alt={member.name} 
+                    className={`w-full h-full object-cover ${index === 0 ? 'scale-150 object-[center_25%]' : 'object-top'}`} 
+                  />
                 </div>
                 <h3 className="text-xl font-semibold text-card-foreground mb-1">{member.name}</h3>
                 <p className="text-primary font-medium mb-4">{member.title}</p>
