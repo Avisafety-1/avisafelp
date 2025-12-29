@@ -167,9 +167,11 @@ const Product = () => {
             </div>
 
             {product.node.description && (
-              <p className="text-muted-foreground leading-relaxed">
-                {product.node.description}
-              </p>
+              <div className="bg-muted/50 rounded-lg p-4 border border-border/50">
+                <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
+                  {product.node.description}
+                </p>
+              </div>
             )}
 
             {/* Variant selector */}
