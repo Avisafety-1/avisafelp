@@ -1,11 +1,80 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ShoppingCart, Loader2 } from "lucide-react";
+import { ShoppingCart, Loader2, ChevronLeft, ChevronRight } from "lucide-react";
 import { fetchProducts, ShopifyProduct } from "@/lib/shopify";
 import { useCartStore, CartItem } from "@/stores/cartStore";
 import { CartDrawer } from "./CartDrawer";
 import { toast } from "sonner";
+
+const ImageCarousel = ({ images, title }: { images: Array<{ node: { url: string; altText: string | null } }>; title: string }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  if (images.length <= 1) {
+    const image = images[0]?.node;
+    return image ? (
+      <img
+        src={image.url}
+        alt={image.altText || title}
+        className="w-full h-full object-contain"
+      />
+    ) : (
+      <div className="w-full h-full flex items-center justify-center bg-muted">
+        <ShoppingCart className="w-8 h-8 text-muted-foreground" />
+      </div>
+    );
+  }
+
+  const nextImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  return (
+    <div className="relative w-full h-full group/carousel">
+      <img
+        src={images[currentIndex].node.url}
+        alt={images[currentIndex].node.altText || title}
+        className="w-full h-full object-contain"
+      />
+      
+      {/* Navigation buttons */}
+      <button
+        onClick={prevImage}
+        className="absolute left-1 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background p-1 rounded-full opacity-0 group-hover/carousel:opacity-100 transition-opacity"
+      >
+        <ChevronLeft className="w-4 h-4" />
+      </button>
+      <button
+        onClick={nextImage}
+        className="absolute right-1 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background p-1 rounded-full opacity-0 group-hover/carousel:opacity-100 transition-opacity"
+      >
+        <ChevronRight className="w-4 h-4" />
+      </button>
+      
+      {/* Dots indicator */}
+      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            onClick={(e) => {
+              e.stopPropagation();
+              setCurrentIndex(index);
+            }}
+            className={`w-1.5 h-1.5 rounded-full transition-colors ${
+              index === currentIndex ? "bg-primary" : "bg-muted-foreground/50"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const ShopifyProducts = () => {
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
@@ -101,7 +170,7 @@ const ShopifyProducts = () => {
         {/* Products Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {products.map((product) => {
-            const image = product.node.images.edges[0]?.node;
+            const images = product.node.images.edges;
             const price = product.node.priceRange.minVariantPrice;
 
             return (
@@ -110,17 +179,7 @@ const ShopifyProducts = () => {
                 className="group overflow-hidden border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-md"
               >
                 <div className="aspect-square relative overflow-hidden bg-muted">
-                  {image ? (
-                    <img
-                      src={image.url}
-                      alt={image.altText || product.node.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-muted">
-                      <ShoppingCart className="w-8 h-8 text-muted-foreground" />
-                    </div>
-                  )}
+                  <ImageCarousel images={images} title={product.node.title} />
                 </div>
                 
                 <CardContent className="p-3">
