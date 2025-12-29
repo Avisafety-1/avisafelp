@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ShoppingCart, Loader2, ChevronLeft, ChevronRight } from "lucide-react";
@@ -174,35 +175,40 @@ const ShopifyProducts = () => {
             const price = product.node.priceRange.minVariantPrice;
 
             return (
-              <Card 
-                key={product.node.id} 
-                className="group overflow-hidden border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-md"
-              >
-                <div className="aspect-square relative overflow-hidden bg-muted">
-                  <ImageCarousel images={images} title={product.node.title} />
-                </div>
-                
-                <CardContent className="p-3">
-                  <h3 className="text-sm font-semibold text-foreground mb-1 line-clamp-1">
-                    {product.node.title}
-                  </h3>
-                  
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-base font-bold text-primary">
-                      {price.currencyCode} {parseFloat(price.amount).toFixed(0)}
-                    </span>
-                    
-                    <Button 
-                      onClick={() => handleAddToCart(product)}
-                      size="sm"
-                      className="gap-1 text-xs px-2"
-                    >
-                      <ShoppingCart className="w-3 h-3" />
-                      Kjøp
-                    </Button>
+              <Link key={product.node.id} to={`/product/${product.node.handle}`}>
+                <Card 
+                  className="group overflow-hidden border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-md cursor-pointer h-full"
+                >
+                  <div className="aspect-square relative overflow-hidden bg-muted">
+                    <ImageCarousel images={images} title={product.node.title} />
                   </div>
-                </CardContent>
-              </Card>
+                  
+                  <CardContent className="p-3">
+                    <h3 className="text-sm font-semibold text-foreground mb-1 line-clamp-1">
+                      {product.node.title}
+                    </h3>
+                    
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-base font-bold text-primary">
+                        {price.currencyCode} {parseFloat(price.amount).toFixed(0)}
+                      </span>
+                      
+                      <Button 
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          handleAddToCart(product);
+                        }}
+                        size="sm"
+                        className="gap-1 text-xs px-2"
+                      >
+                        <ShoppingCart className="w-3 h-3" />
+                        Kjøp
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
             );
           })}
         </div>
