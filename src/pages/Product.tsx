@@ -166,12 +166,11 @@ const Product = () => {
               </p>
             </div>
 
-            {product.node.description && (
-              <div className="bg-muted/50 rounded-lg p-4 border border-border/50">
-                <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
-                  {product.node.description}
-                </p>
-              </div>
+            {product.node.descriptionHtml && (
+              <div 
+                className="bg-muted/50 rounded-lg p-4 border border-border/50 prose prose-sm max-w-none text-muted-foreground [&_strong]:text-foreground [&_p]:mb-2 [&_p:last-child]:mb-0"
+                dangerouslySetInnerHTML={{ __html: product.node.descriptionHtml }}
+              />
             )}
 
             {/* Variant selector */}
