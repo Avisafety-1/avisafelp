@@ -81,14 +81,14 @@ const Product = () => {
   const price = product.node.priceRange.minVariantPrice;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       {/* Header */}
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-border">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+        <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <Link to="/#shop">
-            <Button variant="ghost" size="sm">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Tilbake
+            <Button variant="ghost" size="sm" className="gap-1 px-2">
+              <ArrowLeft className="w-4 h-4" />
+              <span className="hidden sm:inline">Tilbake</span>
             </Button>
           </Link>
           <CartDrawer />
@@ -96,11 +96,11 @@ const Product = () => {
       </header>
 
       {/* Product content */}
-      <main className="container mx-auto px-4 py-8">
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+      <main className="flex-1 container mx-auto px-4 py-4 md:py-8">
+        <div className="grid md:grid-cols-2 gap-4 md:gap-8 lg:gap-12">
           {/* Image gallery */}
-          <div className="space-y-4">
-            <div className="aspect-square relative overflow-hidden bg-muted rounded-lg">
+          <div className="space-y-3">
+            <div className="aspect-[4/3] md:aspect-square relative overflow-hidden bg-muted rounded-lg">
               {images.length > 0 ? (
                 <>
                   <img
@@ -113,22 +113,22 @@ const Product = () => {
                     <>
                       <button
                         onClick={() => setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length)}
-                        className="absolute left-2 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background p-2 rounded-full"
+                        className="absolute left-2 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background p-1.5 md:p-2 rounded-full"
                       >
-                        <ChevronLeft className="w-5 h-5" />
+                        <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
                       </button>
                       <button
                         onClick={() => setCurrentImageIndex((prev) => (prev + 1) % images.length)}
-                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background p-2 rounded-full"
+                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background p-1.5 md:p-2 rounded-full"
                       >
-                        <ChevronRight className="w-5 h-5" />
+                        <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
                       </button>
                     </>
                   )}
                 </>
               ) : (
                 <div className="w-full h-full flex items-center justify-center">
-                  <ShoppingCart className="w-16 h-16 text-muted-foreground" />
+                  <ShoppingCart className="w-12 h-12 md:w-16 md:h-16 text-muted-foreground" />
                 </div>
               )}
             </div>
@@ -172,26 +172,26 @@ const Product = () => {
           </div>
 
           {/* Product info */}
-          <div className="space-y-6">
+          <div className="space-y-4 md:space-y-6">
             <div>
-              <h1 className="text-3xl font-bold text-foreground mb-2">
+              <h1 className="text-xl md:text-3xl font-bold text-foreground mb-1 md:mb-2">
                 {product.node.title}
               </h1>
-              <p className="text-3xl font-bold text-primary">
+              <p className="text-2xl md:text-3xl font-bold text-primary">
                 {selectedVariant?.price.currencyCode || price.currencyCode} {parseFloat(selectedVariant?.price.amount || price.amount).toFixed(2)}
               </p>
             </div>
 
             {product.node.descriptionHtml && (
               <div 
-                className="bg-muted/50 rounded-lg p-4 border border-border/50 prose prose-sm max-w-none text-muted-foreground [&_strong]:text-foreground [&_p]:mb-2 [&_p:last-child]:mb-0"
+                className="bg-muted/50 rounded-lg p-3 md:p-4 border border-border/50 prose prose-sm max-w-none text-muted-foreground [&_strong]:text-foreground [&_p]:mb-2 [&_p:last-child]:mb-0 text-sm md:text-base"
                 dangerouslySetInnerHTML={{ __html: product.node.descriptionHtml }}
               />
             )}
 
             {/* Variant selector */}
             {hasMultipleVariants && (
-              <div className="space-y-3">
+              <div className="space-y-2 md:space-y-3">
                 <label className="text-sm font-medium text-foreground">
                   Velg plan
                 </label>
@@ -200,7 +200,7 @@ const Product = () => {
                     <button
                       key={variant.node.id}
                       onClick={() => setSelectedVariantIndex(index)}
-                      className={`px-4 py-2 rounded-md border text-sm font-medium transition-colors ${
+                      className={`px-3 md:px-4 py-1.5 md:py-2 rounded-md border text-sm font-medium transition-colors ${
                         selectedVariantIndex === index
                           ? "border-primary bg-primary text-primary-foreground"
                           : "border-border bg-background hover:border-primary/50"
