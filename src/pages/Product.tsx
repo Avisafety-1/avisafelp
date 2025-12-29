@@ -133,25 +133,41 @@ const Product = () => {
               )}
             </div>
 
-            {/* Thumbnail strip */}
+            {/* Thumbnail strip - dots on mobile, thumbnails on larger screens */}
             {images.length > 1 && (
-              <div className="flex gap-2 overflow-x-auto pb-2">
-                {images.map((img, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentImageIndex(index)}
-                    className={`w-16 h-16 flex-shrink-0 rounded-md overflow-hidden border-2 transition-colors ${
-                      index === currentImageIndex ? "border-primary" : "border-transparent"
-                    }`}
-                  >
-                    <img
-                      src={img.node.url}
-                      alt={img.node.altText || `${product.node.title} bilde ${index + 1}`}
-                      className="w-full h-full object-contain bg-muted"
+              <>
+                {/* Dots for mobile */}
+                <div className="flex justify-center gap-2 md:hidden">
+                  {images.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentImageIndex(index)}
+                      className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                        index === currentImageIndex ? "bg-primary" : "bg-muted-foreground/40"
+                      }`}
                     />
-                  </button>
-                ))}
-              </div>
+                  ))}
+                </div>
+                
+                {/* Thumbnails for desktop */}
+                <div className="hidden md:flex gap-2 overflow-x-auto pb-2">
+                  {images.map((img, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentImageIndex(index)}
+                      className={`w-16 h-16 flex-shrink-0 rounded-md overflow-hidden border-2 transition-colors ${
+                        index === currentImageIndex ? "border-primary" : "border-transparent"
+                      }`}
+                    >
+                      <img
+                        src={img.node.url}
+                        alt={img.node.altText || `${product.node.title} bilde ${index + 1}`}
+                        className="w-full h-full object-contain bg-muted"
+                      />
+                    </button>
+                  ))}
+                </div>
+              </>
             )}
           </div>
 
