@@ -81,10 +81,10 @@ const Product = () => {
   const price = product.node.priceRange.minVariantPrice;
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col overflow-x-hidden">
       {/* Header */}
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-border">
-        <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 py-3 flex items-center justify-between">
           <Link to="/#shop">
             <Button variant="ghost" size="sm" className="gap-1 px-2">
               <ArrowLeft className="w-4 h-4" />
@@ -96,7 +96,7 @@ const Product = () => {
       </header>
 
       {/* Product content */}
-      <main className="flex-1 container mx-auto px-4 py-4 md:py-8">
+      <main className="flex-1 max-w-7xl mx-auto px-3 sm:px-4 py-4 md:py-8 w-full">
         <div className="grid md:grid-cols-2 gap-4 md:gap-8 lg:gap-12">
           {/* Image gallery */}
           <div className="space-y-3">
@@ -184,7 +184,7 @@ const Product = () => {
 
             {product.node.descriptionHtml && (
               <div 
-                className="bg-muted/50 rounded-lg p-3 md:p-4 border border-border/50 prose prose-sm max-w-none text-muted-foreground [&_strong]:text-foreground [&_p]:mb-2 [&_p:last-child]:mb-0 text-sm md:text-base"
+                className="bg-muted/50 rounded-lg p-3 md:p-4 border border-border/50 prose prose-sm max-w-none text-muted-foreground [&_strong]:text-foreground [&_p]:mb-2 [&_p:last-child]:mb-0 text-sm md:text-base overflow-hidden break-words"
                 dangerouslySetInnerHTML={{ __html: product.node.descriptionHtml }}
               />
             )}
