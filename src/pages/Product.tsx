@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart, Loader2, ChevronLeft, ChevronRight, ArrowLeft } from "lucide-react";
 import { fetchProducts, ShopifyProduct } from "@/lib/shopify";
@@ -79,9 +80,52 @@ const Product = () => {
 
   const images = product.node.images.edges;
   const price = product.node.priceRange.minVariantPrice;
+  const productUrl = `https://avisafe.no/product/${product.node.handle}`;
+  const productImage = images[0]?.node.url || '';
+
+  // JSON-LD structured data for product
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": product.node.title,
+    "description": product.node.description,
+    "image": productImage,
+    "url": productUrl,
+    "brand": {
+      "@type": "Brand",
+      "name": "AviSafe"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": productUrl,
+      "priceCurrency": price.currencyCode,
+      "price": parseFloat(price.amount),
+      "availability": "https://schema.org/InStock",
+      "seller": {
+        "@type": "Organization",
+        "name": "AviSafe"
+      }
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background flex flex-col overflow-x-hidden">
+      <Helmet>
+        <title>{product.node.title} | AviSafe</title>
+        <meta name="description" content={product.node.description || `Kjøp ${product.node.title} fra AviSafe`} />
+        <link rel="canonical" href={productUrl} />
+        <meta property="og:title" content={`${product.node.title} | AviSafe`} />
+        <meta property="og:description" content={product.node.description || `Kjøp ${product.node.title} fra AviSafe`} />
+        <meta property="og:type" content="product" />
+        <meta property="og:url" content={productUrl} />
+        <meta property="og:image" content={productImage} />
+        <meta property="og:site_name" content="AviSafe" />
+        <meta property="product:price:amount" content={price.amount} />
+        <meta property="product:price:currency" content={price.currencyCode} />
+        <script type="application/ld+json">
+          {JSON.stringify(productSchema)}
+        </script>
+      </Helmet>
       {/* Header */}
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-border">
         <div className="max-w-7xl mx-auto px-3 sm:px-4 py-3 flex items-center justify-between">
