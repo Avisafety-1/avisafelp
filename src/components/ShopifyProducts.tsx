@@ -99,7 +99,7 @@ const ShopifyProducts = () => {
         </div>
 
         {/* Products Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {products.map((product) => {
             const image = product.node.images.edges[0]?.node;
             const price = product.node.priceRange.minVariantPrice;
@@ -107,7 +107,7 @@ const ShopifyProducts = () => {
             return (
               <Card 
                 key={product.node.id} 
-                className="group overflow-hidden border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-lg"
+                className="group overflow-hidden border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-md"
               >
                 <div className="aspect-square relative overflow-hidden bg-muted">
                   {image ? (
@@ -118,33 +118,28 @@ const ShopifyProducts = () => {
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center bg-muted">
-                      <ShoppingCart className="w-12 h-12 text-muted-foreground" />
+                      <ShoppingCart className="w-8 h-8 text-muted-foreground" />
                     </div>
                   )}
                 </div>
                 
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold text-foreground mb-2">
+                <CardContent className="p-3">
+                  <h3 className="text-sm font-semibold text-foreground mb-1 line-clamp-1">
                     {product.node.title}
                   </h3>
                   
-                  {product.node.description && (
-                    <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
-                      {product.node.description}
-                    </p>
-                  )}
-                  
-                  <div className="flex items-center justify-between">
-                    <span className="text-2xl font-bold text-primary">
-                      {price.currencyCode} {parseFloat(price.amount).toFixed(2)}
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-base font-bold text-primary">
+                      {price.currencyCode} {parseFloat(price.amount).toFixed(0)}
                     </span>
                     
                     <Button 
                       onClick={() => handleAddToCart(product)}
-                      className="gap-2"
+                      size="sm"
+                      className="gap-1 text-xs px-2"
                     >
-                      <ShoppingCart className="w-4 h-4" />
-                      Legg til
+                      <ShoppingCart className="w-3 h-3" />
+                      Kjøp
                     </Button>
                   </div>
                 </CardContent>
