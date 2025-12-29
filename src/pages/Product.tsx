@@ -12,6 +12,7 @@ const Product = () => {
   const [product, setProduct] = useState<ShopifyProduct | null>(null);
   const [loading, setLoading] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
   const addItem = useCartStore(state => state.addItem);
 
   useEffect(() => {
@@ -32,7 +33,7 @@ const Product = () => {
 
   const handleAddToCart = () => {
     if (!product) return;
-    const variant = product.node.variants.edges[0]?.node;
+    const variant = product.node.variants.edges[selectedVariantIndex]?.node;
     if (!variant) return;
 
     const cartItem: CartItem = {
@@ -46,10 +47,13 @@ const Product = () => {
 
     addItem(cartItem);
     toast.success("Lagt til i handlekurven", {
-      description: product.node.title,
+      description: `${product.node.title} - ${variant.title}`,
       position: "top-center"
     });
   };
+
+  const hasMultipleVariants = product && product.node.variants.edges.length > 1;
+  const selectedVariant = product?.node.variants.edges[selectedVariantIndex]?.node;
 
   if (loading) {
     return (
@@ -158,7 +162,7 @@ const Product = () => {
                 {product.node.title}
               </h1>
               <p className="text-3xl font-bold text-primary">
-                {price.currencyCode} {parseFloat(price.amount).toFixed(2)}
+                {selectedVariant?.price.currencyCode || price.currencyCode} {parseFloat(selectedVariant?.price.amount || price.amount).toFixed(2)}
               </p>
             </div>
 
@@ -166,6 +170,30 @@ const Product = () => {
               <p className="text-muted-foreground leading-relaxed">
                 {product.node.description}
               </p>
+            )}
+
+            {/* Variant selector */}
+            {hasMultipleVariants && (
+              <div className="space-y-3">
+                <label className="text-sm font-medium text-foreground">
+                  Velg plan
+                </label>
+                <div className="flex flex-wrap gap-2">
+                  {product.node.variants.edges.map((variant, index) => (
+                    <button
+                      key={variant.node.id}
+                      onClick={() => setSelectedVariantIndex(index)}
+                      className={`px-4 py-2 rounded-md border text-sm font-medium transition-colors ${
+                        selectedVariantIndex === index
+                          ? "border-primary bg-primary text-primary-foreground"
+                          : "border-border bg-background hover:border-primary/50"
+                      }`}
+                    >
+                      {variant.node.title}
+                    </button>
+                  ))}
+                </div>
+              </div>
             )}
 
             <Button onClick={handleAddToCart} size="lg" className="w-full gap-2">

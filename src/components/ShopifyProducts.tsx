@@ -87,7 +87,13 @@ const ShopifyProducts = () => {
     const loadProducts = async () => {
       try {
         const data = await fetchProducts(10);
-        setProducts(data);
+        // Sort products: Dronetag mini first
+        const sorted = [...data].sort((a, b) => {
+          if (a.node.title.toLowerCase().includes('dronetag')) return -1;
+          if (b.node.title.toLowerCase().includes('dronetag')) return 1;
+          return 0;
+        });
+        setProducts(sorted);
       } catch (err) {
         setError("Kunne ikke laste produkter");
         console.error(err);
