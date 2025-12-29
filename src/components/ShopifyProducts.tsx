@@ -179,6 +179,7 @@ const ShopifyProducts = () => {
           {products.map((product) => {
             const images = product.node.images.edges;
             const price = product.node.priceRange.minVariantPrice;
+            const isSubscription = product.node.title.toLowerCase().includes('abonnement');
 
             return (
               <Link key={product.node.id} to={`/product/${product.node.handle}`}>
@@ -195,22 +196,34 @@ const ShopifyProducts = () => {
                     </h3>
                     
                     <div className="flex items-center justify-between gap-2">
-                      <span className="text-base font-bold text-primary">
-                        {price.currencyCode} {parseFloat(price.amount).toFixed(0)}
-                      </span>
-                      
-                      <Button 
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          handleAddToCart(product);
-                        }}
-                        size="sm"
-                        className="gap-1 text-xs px-2"
-                      >
-                        <ShoppingCart className="w-3 h-3" />
-                        Kjøp
-                      </Button>
+                      {isSubscription ? (
+                        <Button 
+                          size="sm"
+                          variant="outline"
+                          className="w-full text-xs"
+                        >
+                          Velg variant
+                        </Button>
+                      ) : (
+                        <>
+                          <span className="text-base font-bold text-primary">
+                            {price.currencyCode} {parseFloat(price.amount).toFixed(0)}
+                          </span>
+                          
+                          <Button 
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              handleAddToCart(product);
+                            }}
+                            size="sm"
+                            className="gap-1 text-xs px-2"
+                          >
+                            <ShoppingCart className="w-3 h-3" />
+                            Kjøp
+                          </Button>
+                        </>
+                      )}
                     </div>
                   </CardContent>
                 </Card>
