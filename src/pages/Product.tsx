@@ -97,9 +97,9 @@ const Product = () => {
 
       {/* Product content */}
       <main className="flex-1 max-w-7xl mx-auto px-3 sm:px-4 py-4 md:py-8 w-full">
-        <div className="grid md:grid-cols-2 gap-4 md:gap-8 lg:gap-12">
+        <div className="grid md:grid-cols-2 gap-4 md:gap-8 lg:gap-12 w-full min-w-0">
           {/* Image gallery */}
-          <div className="space-y-3">
+          <div className="space-y-3 min-w-0">
             <div className="aspect-[4/3] md:aspect-square relative overflow-hidden bg-muted rounded-lg">
               {images.length > 0 ? (
                 <>
@@ -172,9 +172,9 @@ const Product = () => {
           </div>
 
           {/* Product info */}
-          <div className="space-y-4 md:space-y-6">
+          <div className="space-y-4 md:space-y-6 min-w-0">
             <div>
-              <h1 className="text-xl md:text-3xl font-bold text-foreground mb-1 md:mb-2">
+              <h1 className="text-xl md:text-3xl font-bold text-foreground mb-1 md:mb-2 break-words">
                 {product.node.title}
               </h1>
               <p className="text-2xl md:text-3xl font-bold text-primary">
@@ -184,7 +184,7 @@ const Product = () => {
 
             {product.node.descriptionHtml && (
               <div 
-                className="bg-muted/50 rounded-lg p-3 md:p-4 border border-border/50 prose prose-sm max-w-none text-muted-foreground [&_strong]:text-foreground [&_p]:mb-2 [&_p:last-child]:mb-0 text-sm md:text-base overflow-hidden break-words"
+                className="bg-muted/50 rounded-lg p-3 md:p-4 border border-border/50 prose prose-sm max-w-none w-full min-w-0 text-muted-foreground [&_strong]:text-foreground [&_p]:mb-2 [&_p:last-child]:mb-0 text-sm md:text-base break-words overflow-x-auto [&_*]:max-w-full [&_*]:min-w-0 [&_div]:flex-wrap [&_table]:w-full [&_table]:table-fixed [&_td]:break-words [&_th]:break-words [&_img]:max-w-full [&_pre]:max-w-full [&_pre]:overflow-x-auto"
                 dangerouslySetInnerHTML={{ __html: product.node.descriptionHtml }}
               />
             )}
