@@ -15,7 +15,7 @@ import dronetagMini from "@/assets/dronetag-mini.jpeg";
 const features = [{
   id: "ruteplanlegging",
   icon: Route,
-  title: "Ruteplanlegging",
+  title: "Oppdragsplanlegging",
   description: "Planlegg flyruter visuelt på kartet med automatisk beregning av distanse og luftromssjekk.",
   image: appRuteplanlegging
 }, {
