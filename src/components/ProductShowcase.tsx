@@ -1,7 +1,8 @@
 import { useRef, useEffect, useState } from "react";
-import { Plane, ClipboardList, BarChart3, Cloud, Route, ChevronLeft, ChevronRight, FileText, AlertTriangle, CheckSquare, Navigation } from "lucide-react";
+import { Plane, ClipboardList, BarChart3, Cloud, Route, ChevronLeft, ChevronRight, FileText, AlertTriangle, CheckSquare, Navigation, Brain } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import appRuteplanlegging from "@/assets/app-ruteplanlegging.jpg";
+import appRisikovurdering from "@/assets/app-risikovurdering.jpeg";
 import appDashboard from "@/assets/app-dashboard.jpg";
 import appStatistikk from "@/assets/app-statistikk.jpg";
 import appDokumenter from "@/assets/app-dokumenter.jpg";
@@ -17,6 +18,12 @@ const features = [{
   title: "Ruteplanlegging",
   description: "Planlegg flyruter visuelt på kartet med automatisk beregning av distanse og luftromssjekk.",
   image: appRuteplanlegging
+}, {
+  id: "risikovurdering",
+  icon: Brain,
+  title: "Risikovurderinger med AI",
+  description: "Gjennomfør risikovurderinger med kunstig intelligens som hjelper deg å identifisere farer.",
+  image: appRisikovurdering
 }, {
   id: "dashboard",
   icon: Plane,
