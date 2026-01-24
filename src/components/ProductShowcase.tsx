@@ -12,6 +12,7 @@ import appSjekkliste from "@/assets/app-sjekkliste.jpg";
 import appStartflytur from "@/assets/app-startflytur.jpg";
 import dronetagMini from "@/assets/dronetag-mini.jpeg";
 import eccairs2Logo from "@/assets/eccairs2-logo.jpeg";
+import dronetagLogo from "@/assets/dronetag-logo-upload.jpg";
 
 const features = [{
   id: "ruteplanlegging",
@@ -226,6 +227,14 @@ const ProductShowcase = () => {
 
       {/* Dronetag Mini Section */}
       <div className="container mx-auto px-4 mt-12 md:mt-16">
+        <div className="flex items-center justify-center mb-6">
+          <img
+            src={dronetagLogo}
+            alt="Dronetag logo"
+            className="h-10 md:h-12 w-auto"
+            loading="lazy"
+          />
+        </div>
         <div className="text-center mb-8">
           <p className="text-lg md:text-xl text-foreground max-w-3xl mx-auto">
             AviSafe, offisiell forhandler av Dronetag i Norge. I vår plattform er Dronetag og SafeSky en naturlig integrasjon.
