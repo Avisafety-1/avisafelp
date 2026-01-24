@@ -215,7 +215,7 @@ const ProductShowcase = () => {
                 <img
                   src={eccairs2Logo}
                   alt="ECCAIRS2 logo"
-                  className="h-10 md:h-12 w-auto"
+                  className="h-14 md:h-16 w-auto"
                   loading="lazy"
                 />
               </div>
@@ -238,7 +238,7 @@ const ProductShowcase = () => {
                 <img
                   src={safeskyLogo}
                   alt="SafeSky logo"
-                  className="h-10 md:h-12 w-auto"
+                  className="h-14 md:h-16 w-auto"
                   loading="lazy"
                 />
               </div>
