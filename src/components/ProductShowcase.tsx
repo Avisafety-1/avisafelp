@@ -13,6 +13,7 @@ import appStartflytur from "@/assets/app-startflytur.jpg";
 import dronetagMini from "@/assets/dronetag-mini.jpeg";
 import eccairs2Logo from "@/assets/eccairs2-logo.jpeg";
 import dronetagLogo from "@/assets/dronetag-logo.png";
+import safeskyLogo from "@/assets/safesky-logo.png";
 
 const features = [{
   id: "ruteplanlegging",
@@ -221,6 +222,34 @@ const ProductShowcase = () => {
                 hendelser kan registreres strukturert i AviSafe og sendes direkte til ECCAIRS2 via API – med korrekt taksonomi
                 og obligatoriske felter på plass. Mindre manuelt arbeid, færre feil og trygg compliance mot EASA og
                 Luftfartstilsynet.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* SafeSky Integration Section */}
+      <div className="container mx-auto px-4 mt-12 md:mt-16">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 md:p-12 shadow-xl">
+            <div className="flex items-center justify-center mb-6">
+              <img
+                src={safeskyLogo}
+                alt="SafeSky logo"
+                className="h-10 md:h-12 w-auto"
+                loading="lazy"
+              />
+            </div>
+
+            <div className="text-center">
+              <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+                SafeSky-integrasjon – live situasjonsbilde
+              </h3>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                AviSafe er integrert med SafeSky for live posisjonsdeling og økt situasjonsforståelse under operasjoner.
+                Når en flytur startes i AviSafe kan relevant informasjon og posisjonsdata deles i SafeSky, slik at både
+                operatør og andre luftromsbrukere får bedre oversikt. Resultatet er enklere samhandling, færre misforståelser
+                og tryggere operasjoner – med dokumentasjon og sporbarhet samlet i én plattform.
               </p>
             </div>
           </div>
