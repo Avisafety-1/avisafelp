@@ -12,7 +12,7 @@ import appSjekkliste from "@/assets/app-sjekkliste.jpg";
 import appStartflytur from "@/assets/app-startflytur.jpg";
 import dronetagMini from "@/assets/dronetag-mini.jpeg";
 import eccairs2Logo from "@/assets/eccairs2-logo.jpeg";
-import dronetagLogo from "@/assets/dronetag-logo-upload.jpg";
+import dronetagLogo from "@/assets/dronetag-logo.png";
 
 const features = [{
   id: "ruteplanlegging",
