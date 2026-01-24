@@ -201,91 +201,83 @@ const ProductShowcase = () => {
         </div>
       </div>
 
-      {/* ECCAIRS2 Integration Section */}
+      {/* Integrations Section */}
       <div className="container mx-auto px-4 mt-12 md:mt-16">
         <div className="max-w-4xl mx-auto">
-          <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 md:p-12 shadow-xl">
-            <div className="flex items-center justify-center mb-6">
-              <img
-                src={eccairs2Logo}
-                alt="ECCAIRS2 logo"
-                className="h-10 md:h-12 w-auto"
-                loading="lazy"
-              />
-            </div>
-            <div className="text-center">
-              <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                ECCAIRS2-integrasjon – rapportering gjort enkelt
-              </h3>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                AviSafe er integrert med ECCAIRS2, EUs offisielle system for hendelsesrapportering i luftfarten. Det betyr at
-                hendelser kan registreres strukturert i AviSafe og sendes direkte til ECCAIRS2 via API – med korrekt taksonomi
-                og obligatoriske felter på plass. Mindre manuelt arbeid, færre feil og trygg compliance mot EASA og
-                Luftfartstilsynet.
-              </p>
-            </div>
+          <div className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground">Integrasjoner</h2>
           </div>
-        </div>
-      </div>
 
-      {/* SafeSky Integration Section */}
-      <div className="container mx-auto px-4 mt-12 md:mt-16">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 md:p-12 shadow-xl">
-            <div className="flex items-center justify-center mb-6">
-              <img
-                src={safeskyLogo}
-                alt="SafeSky logo"
-                className="h-10 md:h-12 w-auto"
-                loading="lazy"
-              />
+          <div className="space-y-6 md:space-y-8">
+            {/* ECCAIRS2 */}
+            <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 md:p-12 shadow-xl">
+              <div className="flex items-center justify-center mb-6">
+                <img
+                  src={eccairs2Logo}
+                  alt="ECCAIRS2 logo"
+                  className="h-10 md:h-12 w-auto"
+                  loading="lazy"
+                />
+              </div>
+              <div className="text-center">
+                <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+                  ECCAIRS2-integrasjon – rapportering gjort enkelt
+                </h3>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  AviSafe er integrert med ECCAIRS2, EUs offisielle system for hendelsesrapportering i luftfarten. Det betyr
+                  at hendelser kan registreres strukturert i AviSafe og sendes direkte til ECCAIRS2 via API – med korrekt
+                  taksonomi og obligatoriske felter på plass. Mindre manuelt arbeid, færre feil og trygg compliance mot EASA
+                  og Luftfartstilsynet.
+                </p>
+              </div>
             </div>
 
-            <div className="text-center">
-              <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                SafeSky-integrasjon – live situasjonsbilde
-              </h3>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                AviSafe er integrert med SafeSky for live posisjonsdeling og økt situasjonsforståelse under operasjoner.
-                Når en flytur startes i AviSafe kan relevant informasjon og posisjonsdata deles i SafeSky, slik at både
-                operatør og andre luftromsbrukere får bedre oversikt. Resultatet er enklere samhandling, færre misforståelser
-                og tryggere operasjoner – med dokumentasjon og sporbarhet samlet i én plattform.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+            {/* SafeSky */}
+            <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 md:p-12 shadow-xl">
+              <div className="flex items-center justify-center mb-6">
+                <img
+                  src={safeskyLogo}
+                  alt="SafeSky logo"
+                  className="h-10 md:h-12 w-auto"
+                  loading="lazy"
+                />
+              </div>
 
-      {/* Dronetag Mini Section */}
-      <div className="container mx-auto px-4 mt-12 md:mt-16">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 md:p-12 shadow-xl">
-            <div className="flex items-center justify-center mb-6">
-              <img
-                src={dronetagLogo}
-                alt="Dronetag logo"
-                className="h-14 md:h-16 w-auto"
-                loading="lazy"
-              />
+              <div className="text-center">
+                <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+                  SafeSky-integrasjon – live situasjonsbilde
+                </h3>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  AviSafe er integrert med SafeSky for live posisjonsdeling og økt situasjonsforståelse under operasjoner.
+                  Når en flytur startes i AviSafe kan relevant informasjon og posisjonsdata deles i SafeSky, slik at både
+                  operatør og andre luftromsbrukere får bedre oversikt. Resultatet er enklere samhandling, færre misforståelser
+                  og tryggere operasjoner – med dokumentasjon og sporbarhet samlet i én plattform.
+                </p>
+              </div>
             </div>
 
-            <div className="text-center mb-8">
-              <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                Dronetag-integrasjon
-              </h3>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                AviSafe, offisiell forhandler av Dronetag i Norge. I vår plattform er Dronetag og SafeSky en naturlig
-                integrasjon.
-              </p>
-            </div>
+            {/* Dronetag */}
+            <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 md:p-12 shadow-xl">
+              <div className="flex items-center justify-center mb-6">
+                <img src={dronetagLogo} alt="Dronetag logo" className="h-14 md:h-16 w-auto" loading="lazy" />
+              </div>
 
-            <div className="relative rounded-2xl overflow-hidden shadow-xl">
-              <img
-                src={dronetagMini}
-                alt="Dronetag Mini - Make the drone visible to anyone, anywhere, anytime"
-                className="w-full h-auto object-cover"
-                loading="lazy"
-              />
+              <div className="text-center mb-8">
+                <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">Dronetag-integrasjon</h3>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  AviSafe, offisiell forhandler av Dronetag i Norge. I vår plattform er Dronetag og SafeSky en naturlig
+                  integrasjon.
+                </p>
+              </div>
+
+              <div className="relative rounded-2xl overflow-hidden shadow-xl">
+                <img
+                  src={dronetagMini}
+                  alt="Dronetag Mini - Make the drone visible to anyone, anywhere, anytime"
+                  className="w-full h-auto object-cover"
+                  loading="lazy"
+                />
+              </div>
             </div>
           </div>
         </div>
