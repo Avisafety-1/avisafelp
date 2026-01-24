@@ -11,6 +11,7 @@ import appFlyforhold from "@/assets/app-flyforhold.jpg";
 import appSjekkliste from "@/assets/app-sjekkliste.jpg";
 import appStartflytur from "@/assets/app-startflytur.jpg";
 import dronetagMini from "@/assets/dronetag-mini.jpeg";
+import eccairs2Logo from "@/assets/eccairs2-logo.jpeg";
 
 const features = [{
   id: "ruteplanlegging",
@@ -195,6 +196,31 @@ const ProductShowcase = () => {
           >
             Din nettleser støtter ikke videoavspilling.
           </video>
+        </div>
+      </div>
+
+      {/* ECCAIRS2 Integration Section */}
+      <div className="container mx-auto px-4 mt-12 md:mt-16">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex items-center justify-center mb-6">
+            <img
+              src={eccairs2Logo}
+              alt="ECCAIRS2 logo"
+              className="h-10 md:h-12 w-auto"
+              loading="lazy"
+            />
+          </div>
+          <div className="text-center mb-8">
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+              ECCAIRS2-integrasjon – rapportering gjort enkelt
+            </h3>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              AviSafe er integrert med ECCAIRS2, EUs offisielle system for hendelsesrapportering i luftfarten. Det betyr at
+              hendelser kan registreres strukturert i AviSafe og sendes direkte til ECCAIRS2 via API – med korrekt taksonomi
+              og obligatoriske felter på plass. Mindre manuelt arbeid, færre feil og trygg compliance mot EASA og
+              Luftfartstilsynet.
+            </p>
+          </div>
         </div>
       </div>
 
