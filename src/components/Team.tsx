@@ -25,6 +25,7 @@ const teamMembers = [
       "Bachelor i luftmakt og ledelse fra Luftkrigskolen",
       "2 års erfaring som Safety Manager (EASA)",
       "Aircraft Accident Investigation (AAI) og Human Factors in Accident Investigation (HFAI) fra Southern California Safety Institue (SCSI)",
+      "Kurs i sikkerhetsstyring og kvalitetsledelse i regi av Det Norske Veritas",
     ],
   },
   {
