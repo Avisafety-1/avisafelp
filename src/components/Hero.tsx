@@ -24,18 +24,18 @@ const Hero = () => {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Facebook"
-          className="text-white/80 hover:text-white transition-colors"
+          className="hover:opacity-80 transition-opacity"
         >
-          <FacebookIcon className="w-5 h-5 sm:w-6 sm:h-6" />
+          <FacebookIcon className="w-5 h-5 sm:w-6 sm:h-6 text-[#1877F2]" />
         </a>
         <a
           href="https://www.linkedin.com/company/avisafe-as/"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="LinkedIn"
-          className="text-white/80 hover:text-white transition-colors"
+          className="hover:opacity-80 transition-opacity"
         >
-          <LinkedInIcon className="w-5 h-5 sm:w-6 sm:h-6" />
+          <LinkedInIcon className="w-5 h-5 sm:w-6 sm:h-6 text-[#0A66C2]" />
         </a>
       </div>
 
