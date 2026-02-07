@@ -1,10 +1,32 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ArrowDown } from "lucide-react";
+import { ArrowRight, ArrowDown, Facebook, Linkedin } from "lucide-react";
 import droneLandscape from "@/assets/drone-landscape.png";
 import avisafeLogoBlack from "@/assets/avisafe-logo-black.png";
 
 const Hero = () => {
   return <section className="relative flex flex-col overflow-hidden bg-transparent">
+      {/* Social Media Icons - Top Right */}
+      <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 flex items-center gap-3">
+        <a
+          href="https://www.facebook.com/profile.php?id=61583893445784"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Facebook"
+          className="text-white/80 hover:text-white transition-colors"
+        >
+          <Facebook className="w-5 h-5 sm:w-6 sm:h-6" />
+        </a>
+        <a
+          href="https://www.linkedin.com/company/avisafe-as/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn"
+          className="text-white/80 hover:text-white transition-colors"
+        >
+          <Linkedin className="w-5 h-5 sm:w-6 sm:h-6" />
+        </a>
+      </div>
+
       {/* Drone Landscape Image at top with AviSafe Logo Overlay */}
       <div className="relative w-full">
         <img src={droneLandscape} alt="Drone flying over mountains" className="w-full h-auto" style={{
