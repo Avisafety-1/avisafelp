@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import teamMember1 from "@/assets/team-member-1.jpg";
 import teamMember2 from "@/assets/team-member-2.jpg";
-import teamMember3 from "@/assets/team-member-3.jpg";
+
 const teamMembers = [
   {
     name: "Rikard Bjørklund",
@@ -28,19 +28,6 @@ const teamMembers = [
       "Kurs i sikkerhetsstyring og kvalitetsledelse i regi av Det Norske Veritas",
     ],
   },
-  {
-    name: "Ivar Moen",
-    title: "IT-sikkerhet",
-    image: teamMember3,
-    cv: [
-      "Operativ og strategisk erfaring med fysisk og digital sikkerhet fra politiet, finanssektoren og maritim virksomhet",
-      "Ekspert innen digital kriminalitet, IT-sikkerhet, beredskap og virksomhetsstyring",
-      "Mastergrad i informasjonssikkerhet fra NTNU",
-      "Bachelor, Politihøyskolen",
-      "Tilleggsutdanning i økonomi, ledelse og juss",
-      "Sertifisert for implementering av ISO 27001 (ISMS)",
-    ],
-  },
 ];
 const Team = () => {
   return (
@@ -51,7 +38,7 @@ const Team = () => {
           <p className="text-xl text-muted-foreground">Erfarne eksperter dedikert til å gjøre luftfarten tryggere</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {teamMembers.map((member, index) => (
             <Card
               key={index}
