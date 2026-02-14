@@ -71,6 +71,13 @@ const features = [{
   title: "Start flytur",
   description: "Start flytur med SafeSky-integrasjon for live posisjonsdeling.",
   image: appStartflytur
+}, {
+  id: "dronetag",
+  icon: Navigation,
+  title: "Dronetag-integrasjon",
+  description: "Se droner i sanntid med Dronetag Remote ID – direkte integrert i AviSafe.",
+  image: appStartflytur,
+  video: "/dronetag-demo.mp4"
 }];
 const PhoneMockup = ({
   feature
