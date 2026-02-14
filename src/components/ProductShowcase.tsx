@@ -112,7 +112,7 @@ const PhoneMockup = ({
               loop
               muted
               playsInline
-              className="w-full h-full object-contain object-center rounded-[2rem]"
+              className="w-full h-full object-cover object-top rounded-[2rem]"
               poster={feature.image}
             />
           ) : (
