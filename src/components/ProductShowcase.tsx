@@ -26,7 +26,8 @@ const features = [{
   icon: Brain,
   title: "Risikovurderinger med AI",
   description: "Gjennomfør risikovurderinger med kunstig intelligens som hjelper deg å identifisere farer.",
-  image: appRisikovurdering
+  image: appRisikovurdering,
+  video: "/ai-risk-demo.mov"
 }, {
   id: "dashboard",
   icon: Plane,
