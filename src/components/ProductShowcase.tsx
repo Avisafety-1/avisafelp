@@ -37,6 +37,13 @@ const features = [{
   image: appStartflytur,
   video: "/dronetag-demo.mp4"
 }, {
+  id: "kartdata",
+  icon: Route,
+  title: "Kartdata og luftrom",
+  description: "Omfattende kartdata med luftromsstruktur, SafeSky og luftfartshindringer.",
+  image: appRuteplanlegging,
+  video: "/kartdata-demo.mp4"
+}, {
   id: "ruteplanlegging",
   icon: Route,
   title: "Oppdragsplanlegging",
