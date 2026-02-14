@@ -33,7 +33,8 @@ const features = [{
   icon: Plane,
   title: "Dashboard",
   description: "Oversikt over pågående flytur, ressursstatus og nyheter samlet på ett sted.",
-  image: appDashboard
+  image: appDashboard,
+  video: "/dashboard-demo.mp4"
 }, {
   id: "flyforhold",
   icon: Cloud,
