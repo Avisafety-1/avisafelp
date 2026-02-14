@@ -26,7 +26,8 @@ const features = [{
   icon: Brain,
   title: "Risikovurderinger med AI",
   description: "Gjennomfør risikovurderinger med kunstig intelligens som hjelper deg å identifisere farer.",
-  image: appRisikovurdering
+  image: appRisikovurdering,
+  video: "/ai-risk-demo.mov"
 }, {
   id: "dashboard",
   icon: Plane,
@@ -95,8 +96,20 @@ const PhoneMockup = ({
           {/* Notch */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-5 bg-[hsl(var(--text-dark-blue))] rounded-b-xl z-10" />
           
-          {/* Screenshot */}
-          <img src={feature.image} alt={feature.title} className="w-full h-full object-cover object-top" loading="lazy" />
+          {/* Screenshot or Video */}
+          {feature.video ? (
+            <video
+              src={feature.video}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover object-top"
+              poster={feature.image}
+            />
+          ) : (
+            <img src={feature.image} alt={feature.title} className="w-full h-full object-cover object-top" loading="lazy" />
+          )}
         </div>
         
         {/* Glow Effect */}
