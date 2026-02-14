@@ -16,11 +16,12 @@ import dronetagLogo from "@/assets/dronetag-logo.png";
 import safeskyLogo from "@/assets/safesky-logo.png";
 
 const features = [{
-  id: "ruteplanlegging",
-  icon: Route,
-  title: "Oppdragsplanlegging",
-  description: "Planlegg flyruter visuelt på kartet med automatisk beregning av distanse og luftromssjekk.",
-  image: appRuteplanlegging
+  id: "dashboard",
+  icon: Plane,
+  title: "Dashboard",
+  description: "Oversikt over pågående flytur, ressursstatus og nyheter samlet på ett sted.",
+  image: appDashboard,
+  video: "/dashboard-demo.mp4"
 }, {
   id: "risikovurdering",
   icon: Brain,
@@ -29,12 +30,18 @@ const features = [{
   image: appRisikovurdering,
   video: "/ai-risk-demo.mov"
 }, {
-  id: "dashboard",
-  icon: Plane,
-  title: "Dashboard",
-  description: "Oversikt over pågående flytur, ressursstatus og nyheter samlet på ett sted.",
-  image: appDashboard,
-  video: "/dashboard-demo.mp4"
+  id: "dronetag",
+  icon: Navigation,
+  title: "Dronetag-integrasjon",
+  description: "Dronetag Remote ID – direkte integrert i AviSafe. Analyser historisk data",
+  image: appStartflytur,
+  video: "/dronetag-demo.mp4"
+}, {
+  id: "ruteplanlegging",
+  icon: Route,
+  title: "Oppdragsplanlegging",
+  description: "Planlegg flyruter visuelt på kartet med automatisk beregning av distanse og luftromssjekk.",
+  image: appRuteplanlegging
 }, {
   id: "flyforhold",
   icon: Cloud,
@@ -71,13 +78,6 @@ const features = [{
   title: "Start flytur",
   description: "Start flytur med SafeSky-integrasjon for live posisjonsdeling.",
   image: appStartflytur
-}, {
-  id: "dronetag",
-  icon: Navigation,
-  title: "Dronetag-integrasjon",
-  description: "Dronetag Remote ID – direkte integrert i AviSafe. Analyser historisk data",
-  image: appStartflytur,
-  video: "/dronetag-demo.mp4"
 }];
 const PhoneMockup = ({
   feature
