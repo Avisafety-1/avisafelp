@@ -107,6 +107,11 @@ const PhoneMockup = ({
           {/* Screenshot or Video */}
           {feature.video ? (
             <video
+              ref={(el) => {
+                if (el) {
+                  el.play().catch(() => {});
+                }
+              }}
               src={feature.video}
               autoPlay
               loop
