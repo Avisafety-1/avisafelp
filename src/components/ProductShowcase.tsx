@@ -75,7 +75,7 @@ const features = [{
   id: "dronetag",
   icon: Navigation,
   title: "Dronetag-integrasjon",
-  description: "Se droner i sanntid med Dronetag Remote ID – direkte integrert i AviSafe.",
+  description: "Dronetag Remote ID – direkte integrert i AviSafe. Analyser historisk data",
   image: appStartflytur,
   video: "/dronetag-demo.mp4"
 }];
