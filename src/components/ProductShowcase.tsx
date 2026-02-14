@@ -48,7 +48,8 @@ const features = [{
   icon: Route,
   title: "Oppdragsplanlegging",
   description: "Planlegg flyruter visuelt på kartet med automatisk beregning av distanse og luftromssjekk.",
-  image: appRuteplanlegging
+  image: appRuteplanlegging,
+  video: "/oppdrag-demo.mp4"
 }, {
   id: "flyforhold",
   icon: Cloud,
@@ -73,18 +74,6 @@ const features = [{
   title: "Hendelsesrapportering",
   description: "Rapporter og følg opp hendelser med detaljert logging og kommentarer.",
   image: appHendelse
-}, {
-  id: "sjekkliste",
-  icon: CheckSquare,
-  title: "Sjekklister",
-  description: "Digitale sjekklister for før takeoff og andre operasjonelle prosedyrer.",
-  image: appSjekkliste
-}, {
-  id: "startflytur",
-  icon: Navigation,
-  title: "Start flytur",
-  description: "Start flytur med SafeSky-integrasjon for live posisjonsdeling.",
-  image: appStartflytur
 }];
 const PhoneMockup = ({
   feature
