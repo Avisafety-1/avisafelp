@@ -186,19 +186,6 @@ const ProductShowcase = () => {
               <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(to right, transparent, hsl(210 80% 50% / 0.8), transparent)" }} />
 
               <div className="relative px-8 py-10 md:py-12 text-center">
-                {/* Badge */}
-                <div
-                  className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold mb-6 border"
-                  style={{
-                    background: "hsl(210 50% 15%)",
-                    borderColor: "hsl(210 50% 25%)",
-                    color: "hsl(210 80% 50%)"
-                  }}
-                >
-                  <Sparkles className="w-4 h-4" />
-                  AI-drevet SORA-analyse
-                </div>
-
                 {/* Heading */}
                 <h2
                   className="text-2xl md:text-4xl font-bold mb-7 leading-tight"
