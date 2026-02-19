@@ -1,35 +1,54 @@
 
-## Kopiere SORA-prosess-siden fra AviSafe v2
+## Ny offentlig side: /sora
 
-### Hva skal gjøres
+### Hva og hvorfor
 
-Siden `SoraProcess.tsx` fra AviSafe v2 kopieres inn i dette prosjektet og gjøres tilgjengelig på ruten `/sora-prosess`.
+En ny side på ruten `/sora` som presenterer de 7 fasene i AviSafe sin SORA-prosess for besøkende/kunder — uten å avsløre tekniske implementasjonsdetaljer for konkurrenter. I stedet for bullet points med konkrete datakilder og parameter-navn, brukes et overordnet narrativ per fase som forklarer *hva som skjer* og *hvilken verdi det gir*.
 
-### Hva inneholder siden
+Designet er identisk med `/sora-prosess` (samme mørke fargepalett, flytdiagram med `FlowConnector`, `PhaseCard`-stil), men innholdet er skrevet i et markedsføringsvennlig, forklarende språk.
 
-En fullstendig standalone-side (616 linjer) som visualiserer hele SORA-prosessen som et flytdiagram med 7 faser:
+---
 
-- Fase 1: AviSafe Oppdragsdata
-- Fase 2: Eksterne Datakilder (Yr.no, OpenAIP, SSB, mm.)
-- Fase 3: Selskapssettings & Hard Stops
-- Fase 4: Pilot & Operatør Input
-- Fase 5: AI Analyse – første vurdering
-- Fase 6: Pilotens Mitigeringer
-- Fase 7: AI Re-vurdering – SORA-modus
-- Output: GRC, ARC, SAIL-nivå, GO/NO GO
+### Innholdsstruktur
 
-Pluss en "Hvorfor AviSafe SORA?" seksjon med 3 kolonner og en footer.
+**Hero-seksjon** — Samme oppsett som `/sora-prosess`: logo, badge, heading og stats-bar.
+
+**Flytdiagram — 7 faser (uten bullet points)**
+
+Hver fase presenteres som et kort med én sammenhengende forklaringstekst i stedet for en liste:
+
+| Fase | Tittel | Hva som forklares (ikke avslørende) |
+|---|---|---|
+| 1 | Oppdragsgrunnlag | AviSafe samler automatisk alle relevante data om oppdraget — lokasjon, mannskap, utstyr og tidspunkt |
+| 2 | Miljø og luftrom | Systemet henter oppdatert informasjon om vær og luftromsforhold fra offentlige datakilder |
+| 3 | Selskapets rammer | Operatørens egne sikkerhetskrav og begrensninger legges til grunn — og kan aldri overstyres |
+| 4 | Pilotens vurdering | Piloten beskriver de operative forholdene og parameterne for det konkrete oppdraget |
+| 5 | Første AI-analyse | En kunstig intelligens gjennomgår alle innsamlede data og identifiserer risikoområder |
+| 6 | Tiltak og mitigeringer | Piloten responderer på analysen med konkrete sikkerhetstiltak for hvert risikoområde |
+| 7 | SORA-beregning | AI gjennomfører en fullstendig SORA-beregning etter EASA-metodikken med alle mitigeringer lagt til grunn |
+
+**Output-seksjon** — Viser GRC, ARC, SAIL og GO/NO GO på samme måte som `/sora-prosess` (eksempeldata).
+
+**"Hvorfor AviSafe SORA?" seksjon** — Tre kolonner: Automatisert, Sporbar, Regulatorisk klar — men med prosa-tekst i stedet for bullet points.
+
+**Footer** — Samme som `/sora-prosess`.
+
+---
 
 ### Tekniske detaljer
 
 **Filer som opprettes/endres:**
 
-1. **`src/pages/SoraProcess.tsx`** – Kopieres direkte fra AviSafe v2. Siden er selvinneholdt (ingen eksterne komponent-avhengigheter).
+1. **`src/pages/Sora.tsx`** — Ny fil. Bygget på samme mønster som `SoraProcess.tsx` men med:
+   - Prosa-tekst per fase i stedet for `items[]`-lister
+   - En ny `ProsePhaseCard`-komponent som viser én forklarende tekst-paragraf
+   - Samme `C`-fargepalett og `FlowConnector`
+   - Ingen konkrete datakildenavn, parameter-navn, eller tekniske detaljer
 
-2. **`src/assets/avisafe-logo-text.png`** – Kopieres fra AviSafe v2. Siden bruker et logo-bilde med tekst som ikke finnes i dette prosjektet. Denne kopieres fra `public/avisafe-logo-text.png` i AviSafe v2.
+2. **`src/App.tsx`** — Legger til `import Sora` og ruten `<Route path="/sora" element={<Sora />} />`.
 
-3. **`src/App.tsx`** – Legger til ruten `/sora-prosess` som peker til den nye siden.
+---
 
 ### Ingen konflikter
 
-Siden bruker inline styles med et eget fargesystem (mørk bakgrunn), og er helt isolert fra resten av prosjektets design. Den vil ikke påvirke eksisterende sider.
+Siden er selvinneholdt med egne inline-stiler, identisk isolert fra resten av prosjektets design som `/sora-prosess`. Eksisterende sider påvirkes ikke.
