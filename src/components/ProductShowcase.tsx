@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from "react";
-import { Plane, ClipboardList, BarChart3, Cloud, Route, ChevronLeft, ChevronRight, FileText, AlertTriangle, CheckSquare, Navigation, Brain } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Plane, ClipboardList, BarChart3, Cloud, Route, ChevronLeft, ChevronRight, FileText, AlertTriangle, CheckSquare, Navigation, Brain, ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import appRuteplanlegging from "@/assets/app-ruteplanlegging.jpg";
 import appRisikovurdering from "@/assets/app-risikovurdering.jpeg";
@@ -170,10 +171,39 @@ const ProductShowcase = () => {
   };
   return <section className="relative z-30 pt-0 pb-0 overflow-hidden bg-transparent">
       <div className="container mx-auto px-4">
-        {/* Header */}
-        <div className="text-center mb-8">
-          
-          
+        {/* SORA Banner */}
+        <div className="mb-10">
+          <Link to="/sora" className="block group">
+            <div className="relative max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl"
+              style={{ background: "linear-gradient(135deg, #0d2d6e 0%, #123b87 50%, #1a4fa8 100%)" }}>
+              {/* Glow effect */}
+              <div className="absolute -inset-1 rounded-2xl blur-lg opacity-40"
+                style={{ background: "linear-gradient(135deg, #123b87, #1a4fa8)" }} />
+              <div className="relative px-8 py-10 md:py-12 text-center">
+                {/* Badge */}
+                <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/25 text-white px-4 py-1.5 rounded-full text-sm font-semibold mb-5">
+                  <Sparkles className="w-4 h-4 text-yellow-300" />
+                  AI-drevet SORA-analyse
+                </div>
+
+                {/* Heading */}
+                <h2 className="text-2xl md:text-4xl font-bold text-white mb-4 leading-tight">
+                  Norges mest avanserte verktøy<br className="hidden md:block" /> for SORA-risikovurderinger
+                </h2>
+
+                {/* Subtext */}
+                <p className="text-white/75 text-base md:text-lg max-w-2xl mx-auto mb-7 leading-relaxed">
+                  AviSafe beregner GRC, ARC og SAIL automatisk – med kunstig intelligens og full EASA-compliance.
+                </p>
+
+                {/* CTA Button */}
+                <div className="inline-flex items-center gap-2 bg-white text-[#123b87] font-semibold px-6 py-3 rounded-xl shadow-lg group-hover:shadow-xl group-hover:scale-[1.03] transition-all duration-200 text-sm md:text-base">
+                  Se hvordan det fungerer
+                  <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+                </div>
+              </div>
+            </div>
+          </Link>
         </div>
 
       </div>
