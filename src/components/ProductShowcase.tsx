@@ -174,30 +174,49 @@ const ProductShowcase = () => {
         {/* SORA Banner */}
         <div className="mb-10">
           <Link to="/sora" className="block group">
-            <div className="relative max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl"
-              style={{ background: "linear-gradient(135deg, #0d2d6e 0%, #123b87 50%, #1a4fa8 100%)" }}>
-              {/* Glow effect */}
-              <div className="absolute -inset-1 rounded-2xl blur-lg opacity-40"
-                style={{ background: "linear-gradient(135deg, #123b87, #1a4fa8)" }} />
+            <div
+              className="relative max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl border"
+              style={{
+                background: "hsl(210 30% 6%)",
+                borderColor: "hsl(210 50% 25%)",
+                boxShadow: "0 0 40px hsl(210 80% 28% / 0.35), 0 20px 60px hsl(210 30% 6% / 0.8)"
+              }}
+            >
+              {/* Top accent line */}
+              <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(to right, transparent, hsl(210 80% 50% / 0.8), transparent)" }} />
+
               <div className="relative px-8 py-10 md:py-12 text-center">
                 {/* Badge */}
-                <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/25 text-white px-4 py-1.5 rounded-full text-sm font-semibold mb-5">
-                  <Sparkles className="w-4 h-4 text-yellow-300" />
+                <div
+                  className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold mb-6 border"
+                  style={{
+                    background: "hsl(210 50% 15%)",
+                    borderColor: "hsl(210 50% 25%)",
+                    color: "hsl(210 80% 50%)"
+                  }}
+                >
+                  <Sparkles className="w-4 h-4" />
                   AI-drevet SORA-analyse
                 </div>
 
                 {/* Heading */}
-                <h2 className="text-2xl md:text-4xl font-bold text-white mb-4 leading-tight">
+                <h2
+                  className="text-2xl md:text-4xl font-bold mb-7 leading-tight"
+                  style={{ color: "hsl(210 20% 96%)" }}
+                >
                   Norges mest avanserte verktøy<br className="hidden md:block" /> for SORA-risikovurderinger
                 </h2>
 
-                {/* Subtext */}
-                <p className="text-white/75 text-base md:text-lg max-w-2xl mx-auto mb-7 leading-relaxed">
-                  AviSafe beregner GRC, ARC og SAIL automatisk – med kunstig intelligens og full EASA-compliance.
-                </p>
-
                 {/* CTA Button */}
-                <div className="inline-flex items-center gap-2 bg-white text-[#123b87] font-semibold px-6 py-3 rounded-xl shadow-lg group-hover:shadow-xl group-hover:scale-[1.03] transition-all duration-200 text-sm md:text-base">
+                <div
+                  className="inline-flex items-center gap-2 font-semibold px-6 py-3 rounded-xl border transition-all duration-200 text-sm md:text-base group-hover:scale-[1.03]"
+                  style={{
+                    background: "hsl(210 80% 28%)",
+                    borderColor: "hsl(210 80% 50% / 0.4)",
+                    color: "hsl(210 20% 96%)",
+                    boxShadow: "0 0 20px hsl(210 80% 28% / 0.5)"
+                  }}
+                >
                   Se hvordan det fungerer
                   <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
                 </div>
