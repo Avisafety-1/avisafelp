@@ -41,43 +41,43 @@ const Hero = () => {
         </a>
       </div>
 
-      {/* DJI Controller Images */}
-      <div className="w-full pt-8 pb-2 sm:pt-12 sm:pb-4">
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 px-4">
-          <div className="relative -rotate-2 sm:translate-x-4">
-            <img
-              src={djiMap}
-              alt="DJI RC PRO kartvisning"
-              className="w-[220px] sm:w-[300px] md:w-[380px] lg:w-[440px] h-auto rounded-2xl shadow-xl"
-              style={{
-                maskImage: 'radial-gradient(ellipse 80% 70% at center, black 40%, transparent 100%)',
-                WebkitMaskImage: 'radial-gradient(ellipse 80% 70% at center, black 40%, transparent 100%)'
-              }}
-            />
-          </div>
-          <div className="relative rotate-2 sm:-translate-x-4">
-            <img
-              src={djiDashboard}
-              alt="DJI RC PRO dashboard"
-              className="w-[220px] sm:w-[300px] md:w-[380px] lg:w-[440px] h-auto rounded-2xl shadow-xl"
-              style={{
-                maskImage: 'radial-gradient(ellipse 80% 70% at center, black 40%, transparent 100%)',
-                WebkitMaskImage: 'radial-gradient(ellipse 80% 70% at center, black 40%, transparent 100%)'
-              }}
-            />
-          </div>
-        </div>
-        <p className="text-center text-lg sm:text-xl md:text-2xl font-bold text-[#123b87] mt-4 sm:mt-6">
-          Full støtte for DJI RC PRO/PLUS
-        </p>
-      </div>
-
       {/* Drone Landscape Image at top with AviSafe Logo Overlay */}
       <div className="relative w-full">
         <img src={droneLandscape} alt="Drone flying over mountains" className="w-full h-auto" style={{
           maskImage: 'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)',
           WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)'
         }} />
+
+        {/* DJI Controller Images - overlaid on top of drone image */}
+        <div className="absolute top-4 sm:top-8 md:top-12 left-1/2 -translate-x-1/2 z-10 w-full px-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6">
+            <div className="relative -rotate-2">
+              <img
+                src={djiMap}
+                alt="DJI RC PRO kartvisning"
+                className="w-[140px] sm:w-[200px] md:w-[280px] lg:w-[340px] h-auto rounded-2xl shadow-2xl"
+                style={{
+                  maskImage: 'radial-gradient(ellipse 80% 70% at center, black 40%, transparent 100%)',
+                  WebkitMaskImage: 'radial-gradient(ellipse 80% 70% at center, black 40%, transparent 100%)'
+                }}
+              />
+            </div>
+            <div className="relative rotate-2">
+              <img
+                src={djiDashboard}
+                alt="DJI RC PRO dashboard"
+                className="w-[140px] sm:w-[200px] md:w-[280px] lg:w-[340px] h-auto rounded-2xl shadow-2xl"
+                style={{
+                  maskImage: 'radial-gradient(ellipse 80% 70% at center, black 40%, transparent 100%)',
+                  WebkitMaskImage: 'radial-gradient(ellipse 80% 70% at center, black 40%, transparent 100%)'
+                }}
+              />
+            </div>
+          </div>
+          <p className="text-center text-sm sm:text-lg md:text-xl font-bold text-white mt-2 sm:mt-4 drop-shadow-lg">
+            Full støtte for DJI RC PRO/PLUS
+          </p>
+        </div>
         
         {/* AviSafe Logo at bottom of image */}
         <div className="absolute bottom-8 sm:bottom-12 md:bottom-16 left-1/2 -translate-x-1/2 z-10">
