@@ -349,7 +349,7 @@ const ProductShowcase = () => {
                 <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">Dronetag</h3>
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   AviSafe, offisiell forhandler av Dronetag i Norge. I vår plattform er Dronetag og SafeSky en naturlig
-                  integrasjon.
+                  integrasjon for å bedre flysikkerheten til alle luftromsaktører.
                 </p>
               </div>
 
