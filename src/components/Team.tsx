@@ -52,6 +52,7 @@ const Team = () => {
                   <img 
                     src={member.image} 
                     alt={member.name} 
+                    loading="lazy"
                     className={`w-full h-full object-cover ${index === 0 ? 'scale-150 -translate-y-6 object-center' : 'object-top'}`} 
                   />
                 </div>

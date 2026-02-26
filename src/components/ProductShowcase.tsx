@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState } from "react";
+import { useInView } from "@/hooks/use-in-view";
 import { Link } from "react-router-dom";
 import { Plane, ClipboardList, BarChart3, Cloud, Route, ChevronLeft, ChevronRight, FileText, AlertTriangle, CheckSquare, Navigation, Brain, ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -85,7 +86,16 @@ const PhoneMockup = ({
   feature: typeof features[0];
 }) => {
   const Icon = feature.icon;
-  return <div className="flex-shrink-0 w-[280px] md:w-[320px] flex flex-col items-center gap-4">
+  const { ref: inViewRef, isInView } = useInView();
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (isInView && videoRef.current && feature.video) {
+      videoRef.current.play().catch(() => {});
+    }
+  }, [isInView, feature.video]);
+
+  return <div ref={inViewRef} className="flex-shrink-0 w-[280px] md:w-[320px] flex flex-col items-center gap-4">
       {/* Feature Info - Above Phone */}
       <div className="text-center px-2 min-h-28 flex flex-col justify-end mb-4">
         <div className="inline-flex items-center justify-center gap-2 bg-[hsl(var(--text-dark-blue))]/10 text-[hsl(var(--text-dark-blue))] px-4 py-2 rounded-full mb-3">
@@ -107,16 +117,12 @@ const PhoneMockup = ({
           {/* Screenshot or Video */}
           {feature.video ? (
             <video
-              ref={(el) => {
-                if (el) {
-                  el.play().catch(() => {});
-                }
-              }}
-              src={feature.video}
-              autoPlay
+              ref={videoRef}
+              src={isInView ? feature.video : undefined}
               loop
               muted
               playsInline
+              preload="none"
               className="w-full h-full object-cover object-top rounded-[2rem]"
               poster={feature.image}
             />
@@ -130,6 +136,36 @@ const PhoneMockup = ({
       </div>
     </div>;
 };
+
+const LazyDemoVideo = () => {
+  const { ref, isInView } = useInView();
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (isInView && videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  }, [isInView]);
+
+  return (
+    <div ref={ref} className="container mx-auto px-4 mt-12 md:mt-16">
+      <div className="relative rounded-2xl overflow-hidden shadow-xl max-w-4xl mx-auto">
+        <video
+          ref={videoRef}
+          src={isInView ? "/avisafe-demo.mp4" : undefined}
+          loop
+          muted
+          playsInline
+          preload="none"
+          className="w-full h-auto"
+        >
+          Din nettleser støtter ikke videoavspilling.
+        </video>
+      </div>
+    </div>
+  );
+};
+
 const ProductShowcase = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isAutoScrolling, setIsAutoScrolling] = useState(true);
@@ -247,20 +283,7 @@ const ProductShowcase = () => {
       </div>
 
       {/* Demo Video Section */}
-      <div className="container mx-auto px-4 mt-12 md:mt-16">
-        <div className="relative rounded-2xl overflow-hidden shadow-xl max-w-4xl mx-auto">
-          <video 
-            src="/avisafe-demo.mp4" 
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-auto"
-          >
-            Din nettleser støtter ikke videoavspilling.
-          </video>
-        </div>
-      </div>
+      <LazyDemoVideo />
 
       {/* Integrations Section */}
       <div className="container mx-auto px-4 mt-12 md:mt-16">
