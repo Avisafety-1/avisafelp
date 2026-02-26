@@ -346,7 +346,7 @@ const ProductShowcase = () => {
               </div>
 
               <div className="text-center mb-8">
-                <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">Dronetag-integrasjon</h3>
+                <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">Dronetag</h3>
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   AviSafe, offisiell forhandler av Dronetag i Norge. I vår plattform er Dronetag og SafeSky en naturlig
                   integrasjon.
@@ -375,7 +375,7 @@ const ProductShowcase = () => {
               </div>
               <div className="text-center">
                 <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                  ECCAIRS2-integrasjon – rapportering gjort enkelt
+                  ECCAIRS2 – rapportering gjort enkelt
                 </h3>
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   AviSafe er integrert med ECCAIRS2, EUs offisielle system for hendelsesrapportering i luftfarten. Det betyr
