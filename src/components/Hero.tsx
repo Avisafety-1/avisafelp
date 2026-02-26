@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowDown } from "lucide-react";
 import droneLandscape from "@/assets/drone-landscape.png";
 import avisafeLogoBlack from "@/assets/avisafe-logo-black.png";
+import djiMap from "@/assets/dji-map.png";
+import djiDashboard from "@/assets/dji-dashboard.png";
 
 const FacebookIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -37,6 +39,37 @@ const Hero = () => {
         >
           <LinkedInIcon className="w-5 h-5 sm:w-6 sm:h-6 text-[#0A66C2]" />
         </a>
+      </div>
+
+      {/* DJI Controller Images */}
+      <div className="w-full pt-8 pb-2 sm:pt-12 sm:pb-4">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 px-4">
+          <div className="relative -rotate-2 sm:translate-x-4">
+            <img
+              src={djiMap}
+              alt="DJI RC PRO kartvisning"
+              className="w-[220px] sm:w-[300px] md:w-[380px] lg:w-[440px] h-auto rounded-2xl shadow-xl"
+              style={{
+                maskImage: 'radial-gradient(ellipse 80% 70% at center, black 40%, transparent 100%)',
+                WebkitMaskImage: 'radial-gradient(ellipse 80% 70% at center, black 40%, transparent 100%)'
+              }}
+            />
+          </div>
+          <div className="relative rotate-2 sm:-translate-x-4">
+            <img
+              src={djiDashboard}
+              alt="DJI RC PRO dashboard"
+              className="w-[220px] sm:w-[300px] md:w-[380px] lg:w-[440px] h-auto rounded-2xl shadow-xl"
+              style={{
+                maskImage: 'radial-gradient(ellipse 80% 70% at center, black 40%, transparent 100%)',
+                WebkitMaskImage: 'radial-gradient(ellipse 80% 70% at center, black 40%, transparent 100%)'
+              }}
+            />
+          </div>
+        </div>
+        <p className="text-center text-lg sm:text-xl md:text-2xl font-bold text-[#123b87] mt-4 sm:mt-6">
+          Full støtte for DJI RC PRO/PLUS
+        </p>
       </div>
 
       {/* Drone Landscape Image at top with AviSafe Logo Overlay */}
