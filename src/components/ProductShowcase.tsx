@@ -15,6 +15,9 @@ import dronetagMini from "@/assets/dronetag-mini.jpeg";
 import eccairs2Logo from "@/assets/eccairs2-logo.jpeg";
 import dronetagLogo from "@/assets/dronetag-logo.png";
 import safeskyLogo from "@/assets/safesky-logo.png";
+import djiLogo from "@/assets/dji-logo.png";
+import djiMap from "@/assets/dji-map.png";
+import djiDashboard from "@/assets/dji-dashboard.png";
 
 const features = [{
   id: "dashboard",
@@ -335,6 +338,51 @@ const ProductShowcase = () => {
                   className="w-full h-auto object-cover"
                   loading="lazy"
                 />
+              </div>
+            </div>
+
+            {/* DJI */}
+            <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 md:p-12 shadow-xl">
+              <div className="flex items-center justify-center mb-6">
+                <img src={djiLogo} alt="DJI logo" className="h-14 md:h-16 w-auto" loading="lazy" />
+              </div>
+
+              <div className="text-center mb-8">
+                <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+                  Full støtte for DJI RC PRO/PLUS
+                </h3>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  Støtter opplasting av DJI fly-logger fra over 40 dronemodeller. 
+                  AviSafe integrerer sømløst med DJI-kontrollere for automatisk import av flydata, 
+                  loggføring og dokumentasjon direkte i plattformen.
+                </p>
+              </div>
+
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+                <div className="relative -rotate-1">
+                  <img
+                    src={djiMap}
+                    alt="DJI RC PRO kartvisning"
+                    className="w-full sm:w-[340px] md:w-[400px] h-auto rounded-2xl shadow-xl"
+                    style={{
+                      maskImage: 'radial-gradient(ellipse 85% 75% at center, black 50%, transparent 100%)',
+                      WebkitMaskImage: 'radial-gradient(ellipse 85% 75% at center, black 50%, transparent 100%)'
+                    }}
+                    loading="lazy"
+                  />
+                </div>
+                <div className="relative rotate-1">
+                  <img
+                    src={djiDashboard}
+                    alt="DJI RC PRO dashboard"
+                    className="w-full sm:w-[340px] md:w-[400px] h-auto rounded-2xl shadow-xl"
+                    style={{
+                      maskImage: 'radial-gradient(ellipse 85% 75% at center, black 50%, transparent 100%)',
+                      WebkitMaskImage: 'radial-gradient(ellipse 85% 75% at center, black 50%, transparent 100%)'
+                    }}
+                    loading="lazy"
+                  />
+                </div>
               </div>
             </div>
           </div>
