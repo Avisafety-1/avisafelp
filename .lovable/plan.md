@@ -1,50 +1,35 @@
 
-## Legge til SORA-banner over mobilkortene
 
-### Hva og hvor
+## Legg til DJI-bilder over drone-landskapet
 
-En iøynefallende banner plasseres i `ProductShowcase.tsx` — i den tomme header-seksjonen som allerede finnes like over telefonkarusellen (linje 172–179). Dette er det naturlige stedet: synlig for alle, rett over mobilkortene, på forsiden.
+### Endringer
 
-### Design
+**Kopiér bilder til prosjektet:**
+- `user-uploads://Screenshot_2026-02-26_180745.png` → `src/assets/dji-map.png`
+- `user-uploads://Screenshot_2026-02-26_180820.png` → `src/assets/dji-dashboard.png`
 
-Banneret bygges som en bred, mørkeblå (samme `#123b87` som eksisterende CTA-knapper) gradient-boks med:
+**Endre `src/components/Hero.tsx`:**
 
-- En liten badge/chip øverst: f.eks. `✦ Nyhet` eller `AI-drevet`
-- Hovedtekst: **"Norges mest avanserte verktøy for SORA-risikovurderinger"**
-- Undertext: kort forklaring, f.eks. "AviSafe beregner GRC, ARC og SAIL automatisk – med kunstig intelligens og full EASA-compliance."
-- En tydelig CTA-knapp: `"Se hvordan det fungerer →"` som lenker til `/sora`
-- Subtil glødeffekt/skygge og animert pil
+Legg til en ny seksjon *over* drone-landskapsbildet med:
 
-Banneret er responsivt og ser bra ut på både mobil og desktop.
-
-### Tekniske detaljer
-
-**Én fil endres:**
-
-**`src/components/ProductShowcase.tsx`**
-- Legg til `import { Link } from "react-router-dom"` og `import { ArrowRight, Sparkles } from "lucide-react"` (Sparkles finnes i lucide-react v0.462)
-- Erstatt den tomme `<div className="text-center mb-8">` (linje 173–177) med en `SoraBanner`-komponent:
+- To bilder side ved side (på desktop), stablet eller overlappende på mobil
+- Tekst: **"Full støtte for DJI RC PRO/PLUS"** sentrert under/over bildene
+- Hvert bilde får en kraftig radial gradient-mask som fader ut kantene i alle retninger, slik at de smelter inn i den hvite bakgrunnen
+- Subtil skygge og avrundede hjørner for mykere uttrykk
+- Bildene vinkles/overlapper litt for en dynamisk komposisjon
 
 ```text
-┌─────────────────────────────────────────────────────┐
-│  [✦ AI-drevet SORA]                                 │
-│                                                     │
-│  Norges mest avanserte verktøy                      │
-│  for SORA-risikovurderinger                         │
-│                                                     │
-│  AviSafe beregner GRC, ARC og SAIL automatisk –     │
-│  med kunstig intelligens og full EASA-compliance.   │
-│                                                     │
-│            [ Se hvordan det fungerer → ]            │
-└─────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────┐
+│    [DJI kart-bilde]   [DJI dash-bilde]   │  ← fade på alle kanter
+│       "Full støtte for DJI RC PRO/PLUS"   │
+├──────────────────────────────────────────┤
+│         [drone-landscape.png]             │  ← eksisterende
+│              [AviSafe logo]               │
+│           [CTA-knapper]                   │
+└──────────────────────────────────────────┘
 ```
 
-- Bakgrunn: mørkeblå gradient (`from-[#0d2d6e] via-[#123b87] to-[#1a4fa8]`)
-- Hvit tekst, avrundede hjørner (`rounded-2xl`), subtil glødskygge
-- CTA-knappen er hvit med mørkeblå tekst (invertert)
-- Maks bredde `max-w-4xl mx-auto` for å matche resten av siden
-- `Link to="/sora"` fra react-router-dom brukes for intern navigasjon
+- Mask: `radial-gradient(ellipse 80% 70% at center, black 40%, transparent 100%)` på hvert bilde
+- Teksten er `text-[#123b87]` med `font-bold`, plassert mellom bildene og dronen
+- Responsivt: på mobil vises bildene mindre og stablet vertikalt
 
-### Ingen konflikter
-
-Banneret legges kun inni den allerede tomme `<div>` i `ProductShowcase`. Ingen andre komponenter berøres.
