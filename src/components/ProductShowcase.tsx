@@ -270,26 +270,48 @@ const ProductShowcase = () => {
           </div>
 
           <div className="space-y-6 md:space-y-8">
-            {/* ECCAIRS2 */}
+            {/* DJI */}
             <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 md:p-12 shadow-xl">
               <div className="flex items-center justify-center mb-6">
-                <img
-                  src={eccairs2Logo}
-                  alt="ECCAIRS2 logo"
-                  className="h-14 md:h-16 w-auto"
-                  loading="lazy"
-                />
+                <img src={djiLogo} alt="DJI logo" className="h-14 md:h-16 w-auto" loading="lazy" />
               </div>
-              <div className="text-center">
+
+              <div className="text-center mb-8">
                 <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                  ECCAIRS2-integrasjon – rapportering gjort enkelt
+                  Full støtte for DJI RC PRO/PLUS
                 </h3>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  AviSafe er integrert med ECCAIRS2, EUs offisielle system for hendelsesrapportering i luftfarten. Det betyr
-                  at hendelser kan registreres strukturert i AviSafe og sendes direkte til ECCAIRS2 via API – med korrekt
-                  taksonomi og obligatoriske felter på plass. Mindre manuelt arbeid, færre feil og trygg compliance mot EASA
-                  og Luftfartstilsynet.
+                  Støtter opplasting av DJI fly-logger fra over 40 dronemodeller. 
+                  AviSafe integrerer sømløst med DJI-kontrollere for automatisk import av flydata, 
+                  loggføring og dokumentasjon direkte i plattformen.
                 </p>
+              </div>
+
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+                <div className="relative -rotate-1">
+                  <img
+                    src={djiMap}
+                    alt="DJI RC PRO kartvisning"
+                    className="w-full sm:w-[340px] md:w-[400px] h-auto rounded-2xl shadow-xl"
+                    style={{
+                      maskImage: 'radial-gradient(ellipse 85% 75% at center, black 50%, transparent 100%)',
+                      WebkitMaskImage: 'radial-gradient(ellipse 85% 75% at center, black 50%, transparent 100%)'
+                    }}
+                    loading="lazy"
+                  />
+                </div>
+                <div className="relative rotate-1">
+                  <img
+                    src={djiDashboard}
+                    alt="DJI RC PRO dashboard"
+                    className="w-full sm:w-[340px] md:w-[400px] h-auto rounded-2xl shadow-xl"
+                    style={{
+                      maskImage: 'radial-gradient(ellipse 85% 75% at center, black 50%, transparent 100%)',
+                      WebkitMaskImage: 'radial-gradient(ellipse 85% 75% at center, black 50%, transparent 100%)'
+                    }}
+                    loading="lazy"
+                  />
+                </div>
               </div>
             </div>
 
@@ -341,48 +363,26 @@ const ProductShowcase = () => {
               </div>
             </div>
 
-            {/* DJI */}
+            {/* ECCAIRS2 */}
             <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 md:p-12 shadow-xl">
               <div className="flex items-center justify-center mb-6">
-                <img src={djiLogo} alt="DJI logo" className="h-14 md:h-16 w-auto" loading="lazy" />
+                <img
+                  src={eccairs2Logo}
+                  alt="ECCAIRS2 logo"
+                  className="h-14 md:h-16 w-auto"
+                  loading="lazy"
+                />
               </div>
-
-              <div className="text-center mb-8">
+              <div className="text-center">
                 <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                  Full støtte for DJI RC PRO/PLUS
+                  ECCAIRS2-integrasjon – rapportering gjort enkelt
                 </h3>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Støtter opplasting av DJI fly-logger fra over 40 dronemodeller. 
-                  AviSafe integrerer sømløst med DJI-kontrollere for automatisk import av flydata, 
-                  loggføring og dokumentasjon direkte i plattformen.
+                  AviSafe er integrert med ECCAIRS2, EUs offisielle system for hendelsesrapportering i luftfarten. Det betyr
+                  at hendelser kan registreres strukturert i AviSafe og sendes direkte til ECCAIRS2 via API – med korrekt
+                  taksonomi og obligatoriske felter på plass. Mindre manuelt arbeid, færre feil og trygg compliance mot EASA
+                  og Luftfartstilsynet.
                 </p>
-              </div>
-
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-                <div className="relative -rotate-1">
-                  <img
-                    src={djiMap}
-                    alt="DJI RC PRO kartvisning"
-                    className="w-full sm:w-[340px] md:w-[400px] h-auto rounded-2xl shadow-xl"
-                    style={{
-                      maskImage: 'radial-gradient(ellipse 85% 75% at center, black 50%, transparent 100%)',
-                      WebkitMaskImage: 'radial-gradient(ellipse 85% 75% at center, black 50%, transparent 100%)'
-                    }}
-                    loading="lazy"
-                  />
-                </div>
-                <div className="relative rotate-1">
-                  <img
-                    src={djiDashboard}
-                    alt="DJI RC PRO dashboard"
-                    className="w-full sm:w-[340px] md:w-[400px] h-auto rounded-2xl shadow-xl"
-                    style={{
-                      maskImage: 'radial-gradient(ellipse 85% 75% at center, black 50%, transparent 100%)',
-                      WebkitMaskImage: 'radial-gradient(ellipse 85% 75% at center, black 50%, transparent 100%)'
-                    }}
-                    loading="lazy"
-                  />
-                </div>
               </div>
             </div>
           </div>
