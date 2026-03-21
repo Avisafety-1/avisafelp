@@ -214,36 +214,39 @@ const DjiAnalyseCarousel = () => {
         ))}
       </div>
 
-      {/* Inline Lightbox - opens over the carousel */}
+      {/* Lightbox - fixed but compact around image */}
       {lightboxIndex !== null && (
-        <div className="absolute inset-0 z-20 bg-black/95 rounded-xl flex flex-col items-center justify-center p-2">
-          <button
-            className="absolute top-2 right-2 text-white/80 hover:text-white z-10"
-            onClick={() => setLightboxIndex(null)}
+        <div
+          className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-center justify-center"
+          onClick={() => setLightboxIndex(null)}
+        >
+          <div
+            className="relative flex items-center gap-2 mx-2"
+            onClick={(e) => e.stopPropagation()}
           >
-            <X className="w-5 h-5" />
-          </button>
-          <div className="flex items-center gap-1 w-full">
+            <button
+              className="absolute -top-8 right-0 text-white/90 hover:text-white z-10"
+              onClick={() => setLightboxIndex(null)}
+            >
+              <X className="w-6 h-6" />
+            </button>
             <button
               className="flex-shrink-0 text-white/80 hover:text-white"
               onClick={() => setLightboxIndex((lightboxIndex - 1 + djiAnalyseImages.length) % djiAnalyseImages.length)}
             >
-              <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
+              <ChevronLeft className="w-7 h-7" />
             </button>
             <img
               src={djiAnalyseImages[lightboxIndex]}
               alt={`DJI flyanalyse ${lightboxIndex + 1}`}
-              className="flex-1 min-w-0 max-h-[200px] md:max-h-[260px] object-contain rounded-lg"
+              className="max-w-[85vw] md:max-w-[70vw] max-h-[85vh] object-contain rounded-xl shadow-2xl"
             />
             <button
               className="flex-shrink-0 text-white/80 hover:text-white"
               onClick={() => setLightboxIndex((lightboxIndex + 1) % djiAnalyseImages.length)}
             >
-              <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
+              <ChevronRight className="w-7 h-7" />
             </button>
-          </div>
-          <div className="mt-1 text-white/60 text-xs">
-            {lightboxIndex + 1} / {djiAnalyseImages.length}
           </div>
         </div>
       )}
