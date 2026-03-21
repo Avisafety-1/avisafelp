@@ -217,35 +217,38 @@ const DjiAnalyseCarousel = () => {
       {/* Fullscreen Lightbox */}
       {lightboxIndex !== null && (
         <div
-          className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center"
+          className="fixed inset-0 z-[100] bg-black/95 flex flex-col items-center justify-center p-4"
           onClick={() => setLightboxIndex(null)}
         >
-          <button
-            className="absolute top-4 right-4 text-white/80 hover:text-white z-10"
-            onClick={() => setLightboxIndex(null)}
-          >
-            <X className="w-8 h-8" />
-          </button>
-          <button
-            className="absolute left-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white z-10"
-            onClick={(e) => { e.stopPropagation(); setLightboxIndex((lightboxIndex - 1 + djiAnalyseImages.length) % djiAnalyseImages.length); }}
-          >
-            <ChevronLeft className="w-10 h-10" />
-          </button>
-          <button
-            className="absolute right-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white z-10"
-            onClick={(e) => { e.stopPropagation(); setLightboxIndex((lightboxIndex + 1) % djiAnalyseImages.length); }}
-          >
-            <ChevronRight className="w-10 h-10" />
-          </button>
-          <img
-            src={djiAnalyseImages[lightboxIndex]}
-            alt={`DJI flyanalyse ${lightboxIndex + 1}`}
-            className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg"
-            onClick={(e) => e.stopPropagation()}
-          />
-          <div className="absolute bottom-4 text-white/60 text-sm">
-            {lightboxIndex + 1} / {djiAnalyseImages.length}
+          <div className="relative w-full max-w-4xl flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
+            <button
+              className="absolute -top-10 right-0 text-white/80 hover:text-white z-10"
+              onClick={() => setLightboxIndex(null)}
+            >
+              <X className="w-7 h-7" />
+            </button>
+            <div className="relative w-full flex items-center justify-center">
+              <button
+                className="absolute left-0 md:left-[-3rem] text-white/80 hover:text-white z-10"
+                onClick={() => setLightboxIndex((lightboxIndex - 1 + djiAnalyseImages.length) % djiAnalyseImages.length)}
+              >
+                <ChevronLeft className="w-8 h-8 md:w-10 md:h-10" />
+              </button>
+              <img
+                src={djiAnalyseImages[lightboxIndex]}
+                alt={`DJI flyanalyse ${lightboxIndex + 1}`}
+                className="max-w-full max-h-[80vh] object-contain rounded-lg"
+              />
+              <button
+                className="absolute right-0 md:right-[-3rem] text-white/80 hover:text-white z-10"
+                onClick={() => setLightboxIndex((lightboxIndex + 1) % djiAnalyseImages.length)}
+              >
+                <ChevronRight className="w-8 h-8 md:w-10 md:h-10" />
+              </button>
+            </div>
+            <div className="mt-3 text-white/60 text-sm">
+              {lightboxIndex + 1} / {djiAnalyseImages.length}
+            </div>
           </div>
         </div>
       )}
