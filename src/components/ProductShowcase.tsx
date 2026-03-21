@@ -181,6 +181,78 @@ const LazyDemoVideo = () => {
   );
 };
 
+const DjiAnalyseCarousel = () => {
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    if (lightboxIndex === null) return;
+    if (e.key === "Escape") setLightboxIndex(null);
+    if (e.key === "ArrowRight") setLightboxIndex(i => i !== null ? (i + 1) % djiAnalyseImages.length : null);
+    if (e.key === "ArrowLeft") setLightboxIndex(i => i !== null ? (i - 1 + djiAnalyseImages.length) % djiAnalyseImages.length : null);
+  }, [lightboxIndex]);
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [handleKeyDown]);
+
+  return (
+    <>
+      <div
+        className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+      >
+        {djiAnalyseImages.map((img, i) => (
+          <img
+            key={i}
+            src={img}
+            alt={`DJI flyanalyse ${i + 1}`}
+            className="flex-shrink-0 w-auto h-[200px] md:h-[260px] rounded-xl shadow-lg snap-center cursor-pointer hover:opacity-90 transition-opacity"
+            loading="lazy"
+            onClick={() => setLightboxIndex(i)}
+          />
+        ))}
+      </div>
+
+      {/* Fullscreen Lightbox */}
+      {lightboxIndex !== null && (
+        <div
+          className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center"
+          onClick={() => setLightboxIndex(null)}
+        >
+          <button
+            className="absolute top-4 right-4 text-white/80 hover:text-white z-10"
+            onClick={() => setLightboxIndex(null)}
+          >
+            <X className="w-8 h-8" />
+          </button>
+          <button
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white z-10"
+            onClick={(e) => { e.stopPropagation(); setLightboxIndex((lightboxIndex - 1 + djiAnalyseImages.length) % djiAnalyseImages.length); }}
+          >
+            <ChevronLeft className="w-10 h-10" />
+          </button>
+          <button
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white z-10"
+            onClick={(e) => { e.stopPropagation(); setLightboxIndex((lightboxIndex + 1) % djiAnalyseImages.length); }}
+          >
+            <ChevronRight className="w-10 h-10" />
+          </button>
+          <img
+            src={djiAnalyseImages[lightboxIndex]}
+            alt={`DJI flyanalyse ${lightboxIndex + 1}`}
+            className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg"
+            onClick={(e) => e.stopPropagation()}
+          />
+          <div className="absolute bottom-4 text-white/60 text-sm">
+            {lightboxIndex + 1} / {djiAnalyseImages.length}
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
 const ProductShowcase = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isAutoScrolling, setIsAutoScrolling] = useState(true);
