@@ -231,7 +231,7 @@ const DjiAnalyseCarousel = () => {
               <X className="w-6 h-6" />
             </button>
             <button
-              className="flex-shrink-0 text-white/80 hover:text-white"
+              className="flex-shrink-0 text-black hover:text-black/70"
               onClick={() => setLightboxIndex((lightboxIndex - 1 + djiAnalyseImages.length) % djiAnalyseImages.length)}
             >
               <ChevronLeft className="w-7 h-7" />
