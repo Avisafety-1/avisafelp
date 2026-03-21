@@ -19,6 +19,21 @@ import safeskyLogo from "@/assets/safesky-logo.png";
 import djiLogo from "@/assets/dji-logo.png";
 import djiMap from "@/assets/dji-map.png";
 import djiDashboard from "@/assets/dji-dashboard.png";
+import djiAnalyse1 from "@/assets/dji-analyse-1.jpeg";
+import djiAnalyse2 from "@/assets/dji-analyse-2.jpeg";
+import djiAnalyse3 from "@/assets/dji-analyse-3.jpeg";
+import djiAnalyse4 from "@/assets/dji-analyse-4.jpeg";
+import djiAnalyse5 from "@/assets/dji-analyse-5.jpeg";
+import djiAnalyse6 from "@/assets/dji-analyse-6.jpeg";
+import djiAnalyse7 from "@/assets/dji-analyse-7.jpeg";
+import djiAnalyse8 from "@/assets/dji-analyse-8.jpeg";
+import djiAnalyse9 from "@/assets/dji-analyse-9.jpeg";
+import djiAnalyse10 from "@/assets/dji-analyse-10.jpeg";
+
+const djiAnalyseImages = [
+  djiAnalyse1, djiAnalyse2, djiAnalyse3, djiAnalyse4, djiAnalyse5,
+  djiAnalyse6, djiAnalyse7, djiAnalyse8, djiAnalyse9, djiAnalyse10
+];
 
 const features = [{
   id: "dashboard",
@@ -335,6 +350,31 @@ const ProductShowcase = () => {
                     loading="lazy"
                   />
                 </div>
+              </div>
+
+              {/* Avansert analyse */}
+              <div className="text-center mt-10 mb-6">
+                <h4 className="text-xl md:text-2xl font-bold text-foreground mb-3">
+                  Avansert analyse fra loggfiler
+                </h4>
+                <p className="text-base text-muted-foreground leading-relaxed">
+                  Analyser data i detalj – app warnings, kontrollinput, batteri, vind, hastighet og mer.
+                </p>
+              </div>
+
+              <div
+                className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory"
+                style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+              >
+                {djiAnalyseImages.map((img, i) => (
+                  <img
+                    key={i}
+                    src={img}
+                    alt={`DJI flyanalyse ${i + 1}`}
+                    className="flex-shrink-0 w-[300px] md:w-[380px] h-auto rounded-xl shadow-lg snap-center"
+                    loading="lazy"
+                  />
+                ))}
               </div>
             </div>
 
