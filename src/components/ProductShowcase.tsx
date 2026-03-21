@@ -362,20 +362,7 @@ const ProductShowcase = () => {
                 </p>
               </div>
 
-              <div
-                className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory"
-                style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-              >
-                {djiAnalyseImages.map((img, i) => (
-                  <img
-                    key={i}
-                    src={img}
-                    alt={`DJI flyanalyse ${i + 1}`}
-                    className="flex-shrink-0 w-[300px] md:w-[380px] h-auto rounded-xl shadow-lg snap-center"
-                    loading="lazy"
-                  />
-                ))}
-              </div>
+              <DjiAnalyseCarousel />
             </div>
 
             {/* SafeSky */}
