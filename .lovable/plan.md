@@ -1,38 +1,32 @@
 
 
-## Analyse: Treg lasting av avisafe.no
+## Legg til DJI flyanalyse-seksjon med bildekarusell
 
-### Hovedårsaker til treg lasting
+### Hva
 
-Siden laster mange tunge ressurser samtidig ved oppstart:
+Under den eksisterende DJI-seksjonen (etter de to DJI-bildene) legges det til:
+- Underoverskrift: **"Avansert analyse fra loggfiler"**
+- Beskrivelse: "Analyser data i detalj – app warnings, kontrollinput, batteri, vind, hastighet og mer."
+- En horisontal bildekarusell med de 10 opplastede flyanalyse-skjermbildene + opplastingsdialog-bildet
 
-1. **6 videoer som autoplay-er samtidig** – I telefon-karusellen har 5 av 9 features videoer (`dashboard-demo.mp4`, `ai-risk-demo.mov`, `dronetag-demo.mp4`, `startflytur-demo.mp4`, `oppdrag-demo.mp4`) som alle starter nedlasting umiddelbart. I tillegg er det `avisafe-demo.mp4` som også autoplay-er lenger ned. Det er 6 videoer som alle begynner å laste parallelt.
+### Endringer
 
-2. **Mange store bilder importert direkte** – Over 15 bilder importeres via ES-moduler (ikke lazy-loaded): `drone-landscape.png`, `dji-map.png`, `dji-dashboard.png`, `dronetag-mini.jpeg`, flere app-screenshots, team-bilder osv. Alle lastes ved oppstart.
+**Kopier 10 bilder til `src/assets/`:**
+- `IMG_1065.jpeg` til `IMG_1074.jpeg` → `src/assets/dji-analyse-1.jpeg` til `src/assets/dji-analyse-10.jpeg`
 
-3. **Ingen lazy loading på videoer** – Videoene i karusellen er ikke synlige på skjermen, men laster likevel fordi de har `autoPlay`.
+**Endre `src/components/ProductShowcase.tsx`:**
 
-4. **Hero-video er en stor PNG** – `drone-landscape.png` er sannsynligvis en stor fil som lastes umiddelbart.
+Etter linje 338 (etter de eksisterende DJI-bildene, men fortsatt inni DJI-kortet), legg til:
 
-### Plan for optimalisering
+1. En ny `<div>` med `text-center mt-10 mb-6`:
+   - `<h4>` med tekst "Avansert analyse fra loggfiler"
+   - `<p>` med beskrivelsestekst
+2. En horisontal scroll-karusell (samme mønster som telefonkarusellen) med alle 10 bildene
+   - Hvert bilde vises med `rounded-xl shadow-lg`, ca 300-400px bredt
+   - `overflow-x-auto` med skjult scrollbar, `snap-x snap-mandatory`
+   - `loading="lazy"` på alle bilder
 
-**Steg 1: Lazy-load videoer i karusellen**
-- Bruk `IntersectionObserver` i `PhoneMockup` slik at videoer kun laster når de er synlige (eller nær synlige) i viewport.
-- Vis `poster`-bildet inntil videoen er i view.
+### Teknisk mønster
 
-**Steg 2: Lazy-load demo-videoen**
-- `avisafe-demo.mp4` lenger ned på siden bør også kun laste når den er i viewport.
-
-**Steg 3: Legg til `loading="lazy"` på flere bilder**
-- Bildene i integrasjonsseksjonen (DJI, Dronetag, ECCAIRS2) har allerede `loading="lazy"`, men `drone-landscape.png` i hero og team-bildene mangler det. Team-bildene bør ha lazy loading.
-
-**Steg 4: Optimaliser video-preload**
-- Legg til `preload="none"` på alle videoer som ikke er synlige ved oppstart, slik at nettleseren ikke begynner å laste dem i det hele tatt før de trengs.
-
-### Tekniske detaljer
-
-- Oppretter en `useInView`-hook eller bruker `IntersectionObserver` direkte i `PhoneMockup` for å kontrollere når videokilden settes.
-- Endrer `<video>` til å ha `preload="none"` og kun sette `src` når elementet er nær viewport.
-- Demo-videoen (`avisafe-demo.mp4`) wrrappes med samme logikk.
-- Disse endringene gjøres i `ProductShowcase.tsx` og `Hero.tsx`.
+Gjenbruker det horisontale scroll-mønsteret som allerede finnes i telefonkarusellen, men uten auto-scroll. Enkel swipe/drag på mobil, scroll på desktop.
 
