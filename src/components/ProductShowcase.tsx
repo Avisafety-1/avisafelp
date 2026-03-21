@@ -217,9 +217,12 @@ const DjiAnalyseCarousel = () => {
       {/* Fullscreen Lightbox */}
       {lightboxIndex !== null && (
         <div
-          className="fixed inset-0 z-[100] bg-black/95 flex flex-col items-center justify-center p-4"
+          className="fixed inset-x-0 z-[100] bg-black/95 flex flex-col items-center justify-center p-4"
+          style={{ top: '50%', transform: 'translateY(-50%)', height: 'auto', maxHeight: '100vh' }}
           onClick={() => setLightboxIndex(null)}
         >
+        {/* Backdrop */}
+        <div className="fixed inset-0 z-[99] bg-black/70" onClick={() => setLightboxIndex(null)} />
           <div className="relative w-full max-w-4xl flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
             <button
               className="absolute -top-10 right-0 text-white/80 hover:text-white z-10"
