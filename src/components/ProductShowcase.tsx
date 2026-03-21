@@ -19,6 +19,21 @@ import safeskyLogo from "@/assets/safesky-logo.png";
 import djiLogo from "@/assets/dji-logo.png";
 import djiMap from "@/assets/dji-map.png";
 import djiDashboard from "@/assets/dji-dashboard.png";
+import djiAnalyse1 from "@/assets/dji-analyse-1.jpeg";
+import djiAnalyse2 from "@/assets/dji-analyse-2.jpeg";
+import djiAnalyse3 from "@/assets/dji-analyse-3.jpeg";
+import djiAnalyse4 from "@/assets/dji-analyse-4.jpeg";
+import djiAnalyse5 from "@/assets/dji-analyse-5.jpeg";
+import djiAnalyse6 from "@/assets/dji-analyse-6.jpeg";
+import djiAnalyse7 from "@/assets/dji-analyse-7.jpeg";
+import djiAnalyse8 from "@/assets/dji-analyse-8.jpeg";
+import djiAnalyse9 from "@/assets/dji-analyse-9.jpeg";
+import djiAnalyse10 from "@/assets/dji-analyse-10.jpeg";
+
+const djiAnalyseImages = [
+  djiAnalyse1, djiAnalyse2, djiAnalyse3, djiAnalyse4, djiAnalyse5,
+  djiAnalyse6, djiAnalyse7, djiAnalyse8, djiAnalyse9, djiAnalyse10
+];
 
 const features = [{
   id: "dashboard",
