@@ -351,6 +351,31 @@ const ProductShowcase = () => {
                   />
                 </div>
               </div>
+
+              {/* Avansert analyse */}
+              <div className="text-center mt-10 mb-6">
+                <h4 className="text-xl md:text-2xl font-bold text-foreground mb-3">
+                  Avansert analyse fra loggfiler
+                </h4>
+                <p className="text-base text-muted-foreground leading-relaxed">
+                  Analyser data i detalj – app warnings, kontrollinput, batteri, vind, hastighet og mer.
+                </p>
+              </div>
+
+              <div
+                className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory"
+                style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+              >
+                {djiAnalyseImages.map((img, i) => (
+                  <img
+                    key={i}
+                    src={img}
+                    alt={`DJI flyanalyse ${i + 1}`}
+                    className="flex-shrink-0 w-[300px] md:w-[380px] h-auto rounded-xl shadow-lg snap-center"
+                    loading="lazy"
+                  />
+                ))}
+              </div>
             </div>
 
             {/* SafeSky */}
