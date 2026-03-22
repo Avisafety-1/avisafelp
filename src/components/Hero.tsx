@@ -64,8 +64,8 @@ const Hero = () => {
         
         {/* Trusted By Banner */}
         <div className="absolute -bottom-24 sm:-bottom-28 md:-bottom-28 left-1/2 -translate-x-1/2 z-10 animate-fade-in w-full">
-          <div className="flex flex-col items-center gap-1 mb-3">
-            <span className="text-[10px] sm:text-xs text-muted-foreground font-medium tracking-widest uppercase">Trusted by</span>
+          <div className="flex items-center justify-center mb-1">
+            <span className="text-xs sm:text-sm text-foreground/70 font-semibold tracking-widest uppercase">Trusted by</span>
           </div>
           <div className="w-screen relative left-1/2 -translate-x-1/2 bg-black/90 py-2 sm:py-2.5 mb-4 flex items-center justify-center gap-6 sm:gap-8">
             <img src={trustedLogo1} alt="UAS Voss" className="h-7 sm:h-9 w-auto" />
