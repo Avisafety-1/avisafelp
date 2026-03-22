@@ -64,16 +64,15 @@ const Hero = () => {
         
         {/* Trusted By Banner */}
         <div className="absolute -bottom-24 sm:-bottom-28 md:-bottom-28 left-1/2 -translate-x-1/2 z-10 animate-fade-in w-full">
-          <div className="w-screen relative left-1/2 -translate-x-1/2 bg-black/90 py-3 sm:py-4 mb-4">
-            <div className="flex flex-col items-center gap-2">
-              <span className="text-[10px] sm:text-xs text-white/60 font-medium tracking-widest uppercase">Trusted by</span>
-              <div className="flex items-center gap-6 sm:gap-8">
-                <img src={trustedLogo1} alt="UAS Voss" className="h-6 sm:h-8 w-auto" />
-                <img src={norconsultLogoWhite} alt="Norconsult" className="h-4 sm:h-6 w-auto" />
-                <img src={dnLogoWhite} alt="DN" className="h-6 sm:h-8 w-auto" />
-              </div>
+          <div className="flex flex-col items-center gap-1 mb-3">
+            <span className="text-[10px] sm:text-xs text-muted-foreground font-medium tracking-widest uppercase">Trusted by</span>
+            <div className="flex items-center gap-6 sm:gap-8">
+              <img src={trustedLogo1} alt="UAS Voss" className="h-6 sm:h-8 w-auto" />
+              <img src={norconsultLogoWhite} alt="Norconsult" className="h-4 sm:h-6 w-auto invert" />
+              <img src={dnLogoWhite} alt="DN" className="h-6 sm:h-8 w-auto invert" />
             </div>
           </div>
+          <div className="w-screen relative left-1/2 -translate-x-1/2 bg-black/90 py-2 sm:py-2.5 mb-4"></div>
           <div className="flex flex-row items-center justify-center gap-4">
             <Button variant="hero" size="xl" className="bg-[hsl(var(--text-dark-blue))] text-white hover:bg-[hsl(var(--text-dark-blue))]/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-6 sm:px-10 h-12 sm:h-14" asChild>
               <a href="mailto:kontakt@avisafe.no" className="shadow-none opacity-100 rounded-md bg-[#123b87]">
