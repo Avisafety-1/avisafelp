@@ -2,6 +2,7 @@ import { useRef, useEffect, useState, useCallback } from "react";
 import { useInView } from "@/hooks/use-in-view";
 import { Link } from "react-router-dom";
 import { Plane, ClipboardList, BarChart3, Cloud, Route, ChevronLeft, ChevronRight, FileText, AlertTriangle, CheckSquare, Navigation, Brain, ArrowRight, Sparkles, X } from "lucide-react";
+import AiSearch from "@/components/AiSearch";
 import { Button } from "@/components/ui/button";
 import appRuteplanlegging from "@/assets/app-ruteplanlegging.jpg";
 import appRisikovurdering from "@/assets/app-risikovurdering.jpeg";
