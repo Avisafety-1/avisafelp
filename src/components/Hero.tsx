@@ -3,7 +3,8 @@ import { ArrowRight, ArrowDown } from "lucide-react";
 import droneLandscape from "@/assets/drone-landscape.png";
 import avisafeLogoBlack from "@/assets/avisafe-logo-black.png";
 import trustedLogo1 from "@/assets/trusted-logo-1.png";
-import norconsultLogo from "@/assets/norconsult-logo.png";
+import norconsultLogoWhite from "@/assets/norconsult-logo-white.png";
+import dnLogoWhite from "@/assets/dn-logo-white.png";
 
 const FacebookIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -61,14 +62,16 @@ const Hero = () => {
           />
         </div>
         
-        {/* Trusted By + CTA Buttons - Positioned at bottom of image */}
-        <div className="absolute -bottom-24 sm:-bottom-28 md:-bottom-28 left-1/2 -translate-x-1/2 z-10 animate-fade-in">
-          {/* Trusted by */}
-          <div className="flex flex-col items-center gap-2 mb-4">
-            <span className="text-xs sm:text-sm text-muted-foreground font-medium tracking-wide uppercase">Trusted by</span>
-            <div className="flex items-center gap-6">
-              <img src={trustedLogo1} alt="Trusted partner" className="h-6 sm:h-8 w-auto" />
-              <img src={norconsultLogo} alt="Norconsult" className="h-5 sm:h-7 w-auto" />
+        {/* Trusted By Banner */}
+        <div className="absolute -bottom-24 sm:-bottom-28 md:-bottom-28 left-1/2 -translate-x-1/2 z-10 animate-fade-in w-full">
+          <div className="w-screen relative left-1/2 -translate-x-1/2 bg-black/90 py-3 sm:py-4 mb-4">
+            <div className="flex flex-col items-center gap-2">
+              <span className="text-[10px] sm:text-xs text-white/60 font-medium tracking-widest uppercase">Trusted by</span>
+              <div className="flex items-center gap-6 sm:gap-8">
+                <img src={trustedLogo1} alt="UAS Voss" className="h-6 sm:h-8 w-auto" />
+                <img src={norconsultLogoWhite} alt="Norconsult" className="h-4 sm:h-6 w-auto" />
+                <img src={dnLogoWhite} alt="DN" className="h-6 sm:h-8 w-auto" />
+              </div>
             </div>
           </div>
           <div className="flex flex-row items-center justify-center gap-4">
