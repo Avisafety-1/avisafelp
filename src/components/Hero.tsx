@@ -63,7 +63,7 @@ const Hero = () => {
         </div>
         
         {/* Trusted By Banner */}
-        <div className="absolute -bottom-24 sm:-bottom-28 md:-bottom-28 left-1/2 -translate-x-1/2 z-10 animate-fade-in w-full">
+        <div className="absolute -bottom-32 sm:-bottom-36 md:-bottom-36 left-1/2 -translate-x-1/2 z-10 animate-fade-in w-full">
           <div className="flex items-center justify-center mb-1">
             <span className="text-xs sm:text-sm text-foreground/70 font-semibold tracking-widest uppercase">Trusted by</span>
           </div>
