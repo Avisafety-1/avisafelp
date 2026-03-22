@@ -188,9 +188,9 @@ Professional — 299 kr/bruker/mnd:
 - Prioritert support
 
 Tilleggstjenester (add-ons):
-- SORA Admin — 99 kr/mnd: Avansert SORA-risikoanalyse
-- DJI-integrasjon — 99 kr/mnd: Automatisk import av DJI-flylogger
-- ECCAIRS-integrasjon — 99 kr/mnd: ECCAIRS E2-rapportering til Luftfartstilsynet
+- SORA Admin — 199 kr/mnd: Avansert SORA-risikoanalyse
+- DJI-integrasjon — 199 kr/mnd: Automatisk import av DJI-flylogger
+- ECCAIRS-integrasjon — 199 kr/mnd: ECCAIRS E2-rapportering til Luftfartstilsynet
 
 Alle planer har 5 dagers gratis prøveperiode. Ingen bindingstid.
 
