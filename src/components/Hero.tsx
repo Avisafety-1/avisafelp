@@ -63,7 +63,7 @@ const Hero = () => {
         </div>
         
         {/* Trusted By Banner */}
-        <div className="absolute -bottom-24 sm:-bottom-28 md:-bottom-28 left-1/2 -translate-x-1/2 z-10 animate-fade-in w-full">
+        <div className="absolute -bottom-32 sm:-bottom-36 md:-bottom-36 left-1/2 -translate-x-1/2 z-10 animate-fade-in w-full">
           <div className="flex items-center justify-center mb-1">
             <span className="text-xs sm:text-sm text-foreground/70 font-semibold tracking-widest uppercase">Trusted by</span>
           </div>
@@ -102,7 +102,7 @@ const Hero = () => {
       </div>
 
       {/* Content section below the image */}
-      <div className="container mx-auto px-4 sm:px-6 text-center pt-[100px] pb-8 md:pt-[120px] md:pb-12 animate-fade-in">
+      <div className="container mx-auto px-4 sm:px-6 text-center pt-[130px] pb-8 md:pt-[150px] md:pb-12 animate-fade-in">
         <div className="max-w-4xl mx-auto">
           {/* Subheadline */}
           <p className="text-base sm:text-xl md:text-2xl text-muted-foreground max-w-xs sm:max-w-lg md:max-w-2xl mx-auto leading-relaxed font-medium px-2">
