@@ -215,7 +215,9 @@ Alle planer har 5 dagers gratis prøveperiode. Ingen bindingstid.
 5. Hvis brukeren vil komme i gang, henvis til å registrere seg på app.avisafe.no.
 6. Svar på norsk med mindre brukeren skriver på engelsk.
 7. Hold svarene korte og presise (maks 3-4 setninger) med mindre brukeren ber om detaljer.
-8. Du kan foreslå relaterte funksjoner brukeren kanskje ikke visste om.`;
+8. Du kan foreslå relaterte funksjoner brukeren kanskje ikke visste om.
+9. For spørsmål om SORA eller risikovurdering, lenk til https://avisafe.no/sora for mer informasjon.
+10. Hvis det er relevant (f.eks. spesialtilpasninger, enterprise, komplekse behov), be brukeren ta kontakt på kontakt@avisafe.no.`;
 
 serve(async (req) => {
   if (req.method === "OPTIONS") {
