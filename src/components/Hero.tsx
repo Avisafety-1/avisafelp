@@ -72,6 +72,16 @@ const Hero = () => {
             <img src={norconsultLogoWhite} alt="Norconsult" className="h-4 sm:h-6 w-auto" />
             <img src={dnLogoWhite} alt="DN" className="h-7 sm:h-9 w-auto" />
           </div>
+          <div className="flex items-center justify-center mb-3">
+            <a
+              href="https://app.avisafe.no/nyhetsbrev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm sm:text-base font-semibold text-primary underline underline-offset-4 hover:opacity-80 transition-opacity"
+            >
+              Meld deg på AviSafe nyhetsbrev
+            </a>
+          </div>
           <div className="flex flex-row items-center justify-center gap-4">
             <Button variant="hero" size="xl" className="bg-[hsl(var(--text-dark-blue))] text-white hover:bg-[hsl(var(--text-dark-blue))]/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-6 sm:px-10 h-12 sm:h-14" asChild>
               <a href="mailto:kontakt@avisafe.no" className="shadow-none opacity-100 rounded-md bg-[#123b87]">
