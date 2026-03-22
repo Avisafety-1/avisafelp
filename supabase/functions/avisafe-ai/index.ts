@@ -198,7 +198,7 @@ Alle planer har 5 dagers gratis prøveperiode. Ingen bindingstid.
 
 | Integrasjon | Beskrivelse |
 |-------------|-------------|
-| SafeSky | Live lufttrafikk med posisjoner for fly, helikoptre og droner |
+| SafeSky | Live lufttrafikk med posisjoner for fly, helikoptre og droner. Publisering av advisory til SafeSky basert på planlagt rute, slik at andre luftromsbrukere ser droneoperasjonen i sanntid. |
 | OpenAIP | Luftrom, restriksjonsområder og hindringer |
 | DJI | Import av flylogger fra DJI-droner (automatisk og manuell) |
 | DroneTag | Remote ID-enheter for sanntidssporing av droner |
