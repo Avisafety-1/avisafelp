@@ -192,7 +192,7 @@ Tilleggstjenester (add-ons):
 - DJI-integrasjon — 99 kr/mnd: Automatisk import av DJI-flylogger
 - ECCAIRS-integrasjon — 99 kr/mnd: ECCAIRS E2-rapportering til Luftfartstilsynet
 
-Alle planer har 14 dagers gratis prøveperiode. Ingen bindingstid.
+Alle planer har 5 dagers gratis prøveperiode. Ingen bindingstid.
 
 # INTEGRASJONER
 
