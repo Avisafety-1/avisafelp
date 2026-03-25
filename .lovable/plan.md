@@ -1,32 +1,32 @@
 
 
-## Legg til DJI flyanalyse-seksjon med bildekarusell
+# Plan: Logg AI-søk med beskyttet visningsside
 
-### Hva
+## Oversikt
+Lagre alle spørsmål folk stiller i AI-søket til en database-tabell, og opprett en beskyttet `/logg`-side med enkel innlogging der du kan se alle spørsmål.
 
-Under den eksisterende DJI-seksjonen (etter de to DJI-bildene) legges det til:
-- Underoverskrift: **"Avansert analyse fra loggfiler"**
-- Beskrivelse: "Analyser data i detalj – app warnings, kontrollinput, batteri, vind, hastighet og mer."
-- En horisontal bildekarusell med de 10 opplastede flyanalyse-skjermbildene + opplastingsdialog-bildet
+## Steg
 
-### Endringer
+### 1. Opprett database-tabell `ai_search_logs`
+- Kolonner: `id`, `query` (teksten brukeren søkte på), `created_at`
+- Ingen RLS-restriksjon på INSERT (alle besøkende kan trigge logging)
+- SELECT kun for innloggede brukere (admin)
 
-**Kopier 10 bilder til `src/assets/`:**
-- `IMG_1065.jpeg` til `IMG_1074.jpeg` → `src/assets/dji-analyse-1.jpeg` til `src/assets/dji-analyse-10.jpeg`
+### 2. Oppdater edge function `avisafe-ai`
+- Når en melding mottas, logg brukerens siste melding til `ai_search_logs`-tabellen via Supabase service role client
+- Skjer asynkront slik at det ikke forsinker AI-svaret
 
-**Endre `src/components/ProductShowcase.tsx`:**
+### 3. Opprett `/logg`-side med innlogging
+- Enkel e-post/passord-innlogging øverst på siden
+- Når innlogget: vis tabell med alle søk sortert nyest først (query + tidspunkt)
+- Legg til rute i App.tsx
 
-Etter linje 338 (etter de eksisterende DJI-bildene, men fortsatt inni DJI-kortet), legg til:
+### 4. Oppdater AiSearch-komponenten
+- Ingen endring nødvendig — loggingen skjer i edge function
 
-1. En ny `<div>` med `text-center mt-10 mb-6`:
-   - `<h4>` med tekst "Avansert analyse fra loggfiler"
-   - `<p>` med beskrivelsestekst
-2. En horisontal scroll-karusell (samme mønster som telefonkarusellen) med alle 10 bildene
-   - Hvert bilde vises med `rounded-xl shadow-lg`, ca 300-400px bredt
-   - `overflow-x-auto` med skjult scrollbar, `snap-x snap-mandatory`
-   - `loading="lazy"` på alle bilder
-
-### Teknisk mønster
-
-Gjenbruker det horisontale scroll-mønsteret som allerede finnes i telefonkarusellen, men uten auto-scroll. Enkel swipe/drag på mobil, scroll på desktop.
+## Tekniske detaljer
+- Tabell: `ai_search_logs (id uuid PK, query text, created_at timestamptz default now())`
+- RLS: `INSERT` for alle (anon), `SELECT` kun for `authenticated`
+- Edge function bruker `SUPABASE_SERVICE_ROLE_KEY` (allerede tilgjengelig) for insert
+- Auth: Supabase standard e-post/passord. Du oppretter bruker manuelt via backend.
 
