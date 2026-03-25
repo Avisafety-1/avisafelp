@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Product from "./pages/Product";
 import SoraProcess from "./pages/SoraProcess";
 import Sora from "./pages/Sora";
+import Logg from "./pages/Logg";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/product/:handle" element={<Product />} />
           <Route path="/sora-prosess" element={<SoraProcess />} />
           <Route path="/sora" element={<Sora />} />
+          <Route path="/logg" element={<Logg />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
