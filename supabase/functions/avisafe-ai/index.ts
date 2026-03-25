@@ -229,6 +229,22 @@ serve(async (req) => {
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
 
+    // Async log the user's latest query (fire-and-forget)
+    const lastUserMsg = [...messages].reverse().find((m: { role: string }) => m.role === "user");
+    if (lastUserMsg) {
+      const sbUrl = Deno.env.get("SUPABASE_URL")!;
+      const sbKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+      fetch(`${sbUrl}/rest/v1/ai_search_logs`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: sbKey,
+          Authorization: `Bearer ${sbKey}`,
+        },
+        body: JSON.stringify({ query: lastUserMsg.content }),
+      }).catch((err) => console.error("Log insert error:", err));
+    }
+
     const response = await fetch(
       "https://ai.gateway.lovable.dev/v1/chat/completions",
       {
