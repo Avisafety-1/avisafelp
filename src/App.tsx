@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Product from "./pages/Product";
 import SoraProcess from "./pages/SoraProcess";
 import Sora from "./pages/Sora";
+import Logg from "./pages/Logg";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
