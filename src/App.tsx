@@ -23,6 +23,7 @@ const App = () => (
           <Route path="/product/:handle" element={<Product />} />
           <Route path="/sora-prosess" element={<SoraProcess />} />
           <Route path="/sora" element={<Sora />} />
+          <Route path="/logg" element={<Logg />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
