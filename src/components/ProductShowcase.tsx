@@ -445,7 +445,7 @@ const ProductShowcase = () => {
 
             {/* ArduPilot */}
             <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 md:p-12 shadow-xl">
-              <div className="flex items-center justify-center mb-6">
+              <div className="flex items-center justify-center">
                 <img src={arduLogo} alt="ArduPilot logo" className="h-56 md:h-64 w-auto" loading="lazy" />
               </div>
               <div className="text-center">
