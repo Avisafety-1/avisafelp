@@ -1,32 +1,22 @@
 
 
-# Plan: Logg AI-søk med beskyttet visningsside
+# Plan: Legg til ArduPilot-integrasjonsseksjon
 
 ## Oversikt
-Lagre alle spørsmål folk stiller i AI-søket til en database-tabell, og opprett en beskyttet `/logg`-side med enkel innlogging der du kan se alle spørsmål.
+Legg til en ny integrasjonsseksjon for ArduPilot rett under DJI-seksjonen i ProductShowcase, med samme visuell stil som de andre integrasjonene. Bruk den opplastede ArduPilot-logoen.
 
 ## Steg
 
-### 1. Opprett database-tabell `ai_search_logs`
-- Kolonner: `id`, `query` (teksten brukeren søkte på), `created_at`
-- Ingen RLS-restriksjon på INSERT (alle besøkende kan trigge logging)
-- SELECT kun for innloggede brukere (admin)
+### 1. Kopier ArduPilot-logo til prosjektet
+- Kopier `user-uploads://ardu_logo_dark.png` til `src/assets/ardu-logo.png`
 
-### 2. Oppdater edge function `avisafe-ai`
-- Når en melding mottas, logg brukerens siste melding til `ai_search_logs`-tabellen via Supabase service role client
-- Skjer asynkront slik at det ikke forsinker AI-svaret
+### 2. Oppdater ProductShowcase.tsx
+- Importer den nye logoen
+- Legg til en ny integrasjonsboks rett etter DJI-seksjonen (etter `DjiAnalyseCarousel`-avslutningen) og før SafeSky
+- Samme struktur som de andre: logo sentrert, overskrift "ArduPilot", beskrivelsestekst
+- Tekst: "AviSafe støtter nå opplasting av flylogger fra ArduPilot, slik at du enkelt kan analysere og dokumentere operasjoner på samme måte som med andre loggkilder."
 
-### 3. Opprett `/logg`-side med innlogging
-- Enkel e-post/passord-innlogging øverst på siden
-- Når innlogget: vis tabell med alle søk sortert nyest først (query + tidspunkt)
-- Legg til rute i App.tsx
-
-### 4. Oppdater AiSearch-komponenten
-- Ingen endring nødvendig — loggingen skjer i edge function
-
-## Tekniske detaljer
-- Tabell: `ai_search_logs (id uuid PK, query text, created_at timestamptz default now())`
-- RLS: `INSERT` for alle (anon), `SELECT` kun for `authenticated`
-- Edge function bruker `SUPABASE_SERVICE_ROLE_KEY` (allerede tilgjengelig) for insert
-- Auth: Supabase standard e-post/passord. Du oppretter bruker manuelt via backend.
+### Tekniske detaljer
+- Bruker samme `bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 md:p-12 shadow-xl` styling
+- Ingen nye avhengigheter
 
