@@ -446,10 +446,9 @@ const ProductShowcase = () => {
             {/* ArduPilot */}
             <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 md:p-12 shadow-xl">
               <div className="flex items-center justify-center mb-6">
-                <img src={arduLogo} alt="ArduPilot logo" className="h-28 md:h-32 w-auto" loading="lazy" />
+                <img src={arduLogo} alt="ArduPilot logo" className="h-56 md:h-64 w-auto" loading="lazy" />
               </div>
               <div className="text-center">
-                <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">ArduPilot</h3>
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   AviSafe støtter nå opplasting av flylogger fra ArduPilot, slik at du enkelt kan analysere og dokumentere operasjoner på samme måte som med andre loggkilder.
                 </p>
