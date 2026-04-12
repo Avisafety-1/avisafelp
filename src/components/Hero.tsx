@@ -5,6 +5,7 @@ import avisafeLogoBlack from "@/assets/avisafe-logo-black.png";
 import trustedLogo1 from "@/assets/trusted-logo-1.png";
 import norconsultLogoWhite from "@/assets/norconsult-logo-white.png";
 import dnLogoWhite from "@/assets/dn-logo-white.png";
+import tensioLogo from "@/assets/tensio-logo.png";
 
 const FacebookIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
