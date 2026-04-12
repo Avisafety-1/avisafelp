@@ -71,7 +71,7 @@ const Hero = () => {
           <div className="w-screen relative left-1/2 -translate-x-1/2 bg-black/90 py-2 sm:py-2.5 mb-4 flex items-center justify-center gap-6 sm:gap-8">
             <img src={trustedLogo1} alt="UAS Voss" className="h-7 sm:h-9 w-auto" />
             <img src={tensioLogo} alt="Tensio" className="h-7 sm:h-9 w-auto" />
-            <img src={norconsultLogoWhite} alt="Norconsult" className="h-4 sm:h-6 w-auto" />
+            <img src={norconsultLogoWhite} alt="Norconsult" className="h-5 sm:h-7 w-auto" />
             <img src={dnLogoWhite} alt="DN" className="h-7 sm:h-9 w-auto" />
           </div>
           <div className="flex items-center justify-center mb-3">
