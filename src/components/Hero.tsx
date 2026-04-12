@@ -5,6 +5,7 @@ import avisafeLogoBlack from "@/assets/avisafe-logo-black.png";
 import trustedLogo1 from "@/assets/trusted-logo-1.png";
 import norconsultLogoWhite from "@/assets/norconsult-logo-white.png";
 import dnLogoWhite from "@/assets/dn-logo-white.png";
+import tensioLogo from "@/assets/tensio-logo.png";
 
 const FacebookIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -69,6 +70,7 @@ const Hero = () => {
           </div>
           <div className="w-screen relative left-1/2 -translate-x-1/2 bg-black/90 py-2 sm:py-2.5 mb-4 flex items-center justify-center gap-6 sm:gap-8">
             <img src={trustedLogo1} alt="UAS Voss" className="h-7 sm:h-9 w-auto" />
+            <img src={tensioLogo} alt="Tensio" className="h-4 sm:h-6 w-auto" />
             <img src={norconsultLogoWhite} alt="Norconsult" className="h-4 sm:h-6 w-auto" />
             <img src={dnLogoWhite} alt="DN" className="h-7 sm:h-9 w-auto" />
           </div>
