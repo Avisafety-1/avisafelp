@@ -8,6 +8,8 @@ import Product from "./pages/Product";
 import SoraProcess from "./pages/SoraProcess";
 import Sora from "./pages/Sora";
 import Logg from "./pages/Logg";
+import Artikler from "./pages/Artikler";
+import Artikkel from "./pages/Artikkel";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
