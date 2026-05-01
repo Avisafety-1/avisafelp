@@ -26,6 +26,8 @@ const App = () => (
           <Route path="/sora-prosess" element={<SoraProcess />} />
           <Route path="/sora" element={<Sora />} />
           <Route path="/logg" element={<Logg />} />
+          <Route path="/artikler" element={<Artikler />} />
+          <Route path="/artikler/:slug" element={<Artikkel />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
