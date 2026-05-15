@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, Plus, LogIn, LogOut, Pencil, Trash2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import ArticleEditor from "@/components/ArticleEditor";
+import PdfViewer from "@/components/PdfViewer";
 
 type Article = {
   id: string;
@@ -250,16 +251,7 @@ const Artikler = () => {
               <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-8">{selected.title}</h1>
 
               {selected.article_type === 'pdf' && selected.pdf_url ? (
-                <div className="w-full">
-                  <iframe
-                    src={selected.pdf_url}
-                    className="w-full h-[80vh] rounded-lg border"
-                    title={selected.title}
-                  />
-                  <a href={selected.pdf_url} target="_blank" rel="noopener noreferrer" className="inline-block mt-4">
-                    <Button variant="outline">Åpne PDF i ny fane</Button>
-                  </a>
-                </div>
+                <PdfViewer url={selected.pdf_url} title={selected.title} />
               ) : (
                 <div
                   className="prose prose-lg max-w-none text-foreground"
