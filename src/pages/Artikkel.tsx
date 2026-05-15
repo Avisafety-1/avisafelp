@@ -55,8 +55,34 @@ const Artikkel = () => {
     );
   }
 
+  const articleUrl = `https://avisafe.no/artikler/${article.slug}`;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    datePublished: article.created_at,
+    dateModified: article.created_at,
+    ...(article.cover_image_url ? { image: article.cover_image_url } : {}),
+    mainEntityOfPage: articleUrl,
+    author: { "@type": "Organization", name: "AviSafe" },
+    publisher: {
+      "@type": "Organization",
+      name: "AviSafe",
+      logo: { "@type": "ImageObject", url: "https://avisafe.no/logo.png" },
+    },
+  };
+
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>{`${article.title} – AviSafe`}</title>
+        <link rel="canonical" href={articleUrl} />
+        <meta property="og:title" content={article.title} />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={articleUrl} />
+        {article.cover_image_url && <meta property="og:image" content={article.cover_image_url} />}
+        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      </Helmet>
       <header className="border-b bg-card px-4 sm:px-8 py-4">
         <div className="max-w-4xl mx-auto flex items-center gap-3">
           <Link to="/artikler">
