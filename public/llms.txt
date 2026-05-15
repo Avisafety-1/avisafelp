@@ -1,0 +1,17 @@
+# AviSafe
+
+> AviSafe leverer moderne sikkerhetsløsninger for norske aviser og mediehus, med SORA-prosess for trygg håndtering av sensitiv informasjon.
+
+AviSafe er en norsk plattform som hjelper aviser og mediehus med å beskytte kilder, redaksjonelt arbeid og sensitive data. Vi tilbyr SORA-prosessen, integrasjoner og verktøy for sikker drift. Kontakt: kontakt@avisafe.no.
+
+## Pages
+
+- [Forside](/): Oversikt over AviSafe, produkt, sikkerhet og team.
+- [SORA](/sora): Introduksjon til SORA-prosessen for sikker informasjonshåndtering.
+- [SORA-prosess](/sora-prosess): Interaktiv flyt som forklarer SORA-prosessen i detalj.
+- [Logg](/logg): Logg og oversikt over hendelser i plattformen.
+- [Artikler](/artikler): Artikler og innsikt om sikkerhet i mediebransjen.
+
+## Optional
+
+- [Produkt](/product/avisafe): Detaljside for AviSafe-produktet.
