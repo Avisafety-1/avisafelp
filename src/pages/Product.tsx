@@ -188,6 +188,7 @@ const Product = () => {
                     <button
                       key={index}
                       onClick={() => setCurrentImageIndex(index)}
+                      aria-label={`Vis bilde ${index + 1}`}
                       className={`w-2.5 h-2.5 rounded-full transition-colors ${
                         index === currentImageIndex ? "bg-primary" : "bg-muted-foreground/40"
                       }`}
