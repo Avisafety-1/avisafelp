@@ -69,7 +69,7 @@ const Hero = () => {
         </div>
         
         {/* Trusted By Banner */}
-        <div className="absolute -bottom-32 sm:-bottom-36 md:-bottom-36 left-1/2 -translate-x-1/2 z-10 animate-fade-in w-full">
+        <div className="absolute -bottom-12 sm:-bottom-20 md:-bottom-24 left-1/2 -translate-x-1/2 z-10 animate-fade-in w-full">
           <div className="flex items-center justify-center mb-1">
             <span className="text-xs sm:text-sm text-foreground/70 font-semibold tracking-widest uppercase">Trusted by</span>
           </div>
@@ -99,7 +99,7 @@ const Hero = () => {
       </div>
 
       {/* CTA buttons - flow below image so banner keeps original position */}
-      <div className="container mx-auto px-4 sm:px-6 pt-[140px] sm:pt-[160px] md:pt-[180px] animate-fade-in">
+      <div className="container mx-auto px-4 sm:px-6 pt-[80px] sm:pt-[110px] md:pt-[130px] animate-fade-in">
         <div className="grid grid-cols-2 sm:flex sm:flex-row sm:flex-wrap items-center justify-center gap-3 sm:gap-4 max-w-3xl mx-auto">
           <Button variant="hero" size="xl" className="w-full sm:w-auto bg-[hsl(var(--text-dark-blue))] text-white hover:bg-[hsl(var(--text-dark-blue))]/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-4 sm:px-10 h-12 sm:h-14" asChild>
             <a href="mailto:kontakt@avisafe.no" className="shadow-none opacity-100 rounded-md bg-[#123b87]">
