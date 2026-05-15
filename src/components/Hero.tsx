@@ -24,6 +24,7 @@ const LinkedInIcon = ({ className }: { className?: string }) => (
 );
 
 const Hero = () => {
+  const [newsletterOpen, setNewsletterOpen] = useState(false);
   return <section className="relative flex flex-col overflow-hidden bg-transparent">
       {/* Social Media Icons - Top Right */}
       <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 flex items-center gap-3">
