@@ -122,6 +122,17 @@ const Hero = () => {
         </div>
       </div>
 
+      {/* Content section below the image */}
+      <div className="container mx-auto px-4 sm:px-6 text-center pt-[155px] pb-8 md:pt-[175px] md:pb-12 animate-fade-in">
+        <div className="max-w-4xl mx-auto">
+          {/* Subheadline */}
+          <p className="text-base sm:text-xl md:text-2xl text-muted-foreground max-w-xs sm:max-w-lg md:max-w-2xl mx-auto leading-relaxed font-medium px-2">
+            AviSafe bidrar til tryggere og mer effektiv drift ved å gi luftfartsaktører omfattende verktøy for
+            sikkerhetsstyring
+          </p>
+        </div>
+      </div>
+
       <Dialog open={newsletterOpen} onOpenChange={setNewsletterOpen}>
         <DialogContent className="max-w-md p-0 overflow-hidden">
           <DialogHeader className="px-6 pt-6 pb-2">
@@ -134,19 +145,6 @@ const Hero = () => {
           />
         </DialogContent>
       </Dialog>
-        </div>
-      </div>
-
-      {/* Content section below the image */}
-      <div className="container mx-auto px-4 sm:px-6 text-center pt-[155px] pb-8 md:pt-[175px] md:pb-12 animate-fade-in">
-        <div className="max-w-4xl mx-auto">
-          {/* Subheadline */}
-          <p className="text-base sm:text-xl md:text-2xl text-muted-foreground max-w-xs sm:max-w-lg md:max-w-2xl mx-auto leading-relaxed font-medium px-2">
-            AviSafe bidrar til tryggere og mer effektiv drift ved å gi luftfartsaktører omfattende verktøy for
-            sikkerhetsstyring
-          </p>
-        </div>
-      </div>
     </section>;
 };
 export default Hero;
