@@ -13,6 +13,7 @@ import {
   Clock,
   Activity,
 } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 import avisafeLogoText from "@/assets/avisafe-logo-text.png";
 
 const C = {
