@@ -3,6 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { LogIn, LogOut, Loader2 } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 
 type LogEntry = { id: string; query: string; created_at: string };
 
