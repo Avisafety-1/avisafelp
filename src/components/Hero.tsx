@@ -95,33 +95,37 @@ const Hero = () => {
               ))}
             </div>
           </div>
-          <div className="grid grid-cols-2 sm:flex sm:flex-row sm:flex-wrap items-center justify-center gap-3 sm:gap-4 px-4 mt-16 sm:mt-20">
-            <Button variant="hero" size="xl" className="w-full sm:w-auto bg-[hsl(var(--text-dark-blue))] text-white hover:bg-[hsl(var(--text-dark-blue))]/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-4 sm:px-10 h-12 sm:h-14" asChild>
-              <a href="mailto:kontakt@avisafe.no" className="shadow-none opacity-100 rounded-md bg-[#123b87]">
-                Kontakt oss
-                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
-              </a>
-            </Button>
-            <Button variant="hero" size="xl" className="w-full sm:w-auto bg-[#123b87] text-white hover:bg-[#123b87]/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-4 sm:px-10 h-12 sm:h-14" onClick={() => {
-              document.getElementById('team-section')?.scrollIntoView({ behavior: 'smooth' });
-            }}>
-              Hvem er vi?
-              <ArrowDown className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-y-1 transition-transform" />
-            </Button>
-            <Button variant="hero" size="xl" className="w-full sm:w-auto bg-[#123b87] text-white hover:bg-[#123b87]/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-4 sm:px-10 h-12 sm:h-14" asChild>
-              <Link to="/artikler" className="shadow-none opacity-100 rounded-md bg-[#123b87]">
-                Artikler
-              </Link>
-            </Button>
-            <Button variant="hero" size="xl" className="w-full sm:w-auto bg-[#123b87] text-white hover:bg-[#123b87]/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-4 sm:px-10 h-12 sm:h-14" onClick={() => setNewsletterOpen(true)}>
-              Nyhetsbrev
-            </Button>
-          </div>
+        </div>
+      </div>
+
+      {/* CTA buttons - flow below image so banner keeps original position */}
+      <div className="container mx-auto px-4 sm:px-6 pt-[140px] sm:pt-[160px] md:pt-[180px] animate-fade-in">
+        <div className="grid grid-cols-2 sm:flex sm:flex-row sm:flex-wrap items-center justify-center gap-3 sm:gap-4 max-w-3xl mx-auto">
+          <Button variant="hero" size="xl" className="w-full sm:w-auto bg-[hsl(var(--text-dark-blue))] text-white hover:bg-[hsl(var(--text-dark-blue))]/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-4 sm:px-10 h-12 sm:h-14" asChild>
+            <a href="mailto:kontakt@avisafe.no" className="shadow-none opacity-100 rounded-md bg-[#123b87]">
+              Kontakt oss
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+            </a>
+          </Button>
+          <Button variant="hero" size="xl" className="w-full sm:w-auto bg-[#123b87] text-white hover:bg-[#123b87]/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-4 sm:px-10 h-12 sm:h-14" onClick={() => {
+            document.getElementById('team-section')?.scrollIntoView({ behavior: 'smooth' });
+          }}>
+            Hvem er vi?
+            <ArrowDown className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-y-1 transition-transform" />
+          </Button>
+          <Button variant="hero" size="xl" className="w-full sm:w-auto bg-[#123b87] text-white hover:bg-[#123b87]/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-4 sm:px-10 h-12 sm:h-14" asChild>
+            <Link to="/artikler" className="shadow-none opacity-100 rounded-md bg-[#123b87]">
+              Artikler
+            </Link>
+          </Button>
+          <Button variant="hero" size="xl" className="w-full sm:w-auto bg-[#123b87] text-white hover:bg-[#123b87]/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-4 sm:px-10 h-12 sm:h-14" onClick={() => setNewsletterOpen(true)}>
+            Nyhetsbrev
+          </Button>
         </div>
       </div>
 
       {/* Content section below the image */}
-      <div className="container mx-auto px-4 sm:px-6 text-center pt-[280px] pb-8 md:pt-[230px] md:pb-12 animate-fade-in">
+      <div className="container mx-auto px-4 sm:px-6 text-center pt-8 pb-8 md:pt-12 md:pb-12 animate-fade-in">
         <div className="max-w-4xl mx-auto">
           {/* Subheadline */}
           <p className="text-base sm:text-xl md:text-2xl text-muted-foreground max-w-xs sm:max-w-lg md:max-w-2xl mx-auto leading-relaxed font-medium px-2">
