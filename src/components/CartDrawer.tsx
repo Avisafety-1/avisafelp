@@ -45,7 +45,7 @@ export const CartDrawer = () => {
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
-        <Button variant="outline" size="icon" className="relative bg-background/80 backdrop-blur-sm border-border hover:bg-background">
+        <Button variant="outline" size="icon" aria-label={`Åpne handlekurv${totalItems > 0 ? ` (${totalItems} produkter)` : ""}`} className="relative bg-background/80 backdrop-blur-sm border-border hover:bg-background">
           <ShoppingCart className="h-5 w-5" />
           {totalItems > 0 && (
             <Badge className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-primary text-primary-foreground">
@@ -104,6 +104,7 @@ export const CartDrawer = () => {
                           variant="ghost"
                           size="icon"
                           className="h-6 w-6"
+                          aria-label={`Fjern ${item.product.node.title} fra handlekurv`}
                           onClick={() => removeItem(item.variantId)}
                         >
                           <Trash2 className="h-3 w-3" />
@@ -114,6 +115,7 @@ export const CartDrawer = () => {
                             variant="outline"
                             size="icon"
                             className="h-6 w-6"
+                            aria-label="Reduser antall"
                             onClick={() => updateQuantity(item.variantId, item.quantity - 1)}
                           >
                             <Minus className="h-3 w-3" />
@@ -123,6 +125,7 @@ export const CartDrawer = () => {
                             variant="outline"
                             size="icon"
                             className="h-6 w-6"
+                            aria-label="Øk antall"
                             onClick={() => updateQuantity(item.variantId, item.quantity + 1)}
                           >
                             <Plus className="h-3 w-3" />
