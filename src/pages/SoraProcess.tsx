@@ -130,9 +130,9 @@ const PhaseCard = ({ phase, icon, title, subtitle, accentColor, dimColor, midCol
               Fase {phase}
             </span>
           </div>
-          <h3 className="font-bold text-lg leading-tight" style={{ color: C.text }}>
+          <h2 className="font-bold text-lg leading-tight" style={{ color: C.text }}>
             {title}
-          </h3>
+          </h2>
           <p className="text-xs mt-0.5" style={{ color: C.textMuted }}>
             {subtitle}
           </p>
