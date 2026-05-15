@@ -95,35 +95,33 @@ const Hero = () => {
               ))}
             </div>
           </div>
-          <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 px-4">
-            <Button variant="hero" size="xl" className="w-full sm:w-auto bg-[hsl(var(--text-dark-blue))] text-white hover:bg-[hsl(var(--text-dark-blue))]/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-6 sm:px-10 h-12 sm:h-14" asChild>
+          <div className="grid grid-cols-2 sm:flex sm:flex-row sm:flex-wrap items-center justify-center gap-3 sm:gap-4 px-4 mt-16 sm:mt-20">
+            <Button variant="hero" size="xl" className="w-full sm:w-auto bg-[hsl(var(--text-dark-blue))] text-white hover:bg-[hsl(var(--text-dark-blue))]/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-4 sm:px-10 h-12 sm:h-14" asChild>
               <a href="mailto:kontakt@avisafe.no" className="shadow-none opacity-100 rounded-md bg-[#123b87]">
-                Kontakt oss i dag
+                Kontakt oss
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
               </a>
             </Button>
-            <Button variant="hero" size="xl" className="w-full sm:w-auto bg-[#123b87] text-white hover:bg-[#123b87]/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-6 sm:px-10 h-12 sm:h-14" onClick={() => {
+            <Button variant="hero" size="xl" className="w-full sm:w-auto bg-[#123b87] text-white hover:bg-[#123b87]/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-4 sm:px-10 h-12 sm:h-14" onClick={() => {
               document.getElementById('team-section')?.scrollIntoView({ behavior: 'smooth' });
             }}>
               Hvem er vi?
               <ArrowDown className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-y-1 transition-transform" />
             </Button>
-            <Button variant="hero" size="xl" className="w-full sm:w-auto bg-[#123b87] text-white hover:bg-[#123b87]/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-6 sm:px-10 h-12 sm:h-14" asChild>
+            <Button variant="hero" size="xl" className="w-full sm:w-auto bg-[#123b87] text-white hover:bg-[#123b87]/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-4 sm:px-10 h-12 sm:h-14" asChild>
               <Link to="/artikler" className="shadow-none opacity-100 rounded-md bg-[#123b87]">
                 Artikler
-                <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
-            <Button variant="hero" size="xl" className="w-full sm:w-auto bg-[#123b87] text-white hover:bg-[#123b87]/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-6 sm:px-10 h-12 sm:h-14" onClick={() => setNewsletterOpen(true)}>
+            <Button variant="hero" size="xl" className="w-full sm:w-auto bg-[#123b87] text-white hover:bg-[#123b87]/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-4 sm:px-10 h-12 sm:h-14" onClick={() => setNewsletterOpen(true)}>
               Nyhetsbrev
-              <Mail className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>
         </div>
       </div>
 
       {/* Content section below the image */}
-      <div className="container mx-auto px-4 sm:px-6 text-center pt-[155px] pb-8 md:pt-[175px] md:pb-12 animate-fade-in">
+      <div className="container mx-auto px-4 sm:px-6 text-center pt-[280px] pb-8 md:pt-[230px] md:pb-12 animate-fade-in">
         <div className="max-w-4xl mx-auto">
           {/* Subheadline */}
           <p className="text-base sm:text-xl md:text-2xl text-muted-foreground max-w-xs sm:max-w-lg md:max-w-2xl mx-auto leading-relaxed font-medium px-2">
