@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Menu, Plus, LogIn, LogOut, Pencil, Trash2 } from "lucide-react";
@@ -134,6 +135,26 @@ const Artikler = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <Helmet>
+        <title>Artikler – AviSafe</title>
+        <link rel="canonical" href="https://avisafe.no/artikler" />
+        <meta name="description" content="Artikler og innsikt om droneoperasjoner, sikkerhet og regelverk fra AviSafe." />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "Artikler",
+          url: "https://avisafe.no/artikler",
+          inLanguage: "nb-NO",
+          isPartOf: { "@type": "WebSite", name: "AviSafe", url: "https://avisafe.no" },
+          hasPart: articles.filter(a => a.published).map(a => ({
+            "@type": "Article",
+            headline: a.title,
+            url: `https://avisafe.no/artikler/${a.slug}`,
+            datePublished: a.created_at,
+            ...(a.cover_image_url ? { image: a.cover_image_url } : {}),
+          })),
+        })}</script>
+      </Helmet>
       {/* Header */}
       <header className="border-b bg-card px-4 sm:px-6 py-3 flex items-center justify-between sticky top-0 z-20">
         <div className="flex items-center gap-3">
