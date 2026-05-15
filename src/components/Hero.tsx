@@ -1,5 +1,8 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ArrowDown } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { ArrowRight, ArrowDown, Mail, BookOpen } from "lucide-react";
 import droneLandscape from "@/assets/drone-landscape.png";
 import avisafeLogoBlack from "@/assets/avisafe-logo-black.png";
 import trustedLogo1 from "@/assets/trusted-logo-1.png";
@@ -21,6 +24,7 @@ const LinkedInIcon = ({ className }: { className?: string }) => (
 );
 
 const Hero = () => {
+  const [newsletterOpen, setNewsletterOpen] = useState(false);
   return <section className="relative flex flex-col overflow-hidden bg-transparent">
       {/* Social Media Icons - Top Right */}
       <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 flex items-center gap-3">
@@ -91,30 +95,28 @@ const Hero = () => {
               ))}
             </div>
           </div>
-          <div className="flex items-center justify-center mb-3">
-            <a
-              href="https://app.avisafe.no/nyhetsbrev"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm sm:text-base font-semibold text-primary underline underline-offset-4 hover:opacity-80 transition-opacity"
-            >
-              Meld deg på AviSafe nyhetsbrev
-            </a>
-          </div>
-          <div className="flex flex-row items-center justify-center gap-4">
-            <Button variant="hero" size="xl" className="bg-[hsl(var(--text-dark-blue))] text-white hover:bg-[hsl(var(--text-dark-blue))]/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-6 sm:px-10 h-12 sm:h-14" asChild>
+          <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 px-4">
+            <Button variant="hero" size="xl" className="w-full sm:w-auto bg-[hsl(var(--text-dark-blue))] text-white hover:bg-[hsl(var(--text-dark-blue))]/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-6 sm:px-10 h-12 sm:h-14" asChild>
               <a href="mailto:kontakt@avisafe.no" className="shadow-none opacity-100 rounded-md bg-[#123b87]">
                 Kontakt oss i dag
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
               </a>
             </Button>
-            <Button variant="hero" size="xl" className="bg-[#123b87] text-white hover:bg-[#123b87]/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-6 sm:px-10 h-12 sm:h-14" onClick={() => {
-            document.getElementById('team-section')?.scrollIntoView({
-              behavior: 'smooth'
-            });
-          }}>
+            <Button variant="hero" size="xl" className="w-full sm:w-auto bg-[#123b87] text-white hover:bg-[#123b87]/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-6 sm:px-10 h-12 sm:h-14" onClick={() => {
+              document.getElementById('team-section')?.scrollIntoView({ behavior: 'smooth' });
+            }}>
               Hvem er vi?
               <ArrowDown className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-y-1 transition-transform" />
+            </Button>
+            <Button variant="hero" size="xl" className="w-full sm:w-auto bg-[#123b87] text-white hover:bg-[#123b87]/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-6 sm:px-10 h-12 sm:h-14" asChild>
+              <Link to="/artikler" className="shadow-none opacity-100 rounded-md bg-[#123b87]">
+                Artikler
+                <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </Button>
+            <Button variant="hero" size="xl" className="w-full sm:w-auto bg-[#123b87] text-white hover:bg-[#123b87]/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-6 sm:px-10 h-12 sm:h-14" onClick={() => setNewsletterOpen(true)}>
+              Nyhetsbrev
+              <Mail className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>
         </div>
@@ -130,6 +132,19 @@ const Hero = () => {
           </p>
         </div>
       </div>
+
+      <Dialog open={newsletterOpen} onOpenChange={setNewsletterOpen}>
+        <DialogContent className="max-w-md p-0 overflow-hidden">
+          <DialogHeader className="px-6 pt-6 pb-2">
+            <DialogTitle>Meld deg på AviSafe nyhetsbrev</DialogTitle>
+          </DialogHeader>
+          <iframe
+            src="https://app.avisafe.no/nyhetsbrev"
+            title="AviSafe nyhetsbrev"
+            className="w-full h-[420px] border-0"
+          />
+        </DialogContent>
+      </Dialog>
     </section>;
 };
 export default Hero;
