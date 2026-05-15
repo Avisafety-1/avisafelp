@@ -200,7 +200,7 @@ const Artikler = () => {
               <p className="text-muted-foreground text-lg">Ingen artikler publisert ennå.</p>
             </div>
           ) : (
-            <article className="max-w-4xl mx-auto px-4 sm:px-8 py-8">
+            <article className="w-full max-w-4xl xl:max-w-5xl 2xl:max-w-6xl mx-auto px-4 sm:px-8 lg:px-12 py-8">
               {selected.cover_image_url && (
                 <img
                   src={selected.cover_image_url}
