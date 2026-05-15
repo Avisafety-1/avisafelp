@@ -94,6 +94,12 @@ const Logg = () => {
 
   return (
     <div className="min-h-screen bg-background p-4 md:p-8">
+      <Helmet>
+        <title>Logg – AviSafe</title>
+        <meta name="description" content="Intern logg over AI-søk og hendelser i AviSafe-plattformen." />
+        <meta name="robots" content="noindex, nofollow" />
+        <link rel="canonical" href="https://avisafe.no/logg" />
+      </Helmet>
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-2xl font-bold text-foreground">AI-søkelogg</h1>
