@@ -1,10 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { PanelLeftOpen, PanelLeftClose, Plus, LogIn, LogOut } from "lucide-react";
+import { Menu, Plus, LogIn, LogOut, Pencil, Trash2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import ArticleSidebar from "@/components/ArticleSidebar";
 import ArticleEditor from "@/components/ArticleEditor";
 
 type Article = {
@@ -22,7 +21,8 @@ type Article = {
 const Artikler = () => {
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [user, setUser] = useState<any>(null);
   const [showEditor, setShowEditor] = useState(false);
   const [editingArticle, setEditingArticle] = useState<Article | null>(null);
@@ -48,14 +48,19 @@ const Artikler = () => {
   const fetchArticles = async () => {
     setLoading(true);
     let query = supabase.from("articles").select("*").order("created_at", { ascending: false });
-    if (!user) {
-      query = query.eq("published", true);
-    }
+    if (!user) query = query.eq("published", true);
     const { data, error } = await query;
     if (error) console.error(error);
-    else setArticles((data as Article[]) || []);
+    const list = (data as Article[]) || [];
+    setArticles(list);
+    setSelectedId(prev => prev && list.some(a => a.id === prev) ? prev : (list[0]?.id ?? null));
     setLoading(false);
   };
+
+  const selected = useMemo(
+    () => articles.find(a => a.id === selectedId) ?? null,
+    [articles, selectedId]
+  );
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -77,14 +82,10 @@ const Artikler = () => {
     fetchArticles();
   };
 
-  const handleEdit = (article: Article) => {
-    setEditingArticle(article);
-    setShowEditor(true);
-  };
-
   const handleDelete = async (id: string) => {
     if (!confirm("Er du sikker på at du vil slette denne artikkelen?")) return;
     await supabase.from("articles").delete().eq("id", id);
+    if (selectedId === id) setSelectedId(null);
     fetchArticles();
   };
 
@@ -100,112 +101,157 @@ const Artikler = () => {
     );
   }
 
+  const Sidebar = (
+    <nav className="h-full flex flex-col bg-card">
+      <div className="p-4 border-b">
+        <h2 className="font-semibold text-foreground text-sm uppercase tracking-wide text-muted-foreground">Artikler</h2>
+      </div>
+      <div className="flex-1 overflow-y-auto p-2 space-y-1">
+        {articles.length === 0 && (
+          <p className="text-sm text-muted-foreground px-3 py-2">Ingen artikler ennå</p>
+        )}
+        {articles.map(a => {
+          const isActive = a.id === selectedId;
+          return (
+            <button
+              key={a.id}
+              onClick={() => { setSelectedId(a.id); setMobileNavOpen(false); }}
+              className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors ${
+                isActive ? "bg-primary text-primary-foreground" : "hover:bg-muted text-foreground"
+              }`}
+            >
+              <div className="line-clamp-2 font-medium">{a.title}</div>
+              <div className={`text-xs mt-0.5 ${isActive ? "text-primary-foreground/80" : "text-muted-foreground"}`}>
+                {new Date(a.created_at).toLocaleDateString('nb-NO')}
+                {!a.published && " · utkast"}
+              </div>
+            </button>
+          );
+        })}
+      </div>
+    </nav>
+  );
+
   return (
-    <div className="min-h-screen bg-background flex">
-      <ArticleSidebar
-        open={sidebarOpen}
-        onClose={() => setSidebarOpen(false)}
-        articles={articles}
-      />
-
-      <div className="flex-1 flex flex-col">
-        {/* Header */}
-        <header className="border-b bg-card px-4 sm:px-8 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(!sidebarOpen)}>
-              {sidebarOpen ? <PanelLeftClose className="h-5 w-5" /> : <PanelLeftOpen className="h-5 w-5" />}
-            </Button>
-            <Link to="/" className="text-xl font-bold text-foreground hover:text-primary transition-colors">
-              AviSafe
-            </Link>
-            <span className="text-muted-foreground mx-2">/</span>
-            <h1 className="text-xl font-semibold text-foreground">Artikler</h1>
-          </div>
-          <div className="flex items-center gap-2">
-            {user ? (
-              <>
-                <Button onClick={() => setShowEditor(true)} size="sm">
-                  <Plus className="h-4 w-4 mr-1" /> Ny artikkel
-                </Button>
-                <Button variant="ghost" size="icon" onClick={handleLogout}>
-                  <LogOut className="h-4 w-4" />
-                </Button>
-              </>
-            ) : (
-              <Button variant="ghost" size="sm" onClick={() => setShowLogin(!showLogin)}>
-                <LogIn className="h-4 w-4 mr-1" /> Logg inn
+    <div className="min-h-screen bg-background flex flex-col">
+      {/* Header */}
+      <header className="border-b bg-card px-4 sm:px-6 py-3 flex items-center justify-between sticky top-0 z-20">
+        <div className="flex items-center gap-3">
+          <Button variant="ghost" size="icon" className="lg:hidden" onClick={() => setMobileNavOpen(true)}>
+            <Menu className="h-5 w-5" />
+          </Button>
+          <Link to="/" className="text-xl font-bold text-foreground hover:text-primary transition-colors">
+            AviSafe
+          </Link>
+          <span className="text-muted-foreground mx-1">/</span>
+          <h1 className="text-lg font-semibold text-foreground">Artikler</h1>
+        </div>
+        <div className="flex items-center gap-2">
+          {user ? (
+            <>
+              <Button onClick={() => { setEditingArticle(null); setShowEditor(true); }} size="sm">
+                <Plus className="h-4 w-4 mr-1" /> Ny artikkel
               </Button>
-            )}
-          </div>
-        </header>
+              <Button variant="ghost" size="icon" onClick={handleLogout}>
+                <LogOut className="h-4 w-4" />
+              </Button>
+            </>
+          ) : (
+            <Button variant="ghost" size="sm" onClick={() => setShowLogin(!showLogin)}>
+              <LogIn className="h-4 w-4 mr-1" /> Logg inn
+            </Button>
+          )}
+        </div>
+      </header>
 
-        {/* Login form */}
-        {showLogin && !user && (
-          <div className="px-4 sm:px-8 py-4 border-b bg-muted/30">
-            <form onSubmit={handleLogin} className="flex items-center gap-2 max-w-md">
-              <Input type="email" placeholder="E-post" value={email} onChange={e => setEmail(e.target.value)} className="h-9" />
-              <Input type="password" placeholder="Passord" value={password} onChange={e => setPassword(e.target.value)} className="h-9" />
-              <Button type="submit" size="sm">Logg inn</Button>
-            </form>
-            {authError && <p className="text-sm text-destructive mt-1">{authError}</p>}
-          </div>
+      {showLogin && !user && (
+        <div className="px-4 sm:px-6 py-3 border-b bg-muted/30">
+          <form onSubmit={handleLogin} className="flex items-center gap-2 max-w-md">
+            <Input type="email" placeholder="E-post" value={email} onChange={e => setEmail(e.target.value)} className="h-9" />
+            <Input type="password" placeholder="Passord" value={password} onChange={e => setPassword(e.target.value)} className="h-9" />
+            <Button type="submit" size="sm">Logg inn</Button>
+          </form>
+          {authError && <p className="text-sm text-destructive mt-1">{authError}</p>}
+        </div>
+      )}
+
+      <div className="flex-1 flex min-h-0">
+        {/* Desktop sidebar */}
+        <aside className="hidden lg:block w-72 border-r shrink-0">
+          {Sidebar}
+        </aside>
+
+        {/* Mobile sidebar overlay */}
+        {mobileNavOpen && (
+          <>
+            <div className="fixed inset-0 bg-black/40 z-40 lg:hidden" onClick={() => setMobileNavOpen(false)} />
+            <aside className="fixed top-0 left-0 h-full w-72 z-50 lg:hidden border-r shadow-lg">
+              {Sidebar}
+            </aside>
+          </>
         )}
 
-        {/* Article list */}
-        <main className="flex-1 px-4 sm:px-8 py-8 max-w-4xl mx-auto w-full">
+        {/* Content */}
+        <main className="flex-1 overflow-y-auto">
           {loading ? (
-            <p className="text-muted-foreground">Laster artikler...</p>
-          ) : articles.length === 0 ? (
-            <div className="text-center py-20">
+            <p className="text-muted-foreground p-8">Laster artikler...</p>
+          ) : !selected ? (
+            <div className="text-center py-20 px-4">
               <p className="text-muted-foreground text-lg">Ingen artikler publisert ennå.</p>
             </div>
           ) : (
-            <div className="space-y-6">
-              {articles.map(article => (
-                <Link
-                  key={article.id}
-                  to={`/artikler/${article.slug}`}
-                  className="block group"
-                >
-                  <article className="border rounded-lg overflow-hidden hover:shadow-md transition-shadow bg-card">
-                    {article.cover_image_url && (
-                      <img
-                        src={article.cover_image_url}
-                        alt={article.title}
-                        className="w-full h-48 object-cover"
-                      />
-                    )}
-                    <div className="p-5">
-                      <div className="flex items-center gap-2 mb-2">
-                        {!article.published && (
-                          <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded">Utkast</span>
-                        )}
-                        <span className="text-xs text-muted-foreground uppercase tracking-wide">
-                          {article.article_type === 'pdf' ? 'PDF' : 'Artikkel'}
-                        </span>
-                        <span className="text-xs text-muted-foreground">
-                          {new Date(article.created_at).toLocaleDateString('nb-NO', { year: 'numeric', month: 'long', day: 'numeric' })}
-                        </span>
-                      </div>
-                      <h2 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
-                        {article.title}
-                      </h2>
-                      {article.content && (
-                        <p className="text-muted-foreground text-sm mt-2 line-clamp-2">
-                          {article.content.replace(/<[^>]*>/g, '').substring(0, 200)}
-                        </p>
-                      )}
-                      {user && (
-                        <div className="flex gap-2 mt-3" onClick={e => e.preventDefault()}>
-                          <Button variant="outline" size="sm" onClick={() => handleEdit(article)}>Rediger</Button>
-                          <Button variant="destructive" size="sm" onClick={() => handleDelete(article.id)}>Slett</Button>
-                        </div>
-                      )}
-                    </div>
-                  </article>
+            <article className="max-w-4xl mx-auto px-4 sm:px-8 py-8">
+              {selected.cover_image_url && (
+                <img
+                  src={selected.cover_image_url}
+                  alt={selected.title}
+                  className="w-full h-64 sm:h-80 object-cover rounded-lg mb-6"
+                />
+              )}
+              <div className="mb-4 flex items-center gap-3 flex-wrap">
+                <span className="text-sm text-muted-foreground">
+                  {new Date(selected.created_at).toLocaleDateString('nb-NO', { year: 'numeric', month: 'long', day: 'numeric' })}
+                </span>
+                {!selected.published && (
+                  <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded">Utkast</span>
+                )}
+                {user && (
+                  <div className="ml-auto flex gap-2">
+                    <Button variant="outline" size="sm" onClick={() => { setEditingArticle(selected); setShowEditor(true); }}>
+                      <Pencil className="h-4 w-4 mr-1" /> Rediger
+                    </Button>
+                    <Button variant="destructive" size="sm" onClick={() => handleDelete(selected.id)}>
+                      <Trash2 className="h-4 w-4 mr-1" /> Slett
+                    </Button>
+                  </div>
+                )}
+              </div>
+              <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-8">{selected.title}</h1>
+
+              {selected.article_type === 'pdf' && selected.pdf_url ? (
+                <div className="w-full">
+                  <iframe
+                    src={selected.pdf_url}
+                    className="w-full h-[80vh] rounded-lg border"
+                    title={selected.title}
+                  />
+                  <a href={selected.pdf_url} target="_blank" rel="noopener noreferrer" className="inline-block mt-4">
+                    <Button variant="outline">Åpne PDF i ny fane</Button>
+                  </a>
+                </div>
+              ) : (
+                <div
+                  className="prose prose-lg max-w-none text-foreground"
+                  dangerouslySetInnerHTML={{ __html: selected.content || '' }}
+                />
+              )}
+
+              <div className="mt-12 pt-6 border-t">
+                <Link to={`/artikler/${selected.slug}`} className="text-sm text-primary hover:underline">
+                  Åpne som egen side →
                 </Link>
-              ))}
-            </div>
+              </div>
+            </article>
           )}
         </main>
       </div>
