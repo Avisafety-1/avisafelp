@@ -1,54 +1,51 @@
+## Problem
 
-# Artikler-side med rich text og PDF-støtte
+På /artikler vises PDF-artikler i en `<iframe src={pdf_url}>`. Dette fungerer på desktop, men på mobil (iOS Safari og de fleste Android-nettlesere) rendres ikke PDF-er inne i iframes — brukeren ser et tomt felt eller blir tvunget til å trykke "Åpne PDF i ny fane", som da åpner rå Supabase Storage-URL.
 
-## Oversikt
-Opprette en /artikler-side der admin-brukere kan publisere fagartikler med enten rik tekst (med bilder) eller opplastet PDF. Besøkende kan lese uten innlogging. Et ekspanderbart sidepanel gir tilgang til historiske artikler og lenke tilbake til avisafe.no.
+Samme problem gjelder også /artikler/:slug (Artikkel.tsx) som bruker samme iframe-mønster.
 
-## Database (migrasjoner)
+## Løsning
 
-1. **Opprett `articles`-tabell** med kolonner:
-   - `id` (uuid, PK)
-   - `title` (text)
-   - `slug` (text, unique)
-   - `content` (text, nullable – for rich text-artikler)
-   - `pdf_url` (text, nullable – for PDF-artikler)
-   - `cover_image_url` (text, nullable)
-   - `article_type` (text: 'richtext' eller 'pdf')
-   - `published` (boolean, default false)
-   - `author_id` (uuid, referanse til auth.users)
-   - `created_at`, `updated_at` (timestamptz)
+Bytt ut iframe med en JavaScript-basert PDF-renderer (PDF.js via `react-pdf`) som rendrer hver side som canvas/SVG. Dette fungerer overalt — desktop og mobil — og brukeren ser PDF-en automatisk uten å klikke noe.
 
-2. **Opprett storage bucket** `article-assets` (public) for bilder og PDF-filer, med RLS-policies for opplasting (kun autentiserte) og lesing (alle).
+### Steg
 
-3. **RLS-policies på `articles`**:
-   - SELECT: alle (public lesing)
-   - INSERT/UPDATE/DELETE: kun autentiserte brukere (author_id = auth.uid())
+1. **Installer avhengighet**
+   - `react-pdf` (wrapper rundt pdfjs-dist)
+   - Sett opp PDF.js worker via Vite (`import` av worker fra `pdfjs-dist/build/pdf.worker.min.mjs?url`)
 
-## Frontend
+2. **Lag ny komponent `src/components/PdfViewer.tsx`**
+   - Tar `url: string` som prop
+   - Bruker `<Document>` + `<Page>` fra react-pdf
+   - Rendrer alle sider stablet vertikalt
+   - Responsiv bredde: bruker container-bredde via `ResizeObserver` slik at sidene skaleres til mobilskjerm
+   - Loading- og feiltilstand på norsk
+   - Beholder en "Åpne PDF i ny fane / Last ned"-knapp under som fallback
 
-1. **Ny side `src/pages/Artikler.tsx`** – listevisning av publiserte artikler med tittel, dato, og forhåndsvisning av coverbilde.
+3. **Bytt iframe i `src/pages/Artikler.tsx`**
+   - Erstatt `<iframe ...>`-blokken (innenfor `selected.article_type === 'pdf'`) med `<PdfViewer url={selected.pdf_url} />`
 
-2. **Ny side `src/pages/Artikkel.tsx`** – viser enkeltartikkel: rich text-innhold eller innebygd PDF-viewer.
+4. **Bytt iframe i `src/pages/Artikkel.tsx`**
+   - Samme erstatning innenfor `article.article_type === 'pdf'`-grenen
 
-3. **Admin-modus**: Når innlogget, vis "Ny artikkel"-knapp og redigeringsknapper. Artikkeleditor med:
-   - Tittel-felt
-   - Valg mellom "Rik tekst" og "PDF-opplasting"
-   - Enkel rich text-editor (textarea med markdown eller TipTap)
-   - Bildeopplasting til storage
-   - PDF-opplasting til storage
-   - Publiser-knapp
+### Tekniske detaljer
 
-4. **Sidepanel (`ArticleSidebar.tsx`)**: Ekspanderbart panel med:
-   - Liste over historiske artikler (sortert etter dato)
-   - Lenke tilbake til avisafe.no
-   - Kollapserbart design som ikke tar plass når lukket
+- `react-pdf` versjon 9.x kompatibel med Vite + React 18
+- Worker-oppsett:
+  ```ts
+  import { pdfjs } from "react-pdf";
+  import workerSrc from "pdfjs-dist/build/pdf.worker.min.mjs?url";
+  pdfjs.GlobalWorkerOptions.workerSrc = workerSrc;
+  ```
+- CSS imports som trengs:
+  ```ts
+  import "react-pdf/dist/Page/AnnotationLayer.css";
+  import "react-pdf/dist/Page/TextLayer.css";
+  ```
+- Sidebredde: mål container med `useRef` + `ResizeObserver`, send som `width`-prop til `<Page>`
+- CORS: Supabase Storage public URL-er sender korrekte CORS-headere, så PDF.js kan hente dem direkte
 
-5. **Ruter i App.tsx**: Legg til `/artikler` og `/artikler/:slug`.
+### Hva som ikke endres
 
-## Tekniske detaljer
-
-- Bruker eksisterende auth fra Logg-siden for admin-innlogging
-- TipTap som rich text-editor (lett og fleksibelt)
-- PDF vises med `<iframe>` eller `<object>` embed
-- Bilder og PDF-er lastes opp til Lovable Cloud storage
-- Sidepanelet bruker Shadcn Sheet eller sidebar-komponent
+- Database, opplastingsflyt i `ArticleEditor.tsx`, RLS-policyer eller URL-strukturen
+- Rik-tekst-artikler (de fungerer allerede)

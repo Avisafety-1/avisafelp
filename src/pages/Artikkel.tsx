@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet-async";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
+import PdfViewer from "@/components/PdfViewer";
 
 type Article = {
   id: string;
@@ -119,21 +120,7 @@ const Artikkel = () => {
         <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-8">{article.title}</h1>
 
         {article.article_type === 'pdf' && article.pdf_url ? (
-          <div className="w-full">
-            <iframe
-              src={article.pdf_url}
-              className="w-full h-[80vh] rounded-lg border"
-              title={article.title}
-            />
-            <a
-              href={article.pdf_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block mt-4"
-            >
-              <Button variant="outline">Åpne PDF i ny fane</Button>
-            </a>
-          </div>
+          <PdfViewer url={article.pdf_url} title={article.title} />
         ) : (
           <div
             className="prose prose-lg max-w-none text-foreground"
