@@ -335,9 +335,9 @@ export default function Sora() {
                   <CheckCircle2 size={14} />
                   SORA OUTPUT
                 </div>
-                <h3 className="text-2xl font-black" style={{ color: C.text }}>
+                <h2 className="text-2xl font-black" style={{ color: C.text }}>
                   Strukturert risikovurdering
-                </h3>
+                </h2>
                 <p className="text-sm mt-1" style={{ color: C.textMuted }}>
                   Komplett SORA-rapport etter EASA SORA-metodikken
                 </p>
