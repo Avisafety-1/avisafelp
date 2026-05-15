@@ -50,7 +50,7 @@ const Hero = () => {
 
       {/* Drone Landscape Image at top with AviSafe Logo Overlay */}
       <div className="relative w-full">
-        <img src={droneLandscape} alt="Drone flying over mountains" className="w-full h-auto" style={{
+        <img src={droneLandscape} alt="Drone flying over mountains" width={1920} height={1080} fetchPriority="high" decoding="async" className="w-full h-auto" style={{
           maskImage: 'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)',
           WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)'
         }} />
