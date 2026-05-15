@@ -25,6 +25,7 @@ import {
   Navigation,
   AlertTriangle,
 } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 import avisafeLogoText from "@/assets/avisafe-logo-text.png";
 
 // All colors derived from the app's design system (index.css)
@@ -173,6 +174,11 @@ export default function SoraProcess() {
       className="min-h-screen w-full"
       style={{ background: C.bg, color: C.text, fontFamily: "ui-sans-serif, system-ui, sans-serif" }}
     >
+      <Helmet>
+        <title>SORA-prosessen – Interaktiv flyt | AviSafe</title>
+        <meta name="description" content="Interaktiv visning av AviSafe sin SORA-prosess fase for fase – fra konsept til ferdig risikovurdering." />
+        <link rel="canonical" href="https://avisafe.no/sora-prosess" />
+      </Helmet>
       {/* Subtle grid */}
       <div
         className="fixed inset-0 pointer-events-none opacity-[0.025]"

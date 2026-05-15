@@ -13,6 +13,7 @@ import {
   Clock,
   Activity,
 } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 import avisafeLogoText from "@/assets/avisafe-logo-text.png";
 
 const C = {
@@ -140,6 +141,11 @@ export default function Sora() {
       className="min-h-screen w-full"
       style={{ background: C.bg, color: C.text, fontFamily: "ui-sans-serif, system-ui, sans-serif" }}
     >
+      <Helmet>
+        <title>SORA – Risikovurdering for droneoperasjoner | AviSafe</title>
+        <meta name="description" content="Slik bruker AviSafe SORA-metodikken for å gjøre risikovurdering av droneoperasjoner enklere, raskere og mer presis." />
+        <link rel="canonical" href="https://avisafe.no/sora" />
+      </Helmet>
       {/* Subtle grid */}
       <div
         className="fixed inset-0 pointer-events-none opacity-[0.025]"
