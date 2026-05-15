@@ -191,7 +191,7 @@ export default function SoraProcess() {
 
         {/* ── HERO ── */}
         <div className="text-center mb-20">
-          <img src={avisafeLogoText} alt="Avisafe" className="h-12 mx-auto mb-8" style={{ filter: "brightness(0) invert(1)", opacity: 0.9 }} />
+          <img src={avisafeLogoText} alt="AviSafe logo" className="h-12 mx-auto mb-8" style={{ filter: "brightness(0) invert(1)", opacity: 0.9 }} />
 
           <div
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase mb-6 border"
@@ -599,7 +599,7 @@ export default function SoraProcess() {
         <div className="text-center pt-10 border-t" style={{ borderColor: C.border }}>
           <img
             src={avisafeLogoText}
-            alt="Avisafe"
+            alt="AviSafe logo"
             className="h-8 mx-auto mb-3"
             style={{ filter: "brightness(0) invert(1)", opacity: 0.5 }}
           />

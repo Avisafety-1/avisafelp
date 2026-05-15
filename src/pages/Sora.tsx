@@ -160,7 +160,7 @@ export default function Sora() {
         <div className="text-center mb-20">
           <img
             src={avisafeLogoText}
-            alt="Avisafe"
+            alt="AviSafe logo"
             className="h-12 mx-auto mb-8"
             style={{ filter: "brightness(0) invert(1)", opacity: 0.9 }}
           />
@@ -504,7 +504,7 @@ export default function Sora() {
         <div className="text-center pt-10 border-t" style={{ borderColor: C.border }}>
           <img
             src={avisafeLogoText}
-            alt="Avisafe"
+            alt="AviSafe logo"
             className="h-8 mx-auto mb-3"
             style={{ filter: "brightness(0) invert(1)", opacity: 0.5 }}
           />
