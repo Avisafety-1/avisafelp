@@ -25,6 +25,7 @@ import {
   Navigation,
   AlertTriangle,
 } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 import avisafeLogoText from "@/assets/avisafe-logo-text.png";
 
 // All colors derived from the app's design system (index.css)
