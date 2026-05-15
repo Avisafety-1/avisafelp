@@ -130,9 +130,9 @@ const PhaseCard = ({ phase, icon, title, subtitle, accentColor, dimColor, midCol
               Fase {phase}
             </span>
           </div>
-          <h3 className="font-bold text-lg leading-tight" style={{ color: C.text }}>
+          <h2 className="font-bold text-lg leading-tight" style={{ color: C.text }}>
             {title}
-          </h3>
+          </h2>
           <p className="text-xs mt-0.5" style={{ color: C.textMuted }}>
             {subtitle}
           </p>
@@ -191,7 +191,7 @@ export default function SoraProcess() {
 
         {/* ── HERO ── */}
         <div className="text-center mb-20">
-          <img src={avisafeLogoText} alt="Avisafe" className="h-12 mx-auto mb-8" style={{ filter: "brightness(0) invert(1)", opacity: 0.9 }} />
+          <img src={avisafeLogoText} alt="AviSafe logo" className="h-12 mx-auto mb-8" style={{ filter: "brightness(0) invert(1)", opacity: 0.9 }} />
 
           <div
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase mb-6 border"
@@ -411,9 +411,9 @@ export default function SoraProcess() {
                   <CheckCircle2 size={14} />
                   SORA OUTPUT
                 </div>
-                <h3 className="text-2xl font-black" style={{ color: C.text }}>
+                <h2 className="text-2xl font-black" style={{ color: C.text }}>
                   Strukturert risikovurdering
-                </h3>
+                </h2>
                 <p className="text-sm mt-1" style={{ color: C.textMuted }}>
                   Komplett SORA-rapport etter EASA SORA-metodikken
                 </p>
@@ -599,7 +599,7 @@ export default function SoraProcess() {
         <div className="text-center pt-10 border-t" style={{ borderColor: C.border }}>
           <img
             src={avisafeLogoText}
-            alt="Avisafe"
+            alt="AviSafe logo"
             className="h-8 mx-auto mb-3"
             style={{ filter: "brightness(0) invert(1)", opacity: 0.5 }}
           />

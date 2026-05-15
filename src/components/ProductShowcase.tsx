@@ -350,13 +350,13 @@ const ProductShowcase = () => {
       <div className="relative">
         {/* Navigation Buttons - Desktop */}
         <div className="hidden md:block">
-          <Button variant="outline" size="icon" className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm shadow-lg" onClick={() => {
+          <Button variant="outline" size="icon" aria-label="Bla til venstre" className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm shadow-lg" onClick={() => {
           handleInteraction();
           scroll("left");
         }}>
             <ChevronLeft className="w-5 h-5" />
           </Button>
-          <Button variant="outline" size="icon" className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm shadow-lg" onClick={() => {
+          <Button variant="outline" size="icon" aria-label="Bla til høyre" className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm shadow-lg" onClick={() => {
           handleInteraction();
           scroll("right");
         }}>
