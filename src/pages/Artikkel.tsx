@@ -56,10 +56,15 @@ const Artikkel = () => {
   }
 
   const articleUrl = `https://avisafe.no/artikler/${article.slug}`;
+  const plainText = (article.content || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+  const fallback = `Les ${article.title} på AviSafe – innsikt og veiledning for norske droneoperatører.`;
+  const rawDescription = plainText.length >= 50 ? plainText : fallback;
+  const description = rawDescription.length > 157 ? `${rawDescription.slice(0, 157).trimEnd()}…` : rawDescription;
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: article.title,
+    description,
     datePublished: article.created_at,
     dateModified: article.created_at,
     ...(article.cover_image_url ? { image: article.cover_image_url } : {}),
@@ -76,8 +81,10 @@ const Artikkel = () => {
     <div className="min-h-screen bg-background">
       <Helmet>
         <title>{`${article.title} – AviSafe`}</title>
+        <meta name="description" content={description} />
         <link rel="canonical" href={articleUrl} />
         <meta property="og:title" content={article.title} />
+        <meta property="og:description" content={description} />
         <meta property="og:type" content="article" />
         <meta property="og:url" content={articleUrl} />
         {article.cover_image_url && <meta property="og:image" content={article.cover_image_url} />}
