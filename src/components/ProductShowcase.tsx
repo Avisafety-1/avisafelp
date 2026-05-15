@@ -144,7 +144,7 @@ const PhoneMockup = ({
               poster={feature.image}
             />
           ) : (
-            <img src={feature.image} alt={feature.title} className="w-full h-full object-cover object-top" loading="lazy" />
+            <img src={feature.image} alt={`AviSafe ${feature.title} – ${feature.subtitle ?? "skjermbilde"}`} className="w-full h-full object-cover object-top" loading="lazy" />
           )}
         </div>
         
