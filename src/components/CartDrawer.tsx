@@ -104,6 +104,7 @@ export const CartDrawer = () => {
                           variant="ghost"
                           size="icon"
                           className="h-6 w-6"
+                          aria-label={`Fjern ${item.product.node.title} fra handlekurv`}
                           onClick={() => removeItem(item.variantId)}
                         >
                           <Trash2 className="h-3 w-3" />
@@ -114,6 +115,7 @@ export const CartDrawer = () => {
                             variant="outline"
                             size="icon"
                             className="h-6 w-6"
+                            aria-label="Reduser antall"
                             onClick={() => updateQuantity(item.variantId, item.quantity - 1)}
                           >
                             <Minus className="h-3 w-3" />
@@ -123,6 +125,7 @@ export const CartDrawer = () => {
                             variant="outline"
                             size="icon"
                             className="h-6 w-6"
+                            aria-label="Øk antall"
                             onClick={() => updateQuantity(item.variantId, item.quantity + 1)}
                           >
                             <Plus className="h-3 w-3" />
