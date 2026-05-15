@@ -158,12 +158,14 @@ const Product = () => {
                       <button
                         onClick={() => setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length)}
                         className="absolute left-2 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background p-1.5 md:p-2 rounded-full"
+                        aria-label="Forrige bilde"
                       >
                         <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
                       </button>
                       <button
                         onClick={() => setCurrentImageIndex((prev) => (prev + 1) % images.length)}
                         className="absolute right-2 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background p-1.5 md:p-2 rounded-full"
+                        aria-label="Neste bilde"
                       >
                         <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
                       </button>
