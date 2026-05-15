@@ -228,12 +228,14 @@ const DjiAnalyseCarousel = () => {
           >
             <button
               className="absolute -top-8 right-0 text-white/90 hover:text-white z-10"
+              aria-label="Lukk bildevisning"
               onClick={() => setLightboxIndex(null)}
             >
               <X className="w-6 h-6" />
             </button>
             <button
               className="flex-shrink-0 text-black hover:text-black/70"
+              aria-label="Forrige bilde"
               onClick={() => setLightboxIndex((lightboxIndex - 1 + djiAnalyseImages.length) % djiAnalyseImages.length)}
             >
               <ChevronLeft className="w-7 h-7" />
@@ -245,6 +247,7 @@ const DjiAnalyseCarousel = () => {
             />
             <button
               className="flex-shrink-0 text-black hover:text-black/70"
+              aria-label="Neste bilde"
               onClick={() => setLightboxIndex((lightboxIndex + 1) % djiAnalyseImages.length)}
             >
               <ChevronRight className="w-7 h-7" />
