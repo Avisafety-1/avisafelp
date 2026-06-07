@@ -2,7 +2,7 @@ import { Card } from "@/components/ui/card";
 import teamMember1 from "@/assets/team-member-1.jpg";
 import teamMember2 from "@/assets/team-member-2.jpg";
 import teamVideo from "@/assets/team-video.mp4.asset.json";
-import avisafeLogo from "@/assets/avisafe-logo-transparent.png";
+import avisafeLogo from "@/assets/avisafe-logo-black.png";
 
 
 const teamMembers = [
@@ -92,7 +92,6 @@ const Team = () => {
               src={avisafeLogo}
               alt="AviSafe"
               className="absolute top-3 left-3 sm:top-5 sm:left-5 h-8 sm:h-12 w-auto pointer-events-none"
-              style={{ filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.6))" }}
             />
 
 
