@@ -6,7 +6,7 @@ const PLACEHOLDER_QUESTIONS = [
   "Hvordan fungerer SORA i AviSafe?",
   "Kan jeg laste opp DJI-logger?",
   "Har AviSafe en kalenderfunksjon?",
-  "Hva koster AviSafe?",
+  "Hvilke integrasjoner støttes?",
   "Støtter AviSafe ECCAIRS-rapportering?",
   "Kan jeg se live lufttrafikk i kartet?",
 ];
