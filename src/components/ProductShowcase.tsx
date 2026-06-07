@@ -31,6 +31,7 @@ import djiAnalyse7 from "@/assets/dji-analyse-7.jpeg";
 import djiAnalyse8 from "@/assets/dji-analyse-8.jpeg";
 import djiAnalyse9 from "@/assets/dji-analyse-9.jpeg";
 import djiAnalyse10 from "@/assets/dji-analyse-10.jpeg";
+import djiFlighthub2 from "@/assets/dji-flighthub2.jpg";
 
 const djiAnalyseImages = [
   djiAnalyse1, djiAnalyse2, djiAnalyse3, djiAnalyse4, djiAnalyse5,
@@ -365,7 +366,17 @@ const ProductShowcase = () => {
         }}>
             <ChevronRight className="w-5 h-5" />
           </Button>
-        </div>
+              </div>
+
+              {/* FlightHub 2 export */}
+              <div className="mt-10 max-w-2xl mx-auto">
+                <img
+                  src={djiFlighthub2}
+                  alt="AviSafe eksport av rutefiler og SORA buffersoner til DJI FlightHub 2"
+                  className="w-full h-auto rounded-2xl shadow-xl"
+                  loading="lazy"
+                />
+              </div>
 
         {/* Scrollable Phone Gallery */}
         <div ref={scrollContainerRef} className="flex gap-6 md:gap-8 overflow-x-auto pb-6 px-6 md:px-12 snap-x snap-mandatory" style={{
