@@ -2,7 +2,7 @@ import { Card } from "@/components/ui/card";
 import teamMember1 from "@/assets/team-member-1.jpg";
 import teamMember2 from "@/assets/team-member-2.jpg";
 import teamVideo from "@/assets/team-video.mp4.asset.json";
-import avisafeLogo from "@/assets/avisafe-logo-transparent.png";
+import avisafeLogo from "@/assets/avisafe-logo-black.png";
 
 
 const teamMembers = [
