@@ -1,6 +1,9 @@
 import { Card } from "@/components/ui/card";
 import teamMember1 from "@/assets/team-member-1.jpg";
 import teamMember2 from "@/assets/team-member-2.jpg";
+import teamVideo from "@/assets/team-video.mp4.asset.json";
+import avisafeLogo from "@/assets/avisafe-logo-white.png";
+
 
 const teamMembers = [
   {
@@ -71,8 +74,30 @@ const Team = () => {
             </Card>
           ))}
         </div>
+
+        <div className="max-w-4xl mx-auto mt-20 animate-fade-in">
+          <h3 className="text-2xl md:text-4xl font-bold text-foreground text-center mb-8">
+            Er du klar for mer effektiv drift og sikkerhetsstyring?
+          </h3>
+          <div className="relative rounded-2xl overflow-hidden shadow-card-custom bg-black">
+            <video
+              src={teamVideo.url}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-auto block"
+            />
+            <img
+              src={avisafeLogo}
+              alt="AviSafe"
+              className="absolute top-3 left-3 sm:top-5 sm:left-5 h-8 sm:h-12 w-auto drop-shadow-lg pointer-events-none"
+            />
+          </div>
+        </div>
       </div>
     </section>
+
   );
 };
 export default Team;
