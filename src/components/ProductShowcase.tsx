@@ -31,6 +31,7 @@ import djiAnalyse7 from "@/assets/dji-analyse-7.jpeg";
 import djiAnalyse8 from "@/assets/dji-analyse-8.jpeg";
 import djiAnalyse9 from "@/assets/dji-analyse-9.jpeg";
 import djiAnalyse10 from "@/assets/dji-analyse-10.jpeg";
+import djiFlighthub2 from "@/assets/dji-flighthub2.jpg";
 
 const djiAnalyseImages = [
   djiAnalyse1, djiAnalyse2, djiAnalyse3, djiAnalyse4, djiAnalyse5,
