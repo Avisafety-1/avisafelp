@@ -88,13 +88,13 @@ const Team = () => {
               playsInline
               className="w-full h-auto block"
             />
-            <div className="absolute top-3 left-3 sm:top-5 sm:left-5 bg-white/85 backdrop-blur-sm rounded-lg px-3 py-2 shadow-lg pointer-events-none">
-              <img
-                src={avisafeLogo}
-                alt="AviSafe"
-                className="h-6 sm:h-8 w-auto block"
-              />
-            </div>
+            <img
+              src={avisafeLogo}
+              alt="AviSafe"
+              className="absolute top-3 left-3 sm:top-5 sm:left-5 h-8 sm:h-12 w-auto pointer-events-none"
+              style={{ filter: "brightness(0) invert(1) drop-shadow(0 2px 6px rgba(0,0,0,0.6))" }}
+            />
+
 
           </div>
         </div>
