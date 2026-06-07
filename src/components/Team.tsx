@@ -88,11 +88,14 @@ const Team = () => {
               playsInline
               className="w-full h-auto block"
             />
-            <img
-              src={avisafeLogo}
-              alt="AviSafe"
-              className="absolute top-3 left-3 sm:top-5 sm:left-5 h-8 sm:h-12 w-auto drop-shadow-lg pointer-events-none"
-            />
+            <div className="absolute top-3 left-3 sm:top-5 sm:left-5 bg-white/85 backdrop-blur-sm rounded-lg px-3 py-2 shadow-lg pointer-events-none">
+              <img
+                src={avisafeLogo}
+                alt="AviSafe"
+                className="h-6 sm:h-8 w-auto block"
+              />
+            </div>
+
           </div>
         </div>
       </div>
