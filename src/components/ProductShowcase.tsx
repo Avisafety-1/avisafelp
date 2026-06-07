@@ -446,6 +446,16 @@ const ProductShowcase = () => {
               </div>
 
               <DjiAnalyseCarousel />
+
+              {/* FlightHub 2 export */}
+              <div className="mt-10 max-w-2xl mx-auto">
+                <img
+                  src={djiFlighthub2}
+                  alt="AviSafe eksport av rutefiler og SORA buffersoner til DJI FlightHub 2"
+                  className="w-full h-auto rounded-2xl shadow-xl"
+                  loading="lazy"
+                />
+              </div>
             </div>
 
             {/* ArduPilot */}
