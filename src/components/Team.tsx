@@ -92,7 +92,7 @@ const Team = () => {
               src={avisafeLogo}
               alt="AviSafe"
               className="absolute top-3 left-3 sm:top-5 sm:left-5 h-8 sm:h-12 w-auto pointer-events-none"
-              style={{ filter: "brightness(0) invert(1) drop-shadow(0 2px 6px rgba(0,0,0,0.6))" }}
+              style={{ filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.6))" }}
             />
 
 
