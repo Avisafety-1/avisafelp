@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ArrowRight, ArrowDown, Mail, BookOpen } from "lucide-react";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 import droneLandscape from "@/assets/drone-landscape.png";
 import avisafeLogoBlack from "@/assets/avisafe-logo-black.png";
 import trustedLogo1 from "@/assets/trusted-logo-1.png";
@@ -24,10 +26,12 @@ const LinkedInIcon = ({ className }: { className?: string }) => (
 );
 
 const Hero = () => {
+  const { t } = useTranslation();
   const [newsletterOpen, setNewsletterOpen] = useState(false);
   return <section className="relative flex flex-col overflow-hidden bg-transparent">
       {/* Social Media Icons - Top Right */}
       <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 flex items-center gap-3">
+        <LanguageSwitcher />
         <a
           href="https://www.facebook.com/profile.php?id=61583893445784"
           target="_blank"
@@ -71,9 +75,7 @@ const Hero = () => {
         {/* Trusted By Banner */}
         <div className="absolute -bottom-20 sm:-bottom-24 md:-bottom-28 left-1/2 -translate-x-1/2 z-10 animate-fade-in w-full">
           <div className="flex items-center justify-center mb-1">
-            <span className="text-xs sm:text-sm text-foreground/70 font-semibold tracking-widest uppercase">Trusted by</span>
-          </div>
-          <div className="w-screen relative left-1/2 -translate-x-1/2 bg-black/90 py-2 sm:py-2.5 mb-4 overflow-hidden">
+            <span className="text-xs sm:text-sm text-foreground/70 font-semibold tracking-widest uppercase">{t("hero.trustedBy")}</span>
             {/* Static layout on tablet/desktop */}
             <div className="hidden sm:flex items-center justify-center gap-8 flex-wrap">
               <img src={trustedLogo1} alt="UAS Voss" className="h-9 w-auto" />
