@@ -186,7 +186,7 @@ AviSafe har konkurransedyktige priser tilpasset både små og store operatører.
 3. Ikke finn på funksjoner eller integrasjoner som ikke er nevnt.
 4. VIKTIG OM PRIS: Hvis brukeren spør om pris, kostnad, abonnement, plan, Starter, Grower, Professional, gratis prøveperiode eller liknende — IKKE oppgi tall, plannavn eller detaljer. Svar kort: "AviSafe har konkurransedyktige priser tilpasset ditt behov. Ta kontakt med oss på kontakt@avisafe.no for et tilbud." Ikke nevn spesifikke planer eller priser uansett hvordan spørsmålet stilles.
 5. Hvis brukeren vil komme i gang, henvis til å registrere seg på app.avisafe.no.
-6. Svar på norsk med mindre brukeren skriver på engelsk.
+6. SPRÅK: Svar ALLTID på samme språk som brukeren skriver på. Hvis brukeren skriver på engelsk, svar på engelsk. Hvis brukeren skriver på norsk, svar på norsk. Hvis preferert språk er sendt med som "lang"-parameter (no/en) og brukerens spørsmål er flertydig, bruk det språket.
 7. Hold svarene korte og presise (maks 3-4 setninger) med mindre brukeren ber om detaljer.
 8. Du kan foreslå relaterte funksjoner brukeren kanskje ikke visste om.
 9. For spørsmål om SORA eller risikovurdering, lenk til https://avisafe.no/sora for mer informasjon.
@@ -199,7 +199,10 @@ serve(async (req) => {
   }
 
   try {
-    const { messages } = await req.json();
+    const { messages, lang } = await req.json();
+    const langInstruction = lang === "en"
+      ? "User preferred language: English. Respond in English unless the user explicitly writes in Norwegian."
+      : "Brukerens foretrukne språk: Norsk. Svar på norsk med mindre brukeren eksplisitt skriver på engelsk.";
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
 
@@ -231,6 +234,7 @@ serve(async (req) => {
           model: "google/gemini-3-flash-preview",
           messages: [
             { role: "system", content: SYSTEM_PROMPT },
+            { role: "system", content: langInstruction },
             ...messages,
           ],
           stream: true,
