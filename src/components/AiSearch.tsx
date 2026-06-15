@@ -19,13 +19,15 @@ const AiSearch = () => {
   // Typewriter animation
   useEffect(() => {
     if (query) return; // Don't animate when user is typing
+    const questions = t("ai.placeholderRotating", { returnObjects: true }) as string[];
+    if (!Array.isArray(questions) || questions.length === 0) return;
     let questionIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
     let timeout: ReturnType<typeof setTimeout>;
 
     const tick = () => {
-      const currentQuestion = PLACEHOLDER_QUESTIONS[questionIndex];
+      const currentQuestion = questions[questionIndex];
 
       if (!isDeleting) {
         charIndex++;
@@ -43,7 +45,7 @@ const AiSearch = () => {
         setPlaceholderText(currentQuestion.slice(0, charIndex));
         if (charIndex === 0) {
           isDeleting = false;
-          questionIndex = (questionIndex + 1) % PLACEHOLDER_QUESTIONS.length;
+          questionIndex = (questionIndex + 1) % questions.length;
           timeout = setTimeout(tick, 300);
           return;
         }
@@ -53,7 +55,7 @@ const AiSearch = () => {
 
     tick();
     return () => clearTimeout(timeout);
-  }, [query]);
+  }, [query, i18n.language, t]);
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent) => {
