@@ -1,27 +1,55 @@
-## Problem
+# Plan: Flerspråklig nettside (NO/EN) med auto-deteksjon
 
-`react-pdf@10.4.1` bunder `pdfjs-dist@5.4.296`, men jeg installerte `pdfjs-dist@5.7.284`. Worker-versjon (5.7.284) matcher ikke API-versjon (5.4.296), så PDF-en feiler med:
-> The API version "5.4.296" does not match the Worker version "5.7.284".
+## Mål
+- Hele nettsiden tilgjengelig på norsk og engelsk
+- Automatisk språkvalg basert på besøkerens lokasjon (Norge → norsk, alle andre → engelsk)
+- Manuell språkvelger i header (overstyrer auto-valg, lagres i `localStorage`)
+- Struktur klar for flere språk senere (f.eks. `sv`, `de`, `fr`)
 
-## Løsning
+## Teknisk stack
+- **`i18next` + `react-i18next`** — bransjestandard, støtter lazy-loading, interpolering, pluralisering
+- **`i18next-browser-languagedetector`** — sjekker `localStorage` → cookie → navigator
+- **Lokasjonsdeteksjon**: gratis IP-API (`https://ipapi.co/json/`) kalles én gang ved første besøk hvis ingen lagret preferanse finnes. Resultatet caches i `localStorage`.
 
-Last worker fra `pdfjs-dist`-versjonen som faktisk er bundlet med `react-pdf`. I stedet for å pinne versjoner manuelt, bruk react-pdf's egen pdfjs-instans for å bygge worker-URL via CDN basert på `pdfjs.version`.
-
-### Endring i `src/components/PdfViewer.tsx`
-
-Bytt ut:
-```ts
-import workerSrc from "pdfjs-dist/build/pdf.worker.min.mjs?url";
-pdfjs.GlobalWorkerOptions.workerSrc = workerSrc;
+## Filstruktur
+```text
+src/
+  i18n/
+    index.ts              # i18next-init, språkdeteksjon, IP-fallback
+    locales/
+      no/
+        common.json       # nav, knapper, footer
+        hero.json
+        team.json
+        security.json
+        product.json
+        sora.json
+        articles.json
+      en/
+        (samme filer, oversatt)
+  components/
+    LanguageSwitcher.tsx  # NO 🇳🇴 / EN 🇬🇧 dropdown øverst til høyre
 ```
 
-med:
-```ts
-pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
-```
+## Implementasjonssteg
 
-Dette garanterer at worker-versjonen alltid matcher API-versjonen react-pdf bruker, uavhengig av hva som ligger i `node_modules`.
+1. **Installer pakker**: `i18next`, `react-i18next`, `i18next-browser-languagedetector`.
+2. **Sett opp `src/i18n/index.ts`**:
+   - Last alle JSON-namespaces
+   - Deteksjonsrekkefølge: `localStorage` → IP-lookup → engelsk fallback
+   - IP-lookup-funksjon: hvis `country_code === "NO"` → `no`, ellers `en`
+3. **Importer `i18n/index.ts` i `src/main.tsx`** før `App`.
+4. **Lag `LanguageSwitcher`-komponent** — plasseres i `Hero.tsx` ved siden av sosiale ikoner (samme posisjon på alle sider via en liten wrapper, eller direkte i hver side-header). Endrer språk + lagrer valg.
+5. **Trekk ut all hardkodet tekst** fra følgende komponenter/sider og erstatt med `t("namespace.key")`:
+   - `Hero.tsx`, `Team.tsx`, `Security.tsx`, `ProductShowcase.tsx`, `Footer.tsx`, `CTA.tsx`, `AiSearch.tsx` (placeholder + UI-tekst, ikke selve AI-svaret)
+   - Sider: `Index.tsx` (Helmet title/description), `Sora.tsx`, `SoraProcess.tsx`, `Logg.tsx`, `Artikler.tsx`, `Artikkel.tsx`, `Product.tsx`, `NotFound.tsx`
+6. **Oversett til engelsk** — jeg skriver alle EN-strenger basert på dagens norske tekst, i samme tone (profesjonell, kort).
+7. **SEO**: `<html lang>` oppdateres dynamisk via `react-helmet-async` basert på aktivt språk. Hver side får oversatt `<title>` og `<meta description>`.
+8. **AI-søk (`avisafe-ai`)**: edge-funksjonens system-prompt utvides slik at AI-en svarer på samme språk som spørsmålet (instruks: "Svar alltid på samme språk som brukerens spørsmål"). Ingen endring i pris-regelen.
 
-### Rydding
+## Avklaringer / antakelser
+- **Artikler (innhold fra database/Shopify)**: oversettes IKKE automatisk — kun UI-rammen rundt. La meg vite hvis artikkel-innholdet også må flerspråkliggjøres (krever schema-endring).
+- **Domene**: samme `avisafe.no` for begge språk (ingen `/en/`-prefix i URL). Si fra hvis du heller vil ha `/en/`-ruter for SEO.
+- **Språkvelger-plassering**: foreslår øverst til høyre i hero, like ved sosiale ikoner. OK?
 
-Fjern `pdfjs-dist` fra `package.json` siden det ikke lenger brukes direkte (react-pdf har sin egen).
+Si fra hvis du vil justere noe før jeg bygger.

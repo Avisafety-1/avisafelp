@@ -1,21 +1,13 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { Search, X, Sparkles, Loader2 } from "lucide-react";
-
-const PLACEHOLDER_QUESTIONS = [
-  "Støtter AviSafe sjekklister?",
-  "Hvordan fungerer SORA i AviSafe?",
-  "Kan jeg laste opp DJI-logger?",
-  "Har AviSafe en kalenderfunksjon?",
-  "Hvilke integrasjoner støttes?",
-  "Støtter AviSafe ECCAIRS-rapportering?",
-  "Kan jeg se live lufttrafikk i kartet?",
-];
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/avisafe-ai`;
 
 type Msg = { role: "user" | "assistant"; content: string };
 
 const AiSearch = () => {
+  const { t, i18n } = useTranslation();
   const [query, setQuery] = useState("");
   const [messages, setMessages] = useState<Msg[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -27,13 +19,15 @@ const AiSearch = () => {
   // Typewriter animation
   useEffect(() => {
     if (query) return; // Don't animate when user is typing
+    const questions = t("ai.placeholderRotating", { returnObjects: true }) as string[];
+    if (!Array.isArray(questions) || questions.length === 0) return;
     let questionIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
     let timeout: ReturnType<typeof setTimeout>;
 
     const tick = () => {
-      const currentQuestion = PLACEHOLDER_QUESTIONS[questionIndex];
+      const currentQuestion = questions[questionIndex];
 
       if (!isDeleting) {
         charIndex++;
@@ -51,7 +45,7 @@ const AiSearch = () => {
         setPlaceholderText(currentQuestion.slice(0, charIndex));
         if (charIndex === 0) {
           isDeleting = false;
-          questionIndex = (questionIndex + 1) % PLACEHOLDER_QUESTIONS.length;
+          questionIndex = (questionIndex + 1) % questions.length;
           timeout = setTimeout(tick, 300);
           return;
         }
@@ -61,7 +55,7 @@ const AiSearch = () => {
 
     tick();
     return () => clearTimeout(timeout);
-  }, [query]);
+  }, [query, i18n.language, t]);
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent) => {
@@ -85,7 +79,7 @@ const AiSearch = () => {
             "Content-Type": "application/json",
             Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
           },
-          body: JSON.stringify({ messages: newMessages }),
+          body: JSON.stringify({ messages: newMessages, lang: i18n.language?.startsWith("no") ? "no" : "en" }),
         });
 
         if (!resp.ok) {
@@ -142,14 +136,14 @@ const AiSearch = () => {
           ...prev,
           {
             role: "assistant",
-            content: "Beklager, noe gikk galt. Prøv igjen senere.",
+            content: t("ai.errorGeneric"),
           },
         ]);
       } finally {
         setIsLoading(false);
       }
     },
-    [query, messages, isLoading]
+    [query, messages, isLoading, t]
   );
 
   // Auto-scroll response area
@@ -182,15 +176,15 @@ const AiSearch = () => {
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder={placeholderText || "Spør om AviSafe..."}
-              aria-label="Søk i AviSafe"
+              placeholder={placeholderText || t("ai.placeholderFallback")}
+              aria-label={t("ai.ariaSearch")}
               className="flex-1 bg-transparent border-none outline-none text-foreground placeholder:text-muted-foreground text-sm md:text-base"
             />
             {(query || isOpen) && (
               <button
                 type="button"
                 onClick={handleClear}
-                aria-label="Nullstill søk"
+                aria-label={t("ai.ariaClear")}
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 <X className="w-4 h-4" />
@@ -199,7 +193,7 @@ const AiSearch = () => {
             <button
               type="submit"
               disabled={isLoading || !query.trim()}
-              aria-label="Send søk"
+              aria-label={t("ai.ariaSubmit")}
               className="bg-primary text-primary-foreground rounded-lg p-2 hover:bg-primary/90 transition-colors disabled:opacity-50"
             >
               {isLoading ? (

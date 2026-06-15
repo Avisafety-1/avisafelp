@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ArrowRight, ArrowDown, Mail, BookOpen } from "lucide-react";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 import droneLandscape from "@/assets/drone-landscape.png";
 import avisafeLogoBlack from "@/assets/avisafe-logo-black.png";
 import trustedLogo1 from "@/assets/trusted-logo-1.png";
@@ -24,10 +26,12 @@ const LinkedInIcon = ({ className }: { className?: string }) => (
 );
 
 const Hero = () => {
+  const { t } = useTranslation();
   const [newsletterOpen, setNewsletterOpen] = useState(false);
   return <section className="relative flex flex-col overflow-hidden bg-transparent">
       {/* Social Media Icons - Top Right */}
       <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 flex items-center gap-3">
+        <LanguageSwitcher />
         <a
           href="https://www.facebook.com/profile.php?id=61583893445784"
           target="_blank"
@@ -71,7 +75,7 @@ const Hero = () => {
         {/* Trusted By Banner */}
         <div className="absolute -bottom-20 sm:-bottom-24 md:-bottom-28 left-1/2 -translate-x-1/2 z-10 animate-fade-in w-full">
           <div className="flex items-center justify-center mb-1">
-            <span className="text-xs sm:text-sm text-foreground/70 font-semibold tracking-widest uppercase">Trusted by</span>
+            <span className="text-xs sm:text-sm text-foreground/70 font-semibold tracking-widest uppercase">{t("hero.trustedBy")}</span>
           </div>
           <div className="w-screen relative left-1/2 -translate-x-1/2 bg-black/90 py-2 sm:py-2.5 mb-4 overflow-hidden">
             {/* Static layout on tablet/desktop */}
@@ -103,23 +107,23 @@ const Hero = () => {
         <div className="grid grid-cols-2 sm:flex sm:flex-row sm:flex-wrap items-center justify-center gap-3 sm:gap-4 max-w-3xl mx-auto">
           <Button variant="hero" size="xl" className="w-full sm:w-auto bg-[hsl(var(--text-dark-blue))] text-white hover:bg-[hsl(var(--text-dark-blue))]/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-4 sm:px-10 h-12 sm:h-14" asChild>
             <a href="mailto:kontakt@avisafe.no" className="shadow-none opacity-100 rounded-md bg-[#123b87]">
-              Kontakt oss
+              {t("common.contact")}
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
             </a>
           </Button>
           <Button variant="hero" size="xl" className="w-full sm:w-auto bg-[#123b87] text-white hover:bg-[#123b87]/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-4 sm:px-10 h-12 sm:h-14" onClick={() => {
             document.getElementById('team-section')?.scrollIntoView({ behavior: 'smooth' });
           }}>
-            Hvem er vi?
+            {t("common.whoWeAre")}
             <ArrowDown className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-y-1 transition-transform" />
           </Button>
           <Button variant="hero" size="xl" className="w-full sm:w-auto bg-[#123b87] text-white hover:bg-[#123b87]/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-4 sm:px-10 h-12 sm:h-14" asChild>
             <Link to="/artikler" className="shadow-none opacity-100 rounded-md bg-[#123b87]">
-              Artikler
+              {t("common.articles")}
             </Link>
           </Button>
           <Button variant="hero" size="xl" className="w-full sm:w-auto bg-[#123b87] text-white hover:bg-[#123b87]/90 hover:shadow-2xl group shadow-xl text-sm sm:text-base px-4 sm:px-10 h-12 sm:h-14" onClick={() => setNewsletterOpen(true)}>
-            Nyhetsbrev
+            {t("common.newsletter")}
           </Button>
         </div>
       </div>
@@ -127,11 +131,10 @@ const Hero = () => {
       {/* Content section below the image */}
       <div className="container mx-auto px-4 sm:px-6 text-center pt-8 pb-8 md:pt-12 md:pb-12 animate-fade-in">
         <div className="max-w-4xl mx-auto">
-          <h1 className="sr-only">AviSafe — Omfattende verktøy for sikkerhetsstyring i luftfarten</h1>
+          <h1 className="sr-only">{t("hero.h1")}</h1>
           {/* Subheadline */}
           <p className="text-base sm:text-xl md:text-2xl text-muted-foreground max-w-xs sm:max-w-lg md:max-w-2xl mx-auto leading-relaxed font-medium px-2">
-            AviSafe bidrar til tryggere og mer effektiv drift ved å gi luftfartsaktører omfattende verktøy for
-            sikkerhetsstyring
+            {t("hero.subline")}
           </p>
         </div>
       </div>
@@ -139,7 +142,7 @@ const Hero = () => {
       <Dialog open={newsletterOpen} onOpenChange={setNewsletterOpen}>
         <DialogContent className="max-w-md p-0 overflow-hidden">
           <DialogHeader className="px-6 pt-6 pb-2">
-            <DialogTitle>Meld deg på AviSafe nyhetsbrev</DialogTitle>
+            <DialogTitle>{t("hero.newsletterTitle")}</DialogTitle>
           </DialogHeader>
           <iframe
             src="https://app.avisafe.no/nyhetsbrev"
