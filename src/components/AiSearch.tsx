@@ -136,14 +136,14 @@ const AiSearch = () => {
           ...prev,
           {
             role: "assistant",
-            content: "Beklager, noe gikk galt. Prøv igjen senere.",
+            content: t("ai.errorGeneric"),
           },
         ]);
       } finally {
         setIsLoading(false);
       }
     },
-    [query, messages, isLoading]
+    [query, messages, isLoading, t]
   );
 
   // Auto-scroll response area
@@ -176,15 +176,15 @@ const AiSearch = () => {
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder={placeholderText || "Spør om AviSafe..."}
-              aria-label="Søk i AviSafe"
+              placeholder={placeholderText || t("ai.placeholderFallback")}
+              aria-label={t("ai.ariaSearch")}
               className="flex-1 bg-transparent border-none outline-none text-foreground placeholder:text-muted-foreground text-sm md:text-base"
             />
             {(query || isOpen) && (
               <button
                 type="button"
                 onClick={handleClear}
-                aria-label="Nullstill søk"
+                aria-label={t("ai.ariaClear")}
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 <X className="w-4 h-4" />
@@ -193,7 +193,7 @@ const AiSearch = () => {
             <button
               type="submit"
               disabled={isLoading || !query.trim()}
-              aria-label="Send søk"
+              aria-label={t("ai.ariaSubmit")}
               className="bg-primary text-primary-foreground rounded-lg p-2 hover:bg-primary/90 transition-colors disabled:opacity-50"
             >
               {isLoading ? (
