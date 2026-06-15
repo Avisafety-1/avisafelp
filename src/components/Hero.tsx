@@ -99,6 +99,7 @@ const Hero = () => {
               ))}
             </div>
           </div>
+        </div>
       </div>
 
       {/* CTA buttons - flow below image so banner keeps original position */}
