@@ -1,21 +1,13 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { Search, X, Sparkles, Loader2 } from "lucide-react";
-
-const PLACEHOLDER_QUESTIONS = [
-  "Støtter AviSafe sjekklister?",
-  "Hvordan fungerer SORA i AviSafe?",
-  "Kan jeg laste opp DJI-logger?",
-  "Har AviSafe en kalenderfunksjon?",
-  "Hvilke integrasjoner støttes?",
-  "Støtter AviSafe ECCAIRS-rapportering?",
-  "Kan jeg se live lufttrafikk i kartet?",
-];
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/avisafe-ai`;
 
 type Msg = { role: "user" | "assistant"; content: string };
 
 const AiSearch = () => {
+  const { t, i18n } = useTranslation();
   const [query, setQuery] = useState("");
   const [messages, setMessages] = useState<Msg[]>([]);
   const [isLoading, setIsLoading] = useState(false);
