@@ -151,6 +151,7 @@ const LazyDemoVideo = () => {
 
 const DjiAnalyseCarousel = () => {
   const { t } = useTranslation();
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (lightboxIndex === null) return;
@@ -174,7 +175,7 @@ const DjiAnalyseCarousel = () => {
           <img
             key={i}
             src={img}
-            alt={`DJI flyanalyse ${i + 1}`}
+            alt={`${t("product.dji.analyseAlt")} ${i + 1}`}
             className="flex-shrink-0 w-auto h-[200px] md:h-[260px] rounded-xl shadow-lg snap-center cursor-pointer hover:opacity-90 transition-opacity"
             loading="lazy"
             onClick={() => setLightboxIndex(i)}
@@ -194,26 +195,26 @@ const DjiAnalyseCarousel = () => {
           >
             <button
               className="absolute -top-8 right-0 text-white/90 hover:text-white z-10"
-              aria-label="Lukk bildevisning"
+              aria-label={t("product.dji.lightboxClose")}
               onClick={() => setLightboxIndex(null)}
             >
               <X className="w-6 h-6" />
             </button>
             <button
               className="flex-shrink-0 text-black hover:text-black/70"
-              aria-label="Forrige bilde"
+              aria-label={t("product.dji.lightboxPrev")}
               onClick={() => setLightboxIndex((lightboxIndex - 1 + djiAnalyseImages.length) % djiAnalyseImages.length)}
             >
               <ChevronLeft className="w-7 h-7" />
             </button>
             <img
               src={djiAnalyseImages[lightboxIndex]}
-              alt={`DJI flyanalyse ${lightboxIndex + 1}`}
+              alt={`${t("product.dji.analyseAlt")} ${lightboxIndex + 1}`}
               className="max-w-[85vw] md:max-w-[70vw] max-h-[85vh] object-contain rounded-xl shadow-2xl"
             />
             <button
               className="flex-shrink-0 text-black hover:text-black/70"
-              aria-label="Neste bilde"
+              aria-label={t("product.dji.lightboxNext")}
               onClick={() => setLightboxIndex((lightboxIndex + 1) % djiAnalyseImages.length)}
             >
               <ChevronRight className="w-7 h-7" />
@@ -365,12 +366,10 @@ const ProductShowcase = () => {
 
               <div className="text-center mb-8">
                 <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                  Full støtte for DJI RC PRO/PLUS
+                  {t("product.dji.title")}
                 </h3>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Støtter opplasting av DJI fly-logger fra over 40 dronemodeller. 
-                  AviSafe integrerer sømløst med DJI-kontrollere for automatisk import av flydata, 
-                  loggføring og dokumentasjon direkte i plattformen.
+                  {t("product.dji.body")}
                 </p>
               </div>
 
@@ -404,10 +403,10 @@ const ProductShowcase = () => {
               {/* Avansert analyse */}
               <div className="text-center mt-10 mb-6">
                 <h4 className="text-xl md:text-2xl font-bold text-foreground mb-3">
-                  Avansert analyse fra loggfiler
+                  {t("product.dji.advancedTitle")}
                 </h4>
                 <p className="text-base text-muted-foreground leading-relaxed">
-                  Analyser data i detalj – app warnings, kontrollinput, batteri, vind, hastighet og mer.
+                  {t("product.dji.advancedBody")}
                 </p>
               </div>
 
@@ -430,7 +429,7 @@ const ProductShowcase = () => {
                 <img src={arduLogo} alt="ArduPilot logo" className="w-64 md:w-96 h-auto" loading="lazy" />
               </div>
               <p className="text-base text-muted-foreground leading-relaxed text-center">
-                  AviSafe støtter nå opplasting av flylogger fra ArduPilot, slik at du enkelt kan analysere og dokumentere operasjoner på samme måte som med andre loggkilder.
+                  {t("product.ardu.body")}
                 </p>
             </div>
 
@@ -447,13 +446,10 @@ const ProductShowcase = () => {
 
               <div className="text-center">
                 <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                  SafeSky - live publisering og situasjonsbilde
+                  {t("product.safesky.title")}
                 </h3>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  AviSafe er integrert med SafeSky for live posisjonsdeling og økt situasjonsforståelse under operasjoner.
-                  Når en flytur startes i AviSafe kan relevant informasjon og posisjonsdata deles i SafeSky, slik at både
-                  operatør og andre luftromsbrukere får bedre oversikt. Resultatet er enklere samhandling, færre misforståelser
-                  og tryggere operasjoner – med dokumentasjon og sporbarhet samlet i én plattform.
+                  {t("product.safesky.body")}
                 </p>
               </div>
             </div>
@@ -465,10 +461,9 @@ const ProductShowcase = () => {
               </div>
 
               <div className="text-center mb-8">
-                <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">Dronetag</h3>
+                <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">{t("product.dronetag.title")}</h3>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  AviSafe, offisiell forhandler av Dronetag i Norge. I vår plattform er Dronetag og SafeSky en naturlig
-                  integrasjon for å bedre flysikkerheten til alle luftromsaktører.
+                  {t("product.dronetag.body")}
                 </p>
               </div>
 
@@ -494,13 +489,10 @@ const ProductShowcase = () => {
               </div>
               <div className="text-center">
                 <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                  ECCAIRS2 – rapportering gjort enkelt
+                  {t("product.eccairs.title")}
                 </h3>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  AviSafe er integrert med ECCAIRS2, EUs offisielle system for hendelsesrapportering i luftfarten. Det betyr
-                  at hendelser kan registreres strukturert i AviSafe og sendes direkte til ECCAIRS2 via API – med korrekt
-                  taksonomi og obligatoriske felter på plass. Mindre manuelt arbeid, færre feil og trygg compliance mot EASA
-                  og Luftfartstilsynet.
+                  {t("product.eccairs.body")}
                 </p>
               </div>
             </div>
