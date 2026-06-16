@@ -21,7 +21,6 @@ const Hero = () => {
         bgImageSrc={droneLandscape}
         titleTop={t("hero.expandLine1")}
         titleBottom={t("hero.expandLine2")}
-        scrollToExpand={t("hero.scrollToExpand")}
       >
         {/* Trusted By Banner */}
         <div className="w-full animate-fade-in">
