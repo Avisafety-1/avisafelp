@@ -341,6 +341,15 @@ const en: Translations = {
     no: "Norsk",
     en: "English",
   },
+  media: {
+    title: "Gallery",
+    subtitle: "Photos and videos from AviSafe.",
+    loading: "Loading…",
+    empty: "No media yet.",
+    error: "Could not load media.",
+    open: "Open",
+    download: "Download",
+  },
 };
 
 export default en;

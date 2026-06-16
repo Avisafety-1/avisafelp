@@ -1,55 +1,55 @@
-# Plan: Flerspråklig nettside (NO/EN) med auto-deteksjon
+# Google Disk-integrasjon — Media-mappe
 
-## Mål
-- Hele nettsiden tilgjengelig på norsk og engelsk
-- Automatisk språkvalg basert på besøkerens lokasjon (Norge → norsk, alle andre → engelsk)
-- Manuell språkvelger i header (overstyrer auto-valg, lagres i `localStorage`)
-- Struktur klar for flere språk senere (f.eks. `sv`, `de`, `fr`)
+Bekreftet: tilkoblingen "Gard AviSafe Google Drive" er linket med `drive.readonly`-scope, og mappen `1fkX3wG0ojgV9cn2XdrsDxYmotHpL8V56` ("Media", eid av hauggard@gmail.com) er tilgjengelig via gateway. Mappen returnerer foreløpig tom fil-liste — så snart du legger inn filer der vil de dukke opp automatisk.
 
-## Teknisk stack
-- **`i18next` + `react-i18next`** — bransjestandard, støtter lazy-loading, interpolering, pluralisering
-- **`i18next-browser-languagedetector`** — sjekker `localStorage` → cookie → navigator
-- **Lokasjonsdeteksjon**: gratis IP-API (`https://ipapi.co/json/`) kalles én gang ved første besøk hvis ingen lagret preferanse finnes. Resultatet caches i `localStorage`.
+## Hva som bygges
 
-## Filstruktur
+### 1. Edge function `drive-media` (`supabase/functions/drive-media/`)
+- Kaller Lovable connector gateway: `GET /google_drive/drive/v3/files?q='<FOLDER_ID>' in parents and trashed=false`
+- Felter: `id, name, mimeType, size, modifiedTime, thumbnailLink, imageMediaMetadata, videoMediaMetadata`
+- Returnerer normalisert JSON: `{ files: [{ id, name, mimeType, kind: "image"|"video"|"other", thumbnail, url, downloadUrl, width, height, modifiedTime }] }`
+- `url` bygges som `https://drive.google.com/uc?export=view&id=<id>` (inline) og `downloadUrl` som `…&export=download`
+- 5 min cache via `Cache-Control` header for å spare API-kall
+- Public (verify_jwt = false) siden mediene skal vises på landingsiden
+- Folder-ID konfigureres via miljøvariabel `DRIVE_MEDIA_FOLDER_ID` (satt til `1fkX3wG0ojgV9cn2XdrsDxYmotHpL8V56`)
+
+### 2. React-hook `useDriveMedia` (`src/hooks/use-drive-media.ts`)
+- Wrapper rundt edge function, returnerer `{ files, loading, error }`
+- Bruker `fetch` mot `${SUPABASE_URL}/functions/v1/drive-media`
+- Sortering: nyeste først
+
+### 3. Visningskomponent `DriveMediaGrid` (`src/components/DriveMediaGrid.tsx`)
+- Responsivt grid (1/2/3/4 kolonner)
+- Bilder: `<img loading="lazy">` med thumbnail-fallback
+- Video: `<video controls preload="metadata" poster={thumbnail}>`
+- Lightbox-modal ved klikk (gjenbruker shadcn `Dialog`)
+- Glassmorphism-styling i tråd med eksisterende design-tokens
+- Skeleton-loader mens data hentes
+- Tom-tilstand: "Ingen medier ennå" / engelsk variant via `t()`
+
+### 4. i18n-nøkler
+Legges til i `src/i18n/locales/no.ts` og `en.ts`:
+- `media.loading`, `media.empty`, `media.error`, `media.open`, `media.download`
+
+### 5. Plassering på siden
+Foreløpig **ikke** plassert i landingsiden automatisk — komponenten er klar til bruk. Du sier hvor: ny seksjon på `/`, egen rute `/galleri`, eller annet sted. Default forslag: ny `/galleri`-rute.
+
+## Tekniske detaljer
+
 ```text
-src/
-  i18n/
-    index.ts              # i18next-init, språkdeteksjon, IP-fallback
-    locales/
-      no/
-        common.json       # nav, knapper, footer
-        hero.json
-        team.json
-        security.json
-        product.json
-        sora.json
-        articles.json
-      en/
-        (samme filer, oversatt)
-  components/
-    LanguageSwitcher.tsx  # NO 🇳🇴 / EN 🇬🇧 dropdown øverst til høyre
+Browser ──► supabase/functions/drive-media
+              │
+              ├─ Authorization: Bearer LOVABLE_API_KEY
+              ├─ X-Connection-Api-Key: GOOGLE_DRIVE_API_KEY
+              ▼
+        connector-gateway.lovable.dev/google_drive
+              ▼
+           Google Drive API v3
 ```
 
-## Implementasjonssteg
+CORS: standard `*` headers (samme som `avisafe-ai`).
 
-1. **Installer pakker**: `i18next`, `react-i18next`, `i18next-browser-languagedetector`.
-2. **Sett opp `src/i18n/index.ts`**:
-   - Last alle JSON-namespaces
-   - Deteksjonsrekkefølge: `localStorage` → IP-lookup → engelsk fallback
-   - IP-lookup-funksjon: hvis `country_code === "NO"` → `no`, ellers `en`
-3. **Importer `i18n/index.ts` i `src/main.tsx`** før `App`.
-4. **Lag `LanguageSwitcher`-komponent** — plasseres i `Hero.tsx` ved siden av sosiale ikoner (samme posisjon på alle sider via en liten wrapper, eller direkte i hver side-header). Endrer språk + lagrer valg.
-5. **Trekk ut all hardkodet tekst** fra følgende komponenter/sider og erstatt med `t("namespace.key")`:
-   - `Hero.tsx`, `Team.tsx`, `Security.tsx`, `ProductShowcase.tsx`, `Footer.tsx`, `CTA.tsx`, `AiSearch.tsx` (placeholder + UI-tekst, ikke selve AI-svaret)
-   - Sider: `Index.tsx` (Helmet title/description), `Sora.tsx`, `SoraProcess.tsx`, `Logg.tsx`, `Artikler.tsx`, `Artikkel.tsx`, `Product.tsx`, `NotFound.tsx`
-6. **Oversett til engelsk** — jeg skriver alle EN-strenger basert på dagens norske tekst, i samme tone (profesjonell, kort).
-7. **SEO**: `<html lang>` oppdateres dynamisk via `react-helmet-async` basert på aktivt språk. Hver side får oversatt `<title>` og `<meta description>`.
-8. **AI-søk (`avisafe-ai`)**: edge-funksjonens system-prompt utvides slik at AI-en svarer på samme språk som spørsmålet (instruks: "Svar alltid på samme språk som brukerens spørsmål"). Ingen endring i pris-regelen.
+## Spørsmål før implementering
 
-## Avklaringer / antakelser
-- **Artikler (innhold fra database/Shopify)**: oversettes IKKE automatisk — kun UI-rammen rundt. La meg vite hvis artikkel-innholdet også må flerspråkliggjøres (krever schema-endring).
-- **Domene**: samme `avisafe.no` for begge språk (ingen `/en/`-prefix i URL). Si fra hvis du heller vil ha `/en/`-ruter for SEO.
-- **Språkvelger-plassering**: foreslår øverst til høyre i hero, like ved sosiale ikoner. OK?
-
-Si fra hvis du vil justere noe før jeg bygger.
+1. **Hvor skal mediene vises?** Egen rute `/galleri`, ny seksjon på forsiden, eller bare som klar komponent du selv plugger inn?
+2. Skal videoer **autoplay/loop muted** (som product-carousel), eller standard `controls`?
