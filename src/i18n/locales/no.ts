@@ -339,6 +339,15 @@ const no = {
     no: "Norsk",
     en: "English",
   },
+  media: {
+    title: "Galleri",
+    subtitle: "Bilder og videoer fra AviSafe.",
+    loading: "Laster…",
+    empty: "Ingen mediefiler ennå.",
+    error: "Kunne ikke laste mediefiler.",
+    open: "Åpne",
+    download: "Last ned",
+  },
 };
 
 export default no;
