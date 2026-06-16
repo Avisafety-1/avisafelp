@@ -225,6 +225,7 @@ const DjiAnalyseCarousel = () => {
 };
 
 const ProductShowcase = () => {
+  const { t } = useTranslation();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isAutoScrolling, setIsAutoScrolling] = useState(true);
   const [isHovering, setIsHovering] = useState(false);
@@ -291,7 +292,7 @@ const ProductShowcase = () => {
                   className="text-2xl md:text-4xl font-bold mb-7 leading-tight"
                   style={{ color: "hsl(210 20% 96%)" }}
                 >
-                  Norges mest avanserte verktøy<br className="hidden md:block" /> for SORA-risikovurderinger
+                  {t("product.soraBannerLine1")}<br className="hidden md:block" /> {t("product.soraBannerLine2")}
                 </h2>
 
                 {/* CTA Button */}
@@ -304,7 +305,7 @@ const ProductShowcase = () => {
                     boxShadow: "0 0 20px hsl(210 80% 28% / 0.5)"
                   }}
                 >
-                  Se hvordan det fungerer
+                  {t("common.seeHowItWorks")}
                   <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
                 </div>
               </div>
@@ -318,13 +319,13 @@ const ProductShowcase = () => {
       <div className="relative">
         {/* Navigation Buttons - Desktop */}
         <div className="hidden md:block">
-          <Button variant="outline" size="icon" aria-label="Bla til venstre" className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm shadow-lg" onClick={() => {
+          <Button variant="outline" size="icon" aria-label={t("product.scrollLeft")} className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm shadow-lg" onClick={() => {
           handleInteraction();
           scroll("left");
         }}>
             <ChevronLeft className="w-5 h-5" />
           </Button>
-          <Button variant="outline" size="icon" aria-label="Bla til høyre" className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm shadow-lg" onClick={() => {
+          <Button variant="outline" size="icon" aria-label={t("product.scrollRight")} className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm shadow-lg" onClick={() => {
           handleInteraction();
           scroll("right");
         }}>
@@ -338,7 +339,7 @@ const ProductShowcase = () => {
         scrollbarWidth: "none",
         msOverflowStyle: "none"
       }} onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)} onTouchStart={handleInteraction} onWheel={handleInteraction}>
-          {features.map(feature => <div key={feature.id} className="snap-center">
+          {featuresBase.map(feature => <div key={feature.id} className="snap-center">
               <PhoneMockup feature={feature} />
             </div>)}
         </div>
@@ -351,7 +352,7 @@ const ProductShowcase = () => {
       <div className="container mx-auto px-4 mt-12 md:mt-16">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground">Integrasjoner</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground">{t("common.integrations")}</h2>
           </div>
 
           <div className="space-y-6 md:space-y-8">
