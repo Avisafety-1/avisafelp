@@ -1,55 +1,58 @@
-# Google Disk-integrasjon — Media-mappe
+## Mål
+Gi forsiden et mer profesjonelt, helhetlig uttrykk inspirert av senseloop.com — bred header øverst, fullbredde-seksjoner uten "boks-følelse", og myke animerte overganger når man scroller mellom seksjoner.
 
-Bekreftet: tilkoblingen "Gard AviSafe Google Drive" er linket med `drive.readonly`-scope, og mappen `1fkX3wG0ojgV9cn2XdrsDxYmotHpL8V56` ("Media", eid av hauggard@gmail.com) er tilgjengelig via gateway. Mappen returnerer foreløpig tom fil-liste — så snart du legger inn filer der vil de dukke opp automatisk.
+## 1. Ny bred header (SiteHeader)
+Ny komponent `src/components/SiteHeader.tsx` brukt globalt via `App.tsx`:
+- Full bredde, fixed øverst, gjennomsiktig over hero — får mørk/blur-bakgrunn når man scroller (samme følelse som Senseloop sin mørke header).
+- Venstre: AviSafe-logo (klikkbar til "/").
+- Midten/høyre: meny — Produkt, SORA, Artikler, Galleri, Team, Kontakt (scroll til seksjon på forsiden, ellers naviger).
+- Helt til høyre: `LanguageSwitcher` + sosiale ikoner + tydelig CTA-knapp "Ta kontakt" (bg `#123b87`).
+- Mobil: hamburger som åpner shadcn `Sheet` med samme lenker.
+- Sosiale ikoner og språkvelger flyttes ut av `Hero` siden de nå bor i headeren.
 
-## Hva som bygges
+## 2. Full-bredde seksjoner
+Alle seksjoner på forsiden gjøres til `min-h-screen`/`min-h-[90vh]` fullbredde-bånd uten kort-rammer. Vi beholder innholdet, men endrer innpakningen:
 
-### 1. Edge function `drive-media` (`supabase/functions/drive-media/`)
-- Kaller Lovable connector gateway: `GET /google_drive/drive/v3/files?q='<FOLDER_ID>' in parents and trashed=false`
-- Felter: `id, name, mimeType, size, modifiedTime, thumbnailLink, imageMediaMetadata, videoMediaMetadata`
-- Returnerer normalisert JSON: `{ files: [{ id, name, mimeType, kind: "image"|"video"|"other", thumbnail, url, downloadUrl, width, height, modifiedTime }] }`
-- `url` bygges som `https://drive.google.com/uc?export=view&id=<id>` (inline) og `downloadUrl` som `…&export=download`
-- 5 min cache via `Cache-Control` header for å spare API-kall
-- Public (verify_jwt = false) siden mediene skal vises på landingsiden
-- Folder-ID konfigureres via miljøvariabel `DRIVE_MEDIA_FOLDER_ID` (satt til `1fkX3wG0ojgV9cn2XdrsDxYmotHpL8V56`)
+- **Hero**: dronebilde brukes som fullbredde bakgrunn (ikke maskert kort); logo + subline + CTA-rad sentrert oppå. "Trusted by"-båndet flyttes til en egen tynn full-bredde stripe rett under hero.
+- **ProductShowcase**: full-bredde seksjon med mørk bakgrunn (kontrast mot hero), eksisterende karusell/innhold sentrert i `container`.
+- **Security**: fjerner `bg-card/50` "boksen" rundt teksten — kun prose sentrert i full-bredde seksjon med subtil bakgrunnsforskjell (memory: ingen ikoner/bullets her).
+- **Team**: beholder kort for medlemmer (de er meningsfulle kort, ikke seksjons-bokser), men seksjonen selv blir full-bredde med ny bakgrunnstone og større luft.
 
-### 2. React-hook `useDriveMedia` (`src/hooks/use-drive-media.ts`)
-- Wrapper rundt edge function, returnerer `{ files, loading, error }`
-- Bruker `fetch` mot `${SUPABASE_URL}/functions/v1/drive-media`
-- Sortering: nyeste først
+Bakgrunnsvekslingen mellom seksjoner gir den "bånd"-følelsen Senseloop har, uten harde kanter.
 
-### 3. Visningskomponent `DriveMediaGrid` (`src/components/DriveMediaGrid.tsx`)
-- Responsivt grid (1/2/3/4 kolonner)
-- Bilder: `<img loading="lazy">` med thumbnail-fallback
-- Video: `<video controls preload="metadata" poster={thumbnail}>`
-- Lightbox-modal ved klikk (gjenbruker shadcn `Dialog`)
-- Glassmorphism-styling i tråd med eksisterende design-tokens
-- Skeleton-loader mens data hentes
-- Tom-tilstand: "Ingen medier ennå" / engelsk variant via `t()`
+## 3. Animerte overganger mellom seksjoner
+Ny hook `useInView` finnes allerede (`src/hooks/use-in-view.ts`) — gjenbrukes.
+Ny wrapper `src/components/SectionReveal.tsx`:
+- IntersectionObserver-basert.
+- Fade + slide-up (opacity 0→1, translateY 32px→0, 700ms cubic-bezier) når seksjon kommer i view.
+- Subtil parallaks på bakgrunn (translateY basert på scroll) for hero og ProductShowcase.
+- Respekterer `prefers-reduced-motion`.
+Pakker hver forsidesseksjon i `<SectionReveal>`.
 
-### 4. i18n-nøkler
-Legges til i `src/i18n/locales/no.ts` og `en.ts`:
-- `media.loading`, `media.empty`, `media.error`, `media.open`, `media.download`
+## 4. Footer-justering
+Mindre justering: footer blir også full-bredde og matcher header-tonen, slik at siden henger sammen visuelt.
 
-### 5. Plassering på siden
-Foreløpig **ikke** plassert i landingsiden automatisk — komponenten er klar til bruk. Du sier hvor: ny seksjon på `/`, egen rute `/galleri`, eller annet sted. Default forslag: ny `/galleri`-rute.
+## 5. i18n
+Legger til norske/engelske nøkler for headerens menyelementer (`nav.product`, `nav.sora`, `nav.articles`, `nav.gallery`, `nav.team`, `nav.contact`) i `src/i18n/locales/no.ts` og `en.ts`.
 
 ## Tekniske detaljer
+- Ingen nye pakker — bruker eksisterende Tailwind-animasjoner (`animate-fade-in`), `IntersectionObserver` og shadcn `Sheet`.
+- Farger: header bruker `--text-dark-blue` (#123b87-familien) med `backdrop-blur` når scrollet; bakgrunnsbånd alternerer mellom `bg-hero-bg`, `bg-[hsl(210,45%,12%)]` (mørk) og `bg-background`.
+- Ingen endringer i forretningslogikk, AI-søk, Shopify, SORA eller backend.
+- Språk forblir norsk som primær (memory).
 
-```text
-Browser ──► supabase/functions/drive-media
-              │
-              ├─ Authorization: Bearer LOVABLE_API_KEY
-              ├─ X-Connection-Api-Key: GOOGLE_DRIVE_API_KEY
-              ▼
-        connector-gateway.lovable.dev/google_drive
-              ▼
-           Google Drive API v3
-```
+## Filer som endres / opprettes
+- Ny: `src/components/SiteHeader.tsx`
+- Ny: `src/components/SectionReveal.tsx`
+- Endres: `src/App.tsx` (mount SiteHeader globalt)
+- Endres: `src/pages/Index.tsx` (wrap seksjoner i SectionReveal, full-bredde layout)
+- Endres: `src/components/Hero.tsx` (fjern språkvelger/sosiale ikoner, full-bredde hero)
+- Endres: `src/components/Security.tsx` (fjern kort-boks)
+- Endres: `src/components/ProductShowcase.tsx` (full-bredde seksjons-wrapping)
+- Endres: `src/components/Team.tsx` (full-bredde wrapping, beholder medlems-kort)
+- Endres: `src/i18n/locales/no.ts`, `src/i18n/locales/en.ts`
 
-CORS: standard `*` headers (samme som `avisafe-ai`).
-
-## Spørsmål før implementering
-
-1. **Hvor skal mediene vises?** Egen rute `/galleri`, ny seksjon på forsiden, eller bare som klar komponent du selv plugger inn?
-2. Skal videoer **autoplay/loop muted** (som product-carousel), eller standard `controls`?
+## Spørsmål før jeg bygger
+1. **Header-stil over hero**: Skal headeren være helt gjennomsiktig over hero-bildet (Senseloop-stil), eller alltid ha en lett mørk/blur-bakgrunn?
+2. **CTA-knapp i header**: Skal "Ta kontakt"-knappen i headeren være oransje/aksent (som Senseloop) eller beholde AviSafe-blå `#123b87`?
+3. **Galleri i menyen**: Skal `/galleri` ligge i hovedmenyen, eller skjules den til senere?
