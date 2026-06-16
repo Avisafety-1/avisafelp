@@ -120,8 +120,8 @@ const ScrollExpandMedia = ({
     });
   }, [mediaSrc, webmSrc]);
 
-  const HEADER_OFFSET = 80;
-  const minHeightPx = 80;
+  const headerHeightPx = isMobileState ? 64 : 80;
+  const minHeightPx = headerHeightPx;
   const maxHeightVh = isMobileState ? 70 : 85;
   const textTranslateX = scrollProgress * (isMobileState ? 30 : 40);
   const videoHeight = `calc(${minHeightPx}px + ${scrollProgress} * (${maxHeightVh}vh - ${minHeightPx}px))`;
