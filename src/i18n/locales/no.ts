@@ -1,4 +1,12 @@
 const no = {
+  nav: {
+    product: "Produkt",
+    sora: "SORA",
+    articles: "Artikler",
+    gallery: "Galleri",
+    team: "Team",
+    contact: "Kontakt",
+  },
   common: {
     contact: "Kontakt oss",
     whoWeAre: "Hvem er vi?",
