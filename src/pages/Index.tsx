@@ -48,15 +48,14 @@ const Index = () => {
         <Hero />
       </section>
 
-      {/* Product — full-width dark band */}
+      {/* Product — full-width band */}
       <SectionReveal
         id="product-section"
-        className="relative w-full bg-[hsl(210,45%,10%)] text-white py-20 md:py-28"
+        className="relative w-full bg-[hsl(210,30%,98%)] py-20 md:py-28"
       >
-        <div className="pointer-events-none absolute inset-x-0 -top-px h-24 bg-gradient-to-b from-[hsl(210,30%,96%)] to-transparent" />
         <ProductShowcase />
-        <div className="pointer-events-none absolute inset-x-0 -bottom-px h-24 bg-gradient-to-t from-[hsl(210,30%,96%)] to-transparent" />
       </SectionReveal>
+
 
       {/* Security — full-width light band, no boxed card */}
       <SectionReveal className="relative w-full bg-[hsl(210,30%,96%)] py-24 md:py-32">
