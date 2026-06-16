@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import avisafeLogoBlackAsset from "@/assets/avisafe-logo-black.png.asset.json";
-import avisafeLogoWhite from "@/assets/avisafe-logo-white.png";
+import avisafeLogoWhiteAsset from "@/assets/avisafe-logo-white.png.asset.json";
 
 const FacebookIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -69,7 +69,7 @@ const SiteHeader = () => {
           <Link to="/" className="flex items-center gap-2 shrink-0 group relative">
             <span className="relative block h-7 md:h-9 w-auto">
               <img
-                src={avisafeLogoWhite}
+                src={avisafeLogoWhiteAsset.url}
                 alt="AviSafe"
                 className={`h-7 md:h-9 w-auto transition-opacity duration-500 ${
                   scrolled ? "opacity-0" : "opacity-100"
