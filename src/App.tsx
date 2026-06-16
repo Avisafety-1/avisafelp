@@ -11,6 +11,7 @@ import Logg from "./pages/Logg";
 import Artikler from "./pages/Artikler";
 import Artikkel from "./pages/Artikkel";
 import NotFound from "./pages/NotFound";
+import Galleri from "./pages/Galleri";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/logg" element={<Logg />} />
           <Route path="/artikler" element={<Artikler />} />
           <Route path="/artikler/:slug" element={<Artikkel />} />
+          <Route path="/galleri" element={<Galleri />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
