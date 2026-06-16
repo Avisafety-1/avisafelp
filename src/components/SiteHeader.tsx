@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import avisafeLogoBlackAsset from "@/assets/avisafe-logo-black.png.asset.json";
-import avisafeLogoWhite from "@/assets/avisafe-logo-white.png";
+import avisafeLogoWhiteAsset from "@/assets/avisafe-logo-white.png.asset.json";
 
 const FacebookIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
