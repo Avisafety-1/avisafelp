@@ -27,6 +27,7 @@ const ScrollExpandMedia = ({
   const touchStartYRef = useRef(0);
   const progressRef = useRef(0);
   const expandedRef = useRef(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     progressRef.current = scrollProgress;
@@ -111,6 +112,14 @@ const ScrollExpandMedia = ({
     };
   }, []);
 
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.play().catch(() => {
+      // Autoplay may be blocked until user interaction; attributes handle most cases.
+    });
+  }, [mediaSrc]);
+
   const mediaWidth = 300 + scrollProgress * (isMobileState ? 650 : 1250);
   const mediaHeight = 400 + scrollProgress * (isMobileState ? 200 : 400);
   const textTranslateX = scrollProgress * (isMobileState ? 30 : 40);
@@ -147,6 +156,7 @@ const ScrollExpandMedia = ({
               >
                 <div className="relative w-full h-full pointer-events-none">
                   <video
+                    ref={videoRef}
                     src={mediaSrc}
                     poster={posterSrc}
                     autoPlay
