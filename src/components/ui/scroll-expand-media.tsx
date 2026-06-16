@@ -150,7 +150,7 @@ const ScrollExpandMedia = ({
         >
           <motion.h2
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white max-w-4xl px-4 mix-blend-difference"
-            style={{ marginTop: "20px" }}
+            style={{ marginTop: "30px" }}
           >
             {titleBottom}
           </motion.h2>
@@ -195,6 +195,7 @@ const ScrollExpandMedia = ({
         {/* titleTop — placed right under the video */}
         <motion.h2
           className="relative z-20 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold px-4 text-center pointer-events-none"
+          style={{ marginTop: "30px" }}
           animate={{
             color: scrollProgress > 0.1 ? "hsl(210, 45%, 12%)" : "#ffffff",
           }}
