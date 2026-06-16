@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart, Loader2, ChevronLeft, ChevronRight, ArrowLeft } from "lucide-react";
 import { fetchProducts, ShopifyProduct } from "@/lib/shopify";
@@ -9,6 +10,7 @@ import { CartDrawer } from "@/components/CartDrawer";
 import { toast } from "sonner";
 
 const Product = () => {
+  const { t } = useTranslation();
   const { handle } = useParams<{ handle: string }>();
   const [product, setProduct] = useState<ShopifyProduct | null>(null);
   const [loading, setLoading] = useState(true);
@@ -47,7 +49,7 @@ const Product = () => {
     };
 
     addItem(cartItem);
-    toast.success("Lagt til i handlekurven", {
+    toast.success(t("productPage.addedToCart"), {
       description: `${product.node.title} - ${variant.title}`,
       position: "top-center"
     });
@@ -67,11 +69,11 @@ const Product = () => {
   if (!product) {
     return (
       <div className="min-h-screen bg-background flex flex-col items-center justify-center gap-4">
-        <p className="text-muted-foreground">Produkt ikke funnet</p>
+        <p className="text-muted-foreground">{t("productPage.notFound")}</p>
         <Link to="/#shop">
           <Button variant="outline">
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Tilbake til produkter
+            {t("productPage.backToProducts")}
           </Button>
         </Link>
       </div>
@@ -112,10 +114,10 @@ const Product = () => {
     <div className="min-h-screen bg-background flex flex-col overflow-x-hidden">
       <Helmet>
         <title>{product.node.title} | AviSafe</title>
-        <meta name="description" content={product.node.description || `Kjøp ${product.node.title} fra AviSafe`} />
+        <meta name="description" content={product.node.description || t("productPage.metaDescriptionFallback", { title: product.node.title })} />
         <link rel="canonical" href={productUrl} />
         <meta property="og:title" content={`${product.node.title} | AviSafe`} />
-        <meta property="og:description" content={product.node.description || `Kjøp ${product.node.title} fra AviSafe`} />
+        <meta property="og:description" content={product.node.description || t("productPage.metaDescriptionFallback", { title: product.node.title })} />
         <meta property="og:type" content="product" />
         <meta property="og:url" content={productUrl} />
         <meta property="og:image" content={productImage} />
@@ -132,7 +134,7 @@ const Product = () => {
           <Link to="/#shop">
             <Button variant="ghost" size="sm" className="gap-1 px-2">
               <ArrowLeft className="w-4 h-4" />
-              <span className="hidden sm:inline">Tilbake</span>
+              <span className="hidden sm:inline">{t("common.back")}</span>
             </Button>
           </Link>
           <CartDrawer />
@@ -158,14 +160,14 @@ const Product = () => {
                       <button
                         onClick={() => setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length)}
                         className="absolute left-2 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background p-1.5 md:p-2 rounded-full"
-                        aria-label="Forrige bilde"
+                        aria-label={t("productPage.prevImage")}
                       >
                         <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
                       </button>
                       <button
                         onClick={() => setCurrentImageIndex((prev) => (prev + 1) % images.length)}
                         className="absolute right-2 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background p-1.5 md:p-2 rounded-full"
-                        aria-label="Neste bilde"
+                        aria-label={t("productPage.nextImage")}
                       >
                         <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
                       </button>
@@ -188,7 +190,7 @@ const Product = () => {
                     <button
                       key={index}
                       onClick={() => setCurrentImageIndex(index)}
-                      aria-label={`Vis bilde ${index + 1}`}
+                      aria-label={t("productPage.showImage") + ` ${index + 1}`}
                       className={`w-2.5 h-2.5 rounded-full transition-colors ${
                         index === currentImageIndex ? "bg-primary" : "bg-muted-foreground/40"
                       }`}
@@ -240,7 +242,7 @@ const Product = () => {
             {hasMultipleVariants && (
               <div className="space-y-2 md:space-y-3">
                 <label className="text-sm font-medium text-foreground">
-                  Velg plan
+                  {t("productPage.selectPlan")}
                 </label>
                 <div className="flex flex-wrap gap-2">
                   {product.node.variants.edges.map((variant, index) => (
@@ -262,7 +264,7 @@ const Product = () => {
 
             <Button onClick={handleAddToCart} size="lg" className="w-full gap-2">
               <ShoppingCart className="w-5 h-5" />
-              Legg til i handlekurv
+              {t("productPage.addToCart")}
             </Button>
           </div>
         </div>
