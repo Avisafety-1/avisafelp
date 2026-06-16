@@ -122,14 +122,11 @@ const ScrollExpandMedia = ({
     });
   }, [mediaSrc, webmSrc]);
 
-  const HEADER_OFFSET = 80;
+  // Start as a thin horizontal line right under the header, then grow downward as user scrolls.
+  const HEADER_OFFSET = 80; // approx header height in px
   const minHeightPx = 4;
   const maxHeightVh = isMobileState ? 70 : 85;
   const textTranslateX = scrollProgress * (isMobileState ? 30 : 40);
-
-  // Horizontal margins shrink from container padding (same as header) to 0 as scroll expands
-  const baseMargin = isMobileState ? 16 : 40; // px
-  const currentMargin = baseMargin * (1 - scrollProgress);
 
   return (
     <div className="transition-colors duration-700 ease-in-out overflow-x-hidden">
@@ -156,8 +153,6 @@ const ScrollExpandMedia = ({
                 style={{
                   top: `${HEADER_OFFSET}px`,
                   height: `calc(${minHeightPx}px + ${scrollProgress} * (${maxHeightVh}vh - ${minHeightPx}px))`,
-                  marginLeft: `${currentMargin}px`,
-                  marginRight: `${currentMargin}px`,
                   boxShadow: "0px 10px 40px rgba(0,0,0,0.25)",
                 }}
               >
@@ -193,17 +188,17 @@ const ScrollExpandMedia = ({
               </div>
 
               <div
-                className="flex items-center justify-center text-center gap-4 w-full relative z-10 flex-col"
+                className="flex items-center justify-center text-center gap-4 w-full relative z-10 flex-col mix-blend-difference"
                 style={{ pointerEvents: "none" }}
               >
                 <motion.h2
-                  className="text-[hsl(210,45%,12%)] text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold px-4 leading-tight"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white px-4"
                   style={{ transform: `translateX(-${textTranslateX}vw)` }}
                 >
                   {titleTop}
                 </motion.h2>
                 <motion.h2
-                  className="text-[hsl(210,45%,12%)] text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold max-w-5xl px-4 leading-tight"
+                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white max-w-4xl px-4"
                   style={{ transform: `translateX(${textTranslateX}vw)` }}
                 >
                   {titleBottom}
