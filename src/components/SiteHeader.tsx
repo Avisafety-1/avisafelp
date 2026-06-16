@@ -69,7 +69,7 @@ const SiteHeader = () => {
           <Link to="/" className="flex items-center gap-2 shrink-0 group relative">
             <span className="relative block h-7 md:h-9 w-auto">
               <img
-                src={avisafeLogoWhite}
+                src={avisafeLogoWhiteAsset.url}
                 alt="AviSafe"
                 className={`h-7 md:h-9 w-auto transition-opacity duration-500 ${
                   scrolled ? "opacity-0" : "opacity-100"
