@@ -94,7 +94,11 @@ const SiteHeader = () => {
                 onClick={() =>
                   item.kind === "scroll" ? handleScrollTo(item.id) : navigate(item.to)
                 }
-                className="px-4 py-2 text-sm font-medium uppercase tracking-wider text-white/85 hover:text-white transition-colors relative after:absolute after:left-4 after:right-4 after:bottom-1 after:h-px after:bg-white after:scale-x-0 hover:after:scale-x-100 after:origin-left after:transition-transform after:duration-300"
+                className={`px-4 py-2 text-sm font-medium uppercase tracking-wider transition-colors duration-500 relative after:absolute after:left-4 after:right-4 after:bottom-1 after:h-px after:scale-x-0 hover:after:scale-x-100 after:origin-left after:transition-transform after:duration-300 ${
+                  scrolled
+                    ? "text-[hsl(210,45%,12%)]/80 hover:text-[hsl(210,45%,12%)] after:bg-[hsl(210,45%,12%)]"
+                    : "text-white/85 hover:text-white after:bg-white"
+                }`}
               >
                 {t(item.labelKey)}
               </button>
@@ -109,7 +113,7 @@ const SiteHeader = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
-                className="text-white/70 hover:text-white transition-colors"
+                className={`transition-colors duration-500 ${scrolled ? "text-[#1877F2] hover:text-[#1877F2]/80" : "text-white/70 hover:text-white"}`}
               >
                 <FacebookIcon className="w-4 h-4" />
               </a>
@@ -118,12 +122,12 @@ const SiteHeader = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="text-white/70 hover:text-white transition-colors"
+                className={`transition-colors duration-500 ${scrolled ? "text-[#0A66C2] hover:text-[#0A66C2]/80" : "text-white/70 hover:text-white"}`}
               >
                 <LinkedInIcon className="w-4 h-4" />
               </a>
             </div>
-            <LanguageSwitcher variant="dark" />
+            <LanguageSwitcher variant={scrolled ? "light" : "dark"} />
             <Button
               asChild
               className="hidden sm:inline-flex h-9 rounded-full bg-[#123b87] hover:bg-[#0e2f6b] text-white px-5 text-sm font-semibold shadow-lg"
@@ -135,7 +139,7 @@ const SiteHeader = () => {
             <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger asChild>
                 <button
-                  className="lg:hidden p-2 text-white hover:bg-white/10 rounded-md"
+                  className={`lg:hidden p-2 rounded-md transition-colors duration-500 ${scrolled ? "text-[hsl(210,45%,12%)] hover:bg-black/10" : "text-white hover:bg-white/10"}`}
                   aria-label={t("common.openMenu")}
                 >
                   <Menu className="w-6 h-6" />
