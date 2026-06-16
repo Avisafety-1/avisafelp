@@ -8,7 +8,6 @@ interface ScrollExpandMediaProps {
   bgImageSrc: string;
   titleTop: string;
   titleBottom: string;
-  scrollToExpand?: string;
   children?: ReactNode;
 }
 
@@ -19,7 +18,6 @@ const ScrollExpandMedia = ({
   bgImageSrc,
   titleTop,
   titleBottom,
-  scrollToExpand,
   children,
 }: ScrollExpandMediaProps) => {
   const [scrollProgress, setScrollProgress] = useState(0);
