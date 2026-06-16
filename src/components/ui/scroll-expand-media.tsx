@@ -149,12 +149,6 @@ const ScrollExpandMedia = ({
           className="absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-none"
         >
           <motion.h2
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white px-4 mix-blend-difference"
-            style={{ transform: `translateX(-${textTranslateX}vw)` }}
-          >
-            {titleTop}
-          </motion.h2>
-          <motion.h2
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white max-w-4xl px-4 mt-2 mix-blend-difference"
             style={{ transform: `translateX(${textTranslateX}vw)` }}
           >
@@ -197,6 +191,14 @@ const ScrollExpandMedia = ({
             </div>
           </div>
         </div>
+
+        {/* titleTop — placed right under the video */}
+        <motion.h2
+          className="relative z-20 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white px-4 text-center pointer-events-none"
+          style={{ transform: `translateX(-${textTranslateX}vw)` }}
+        >
+          {titleTop}
+        </motion.h2>
 
         {/* Spacer that grows so the section stays at least 100dvh */}
         <div className="flex-1 min-h-0" />
