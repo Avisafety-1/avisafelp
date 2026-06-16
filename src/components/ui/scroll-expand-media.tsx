@@ -122,8 +122,10 @@ const ScrollExpandMedia = ({
     });
   }, [mediaSrc, webmSrc]);
 
-  const mediaWidth = 300 + scrollProgress * (isMobileState ? 650 : 1250);
-  const mediaHeight = 400 + scrollProgress * (isMobileState ? 200 : 400);
+  // Start as a thin horizontal line right under the header, then grow downward as user scrolls.
+  const HEADER_OFFSET = 80; // approx header height in px
+  const minHeightPx = 4;
+  const maxHeightVh = isMobileState ? 70 : 85;
   const textTranslateX = scrollProgress * (isMobileState ? 30 : 40);
 
   return (
@@ -147,13 +149,11 @@ const ScrollExpandMedia = ({
           <div className="container mx-auto flex flex-col items-center justify-start relative z-10">
             <div className="flex flex-col items-center justify-center w-full h-[100dvh] relative">
               <div
-                className="absolute z-0 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl overflow-hidden"
+                className="fixed left-0 right-0 z-0 overflow-hidden rounded-b-2xl"
                 style={{
-                  width: `${mediaWidth}px`,
-                  height: `${mediaHeight}px`,
-                  maxWidth: "95vw",
-                  maxHeight: "85vh",
-                  boxShadow: "0px 0px 50px rgba(0,0,0,0.3)",
+                  top: `${HEADER_OFFSET}px`,
+                  height: `calc(${minHeightPx}px + ${scrollProgress} * (${maxHeightVh}vh - ${minHeightPx}px))`,
+                  boxShadow: "0px 10px 40px rgba(0,0,0,0.25)",
                 }}
               >
                 <div className="relative w-full h-full pointer-events-none">
@@ -165,20 +165,20 @@ const ScrollExpandMedia = ({
                     loop
                     playsInline
                     preload="auto"
-                    className="w-full h-full object-cover rounded-xl"
+                    className="w-full h-full object-cover"
                   >
                     {webmSrc && <source src={webmSrc} type="video/webm" />}
                     <source src={mediaSrc} type="video/mp4" />
                   </video>
                   <motion.div
-                    className="absolute inset-0 bg-black/30 rounded-xl"
+                    className="absolute inset-0 bg-black/30"
                     initial={{ opacity: 0.7 }}
                     animate={{ opacity: 0.5 - scrollProgress * 0.3 }}
                     transition={{ duration: 0.2 }}
                   />
                 </div>
 
-                {scrollToExpand && !mediaFullyExpanded && (
+                {scrollToExpand && !mediaFullyExpanded && scrollProgress > 0.05 && (
                   <div className="absolute bottom-4 left-0 right-0 flex justify-center z-10 pointer-events-none">
                     <p className="text-white/90 font-medium text-sm">
                       {scrollToExpand}
