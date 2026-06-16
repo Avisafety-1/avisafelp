@@ -1,15 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Menu, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import {
   Accordion,
   AccordionContent,
@@ -37,6 +31,73 @@ const LinkedInIcon = ({ className }: { className?: string }) => (
     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
   </svg>
 );
+
+interface HoverDropdownProps {
+  label: string;
+  items: { label: string; action: () => void }[];
+  scrolled: boolean;
+}
+
+const HoverDropdown = ({ label, items, scrolled }: HoverDropdownProps) => {
+  const [open, setOpen] = useState(false);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleEnter = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setOpen(true);
+  };
+
+  const handleLeave = () => {
+    timeoutRef.current = setTimeout(() => setOpen(false), 150);
+  };
+
+  const buttonBg = scrolled
+    ? "bg-white text-[hsl(210,45%,12%)] hover:bg-gray-100 border border-black/10"
+    : "bg-black text-white hover:bg-black/80 border border-white/15";
+
+  const dropdownBg = scrolled
+    ? "bg-white border border-black/10 shadow-lg"
+    : "bg-black border border-white/15 shadow-lg";
+
+  const itemText = scrolled
+    ? "text-[hsl(210,45%,12%)] hover:bg-gray-100"
+    : "text-white hover:bg-white/10";
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={handleEnter}
+      onMouseLeave={handleLeave}
+    >
+      <button
+        className={`px-4 py-2 text-sm font-medium uppercase tracking-wider transition-colors duration-300 inline-flex items-center gap-1 outline-none rounded-md ${buttonBg}`}
+      >
+        {label}
+        <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
+      </button>
+      {open && (
+        <div
+          className={`absolute top-full left-0 mt-1 rounded-md overflow-hidden min-w-[12rem] ${dropdownBg}`}
+          onMouseEnter={handleEnter}
+          onMouseLeave={handleLeave}
+        >
+          {items.map((it, idx) => (
+            <button
+              key={idx}
+              onClick={() => {
+                it.action();
+                setOpen(false);
+              }}
+              className={`block w-full text-left px-4 py-2.5 text-sm transition-colors ${itemText}`}
+            >
+              {it.label}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
 
 const SiteHeader = () => {
   const { t } = useTranslation();
@@ -72,22 +133,22 @@ const SiteHeader = () => {
     setNewsletterOpen(true);
   };
 
-  const triggerBase =
-    "px-4 py-2 text-sm font-medium uppercase tracking-wider transition-colors duration-500 inline-flex items-center gap-1 outline-none";
-  const triggerColor = scrolled
-    ? "text-[hsl(210,45%,12%)]/80 hover:text-[hsl(210,45%,12%)]"
-    : "text-white/85 hover:text-white";
+  const navButtonBase =
+    "px-4 py-2 text-sm font-medium uppercase tracking-wider transition-colors duration-300 inline-flex items-center gap-1 outline-none rounded-md";
+  const navButtonTheme = scrolled
+    ? "bg-white text-[hsl(210,45%,12%)] hover:bg-gray-100 border border-black/10"
+    : "bg-black text-white hover:bg-black/80 border border-white/15";
 
   const smsItems = [
-    { key: "smsOverview", action: () => scrollToId("product-section") },
-    { key: "smsIntegrations", action: () => scrollToId("integrations-section") },
-    { key: "smsSecurity", action: () => scrollToId("security-section") },
-  ] as const;
+    { label: t("nav.smsOverview"), action: () => scrollToId("product-section") },
+    { label: t("nav.smsIntegrations"), action: () => scrollToId("integrations-section") },
+    { label: t("nav.smsSecurity"), action: () => scrollToId("security-section") },
+  ];
 
   const articlesItems = [
-    { key: "articles", action: () => goTo("/artikler") },
-    { key: "gallery", action: () => goTo("/galleri") },
-  ] as const;
+    { label: t("nav.articles"), action: () => goTo("/artikler") },
+    { label: t("nav.gallery"), action: () => goTo("/galleri") },
+  ];
 
   return (
     <>
@@ -122,48 +183,22 @@ const SiteHeader = () => {
             </Link>
 
             {/* Desktop nav */}
-            <nav className="hidden lg:flex items-center gap-1">
-              {/* SMS dropdown */}
-              <DropdownMenu>
-                <DropdownMenuTrigger className={`${triggerBase} ${triggerColor}`}>
-                  {t("nav.sms")}
-                  <ChevronDown className="w-3.5 h-3.5" />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="min-w-[12rem]">
-                  {smsItems.map((it) => (
-                    <DropdownMenuItem key={it.key} onClick={it.action}>
-                      {t(`nav.${it.key}`)}
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
+            <nav className="hidden lg:flex items-center gap-2">
+              <HoverDropdown label={t("nav.sms")} items={smsItems} scrolled={scrolled} />
 
-              <button onClick={() => goTo("/operations")} className={`${triggerBase} ${triggerColor}`}>
+              <button onClick={() => goTo("/operations")} className={`${navButtonBase} ${navButtonTheme}`}>
                 {t("nav.operations")}
               </button>
 
-              {/* Articles / Media dropdown */}
-              <DropdownMenu>
-                <DropdownMenuTrigger className={`${triggerBase} ${triggerColor}`}>
-                  {t("nav.articlesMedia")}
-                  <ChevronDown className="w-3.5 h-3.5" />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="min-w-[10rem]">
-                  {articlesItems.map((it) => (
-                    <DropdownMenuItem key={it.key} onClick={it.action}>
-                      {t(`nav.${it.key}`)}
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <HoverDropdown label={t("nav.articlesMedia")} items={articlesItems} scrolled={scrolled} />
 
-              <button onClick={openNewsletter} className={`${triggerBase} ${triggerColor}`}>
+              <button onClick={openNewsletter} className={`${navButtonBase} ${navButtonTheme}`}>
                 {t("nav.newsletter")}
               </button>
 
               <button
                 onClick={() => (window.location.href = "mailto:kontakt@avisafe.no")}
-                className={`${triggerBase} ${triggerColor}`}
+                className={`${navButtonBase} ${navButtonTheme}`}
               >
                 {t("nav.contact")}
               </button>
@@ -224,13 +259,13 @@ const SiteHeader = () => {
                         </AccordionTrigger>
                         <AccordionContent className="pb-1">
                           <div className="flex flex-col">
-                            {smsItems.map((it) => (
+                            {smsItems.map((it, idx) => (
                               <button
-                                key={it.key}
+                                key={idx}
                                 onClick={it.action}
                                 className="text-left px-6 py-2.5 text-sm hover:bg-white/10 rounded-md text-white/85"
                               >
-                                {t(`nav.${it.key}`)}
+                                {it.label}
                               </button>
                             ))}
                           </div>
@@ -242,13 +277,13 @@ const SiteHeader = () => {
                         </AccordionTrigger>
                         <AccordionContent className="pb-1">
                           <div className="flex flex-col">
-                            {articlesItems.map((it) => (
+                            {articlesItems.map((it, idx) => (
                               <button
-                                key={it.key}
+                                key={idx}
                                 onClick={it.action}
                                 className="text-left px-6 py-2.5 text-sm hover:bg-white/10 rounded-md text-white/85"
                               >
-                                {t(`nav.${it.key}`)}
+                                {it.label}
                               </button>
                             ))}
                           </div>
@@ -302,3 +337,4 @@ const SiteHeader = () => {
 };
 
 export default SiteHeader;
+
