@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import avisafeLogoBlack from "@/assets/avisafe-logo-black.png";
+import avisafeLogoWhite from "@/assets/avisafe-logo-white.png";
 
 const FacebookIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -58,19 +59,31 @@ const SiteHeader = () => {
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-[hsl(210,45%,8%)]/85 backdrop-blur-xl border-b border-white/10"
+          ? "bg-white/90 backdrop-blur-xl border-b border-black/10 shadow-sm"
           : "bg-gradient-to-b from-[hsl(210,45%,8%)]/40 to-transparent backdrop-blur-sm"
       }`}
     >
       <div className="w-full px-4 sm:px-6 lg:px-10">
         <div className="flex h-16 md:h-20 items-center justify-between gap-4">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 shrink-0 group">
-            <img
-              src={avisafeLogoBlack}
-              alt="AviSafe"
-              className="h-7 md:h-9 w-auto brightness-0 invert transition-transform group-hover:scale-105"
-            />
+          {/* Logo — crossfade between white (over hero) and black (on scroll) */}
+          <Link to="/" className="flex items-center gap-2 shrink-0 group relative">
+            <span className="relative block h-7 md:h-9 w-auto">
+              <img
+                src={avisafeLogoWhite}
+                alt="AviSafe"
+                className={`h-7 md:h-9 w-auto transition-opacity duration-500 ${
+                  scrolled ? "opacity-0" : "opacity-100"
+                }`}
+              />
+              <img
+                src={avisafeLogoBlack}
+                alt=""
+                aria-hidden="true"
+                className={`absolute inset-0 h-7 md:h-9 w-auto transition-opacity duration-500 ${
+                  scrolled ? "opacity-100" : "opacity-0"
+                }`}
+              />
+            </span>
           </Link>
 
           {/* Desktop nav */}
@@ -81,7 +94,11 @@ const SiteHeader = () => {
                 onClick={() =>
                   item.kind === "scroll" ? handleScrollTo(item.id) : navigate(item.to)
                 }
-                className="px-4 py-2 text-sm font-medium uppercase tracking-wider text-white/85 hover:text-white transition-colors relative after:absolute after:left-4 after:right-4 after:bottom-1 after:h-px after:bg-white after:scale-x-0 hover:after:scale-x-100 after:origin-left after:transition-transform after:duration-300"
+                className={`px-4 py-2 text-sm font-medium uppercase tracking-wider transition-colors duration-500 relative after:absolute after:left-4 after:right-4 after:bottom-1 after:h-px after:scale-x-0 hover:after:scale-x-100 after:origin-left after:transition-transform after:duration-300 ${
+                  scrolled
+                    ? "text-[hsl(210,45%,12%)]/80 hover:text-[hsl(210,45%,12%)] after:bg-[hsl(210,45%,12%)]"
+                    : "text-white/85 hover:text-white after:bg-white"
+                }`}
               >
                 {t(item.labelKey)}
               </button>
@@ -96,7 +113,7 @@ const SiteHeader = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
-                className="text-white/70 hover:text-white transition-colors"
+                className={`transition-colors duration-500 ${scrolled ? "text-[#1877F2] hover:text-[#1877F2]/80" : "text-white/70 hover:text-white"}`}
               >
                 <FacebookIcon className="w-4 h-4" />
               </a>
@@ -105,12 +122,12 @@ const SiteHeader = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="text-white/70 hover:text-white transition-colors"
+                className={`transition-colors duration-500 ${scrolled ? "text-[#0A66C2] hover:text-[#0A66C2]/80" : "text-white/70 hover:text-white"}`}
               >
                 <LinkedInIcon className="w-4 h-4" />
               </a>
             </div>
-            <LanguageSwitcher variant="dark" />
+            <LanguageSwitcher variant={scrolled ? "light" : "dark"} />
             <Button
               asChild
               className="hidden sm:inline-flex h-9 rounded-full bg-[#123b87] hover:bg-[#0e2f6b] text-white px-5 text-sm font-semibold shadow-lg"
@@ -122,7 +139,7 @@ const SiteHeader = () => {
             <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger asChild>
                 <button
-                  className="lg:hidden p-2 text-white hover:bg-white/10 rounded-md"
+                  className={`lg:hidden p-2 rounded-md transition-colors duration-500 ${scrolled ? "text-[hsl(210,45%,12%)] hover:bg-black/10" : "text-white hover:bg-white/10"}`}
                   aria-label={t("common.openMenu")}
                 >
                   <Menu className="w-6 h-6" />
