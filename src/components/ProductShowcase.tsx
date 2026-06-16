@@ -61,9 +61,12 @@ const featuresBase: Feature[] = [
 const PhoneMockup = ({
   feature
 }: {
-  feature: typeof features[0];
+  feature: Feature;
 }) => {
+  const { t } = useTranslation();
   const Icon = feature.icon;
+  const title = t(`product.features.${feature.tKey}.title`);
+  const description = t(`product.features.${feature.tKey}.description`);
   const { ref: inViewRef, isInView } = useInView();
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -78,10 +81,10 @@ const PhoneMockup = ({
       <div className="text-center px-2 min-h-28 flex flex-col justify-end mb-4">
         <div className="inline-flex items-center justify-center gap-2 bg-[hsl(var(--text-dark-blue))]/10 text-[hsl(var(--text-dark-blue))] px-4 py-2 rounded-full mb-3">
           <Icon className="w-5 h-5" />
-          <span className="font-semibold text-sm">{feature.title}</span>
+          <span className="font-semibold text-sm">{title}</span>
         </div>
         <p className="text-xs text-[hsl(var(--text-dark-blue))] leading-relaxed line-clamp-3">
-          {feature.description}
+          {description}
         </p>
       </div>
 
@@ -105,7 +108,7 @@ const PhoneMockup = ({
               poster={feature.image}
             />
           ) : (
-            <img src={feature.image} alt={`AviSafe ${feature.title} – ${feature.description}`} className="w-full h-full object-cover object-top" loading="lazy" />
+            <img src={feature.image} alt={`AviSafe ${title} – ${description}`} className="w-full h-full object-cover object-top" loading="lazy" />
           )}
         </div>
         
@@ -114,6 +117,7 @@ const PhoneMockup = ({
       </div>
     </div>;
 };
+
 
 const LazyDemoVideo = () => {
   const { ref, isInView } = useInView();
