@@ -121,7 +121,7 @@ const ScrollExpandMedia = ({
   }, [mediaSrc, webmSrc]);
 
   const HEADER_OFFSET = 80;
-  const minHeightPx = 4;
+  const minHeightPx = 80;
   const maxHeightVh = isMobileState ? 70 : 85;
   const textTranslateX = scrollProgress * (isMobileState ? 30 : 40);
   const videoHeight = `calc(${minHeightPx}px + ${scrollProgress} * (${maxHeightVh}vh - ${minHeightPx}px))`;
@@ -162,13 +162,13 @@ const ScrollExpandMedia = ({
           </motion.h2>
         </div>
 
-        {/* Video — starts as thin line under header, grows downward */}
+        {/* Video — starts at header height right under header, grows downward */}
         <div
-          className="relative z-10 w-full px-4 sm:px-6 lg:px-10 mt-0 shrink-0"
+          className="relative z-10 w-full mt-0 shrink-0"
           style={{ paddingTop: `${HEADER_OFFSET}px` }}
         >
           <div
-            className="mx-auto w-full overflow-hidden"
+            className="w-full overflow-hidden"
             style={{
               height: videoHeight,
               boxShadow: "0px 10px 40px rgba(0,0,0,0.25)",
