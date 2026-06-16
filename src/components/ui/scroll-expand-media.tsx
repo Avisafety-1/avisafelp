@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 
 interface ScrollExpandMediaProps {
   mediaSrc: string;
+  webmSrc?: string;
   posterSrc?: string;
   bgImageSrc: string;
   titleTop: string;
@@ -13,6 +14,7 @@ interface ScrollExpandMediaProps {
 
 const ScrollExpandMedia = ({
   mediaSrc,
+  webmSrc,
   posterSrc,
   bgImageSrc,
   titleTop,
@@ -157,7 +159,6 @@ const ScrollExpandMedia = ({
                 <div className="relative w-full h-full pointer-events-none">
                   <video
                     ref={videoRef}
-                    src={mediaSrc}
                     poster={posterSrc}
                     autoPlay
                     muted
@@ -165,7 +166,10 @@ const ScrollExpandMedia = ({
                     playsInline
                     preload="auto"
                     className="w-full h-full object-cover rounded-xl"
-                  />
+                  >
+                    {webmSrc && <source src={webmSrc} type="video/webm" />}
+                    <source src={mediaSrc} type="video/mp4" />
+                  </video>
                   <motion.div
                     className="absolute inset-0 bg-black/30 rounded-xl"
                     initial={{ opacity: 0.7 }}
