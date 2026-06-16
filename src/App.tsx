@@ -12,6 +12,7 @@ import Artikler from "./pages/Artikler";
 import Artikkel from "./pages/Artikkel";
 import NotFound from "./pages/NotFound";
 import Galleri from "./pages/Galleri";
+import SiteHeader from "./components/SiteHeader";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <SiteHeader />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/product/:handle" element={<Product />} />
