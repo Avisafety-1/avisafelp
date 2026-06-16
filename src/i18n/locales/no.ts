@@ -6,6 +6,13 @@ const no = {
     gallery: "Galleri",
     team: "Team",
     contact: "Kontakt",
+    sms: "SMS",
+    smsOverview: "Oversikt",
+    smsIntegrations: "Integrasjoner",
+    smsSecurity: "Sikkerhet",
+    operations: "Operasjoner",
+    articlesMedia: "Artikler/Media",
+    newsletter: "Nyhetsbrev",
   },
   common: {
     contact: "Kontakt oss",
@@ -355,6 +362,13 @@ const no = {
     error: "Kunne ikke laste mediefiler.",
     open: "Åpne",
     download: "Last ned",
+  },
+  operations: {
+    pageTitle: "Operasjoner – AviSafe",
+    metaDescription: "AviSafe søker om operatørtillatelse og hjelper selskaper i gang med sine droneoperasjoner.",
+    h1: "Operasjoner",
+    body: "AviSafe søker om operatørtillatelse og ønsker å hjelpe selskaper i gang med sine operasjoner. Ta kontakt med oss for å høre hvor vi er i prosessen.",
+    cta: "Kontakt oss",
   },
 };
 

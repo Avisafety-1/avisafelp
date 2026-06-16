@@ -8,6 +8,13 @@ const en: Translations = {
     gallery: "Gallery",
     team: "Team",
     contact: "Contact",
+    sms: "SMS",
+    smsOverview: "Overview",
+    smsIntegrations: "Integrations",
+    smsSecurity: "Security",
+    operations: "Operations",
+    articlesMedia: "Articles & Media",
+    newsletter: "Newsletter",
   },
   common: {
     contact: "Contact us",
@@ -357,6 +364,13 @@ const en: Translations = {
     error: "Could not load media.",
     open: "Open",
     download: "Download",
+  },
+  operations: {
+    pageTitle: "Operations – AviSafe",
+    metaDescription: "AviSafe is applying for an operator permit and helps companies get started with their drone operations.",
+    h1: "Operations",
+    body: "AviSafe is applying for an operator permit and wants to help companies get started with their operations. Get in touch to hear where we are in the process.",
+    cta: "Contact us",
   },
 };
 

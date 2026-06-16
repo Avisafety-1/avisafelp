@@ -58,7 +58,7 @@ const Index = () => {
 
 
       {/* Security — full-width light band, no boxed card */}
-      <SectionReveal className="relative w-full bg-[hsl(210,30%,96%)] py-24 md:py-32">
+      <SectionReveal id="security-section" className="relative w-full bg-[hsl(210,30%,96%)] py-24 md:py-32 scroll-mt-24">
         <Security />
       </SectionReveal>
 

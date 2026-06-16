@@ -1,9 +1,27 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Menu } from "lucide-react";
+import { Menu, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import avisafeLogoBlackAsset from "@/assets/avisafe-logo-black.png.asset.json";
 import avisafeLogoWhiteAsset from "@/assets/avisafe-logo-white.png.asset.json";
@@ -20,22 +38,11 @@ const LinkedInIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-type NavItem =
-  | { kind: "scroll"; id: string; labelKey: string }
-  | { kind: "link"; to: string; labelKey: string };
-
-const NAV: NavItem[] = [
-  { kind: "scroll", id: "product-section", labelKey: "nav.product" },
-  { kind: "link", to: "/sora", labelKey: "nav.sora" },
-  { kind: "link", to: "/artikler", labelKey: "nav.articles" },
-  { kind: "link", to: "/galleri", labelKey: "nav.gallery" },
-  { kind: "scroll", id: "team-section", labelKey: "nav.team" },
-];
-
 const SiteHeader = () => {
   const { t } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [newsletterOpen, setNewsletterOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -46,7 +53,7 @@ const SiteHeader = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const handleScrollTo = (id: string) => {
+  const scrollToId = (id: string) => {
     setOpen(false);
     if (location.pathname !== "/") {
       navigate("/", { state: { scrollTo: id } });
@@ -55,124 +62,242 @@ const SiteHeader = () => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const goTo = (path: string) => {
+    setOpen(false);
+    navigate(path);
+  };
+
+  const openNewsletter = () => {
+    setOpen(false);
+    setNewsletterOpen(true);
+  };
+
+  const triggerBase =
+    "px-4 py-2 text-sm font-medium uppercase tracking-wider transition-colors duration-500 inline-flex items-center gap-1 outline-none";
+  const triggerColor = scrolled
+    ? "text-[hsl(210,45%,12%)]/80 hover:text-[hsl(210,45%,12%)]"
+    : "text-white/85 hover:text-white";
+
+  const smsItems = [
+    { key: "smsOverview", action: () => scrollToId("product-section") },
+    { key: "smsIntegrations", action: () => scrollToId("integrations-section") },
+    { key: "smsSecurity", action: () => scrollToId("security-section") },
+  ] as const;
+
+  const articlesItems = [
+    { key: "articles", action: () => goTo("/artikler") },
+    { key: "gallery", action: () => goTo("/galleri") },
+  ] as const;
+
   return (
-    <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-white/90 backdrop-blur-xl border-b border-black/10 shadow-sm"
-          : "bg-[hsl(210,45%,8%)] border-b border-white/10 shadow-sm"
-      }`}
-    >
-      <div className="w-full px-4 sm:px-6 lg:px-10">
-        <div className="flex h-16 md:h-20 items-center justify-between gap-4">
-          {/* Logo — crossfade between white (over hero) and black (on scroll) */}
-          <Link to="/" className="flex items-center gap-2 shrink-0 group relative">
-            <span className="relative block h-7 md:h-9 w-auto">
-              <img
-                src={avisafeLogoWhiteAsset.url}
-                alt="AviSafe"
-                className={`h-7 md:h-9 w-auto transition-opacity duration-500 ${
-                  scrolled ? "opacity-0" : "opacity-100"
-                }`}
-              />
-              <img
-                src={avisafeLogoBlackAsset.url}
-                alt=""
-                aria-hidden="true"
-                className={`absolute inset-0 h-7 md:h-9 w-auto transition-opacity duration-500 ${
-                  scrolled ? "opacity-100" : "opacity-0"
-                }`}
-              />
-            </span>
-          </Link>
+    <>
+      <header
+        className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
+          scrolled
+            ? "bg-white/90 backdrop-blur-xl border-b border-black/10 shadow-sm"
+            : "bg-[hsl(210,45%,8%)] border-b border-white/10 shadow-sm"
+        }`}
+      >
+        <div className="w-full px-4 sm:px-6 lg:px-10">
+          <div className="flex h-16 md:h-20 items-center justify-between gap-4">
+            {/* Logo */}
+            <Link to="/" className="flex items-center gap-2 shrink-0 group relative">
+              <span className="relative block h-7 md:h-9 w-auto">
+                <img
+                  src={avisafeLogoWhiteAsset.url}
+                  alt="AviSafe"
+                  className={`h-7 md:h-9 w-auto transition-opacity duration-500 ${
+                    scrolled ? "opacity-0" : "opacity-100"
+                  }`}
+                />
+                <img
+                  src={avisafeLogoBlackAsset.url}
+                  alt=""
+                  aria-hidden="true"
+                  className={`absolute inset-0 h-7 md:h-9 w-auto transition-opacity duration-500 ${
+                    scrolled ? "opacity-100" : "opacity-0"
+                  }`}
+                />
+              </span>
+            </Link>
 
-          {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-1">
-            {NAV.map((item) => (
-              <button
-                key={item.labelKey}
-                onClick={() =>
-                  item.kind === "scroll" ? handleScrollTo(item.id) : navigate(item.to)
-                }
-                className={`px-4 py-2 text-sm font-medium uppercase tracking-wider transition-colors duration-500 relative after:absolute after:left-4 after:right-4 after:bottom-1 after:h-px after:scale-x-0 hover:after:scale-x-100 after:origin-left after:transition-transform after:duration-300 ${
-                  scrolled
-                    ? "text-[hsl(210,45%,12%)]/80 hover:text-[hsl(210,45%,12%)] after:bg-[hsl(210,45%,12%)]"
-                    : "text-white/85 hover:text-white after:bg-white"
-                }`}
-              >
-                {t(item.labelKey)}
+            {/* Desktop nav */}
+            <nav className="hidden lg:flex items-center gap-1">
+              {/* SMS dropdown */}
+              <DropdownMenu>
+                <DropdownMenuTrigger className={`${triggerBase} ${triggerColor}`}>
+                  {t("nav.sms")}
+                  <ChevronDown className="w-3.5 h-3.5" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="min-w-[12rem]">
+                  {smsItems.map((it) => (
+                    <DropdownMenuItem key={it.key} onClick={it.action}>
+                      {t(`nav.${it.key}`)}
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+
+              <button onClick={() => goTo("/operations")} className={`${triggerBase} ${triggerColor}`}>
+                {t("nav.operations")}
               </button>
-            ))}
-          </nav>
 
-          {/* Right cluster */}
-          <div className="flex items-center gap-2 md:gap-3">
-            <div className="hidden sm:flex items-center gap-2">
-              <a
-                href="https://www.facebook.com/profile.php?id=61583893445784"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-                className={`transition-colors duration-500 ${scrolled ? "text-[#1877F2] hover:text-[#1877F2]/80" : "text-white/70 hover:text-white"}`}
-              >
-                <FacebookIcon className="w-4 h-4" />
-              </a>
-              <a
-                href="https://www.linkedin.com/company/avisafe-as/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                className={`transition-colors duration-500 ${scrolled ? "text-[#0A66C2] hover:text-[#0A66C2]/80" : "text-white/70 hover:text-white"}`}
-              >
-                <LinkedInIcon className="w-4 h-4" />
-              </a>
-            </div>
-            <LanguageSwitcher variant={scrolled ? "light" : "dark"} />
-            <Button
-              asChild
-              className="hidden sm:inline-flex h-9 rounded-full bg-[#123b87] hover:bg-[#0e2f6b] text-white px-5 text-sm font-semibold shadow-lg"
-            >
-              <a href="mailto:kontakt@avisafe.no">{t("common.contact")}</a>
-            </Button>
+              {/* Articles / Media dropdown */}
+              <DropdownMenu>
+                <DropdownMenuTrigger className={`${triggerBase} ${triggerColor}`}>
+                  {t("nav.articlesMedia")}
+                  <ChevronDown className="w-3.5 h-3.5" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="min-w-[10rem]">
+                  {articlesItems.map((it) => (
+                    <DropdownMenuItem key={it.key} onClick={it.action}>
+                      {t(`nav.${it.key}`)}
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
 
-            {/* Mobile menu */}
-            <Sheet open={open} onOpenChange={setOpen}>
-              <SheetTrigger asChild>
-                <button
-                  className={`lg:hidden p-2 rounded-md transition-colors duration-500 ${scrolled ? "text-[hsl(210,45%,12%)] hover:bg-black/10" : "text-white hover:bg-white/10"}`}
-                  aria-label={t("common.openMenu")}
+              <button onClick={openNewsletter} className={`${triggerBase} ${triggerColor}`}>
+                {t("nav.newsletter")}
+              </button>
+
+              <button
+                onClick={() => (window.location.href = "mailto:kontakt@avisafe.no")}
+                className={`${triggerBase} ${triggerColor}`}
+              >
+                {t("nav.contact")}
+              </button>
+            </nav>
+
+            {/* Right cluster */}
+            <div className="flex items-center gap-2 md:gap-3">
+              <div className="hidden sm:flex items-center gap-2">
+                <a
+                  href="https://www.facebook.com/profile.php?id=61583893445784"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                  className={`transition-colors duration-500 ${
+                    scrolled ? "text-[#1877F2] hover:text-[#1877F2]/80" : "text-white/70 hover:text-white"
+                  }`}
                 >
-                  <Menu className="w-6 h-6" />
-                </button>
-              </SheetTrigger>
-              <SheetContent side="right" className="bg-[hsl(210,45%,8%)] border-white/10 text-white">
-                <nav className="flex flex-col gap-2 mt-10">
-                  {NAV.map((item) => (
+                  <FacebookIcon className="w-4 h-4" />
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/avisafe-as/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  className={`transition-colors duration-500 ${
+                    scrolled ? "text-[#0A66C2] hover:text-[#0A66C2]/80" : "text-white/70 hover:text-white"
+                  }`}
+                >
+                  <LinkedInIcon className="w-4 h-4" />
+                </a>
+              </div>
+              <LanguageSwitcher variant={scrolled ? "light" : "dark"} />
+              <Button
+                asChild
+                className="hidden sm:inline-flex h-9 rounded-full bg-[#123b87] hover:bg-[#0e2f6b] text-white px-5 text-sm font-semibold shadow-lg"
+              >
+                <a href="mailto:kontakt@avisafe.no">{t("nav.contact")}</a>
+              </Button>
+
+              {/* Mobile menu */}
+              <Sheet open={open} onOpenChange={setOpen}>
+                <SheetTrigger asChild>
+                  <button
+                    className={`lg:hidden p-2 rounded-md transition-colors duration-500 ${
+                      scrolled ? "text-[hsl(210,45%,12%)] hover:bg-black/10" : "text-white hover:bg-white/10"
+                    }`}
+                    aria-label={t("common.openMenu")}
+                  >
+                    <Menu className="w-6 h-6" />
+                  </button>
+                </SheetTrigger>
+                <SheetContent side="right" className="bg-[hsl(210,45%,8%)] border-white/10 text-white">
+                  <nav className="flex flex-col gap-1 mt-10">
+                    <Accordion type="multiple" className="w-full">
+                      <AccordionItem value="sms" className="border-white/10">
+                        <AccordionTrigger className="px-3 py-3 text-base font-medium uppercase tracking-wide hover:bg-white/10 rounded-md hover:no-underline">
+                          {t("nav.sms")}
+                        </AccordionTrigger>
+                        <AccordionContent className="pb-1">
+                          <div className="flex flex-col">
+                            {smsItems.map((it) => (
+                              <button
+                                key={it.key}
+                                onClick={it.action}
+                                className="text-left px-6 py-2.5 text-sm hover:bg-white/10 rounded-md text-white/85"
+                              >
+                                {t(`nav.${it.key}`)}
+                              </button>
+                            ))}
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                      <AccordionItem value="articles" className="border-white/10">
+                        <AccordionTrigger className="px-3 py-3 text-base font-medium uppercase tracking-wide hover:bg-white/10 rounded-md hover:no-underline">
+                          {t("nav.articlesMedia")}
+                        </AccordionTrigger>
+                        <AccordionContent className="pb-1">
+                          <div className="flex flex-col">
+                            {articlesItems.map((it) => (
+                              <button
+                                key={it.key}
+                                onClick={it.action}
+                                className="text-left px-6 py-2.5 text-sm hover:bg-white/10 rounded-md text-white/85"
+                              >
+                                {t(`nav.${it.key}`)}
+                              </button>
+                            ))}
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
+
                     <button
-                      key={item.labelKey}
-                      onClick={() =>
-                        item.kind === "scroll" ? handleScrollTo(item.id) : (setOpen(false), navigate(item.to))
-                      }
+                      onClick={() => goTo("/operations")}
                       className="text-left px-3 py-3 text-base font-medium uppercase tracking-wide hover:bg-white/10 rounded-md"
                     >
-                      {t(item.labelKey)}
+                      {t("nav.operations")}
                     </button>
-                  ))}
-                  <SheetClose asChild>
-                    <a
-                      href="mailto:kontakt@avisafe.no"
-                      className="mt-4 inline-flex items-center justify-center h-11 rounded-full bg-[#123b87] hover:bg-[#0e2f6b] text-white px-5 font-semibold"
+                    <button
+                      onClick={openNewsletter}
+                      className="text-left px-3 py-3 text-base font-medium uppercase tracking-wide hover:bg-white/10 rounded-md"
                     >
-                      {t("common.contact")}
-                    </a>
-                  </SheetClose>
-                </nav>
-              </SheetContent>
-            </Sheet>
+                      {t("nav.newsletter")}
+                    </button>
+
+                    <SheetClose asChild>
+                      <a
+                        href="mailto:kontakt@avisafe.no"
+                        className="mt-4 inline-flex items-center justify-center h-11 rounded-full bg-[#123b87] hover:bg-[#0e2f6b] text-white px-5 font-semibold"
+                      >
+                        {t("nav.contact")}
+                      </a>
+                    </SheetClose>
+                  </nav>
+                </SheetContent>
+              </Sheet>
+            </div>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
+
+      <Dialog open={newsletterOpen} onOpenChange={setNewsletterOpen}>
+        <DialogContent className="max-w-md p-0 overflow-hidden">
+          <DialogHeader className="px-6 pt-6 pb-2">
+            <DialogTitle>{t("hero.newsletterTitle")}</DialogTitle>
+          </DialogHeader>
+          <iframe
+            src="https://app.avisafe.no/nyhetsbrev"
+            title="AviSafe nyhetsbrev"
+            className="w-full h-[420px] border-0"
+          />
+        </DialogContent>
+      </Dialog>
+    </>
   );
 };
 
