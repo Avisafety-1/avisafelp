@@ -27,6 +27,7 @@ const ScrollExpandMedia = ({
   const touchStartYRef = useRef(0);
   const progressRef = useRef(0);
   const expandedRef = useRef(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     progressRef.current = scrollProgress;
