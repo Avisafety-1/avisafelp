@@ -120,7 +120,7 @@ const PhoneMockup = ({
 
 
 const LazyDemoVideo = () => {
-  const { ref, isInView } = useInView();
+  const { t } = useTranslation();
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
