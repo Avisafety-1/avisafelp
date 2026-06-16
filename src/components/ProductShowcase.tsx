@@ -351,7 +351,8 @@ const ProductShowcase = () => {
       <LazyDemoVideo />
 
       {/* Integrations Section */}
-      <div className="container mx-auto px-4 mt-12 md:mt-16">
+      <div id="integrations-section" className="container mx-auto px-4 mt-12 md:mt-16 scroll-mt-24">
+
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">{t("common.integrations")}</h2>

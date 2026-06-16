@@ -12,6 +12,7 @@ import Artikler from "./pages/Artikler";
 import Artikkel from "./pages/Artikkel";
 import NotFound from "./pages/NotFound";
 import Galleri from "./pages/Galleri";
+import Operations from "./pages/Operations";
 import SiteHeader from "./components/SiteHeader";
 
 const queryClient = new QueryClient();
@@ -32,6 +33,8 @@ const App = () => (
           <Route path="/artikler" element={<Artikler />} />
           <Route path="/artikler/:slug" element={<Artikkel />} />
           <Route path="/galleri" element={<Galleri />} />
+          <Route path="/operations" element={<Operations />} />
+          <Route path="/operasjoner" element={<Operations />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

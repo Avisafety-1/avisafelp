@@ -1,9 +1,5 @@
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { ArrowRight, ArrowDown, Mail, BookOpen } from "lucide-react";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import droneLandscape from "@/assets/drone-landscape.png";
 import avisafeLogoBlack from "@/assets/avisafe-logo-black.png";
@@ -27,8 +23,8 @@ const LinkedInIcon = ({ className }: { className?: string }) => (
 
 const Hero = () => {
   const { t } = useTranslation();
-  const [newsletterOpen, setNewsletterOpen] = useState(false);
   return <section className="relative flex flex-col overflow-hidden bg-transparent pt-16 md:pt-20">
+
 
 
       {/* Drone Landscape Image at top with AviSafe Logo Overlay */}
