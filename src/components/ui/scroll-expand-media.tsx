@@ -115,6 +115,7 @@ const ScrollExpandMedia = ({
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
+    video.playbackRate = 0.5;
     video.play().catch(() => {
       // Autoplay may be blocked until user interaction; attributes handle most cases.
     });
