@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import avisafeLogoBlack from "@/assets/avisafe-logo-black.png";
+import avisafeLogoWhite from "@/assets/avisafe-logo-white.png";
 
 const FacebookIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -58,19 +59,31 @@ const SiteHeader = () => {
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-[hsl(210,45%,8%)]/85 backdrop-blur-xl border-b border-white/10"
+          ? "bg-white/90 backdrop-blur-xl border-b border-black/10 shadow-sm"
           : "bg-gradient-to-b from-[hsl(210,45%,8%)]/40 to-transparent backdrop-blur-sm"
       }`}
     >
       <div className="w-full px-4 sm:px-6 lg:px-10">
         <div className="flex h-16 md:h-20 items-center justify-between gap-4">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 shrink-0 group">
-            <img
-              src={avisafeLogoBlack}
-              alt="AviSafe"
-              className="h-7 md:h-9 w-auto brightness-0 invert transition-transform group-hover:scale-105"
-            />
+          {/* Logo — crossfade between white (over hero) and black (on scroll) */}
+          <Link to="/" className="flex items-center gap-2 shrink-0 group relative">
+            <span className="relative block h-7 md:h-9 w-auto">
+              <img
+                src={avisafeLogoWhite}
+                alt="AviSafe"
+                className={`h-7 md:h-9 w-auto transition-opacity duration-500 ${
+                  scrolled ? "opacity-0" : "opacity-100"
+                }`}
+              />
+              <img
+                src={avisafeLogoBlack}
+                alt=""
+                aria-hidden="true"
+                className={`absolute inset-0 h-7 md:h-9 w-auto transition-opacity duration-500 ${
+                  scrolled ? "opacity-100" : "opacity-0"
+                }`}
+              />
+            </span>
           </Link>
 
           {/* Desktop nav */}
