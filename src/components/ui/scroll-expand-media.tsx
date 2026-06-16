@@ -120,7 +120,7 @@ const ScrollExpandMedia = ({
     video.play().catch(() => {
       // Autoplay may be blocked until user interaction; attributes handle most cases.
     });
-  }, [mediaSrc]);
+  }, [mediaSrc, webmSrc]);
 
   const mediaWidth = 300 + scrollProgress * (isMobileState ? 650 : 1250);
   const mediaHeight = 400 + scrollProgress * (isMobileState ? 200 : 400);
