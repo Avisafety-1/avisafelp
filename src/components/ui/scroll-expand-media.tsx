@@ -165,7 +165,7 @@ const ScrollExpandMedia = ({
         {/* Video — starts at header height right under header, grows downward */}
         <div
           className="relative z-10 w-full mt-0 shrink-0"
-          style={{ paddingTop: `${HEADER_OFFSET}px` }}
+          style={{ marginTop: `${headerHeightPx}px` }}
         >
           <div
             className="w-full overflow-hidden"
