@@ -156,6 +156,7 @@ const ScrollExpandMedia = ({
               >
                 <div className="relative w-full h-full pointer-events-none">
                   <video
+                    ref={videoRef}
                     src={mediaSrc}
                     poster={posterSrc}
                     autoPlay
