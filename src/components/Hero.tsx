@@ -28,29 +28,8 @@ const LinkedInIcon = ({ className }: { className?: string }) => (
 const Hero = () => {
   const { t } = useTranslation();
   const [newsletterOpen, setNewsletterOpen] = useState(false);
-  return <section className="relative flex flex-col overflow-hidden bg-transparent">
-      {/* Social Media Icons - Top Right */}
-      <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 flex items-center gap-3">
-        <LanguageSwitcher />
-        <a
-          href="https://www.facebook.com/profile.php?id=61583893445784"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Facebook"
-          className="hover:opacity-80 transition-opacity"
-        >
-          <FacebookIcon className="w-5 h-5 sm:w-6 sm:h-6 text-[#1877F2]" />
-        </a>
-        <a
-          href="https://www.linkedin.com/company/avisafe-as/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="LinkedIn"
-          className="hover:opacity-80 transition-opacity"
-        >
-          <LinkedInIcon className="w-5 h-5 sm:w-6 sm:h-6 text-[#0A66C2]" />
-        </a>
-      </div>
+  return <section className="relative flex flex-col overflow-hidden bg-transparent pt-16 md:pt-20">
+
 
       {/* Drone Landscape Image at top with AviSafe Logo Overlay */}
       <div className="relative w-full">

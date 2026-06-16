@@ -1,6 +1,14 @@
 import type { Translations } from "./no";
 
 const en: Translations = {
+  nav: {
+    product: "Product",
+    sora: "SORA",
+    articles: "Articles",
+    gallery: "Gallery",
+    team: "Team",
+    contact: "Contact",
+  },
   common: {
     contact: "Contact us",
     whoWeAre: "Who we are",
