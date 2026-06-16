@@ -192,6 +192,14 @@ const ScrollExpandMedia = ({
           </div>
         </div>
 
+        {/* titleTop — placed right under the video */}
+        <motion.h2
+          className="relative z-20 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white px-4 text-center pointer-events-none"
+          style={{ transform: `translateX(-${textTranslateX}vw)` }}
+        >
+          {titleTop}
+        </motion.h2>
+
         {/* Spacer that grows so the section stays at least 100dvh */}
         <div className="flex-1 min-h-0" />
 
