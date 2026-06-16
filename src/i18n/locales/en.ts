@@ -41,6 +41,9 @@ const en: Translations = {
       "AviSafe enables safer and more efficient operations by giving aviation operators comprehensive tools for safety management",
     trustedBy: "Trusted by",
     newsletterTitle: "Subscribe to the AviSafe newsletter",
+    expandLine1: "Aviation-grade Safety",
+    expandLine2: "Operational Intelligence for Professional Drone Operations",
+    scrollToExpand: "Scroll to expand",
   },
   team: {
     title: "Meet the AviSafe team",

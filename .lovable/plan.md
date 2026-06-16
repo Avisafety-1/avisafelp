@@ -1,50 +1,41 @@
-## Endringer
+# Scroll-Expand Video Hero
 
-### 1. Hero — fjern CTA-rad
-I `src/components/Hero.tsx`: fjern blokken med de 4 knappene (Kontakt oss, Hvem er vi, Artikler, Nyhetsbrev) samt tilhørende newsletter-Dialog og `newsletterOpen`-state. Resten av hero (logoer, subline) beholdes.
+Replace the current static hero (drone landscape image + centered AviSafe logo) with an interactive scroll-expand media component, adapted from the 21st.dev pattern you pasted but rewritten for our Vite + React stack (no Next.js `Image`, no `'use client'`).
 
-### 2. Ny header-navigasjon i `SiteHeader.tsx`
-Erstatt dagens NAV-liste med:
+## What it looks like
 
-- **SMS** — dropdown (hover på desktop, expand i hamburger) med:
-  - Overview → scroll til `#product-section`
-  - Integrations → scroll til ny `#integrations-section`
-  - Security → scroll til ny `#security-section`
-- **Operations** → `/operations` (ny side)
-- **Articles / Media** → dropdown med:
-  - Articles → `/artikler`
-  - Gallery → `/galleri`
-- **Newsletter** → åpner samme nyhetsbrev-Dialog (flyttes fra Hero til header)
-- **Contact** → `mailto:kontakt@avisafe.no` (erstatter dagens separate Kontakt-knapp; den fjernes så den ikke dobles)
+1. On load: background = current `drone-landscape.png`, with a small centered video card (the attached `Snapchat-320838701.mp4`) on top.
+2. Two text lines sit centered behind/around the video:
+   - **Line 1 (top):** `Aviation-grade Safety`
+   - **Line 2 (bottom):** `Operational Intelligence for Professional Drone Operations`
+3. As the user scrolls (wheel / touch), the video expands toward fullscreen, the background fades out, and the two text lines slide apart horizontally (line 1 left, line 2 right).
+4. When the video reaches full size, page scroll is released and the rest of the site (Trusted-by banner, subline, ProductShowcase, …) becomes scrollable as normal.
+5. Scrolling back to the very top reverses the animation.
 
-Desktop: bruker `DropdownMenu` fra shadcn med samme farge-/scroll-state-logikk som dagens lenker (hvit tekst over hero, mørk tekst når scrollet). Mobil (Sheet): collapsible/Accordion-seksjon for SMS og Articles/Media; resten som lenker.
+i18n: both text lines added to `hero.expandLine1` / `hero.expandLine2` in `no.ts` and `en.ts` (Norwegian copy mirrors English wording per your existing pattern — confirm if you want a different NO translation).
 
-Sosial-ikoner, språkvelger og logo beholdes uendret.
+## Files
 
-### 3. Section-IDer i `src/pages/Index.tsx`
-- Legg til `id="security-section"` på Security-SectionReveal.
-- Legg til `id="integrations-section"`. Integrasjoner ligger i ProductShowcase; enkleste løsning: wrap eller marker en sub-seksjon. Plan: legg `<div id="integrations-section" />`-anker rett før integrasjonsdelen inne i `ProductShowcase.tsx` (over DJI/SafeSky/ECCAIRS-blokken). Hvis den ikke kan isoleres rent, plasseres ankeret like over ProductShowcase-`SectionReveal`-en og påkalles fra menyen — bekreftes ved implementering.
+**New**
+- `src/components/ui/scroll-expand-media.tsx` — port of the pasted component, adapted:
+  - Remove `'use client'` and `next/image`; use plain `<img>` and our `framer-motion` (already in deps — will add if missing).
+  - Support a second title line (`titleTop`, `titleBottom`) so both texts split apart on scroll instead of splitting one title by first word.
+  - Accept `mediaSrc` / `bgImageSrc` as imported asset URLs.
+- `src/assets/hero-video.mp4.asset.json` — Lovable asset pointer to the uploaded `Snapchat-320838701.mp4` (kept off-repo via CDN).
 
-### 4. Ny side `src/pages/Operations.tsx`
-Enkel side med Helmet (norsk/engelsk tittel), H1 og kort prosa:
+**Edited**
+- `src/components/Hero.tsx` — replace the drone-landscape + logo block with `<ScrollExpandMedia …>`. Keep the Trusted-by banner and subline below it (they appear after the expand completes, as part of normal page flow).
+- `src/i18n/locales/no.ts`, `src/i18n/locales/en.ts` — add `hero.expandLine1`, `hero.expandLine2`.
 
-> "AviSafe søker om operatørtillatelse og ønsker å hjelpe selskaper i gang med sine operasjoner. Ta kontakt med oss for å høre hvor vi er i prosessen."
+**Untouched**
+- Header behavior, ProductShowcase, Security, etc. The scroll-hijack only runs while the hero is in view and not yet fully expanded; once expanded, normal scroll resumes and `SiteHeader` keeps its existing dark→white transition.
 
-Plus Kontakt-knapp (mailto). Registrer rute `/operations` i `src/App.tsx`.
+## Technical notes
 
-### 5. i18n — `src/i18n/locales/no.ts` og `en.ts`
-Legg til:
-```
-nav.sms, nav.smsOverview, nav.smsIntegrations, nav.smsSecurity,
-nav.operations, nav.articlesMedia, nav.articles, nav.gallery,
-nav.newsletter, nav.contact
-operations.pageTitle, operations.h1, operations.body, operations.cta
-```
-Norsk: "SMS", "Oversikt", "Integrasjoner", "Sikkerhet", "Operasjoner", "Artikler/Media", "Nyhetsbrev", "Kontakt".
-Engelsk: "SMS", "Overview", "Integrations", "Security", "Operations", "Articles & Media", "Newsletter", "Contact".
+- Component hijacks `wheel` / `touch` events only until `mediaFullyExpanded` is true; then it releases and the page scrolls normally. `scrollProgress` drives video width/height and the `translateX` of both text lines.
+- Mobile: smaller expansion deltas (matches the pasted component's `isMobile` branch).
+- AviSafe black logo currently overlaid on the hero image is removed in this layout (the two text lines replace it). If you want the logo to remain visible during/after the expand, tell me where to place it and I'll fold that in.
 
-Dagens `nav.product`, `nav.sora`, `nav.articles`, `nav.gallery`, `nav.team` beholdes i fil men brukes ikke lenger av header.
+## Open question
 
-### Åpne spørsmål (kan avklares under bygg)
-- "SMS" tolkes som **Safety Management System** (produktet). Bekreft hvis det betyr noe annet.
-- SORA/Team-lenkene i dagens header fjernes — si fra hvis de skal beholdes ved siden av de nye.
+The Norwegian site is fully `nb`. Do you want the two lines kept in English on both languages (as a tagline), or translated to Norwegian for `no.ts`? Default in this plan: keep English on both.
