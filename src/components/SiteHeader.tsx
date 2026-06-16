@@ -60,7 +60,7 @@ const SiteHeader = () => {
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
         scrolled
           ? "bg-white/90 backdrop-blur-xl border-b border-black/10 shadow-sm"
-          : "bg-gradient-to-b from-[hsl(210,45%,8%)]/40 to-transparent backdrop-blur-sm"
+          : "bg-[hsl(210,45%,8%)] border-b border-white/10 shadow-sm"
       }`}
     >
       <div className="w-full px-4 sm:px-6 lg:px-10">
