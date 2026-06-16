@@ -5,7 +5,7 @@ import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
-import avisafeLogoBlack from "@/assets/avisafe-logo-black.png";
+import avisafeLogoBlackAsset from "@/assets/avisafe-logo-black.png.asset.json";
 import avisafeLogoWhite from "@/assets/avisafe-logo-white.png";
 
 const FacebookIcon = ({ className }: { className?: string }) => (
@@ -76,7 +76,7 @@ const SiteHeader = () => {
                 }`}
               />
               <img
-                src={avisafeLogoBlack}
+                src={avisafeLogoBlackAsset.url}
                 alt=""
                 aria-hidden="true"
                 className={`absolute inset-0 h-7 md:h-9 w-auto transition-opacity duration-500 ${
