@@ -1,58 +1,50 @@
-## Mål
-Gi forsiden et mer profesjonelt, helhetlig uttrykk inspirert av senseloop.com — bred header øverst, fullbredde-seksjoner uten "boks-følelse", og myke animerte overganger når man scroller mellom seksjoner.
+## Endringer
 
-## 1. Ny bred header (SiteHeader)
-Ny komponent `src/components/SiteHeader.tsx` brukt globalt via `App.tsx`:
-- Full bredde, fixed øverst, gjennomsiktig over hero — får mørk/blur-bakgrunn når man scroller (samme følelse som Senseloop sin mørke header).
-- Venstre: AviSafe-logo (klikkbar til "/").
-- Midten/høyre: meny — Produkt, SORA, Artikler, Galleri, Team, Kontakt (scroll til seksjon på forsiden, ellers naviger).
-- Helt til høyre: `LanguageSwitcher` + sosiale ikoner + tydelig CTA-knapp "Ta kontakt" (bg `#123b87`).
-- Mobil: hamburger som åpner shadcn `Sheet` med samme lenker.
-- Sosiale ikoner og språkvelger flyttes ut av `Hero` siden de nå bor i headeren.
+### 1. Hero — fjern CTA-rad
+I `src/components/Hero.tsx`: fjern blokken med de 4 knappene (Kontakt oss, Hvem er vi, Artikler, Nyhetsbrev) samt tilhørende newsletter-Dialog og `newsletterOpen`-state. Resten av hero (logoer, subline) beholdes.
 
-## 2. Full-bredde seksjoner
-Alle seksjoner på forsiden gjøres til `min-h-screen`/`min-h-[90vh]` fullbredde-bånd uten kort-rammer. Vi beholder innholdet, men endrer innpakningen:
+### 2. Ny header-navigasjon i `SiteHeader.tsx`
+Erstatt dagens NAV-liste med:
 
-- **Hero**: dronebilde brukes som fullbredde bakgrunn (ikke maskert kort); logo + subline + CTA-rad sentrert oppå. "Trusted by"-båndet flyttes til en egen tynn full-bredde stripe rett under hero.
-- **ProductShowcase**: full-bredde seksjon med mørk bakgrunn (kontrast mot hero), eksisterende karusell/innhold sentrert i `container`.
-- **Security**: fjerner `bg-card/50` "boksen" rundt teksten — kun prose sentrert i full-bredde seksjon med subtil bakgrunnsforskjell (memory: ingen ikoner/bullets her).
-- **Team**: beholder kort for medlemmer (de er meningsfulle kort, ikke seksjons-bokser), men seksjonen selv blir full-bredde med ny bakgrunnstone og større luft.
+- **SMS** — dropdown (hover på desktop, expand i hamburger) med:
+  - Overview → scroll til `#product-section`
+  - Integrations → scroll til ny `#integrations-section`
+  - Security → scroll til ny `#security-section`
+- **Operations** → `/operations` (ny side)
+- **Articles / Media** → dropdown med:
+  - Articles → `/artikler`
+  - Gallery → `/galleri`
+- **Newsletter** → åpner samme nyhetsbrev-Dialog (flyttes fra Hero til header)
+- **Contact** → `mailto:kontakt@avisafe.no` (erstatter dagens separate Kontakt-knapp; den fjernes så den ikke dobles)
 
-Bakgrunnsvekslingen mellom seksjoner gir den "bånd"-følelsen Senseloop har, uten harde kanter.
+Desktop: bruker `DropdownMenu` fra shadcn med samme farge-/scroll-state-logikk som dagens lenker (hvit tekst over hero, mørk tekst når scrollet). Mobil (Sheet): collapsible/Accordion-seksjon for SMS og Articles/Media; resten som lenker.
 
-## 3. Animerte overganger mellom seksjoner
-Ny hook `useInView` finnes allerede (`src/hooks/use-in-view.ts`) — gjenbrukes.
-Ny wrapper `src/components/SectionReveal.tsx`:
-- IntersectionObserver-basert.
-- Fade + slide-up (opacity 0→1, translateY 32px→0, 700ms cubic-bezier) når seksjon kommer i view.
-- Subtil parallaks på bakgrunn (translateY basert på scroll) for hero og ProductShowcase.
-- Respekterer `prefers-reduced-motion`.
-Pakker hver forsidesseksjon i `<SectionReveal>`.
+Sosial-ikoner, språkvelger og logo beholdes uendret.
 
-## 4. Footer-justering
-Mindre justering: footer blir også full-bredde og matcher header-tonen, slik at siden henger sammen visuelt.
+### 3. Section-IDer i `src/pages/Index.tsx`
+- Legg til `id="security-section"` på Security-SectionReveal.
+- Legg til `id="integrations-section"`. Integrasjoner ligger i ProductShowcase; enkleste løsning: wrap eller marker en sub-seksjon. Plan: legg `<div id="integrations-section" />`-anker rett før integrasjonsdelen inne i `ProductShowcase.tsx` (over DJI/SafeSky/ECCAIRS-blokken). Hvis den ikke kan isoleres rent, plasseres ankeret like over ProductShowcase-`SectionReveal`-en og påkalles fra menyen — bekreftes ved implementering.
 
-## 5. i18n
-Legger til norske/engelske nøkler for headerens menyelementer (`nav.product`, `nav.sora`, `nav.articles`, `nav.gallery`, `nav.team`, `nav.contact`) i `src/i18n/locales/no.ts` og `en.ts`.
+### 4. Ny side `src/pages/Operations.tsx`
+Enkel side med Helmet (norsk/engelsk tittel), H1 og kort prosa:
 
-## Tekniske detaljer
-- Ingen nye pakker — bruker eksisterende Tailwind-animasjoner (`animate-fade-in`), `IntersectionObserver` og shadcn `Sheet`.
-- Farger: header bruker `--text-dark-blue` (#123b87-familien) med `backdrop-blur` når scrollet; bakgrunnsbånd alternerer mellom `bg-hero-bg`, `bg-[hsl(210,45%,12%)]` (mørk) og `bg-background`.
-- Ingen endringer i forretningslogikk, AI-søk, Shopify, SORA eller backend.
-- Språk forblir norsk som primær (memory).
+> "AviSafe søker om operatørtillatelse og ønsker å hjelpe selskaper i gang med sine operasjoner. Ta kontakt med oss for å høre hvor vi er i prosessen."
 
-## Filer som endres / opprettes
-- Ny: `src/components/SiteHeader.tsx`
-- Ny: `src/components/SectionReveal.tsx`
-- Endres: `src/App.tsx` (mount SiteHeader globalt)
-- Endres: `src/pages/Index.tsx` (wrap seksjoner i SectionReveal, full-bredde layout)
-- Endres: `src/components/Hero.tsx` (fjern språkvelger/sosiale ikoner, full-bredde hero)
-- Endres: `src/components/Security.tsx` (fjern kort-boks)
-- Endres: `src/components/ProductShowcase.tsx` (full-bredde seksjons-wrapping)
-- Endres: `src/components/Team.tsx` (full-bredde wrapping, beholder medlems-kort)
-- Endres: `src/i18n/locales/no.ts`, `src/i18n/locales/en.ts`
+Plus Kontakt-knapp (mailto). Registrer rute `/operations` i `src/App.tsx`.
 
-## Spørsmål før jeg bygger
-1. **Header-stil over hero**: Skal headeren være helt gjennomsiktig over hero-bildet (Senseloop-stil), eller alltid ha en lett mørk/blur-bakgrunn?
-2. **CTA-knapp i header**: Skal "Ta kontakt"-knappen i headeren være oransje/aksent (som Senseloop) eller beholde AviSafe-blå `#123b87`?
-3. **Galleri i menyen**: Skal `/galleri` ligge i hovedmenyen, eller skjules den til senere?
+### 5. i18n — `src/i18n/locales/no.ts` og `en.ts`
+Legg til:
+```
+nav.sms, nav.smsOverview, nav.smsIntegrations, nav.smsSecurity,
+nav.operations, nav.articlesMedia, nav.articles, nav.gallery,
+nav.newsletter, nav.contact
+operations.pageTitle, operations.h1, operations.body, operations.cta
+```
+Norsk: "SMS", "Oversikt", "Integrasjoner", "Sikkerhet", "Operasjoner", "Artikler/Media", "Nyhetsbrev", "Kontakt".
+Engelsk: "SMS", "Overview", "Integrations", "Security", "Operations", "Articles & Media", "Newsletter", "Contact".
+
+Dagens `nav.product`, `nav.sora`, `nav.articles`, `nav.gallery`, `nav.team` beholdes i fil men brukes ikke lenger av header.
+
+### Åpne spørsmål (kan avklares under bygg)
+- "SMS" tolkes som **Safety Management System** (produktet). Bekreft hvis det betyr noe annet.
+- SORA/Team-lenkene i dagens header fjernes — si fra hvis de skal beholdes ved siden av de nye.
