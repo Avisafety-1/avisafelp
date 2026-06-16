@@ -39,6 +39,9 @@ const no = {
       "AviSafe bidrar til tryggere og mer effektiv drift ved å gi luftfartsaktører omfattende verktøy for sikkerhetsstyring",
     trustedBy: "Trusted by",
     newsletterTitle: "Meld deg på AviSafe nyhetsbrev",
+    expandLine1: "Aviation-grade Safety",
+    expandLine2: "Operational Intelligence for Professional Drone Operations",
+    scrollToExpand: "Scroll for å utvide",
   },
   team: {
     title: "Møt teamet i AviSafe",
