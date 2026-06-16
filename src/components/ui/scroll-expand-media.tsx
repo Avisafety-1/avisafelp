@@ -8,7 +8,6 @@ interface ScrollExpandMediaProps {
   bgImageSrc: string;
   titleTop: string;
   titleBottom: string;
-  scrollToExpand?: string;
   children?: ReactNode;
 }
 
@@ -19,7 +18,6 @@ const ScrollExpandMedia = ({
   bgImageSrc,
   titleTop,
   titleBottom,
-  scrollToExpand,
   children,
 }: ScrollExpandMediaProps) => {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -122,100 +120,96 @@ const ScrollExpandMedia = ({
     });
   }, [mediaSrc, webmSrc]);
 
-  // Start as a thin horizontal line right under the header, then grow downward as user scrolls.
-  const HEADER_OFFSET = 80; // approx header height in px
+  const HEADER_OFFSET = 80;
   const minHeightPx = 4;
   const maxHeightVh = isMobileState ? 70 : 85;
   const textTranslateX = scrollProgress * (isMobileState ? 30 : 40);
+  const videoHeight = `calc(${minHeightPx}px + ${scrollProgress} * (${maxHeightVh}vh - ${minHeightPx}px))`;
 
   return (
     <div className="transition-colors duration-700 ease-in-out overflow-x-hidden">
-      <section className="relative flex flex-col items-center justify-start min-h-[100dvh]">
-        <div className="relative w-full flex flex-col items-center min-h-[100dvh]">
-          <motion.div
-            className="absolute inset-0 z-0 h-full"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 - scrollProgress }}
-            transition={{ duration: 0.1 }}
+      <section className="relative flex flex-col items-center min-h-[100dvh]">
+        {/* Background image */}
+        <motion.div
+          className="absolute inset-0 z-0"
+          initial={{ opacity: 1 }}
+          animate={{ opacity: 1 - scrollProgress }}
+          transition={{ duration: 0.1 }}
+        >
+          <img
+            src={bgImageSrc}
+            alt=""
+            className="w-full h-full object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-black/10" />
+        </motion.div>
+
+        {/* Text lines — centered, split apart on scroll */}
+        <div
+          className="absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-none"
+        >
+          <motion.h2
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white px-4 mix-blend-difference"
+            style={{ transform: `translateX(-${textTranslateX}vw)` }}
           >
-            <img
-              src={bgImageSrc}
-              alt=""
-              className="w-screen h-screen object-cover object-center"
-            />
-            <div className="absolute inset-0 bg-black/10" />
-          </motion.div>
+            {titleTop}
+          </motion.h2>
+          <motion.h2
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white max-w-4xl px-4 mt-2 mix-blend-difference"
+            style={{ transform: `translateX(${textTranslateX}vw)` }}
+          >
+            {titleBottom}
+          </motion.h2>
+        </div>
 
-          <div className="container mx-auto flex flex-col items-center justify-start relative z-10">
-            <div className="flex flex-col items-center justify-center w-full h-[100dvh] relative">
-              <div
-                className="fixed left-0 right-0 z-0 overflow-hidden rounded-b-2xl"
-                style={{
-                  top: `${HEADER_OFFSET}px`,
-                  height: `calc(${minHeightPx}px + ${scrollProgress} * (${maxHeightVh}vh - ${minHeightPx}px))`,
-                  boxShadow: "0px 10px 40px rgba(0,0,0,0.25)",
-                }}
+        {/* Video — starts as thin line under header, grows downward */}
+        <div
+          className="relative z-10 w-full px-4 sm:px-6 lg:px-10 mt-0 shrink-0"
+          style={{ paddingTop: `${HEADER_OFFSET}px` }}
+        >
+          <div
+            className="mx-auto w-full overflow-hidden rounded-2xl"
+            style={{
+              height: videoHeight,
+              boxShadow: "0px 10px 40px rgba(0,0,0,0.25)",
+            }}
+          >
+            <div className="relative w-full h-full">
+              <video
+                ref={videoRef}
+                poster={posterSrc}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
+                className="w-full h-full object-cover"
               >
-                <div className="relative w-full h-full pointer-events-none">
-                  <video
-                    ref={videoRef}
-                    poster={posterSrc}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="auto"
-                    className="w-full h-full object-cover"
-                  >
-                    {webmSrc && <source src={webmSrc} type="video/webm" />}
-                    <source src={mediaSrc} type="video/mp4" />
-                  </video>
-                  <motion.div
-                    className="absolute inset-0 bg-black/30"
-                    initial={{ opacity: 0.7 }}
-                    animate={{ opacity: 0.5 - scrollProgress * 0.3 }}
-                    transition={{ duration: 0.2 }}
-                  />
-                </div>
-
-                {scrollToExpand && !mediaFullyExpanded && scrollProgress > 0.05 && (
-                  <div className="absolute bottom-4 left-0 right-0 flex justify-center z-10 pointer-events-none">
-                    <p className="text-white/90 font-medium text-sm">
-                      {scrollToExpand}
-                    </p>
-                  </div>
-                )}
-              </div>
-
-              <div
-                className="flex items-center justify-center text-center gap-4 w-full relative z-10 flex-col mix-blend-difference"
-                style={{ pointerEvents: "none" }}
-              >
-                <motion.h2
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white px-4"
-                  style={{ transform: `translateX(-${textTranslateX}vw)` }}
-                >
-                  {titleTop}
-                </motion.h2>
-                <motion.h2
-                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white max-w-4xl px-4"
-                  style={{ transform: `translateX(${textTranslateX}vw)` }}
-                >
-                  {titleBottom}
-                </motion.h2>
-              </div>
+                {webmSrc && <source src={webmSrc} type="video/webm" />}
+                <source src={mediaSrc} type="video/mp4" />
+              </video>
+              <motion.div
+                className="absolute inset-0 bg-black/30"
+                initial={{ opacity: 0.7 }}
+                animate={{ opacity: 0.5 - scrollProgress * 0.3 }}
+                transition={{ duration: 0.2 }}
+              />
             </div>
-
-            <motion.section
-              className="flex flex-col w-full"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: showContent ? 1 : 0 }}
-              transition={{ duration: 0.7 }}
-            >
-              {children}
-            </motion.section>
           </div>
         </div>
+
+        {/* Spacer that grows so the section stays at least 100dvh */}
+        <div className="flex-1 min-h-0" />
+
+        {/* Children — pushed down naturally by video growth */}
+        <motion.section
+          className="relative z-30 w-full"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: showContent ? 1 : 0 }}
+          transition={{ duration: 0.7 }}
+        >
+          {children}
+        </motion.section>
       </section>
     </div>
   );
