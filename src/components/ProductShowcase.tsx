@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { useInView } from "@/hooks/use-in-view";
 import { Link } from "react-router-dom";
 import { Plane, ClipboardList, BarChart3, Cloud, Route, ChevronLeft, ChevronRight, FileText, AlertTriangle, CheckSquare, Navigation, Brain, ArrowRight, Sparkles, X } from "lucide-react";
@@ -38,66 +39,25 @@ const djiAnalyseImages = [
   djiAnalyse6, djiAnalyse7, djiAnalyse8, djiAnalyse9, djiAnalyse10
 ];
 
-const features = [{
-  id: "dashboard",
-  icon: Plane,
-  title: "Dashboard",
-  description: "Oversikt over pågående flytur, ressursstatus og nyheter samlet på ett sted.",
-  image: appDashboard,
-  video: "/dashboard-demo.mp4"
-}, {
-  id: "risikovurdering",
-  icon: Brain,
-  title: "Risikovurderinger med AI",
-  description: "Gjennomfør risikovurderinger med kunstig intelligens som hjelper deg å identifisere farer.",
-  image: appRisikovurdering,
-  video: "/ai-risk-demo.mov"
-}, {
-  id: "dronetag",
-  icon: Navigation,
-  title: "Dronetag-integrasjon",
-  description: "Dronetag Remote ID – direkte integrert i AviSafe. Analyser historisk data",
-  image: appStartflytur,
-  video: "/dronetag-demo.mp4"
-}, {
-  id: "startflytur-video",
-  icon: Navigation,
-  title: "Start flytur",
-  description: "Start flytur med SafeSky-integrasjon for live posisjonsdeling.",
-  image: appStartflytur,
-  video: "/startflytur-demo.mp4"
-}, {
-  id: "ruteplanlegging",
-  icon: Route,
-  title: "Oppdragsplanlegging",
-  description: "Planlegg flyruter visuelt på kartet med automatisk beregning av distanse og luftromssjekk.",
-  image: appRuteplanlegging,
-  video: "/oppdrag-demo.mp4"
-}, {
-  id: "flyforhold",
-  icon: Cloud,
-  title: "Værdata og flyforhold",
-  description: "Sanntids værdata med advarsler om luftromsbegrensninger og prognoser.",
-  image: appFlyforhold
-}, {
-  id: "statistikk",
-  icon: BarChart3,
-  title: "Statistikk",
-  description: "Få innsikt i totale oppdrag, flyvetimer, hendelsesfrekvens og aktive ressurser.",
-  image: appStatistikk
-}, {
-  id: "dokumenter",
-  icon: FileText,
-  title: "Dokumenthåndtering",
-  description: "Søk og organiser regelverk, prosedyrer, sjekklister og rapporter.",
-  image: appDokumenter
-}, {
-  id: "hendelser",
-  icon: AlertTriangle,
-  title: "Hendelsesrapportering",
-  description: "Rapporter og følg opp hendelser med detaljert logging og kommentarer.",
-  image: appHendelse
-}];
+type Feature = {
+  id: string;
+  tKey: string;
+  icon: typeof Plane;
+  image: string;
+  video?: string;
+};
+
+const featuresBase: Feature[] = [
+  { id: "dashboard", tKey: "dashboard", icon: Plane, image: appDashboard, video: "/dashboard-demo.mp4" },
+  { id: "risikovurdering", tKey: "risikovurdering", icon: Brain, image: appRisikovurdering, video: "/ai-risk-demo.mov" },
+  { id: "dronetag", tKey: "dronetag", icon: Navigation, image: appStartflytur, video: "/dronetag-demo.mp4" },
+  { id: "startflytur-video", tKey: "startflyturVideo", icon: Navigation, image: appStartflytur, video: "/startflytur-demo.mp4" },
+  { id: "ruteplanlegging", tKey: "ruteplanlegging", icon: Route, image: appRuteplanlegging, video: "/oppdrag-demo.mp4" },
+  { id: "flyforhold", tKey: "flyforhold", icon: Cloud, image: appFlyforhold },
+  { id: "statistikk", tKey: "statistikk", icon: BarChart3, image: appStatistikk },
+  { id: "dokumenter", tKey: "dokumenter", icon: FileText, image: appDokumenter },
+  { id: "hendelser", tKey: "hendelser", icon: AlertTriangle, image: appHendelse },
+];
 const PhoneMockup = ({
   feature
 }: {
