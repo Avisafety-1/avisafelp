@@ -26,15 +26,8 @@ import {
   AlertTriangle,
 } from "lucide-react";
 import { Helmet } from "react-helmet-async";
+import { useTranslation } from "react-i18next";
 import avisafeLogoText from "@/assets/avisafe-logo-text.png";
-
-// All colors derived from the app's design system (index.css)
-// Primary: hsl(210 80% 28%)
-// Status green: hsl(142 71% 45%)
-// Status yellow: hsl(38 92% 50%)
-// Status red: hsl(0 84% 60%)
-// Background dark: hsl(210 30% 8%)
-// Foreground: hsl(210 20% 98%)
 
 const C = {
   bg: "hsl(210 30% 6%)",
@@ -87,6 +80,7 @@ interface PhaseCardProps {
   icon: React.ReactNode;
   title: string;
   subtitle: string;
+  phaseLabel: string;
   accentColor: string;
   dimColor: string;
   midColor: string;
@@ -94,7 +88,7 @@ interface PhaseCardProps {
   glow?: boolean;
 }
 
-const PhaseCard = ({ phase, icon, title, subtitle, accentColor, dimColor, midColor, items, glow }: PhaseCardProps) => (
+const PhaseCard = ({ phase, icon, title, subtitle, phaseLabel, accentColor, dimColor, midColor, items, glow }: PhaseCardProps) => (
   <div
     className="relative rounded-2xl border w-full overflow-hidden"
     style={{
@@ -128,7 +122,7 @@ const PhaseCard = ({ phase, icon, title, subtitle, accentColor, dimColor, midCol
               className="text-xs font-bold tracking-widest uppercase px-2 py-0.5 rounded"
               style={{ background: midColor, color: accentColor }}
             >
-              Fase {phase}
+              {phaseLabel} {phase}
             </span>
           </div>
           <h2 className="font-bold text-lg leading-tight" style={{ color: C.text }}>
@@ -169,17 +163,51 @@ const PhaseCard = ({ phase, icon, title, subtitle, accentColor, dimColor, midCol
 );
 
 export default function SoraProcess() {
+  const { t, i18n } = useTranslation();
+  const isNo = i18n.language?.startsWith("no");
+
+  // Icons per item, one array per phase
+  const itemIcons: React.ReactNode[][] = [
+    [<MapPin size={13} />, <Users size={13} />, <Navigation size={13} />, <Layers size={13} />],
+    [<Wind size={13} />, <Radio size={13} />, <MapPin size={13} />, <Users size={13} />],
+    [<Wind size={13} />, <Thermometer size={13} />, <Navigation size={13} />, <Eye size={13} />, <Users size={13} />, <CheckCircle2 size={13} />, <Lock size={13} />, <FileText size={13} />],
+    [<Navigation size={13} />, <Users size={13} />, <AlertTriangle size={13} />, <Eye size={13} />, <Radio size={13} />, <MapPin size={13} />],
+    [<Cpu size={13} />, <AlertTriangle size={13} />, <BarChart3 size={13} />, <Wind size={13} />, <Radio size={13} />, <Users size={13} />],
+    [<Wind size={13} />, <Radio size={13} />, <User size={13} />, <MapPin size={13} />, <Cpu size={13} />, <FileText size={13} />],
+    [<Brain size={13} />, <BarChart3 size={13} />, <Radio size={13} />, <Layers size={13} />],
+  ];
+
+  const phaseStyles = [
+    { icon: <Database size={20} />, accent: C.primaryLight, dim: C.primaryDim, mid: "hsl(210 50% 20%)" },
+    { icon: <Globe size={20} />, accent: C.green, dim: C.greenDim, mid: C.greenMid },
+    { icon: <Shield size={20} />, accent: C.red, dim: C.redDim, mid: C.redMid },
+    { icon: <User size={20} />, accent: C.yellow, dim: C.yellowDim, mid: C.yellowMid },
+    { icon: <Brain size={20} />, accent: C.purple, dim: C.purpleDim, mid: C.purpleMid, glow: true },
+    { icon: <MessageSquare size={20} />, accent: C.yellow, dim: C.yellowDim, mid: C.yellowMid },
+    { icon: <Zap size={20} />, accent: C.purple, dim: C.purpleDim, mid: C.purpleMid, glow: true },
+  ];
+
+  const phaseKeys = ["p1", "p2", "p3", "p4", "p5", "p6", "p7"] as const;
+  const connectorKeys = ["missionData", "situation", "policies", "params", "risk", "mitigations", "analysis"] as const;
+
+  const stats = [
+    { value: t("soraProcess.stats.sources.value"), label: t("soraProcess.stats.sources.label") },
+    { value: t("soraProcess.stats.categories.value"), label: t("soraProcess.stats.categories.label") },
+    { value: t("soraProcess.stats.sail.value"), label: t("soraProcess.stats.sail.label") },
+    { value: t("soraProcess.stats.time.value"), label: t("soraProcess.stats.time.label") },
+  ];
+
   return (
     <div
       className="min-h-screen w-full"
       style={{ background: C.bg, color: C.text, fontFamily: "ui-sans-serif, system-ui, sans-serif" }}
     >
       <Helmet>
-        <title>SORA-prosessen – Interaktiv flyt | AviSafe</title>
-        <meta name="description" content="Interaktiv visning av AviSafe sin SORA-prosess fase for fase – fra konsept til ferdig risikovurdering." />
+        <html lang={isNo ? "nb" : "en"} />
+        <title>{t("soraProcess.pageTitle")}</title>
+        <meta name="description" content={t("soraProcess.metaDescription")} />
         <link rel="canonical" href="https://avisafe.no/sora-prosess" />
       </Helmet>
-      {/* Subtle grid */}
       <div
         className="fixed inset-0 pointer-events-none opacity-[0.025]"
         style={{
@@ -187,63 +215,42 @@ export default function SoraProcess() {
           backgroundSize: "64px 64px",
         }}
       />
-      {/* Top glow */}
       <div
         className="fixed inset-x-0 top-0 h-64 pointer-events-none opacity-20"
         style={{ background: `radial-gradient(ellipse at 50% 0%, ${C.primary}, transparent 70%)` }}
       />
 
       <div className="relative max-w-4xl mx-auto px-4 py-16">
-
-        {/* ── HERO ── */}
+        {/* HERO */}
         <div className="text-center mb-20">
-          <img src={avisafeLogoText} alt="AviSafe logo" className="h-12 mx-auto mb-8" style={{ filter: "brightness(0) invert(1)", opacity: 0.9 }} />
+          <img src={avisafeLogoText} alt={t("sora.logoAlt")} className="h-12 mx-auto mb-8" style={{ filter: "brightness(0) invert(1)", opacity: 0.9 }} />
 
           <div
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase mb-6 border"
             style={{ background: C.primaryDim, borderColor: C.borderPrimary, color: C.primaryLight }}
           >
             <Activity size={12} />
-            EASA SORA · AI-drevet · Specific-kategori
+            {t("sora.badge")}
           </div>
 
-          <h1
-            className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-4"
-            style={{ color: C.text }}
-          >
-            Intelligent SORA
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-4" style={{ color: C.text }}>
+            {t("sora.h1Top")}
             <br />
-            <span
-              className="text-3xl sm:text-4xl"
-              style={{ color: C.primaryLight }}
-            >
-              fra data til beslutning
+            <span className="text-3xl sm:text-4xl" style={{ color: C.primaryLight }}>
+              {t("sora.h1Sub")}
             </span>
           </h1>
 
           <p className="text-lg mb-2" style={{ color: C.textMuted }}>
-            Automatisert risikovurdering etter EASA SORA-metodikken
+            {t("sora.intro")}
           </p>
           <p className="text-sm font-semibold tracking-wide" style={{ color: C.primaryLight }}>
-            Norges mest avanserte droneoperasjonsplattform
+            {t("sora.introSub")}
           </p>
 
-          {/* Stats bar */}
-          <div
-            className="flex flex-wrap justify-center gap-px mt-12 rounded-2xl overflow-hidden border"
-            style={{ borderColor: C.border }}
-          >
-            {[
-              { value: "7+", label: "Datakilder" },
-              { value: "5", label: "AI-kategorier" },
-              { value: "SAIL I–VI", label: "SORA-dekning" },
-              { value: "< 60s", label: "Analysertid" },
-            ].map((s, i) => (
-              <div
-                key={s.label}
-                className="flex-1 min-w-[100px] py-4 px-6 text-center"
-                style={{ background: i % 2 === 0 ? C.bgCard : C.bgCardAlt }}
-              >
+          <div className="flex flex-wrap justify-center gap-px mt-12 rounded-2xl overflow-hidden border" style={{ borderColor: C.border }}>
+            {stats.map((s, i) => (
+              <div key={s.label} className="flex-1 min-w-[100px] py-4 px-6 text-center" style={{ background: i % 2 === 0 ? C.bgCard : C.bgCardAlt }}>
                 <div className="text-2xl font-black" style={{ color: C.primaryLight }}>{s.value}</div>
                 <div className="text-xs mt-1" style={{ color: C.textDim }}>{s.label}</div>
               </div>
@@ -251,148 +258,31 @@ export default function SoraProcess() {
           </div>
         </div>
 
-        {/* ── FLOW DIAGRAM ── */}
+        {/* FLOW DIAGRAM */}
         <div className="space-y-0">
+          {phaseKeys.map((pk, idx) => {
+            const items = t(`soraProcess.phases.${pk}.items`, { returnObjects: true }) as { label: string; desc: string }[];
+            const itemsWithIcons: Item[] = items.map((it, j) => ({ ...it, icon: itemIcons[idx][j] }));
+            return (
+              <div key={pk}>
+                <PhaseCard
+                  phase={idx + 1}
+                  icon={phaseStyles[idx].icon}
+                  title={t(`soraProcess.phases.${pk}.title`)}
+                  subtitle={t(`soraProcess.phases.${pk}.subtitle`)}
+                  phaseLabel={t("sora.phase")}
+                  accentColor={phaseStyles[idx].accent}
+                  dimColor={phaseStyles[idx].dim}
+                  midColor={phaseStyles[idx].mid}
+                  items={itemsWithIcons}
+                  glow={phaseStyles[idx].glow}
+                />
+                <FlowConnector label={t(`sora.connectors.${connectorKeys[idx]}`)} />
+              </div>
+            );
+          })}
 
-          <PhaseCard
-            phase={1}
-            icon={<Database size={20} />}
-            title="Avisafe Oppdragsdata"
-            subtitle="Strukturerte operasjonsdata fra plattformen"
-            accentColor={C.primaryLight}
-            dimColor={C.primaryDim}
-            midColor={`hsl(210 50% 20%)`}
-            items={[
-              { icon: <MapPin size={13} />, label: "Oppdragsdetaljer", desc: "Lokasjon, tid, rute, kunde" },
-              { icon: <Users size={13} />, label: "Piloter & kompetanser", desc: "Sertifikater, flytimer, recency" },
-              { icon: <Navigation size={13} />, label: "Droner", desc: "Modell, status, flytimer, inspeksjon" },
-              { icon: <Layers size={13} />, label: "Utstyr", desc: "Vedlikeholdsstatus, tilgjengelighet" },
-            ]}
-          />
-
-          <FlowConnector label="Kontekstdata" />
-
-          <PhaseCard
-            phase={2}
-            icon={<Globe size={20} />}
-            title="Eksterne Datakilder"
-            subtitle="Sanntidsdata fra offentlige og regulatoriske API-er"
-            accentColor={C.green}
-            dimColor={C.greenDim}
-            midColor={C.greenMid}
-            items={[
-              { icon: <Wind size={13} />, label: "Yr.no / OpenMeteo", desc: "Temperatur, vind, kast, sikt, nedbør" },
-              { icon: <Radio size={13} />, label: "OpenAIP Luftrom", desc: "CTR, TMA, R/D/P-soner, restriksjoner" },
-              { icon: <MapPin size={13} />, label: "SSB Arealbruk (Geonorge WFS)", desc: "Bolig, industri, natur-klassifisering" },
-              { icon: <Users size={13} />, label: "SSB Befolkning (rutenett WFS)", desc: "Tetthet per km² — direkte inn i GRC" },
-            ]}
-          />
-
-          <FlowConnector label="Sanntidsdata" />
-
-          <PhaseCard
-            phase={3}
-            icon={<Shield size={20} />}
-            title="Selskapssettings & Hard Stops"
-            subtitle="Operatørens sikkerhetspolicyer — automatiske blokkeringer ved brudd"
-            accentColor={C.red}
-            dimColor={C.redDim}
-            midColor={C.redMid}
-            items={[
-              { icon: <Wind size={13} />, label: "Vindgrenser (m/s)", desc: "Middelvind og kastterskel" },
-              { icon: <Thermometer size={13} />, label: "Temperaturgrenser (°C)", desc: "Min og maks operasjonstemperatur" },
-              { icon: <Navigation size={13} />, label: "Maks flyhøyde (m AGL)", desc: "Hardstop — kan ikke overstyres" },
-              { icon: <Eye size={13} />, label: "BVLOS / Nattflyging", desc: "Tillatt eller ikke for selskapet" },
-              { icon: <Users size={13} />, label: "Maks befolkningstetthet", desc: "Terskel for operasjonsgodkjenning" },
-              { icon: <CheckCircle2 size={13} />, label: "Krav: observatør & reservebatteri", desc: "Operative minimumskrav" },
-              { icon: <Lock size={13} />, label: "Operative begrensninger", desc: "Fritekst sendt til AI-systemprompt" },
-              { icon: <FileText size={13} />, label: "Operasjonsmanual", desc: "Policydokumenter som AI-kontekst" },
-            ]}
-          />
-
-          <FlowConnector label="Selskapspolicyer" />
-
-          <PhaseCard
-            phase={4}
-            icon={<User size={20} />}
-            title="Pilot & Operatør Input"
-            subtitle="Operasjonsspesifikke parametere definert av piloten"
-            accentColor={C.yellow}
-            dimColor={C.yellowDim}
-            midColor={C.yellowMid}
-            items={[
-              { icon: <Navigation size={13} />, label: "Flyhøyde & operasjonstype", desc: "VLOS / BVLOS" },
-              { icon: <Users size={13} />, label: "Nærhet til folk", desc: "Ingen / spredt / tett bebyggelse" },
-              { icon: <AlertTriangle size={13} />, label: "Kritisk infrastruktur", desc: "Nærhet og eksponeringsgrad" },
-              { icon: <Eye size={13} />, label: "Antall observatører", desc: "Bemanning av sikkerhetsvakter" },
-              { icon: <Radio size={13} />, label: "ATC-koordinering", desc: "Kontakt og clearance-status" },
-              { icon: <MapPin size={13} />, label: "Reservelandingsplass", desc: "Definert nødlandingspunkt" },
-            ]}
-          />
-
-          <FlowConnector label="Operasjonsparametre" />
-
-          <PhaseCard
-            phase={5}
-            icon={<Brain size={20} />}
-            title="AI Analyse — Første vurdering"
-            subtitle="Claude AI analyserer alle inputs simultant mot SORA-rammeverket"
-            accentColor={C.purple}
-            dimColor={C.purpleDim}
-            midColor={C.purpleMid}
-            glow
-            items={[
-              { icon: <Cpu size={13} />, label: "Simultant alle datakilder", desc: "700+ parametere analysert i én pass" },
-              { icon: <AlertTriangle size={13} />, label: "Hard stop-sjekk", desc: "Automatisk blokkering ved brudd" },
-              { icon: <BarChart3 size={13} />, label: "Risikoscore 1–10", desc: "Vektet per kategori" },
-              { icon: <Wind size={13} />, label: "Værvurdering", desc: "Vind, sikt, temperatur, nedbør" },
-              { icon: <Radio size={13} />, label: "Luftromsvurdering", desc: "CTR/TMA-konflikter, klareringer" },
-              { icon: <Users size={13} />, label: "Pilot & utstyrsvurdering", desc: "Kompetanse, recency, vedlikehold" },
-            ]}
-          />
-
-          <FlowConnector label="Risikovurdering" />
-
-          <PhaseCard
-            phase={6}
-            icon={<MessageSquare size={20} />}
-            title="Pilotens Mitigeringer"
-            subtitle="Piloter responderer på AI-analysen med tiltak i 5 risikoklasser"
-            accentColor={C.yellow}
-            dimColor={C.yellowDim}
-            midColor={C.yellowMid}
-            items={[
-              { icon: <Wind size={13} />, label: "Værtiltak", desc: "Planer for vindeksponering og nedbør" },
-              { icon: <Radio size={13} />, label: "Luftromstiltak", desc: "ATC-koordinering, NOTAM-konfirmasjon" },
-              { icon: <User size={13} />, label: "Pilotvurdering", desc: "Begrunnelse for kompetanse og recency" },
-              { icon: <MapPin size={13} />, label: "Oppdragstiltak", desc: "Operasjonell kontigensplan" },
-              { icon: <Cpu size={13} />, label: "Utstyrstiltak", desc: "Redundans, backup-systemer, inspeksjon" },
-              { icon: <FileText size={13} />, label: "Oppdatert ConOps", desc: "Revidert operasjonskonsept til AI" },
-            ]}
-          />
-
-          <FlowConnector label="Mitigeringer" />
-
-          <PhaseCard
-            phase={7}
-            icon={<Zap size={20} />}
-            title="AI Re-vurdering — SORA-modus"
-            subtitle="Ny AI-analyse med alle mitigeringer. Strukturert SORA-beregning etter EASA SORA AMC-rammeverket"
-            accentColor={C.purple}
-            dimColor={C.purpleDim}
-            midColor={C.purpleMid}
-            glow
-            items={[
-              { icon: <Brain size={13} />, label: "Komplett re-analyse", desc: "Alle mitigeringer integrert" },
-              { icon: <BarChart3 size={13} />, label: "GRC-beregning", desc: "iGRC → bakkemitigeringer → fGRC" },
-              { icon: <Radio size={13} />, label: "ARC-klassifisering", desc: "Initial ARC → luftromsmitigeringer → Residual ARC" },
-              { icon: <Layers size={13} />, label: "SAIL-matrise", desc: "fGRC × Residual ARC → SAIL I–VI" },
-            ]}
-          />
-
-          <FlowConnector label="SORA-analyse" />
-
-          {/* ── SORA OUTPUT ── */}
+          {/* SORA OUTPUT */}
           <div
             className="relative rounded-2xl border overflow-hidden"
             style={{
@@ -401,100 +291,74 @@ export default function SoraProcess() {
               boxShadow: `0 0 60px ${C.green}20, 0 0 120px ${C.green}08`,
             }}
           >
-            <div
-              className="absolute inset-0 pointer-events-none animate-pulse"
-              style={{
-                background: `radial-gradient(ellipse at 50% 100%, ${C.green}18, transparent 60%)`,
-                opacity: 0.7,
-              }}
-            />
+            <div className="absolute inset-0 pointer-events-none animate-pulse" style={{ background: `radial-gradient(ellipse at 50% 100%, ${C.green}18, transparent 60%)`, opacity: 0.7 }} />
             <div className="relative p-6">
               <div className="text-center mb-8">
-                <div
-                  className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-bold mb-3 border"
-                  style={{ background: C.greenMid, borderColor: `${C.green}50`, color: C.green }}
-                >
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-bold mb-3 border" style={{ background: C.greenMid, borderColor: `${C.green}50`, color: C.green }}>
                   <CheckCircle2 size={14} />
-                  SORA OUTPUT
+                  {t("sora.output.badge")}
                 </div>
                 <h2 className="text-2xl font-black" style={{ color: C.text }}>
-                  Strukturert risikovurdering
+                  {t("sora.output.title")}
                 </h2>
                 <p className="text-sm mt-1" style={{ color: C.textMuted }}>
-                  Komplett SORA-rapport etter EASA SORA-metodikken
+                  {t("sora.output.subtitle")}
                 </p>
               </div>
 
-              {/* GRC row */}
+              {/* GRC */}
               <div className="mb-5">
                 <p className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color: C.textDim }}>
-                  Bakkerisikoklasse (GRC)
+                  {t("sora.output.grc")}
                 </p>
                 <div className="flex items-center gap-3">
-                  <div
-                    className="flex-1 rounded-xl p-4 text-center border"
-                    style={{ background: `linear-gradient(135deg, ${C.bgCard}, ${C.yellowDim})`, borderColor: `${C.yellow}40` }}
-                  >
-                    <div className="text-xs font-bold tracking-wider uppercase mb-1" style={{ color: C.textMuted }}>iGRC</div>
+                  <div className="flex-1 rounded-xl p-4 text-center border" style={{ background: `linear-gradient(135deg, ${C.bgCard}, ${C.yellowDim})`, borderColor: `${C.yellow}40` }}>
+                    <div className="text-xs font-bold tracking-wider uppercase mb-1" style={{ color: C.textMuted }}>{t("sora.output.iGRC")}</div>
                     <div className="text-3xl font-black" style={{ color: C.yellow }}>3</div>
-                    <div className="text-xs" style={{ color: C.textMuted }}>Initial</div>
+                    <div className="text-xs" style={{ color: C.textMuted }}>{t("sora.output.initial")}</div>
                   </div>
                   <div className="flex flex-col items-center gap-1">
                     <ArrowRight size={18} style={{ color: C.textDim }} />
-                    <span className="text-xs text-center" style={{ color: C.textDim, maxWidth: 56 }}>Bakke­mitigeringer</span>
+                    <span className="text-xs text-center" style={{ color: C.textDim, maxWidth: 56 }}>{t("sora.output.groundMit")}</span>
                   </div>
-                  <div
-                    className="flex-1 rounded-xl p-4 text-center border"
-                    style={{ background: `linear-gradient(135deg, ${C.bgCard}, ${C.greenDim})`, borderColor: `${C.green}40` }}
-                  >
-                    <div className="text-xs font-bold tracking-wider uppercase mb-1" style={{ color: C.textMuted }}>fGRC</div>
+                  <div className="flex-1 rounded-xl p-4 text-center border" style={{ background: `linear-gradient(135deg, ${C.bgCard}, ${C.greenDim})`, borderColor: `${C.green}40` }}>
+                    <div className="text-xs font-bold tracking-wider uppercase mb-1" style={{ color: C.textMuted }}>{t("sora.output.fGRC")}</div>
                     <div className="text-3xl font-black" style={{ color: C.green }}>2</div>
-                    <div className="text-xs" style={{ color: C.textMuted }}>Final</div>
+                    <div className="text-xs" style={{ color: C.textMuted }}>{t("sora.output.final")}</div>
                   </div>
                 </div>
               </div>
 
-              {/* ARC row */}
+              {/* ARC */}
               <div className="mb-5">
                 <p className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color: C.textDim }}>
-                  Luftromsrisikoklasse (ARC)
+                  {t("sora.output.arc")}
                 </p>
                 <div className="flex items-center gap-3">
-                  <div
-                    className="flex-1 rounded-xl p-4 text-center border"
-                    style={{ background: `linear-gradient(135deg, ${C.bgCard}, ${C.yellowDim})`, borderColor: `${C.yellow}40` }}
-                  >
-                    <div className="text-xs font-bold tracking-wider uppercase mb-1" style={{ color: C.textMuted }}>Initial ARC</div>
+                  <div className="flex-1 rounded-xl p-4 text-center border" style={{ background: `linear-gradient(135deg, ${C.bgCard}, ${C.yellowDim})`, borderColor: `${C.yellow}40` }}>
+                    <div className="text-xs font-bold tracking-wider uppercase mb-1" style={{ color: C.textMuted }}>{t("sora.output.initialARC")}</div>
                     <div className="text-3xl font-black" style={{ color: C.yellow }}>B</div>
-                    <div className="text-xs" style={{ color: C.textMuted }}>Ukontrollert luftrom</div>
+                    <div className="text-xs" style={{ color: C.textMuted }}>{t("sora.output.uncontrolled")}</div>
                   </div>
                   <div className="flex flex-col items-center gap-1">
                     <ArrowRight size={18} style={{ color: C.textDim }} />
-                    <span className="text-xs text-center" style={{ color: C.textDim, maxWidth: 56 }}>Luftroms­mitigeringer</span>
+                    <span className="text-xs text-center" style={{ color: C.textDim, maxWidth: 56 }}>{t("sora.output.airMit")}</span>
                   </div>
-                  <div
-                    className="flex-1 rounded-xl p-4 text-center border"
-                    style={{ background: `linear-gradient(135deg, ${C.bgCard}, ${C.greenDim})`, borderColor: `${C.green}40` }}
-                  >
-                    <div className="text-xs font-bold tracking-wider uppercase mb-1" style={{ color: C.textMuted }}>Residual ARC</div>
+                  <div className="flex-1 rounded-xl p-4 text-center border" style={{ background: `linear-gradient(135deg, ${C.bgCard}, ${C.greenDim})`, borderColor: `${C.green}40` }}>
+                    <div className="text-xs font-bold tracking-wider uppercase mb-1" style={{ color: C.textMuted }}>{t("sora.output.residualARC")}</div>
                     <div className="text-3xl font-black" style={{ color: C.green }}>A</div>
-                    <div className="text-xs" style={{ color: C.textMuted }}>Etter mitigeringer</div>
+                    <div className="text-xs" style={{ color: C.textMuted }}>{t("sora.output.afterMit")}</div>
                   </div>
                 </div>
               </div>
 
-              {/* SAIL + Rest-risiko + OSO */}
               <div className="grid grid-cols-3 gap-3 mb-5">
                 {[
-                  { label: "SAIL-nivå", value: "II", sub: "Skala I–VI", color: C.primaryLight, dim: C.primaryDim },
-                  { label: "Rest-risiko", value: "Lav", sub: "Etter mitigeringer", color: C.green, dim: C.greenDim },
-                  { label: "OSO-krav", value: "M", sub: "Medium robusthet", color: C.purple, dim: C.purpleDim },
+                  { label: t("sora.output.sail"), value: "II", sub: t("sora.output.sailSub"), color: C.primaryLight, dim: C.primaryDim },
+                  { label: t("sora.output.residual"), value: t("sora.output.low"), sub: t("sora.output.residualSub"), color: C.green, dim: C.greenDim },
+                  { label: t("sora.output.oso"), value: "M", sub: t("sora.output.osoSub"), color: C.purple, dim: C.purpleDim },
                 ].map((m) => (
-                  <div
-                    key={m.label}
-                    className="rounded-xl p-4 text-center border"
-                    style={{ background: `linear-gradient(135deg, ${C.bgCard}, ${m.dim})`, borderColor: `${m.color}35` }}
-                  >
+                  <div key={m.label} className="rounded-xl p-4 text-center border" style={{ background: `linear-gradient(135deg, ${C.bgCard}, ${m.dim})`, borderColor: `${m.color}35` }}>
                     <div className="text-xs font-bold tracking-wider uppercase mb-2" style={{ color: C.textMuted }}>{m.label}</div>
                     <div className="text-2xl sm:text-3xl font-black" style={{ color: m.color }}>{m.value}</div>
                     <div className="text-xs mt-1" style={{ color: C.textMuted }}>{m.sub}</div>
@@ -502,115 +366,54 @@ export default function SoraProcess() {
                 ))}
               </div>
 
-              {/* GO badge */}
-              <div
-                className="rounded-xl p-5 text-center border"
-                style={{
-                  background: `linear-gradient(135deg, ${C.greenMid}, ${C.greenDim})`,
-                  borderColor: `${C.green}60`,
-                  boxShadow: `0 0 30px ${C.green}25`,
-                }}
-              >
-                <div className="text-xs font-bold tracking-widest uppercase mb-1" style={{ color: C.textMuted }}>
-                  AI-anbefaling
-                </div>
-                <div className="text-5xl font-black tracking-widest mb-2" style={{ color: C.green }}>
-                  GO
-                </div>
-                <p className="text-sm" style={{ color: C.textMuted }}>
-                  Alle hardstops bestått · Mitigeringer tilstrekkelige · SAIL II godkjent
-                </p>
+              <div className="rounded-xl p-5 text-center border" style={{ background: `linear-gradient(135deg, ${C.greenMid}, ${C.greenDim})`, borderColor: `${C.green}60`, boxShadow: `0 0 30px ${C.green}25` }}>
+                <div className="text-xs font-bold tracking-widest uppercase mb-1" style={{ color: C.textMuted }}>{t("sora.output.aiRec")}</div>
+                <div className="text-5xl font-black tracking-widest mb-2" style={{ color: C.green }}>{t("sora.output.go")}</div>
+                <p className="text-sm" style={{ color: C.textMuted }}>{t("sora.output.goNoteProcess")}</p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* ── FEATURE HIGHLIGHTS ── */}
+        {/* FEATURE HIGHLIGHTS */}
         <div className="mt-24 mb-16">
           <h2 className="text-3xl font-black text-center mb-12" style={{ color: C.text }}>
-            Hvorfor Avisafe SORA?
+            {t("soraProcess.highlights.title")}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
             {[
-              {
-                color: C.primaryLight,
-                dimColor: C.primaryDim,
-                icon: <Cpu size={26} />,
-                title: "Fullt automatisert",
-                points: [
-                  "AI henter alle datakilder automatisk",
-                  "Ingen manuell datainnsamling",
-                  "Analyse ferdig på under 60 sekunder",
-                  "700+ parametere vurdert simultant",
-                ],
-              },
-              {
-                color: C.yellow,
-                dimColor: C.yellowDim,
-                icon: <Clock size={26} />,
-                title: "100% sporbar",
-                points: [
-                  "Komplett revisjonsspor",
-                  "Alle inputs og outputs lagret",
-                  "Pilot-signatur på hver vurdering",
-                  "Eksport til PDF",
-                ],
-              },
-              {
-                color: C.green,
-                dimColor: C.greenDim,
-                icon: <Shield size={26} />,
-                title: "Regulatorisk klar",
-                points: [
-                  "EASA SORA AMC-rammeverket",
-                  "SORA-metodikk for Specific-kategori",
-                  "Automatisk SAIL-beregning",
-                  "Norske CAA-krav ivaretatt",
-                ],
-              },
-            ].map((col) => (
-              <div
-                key={col.title}
-                className="rounded-2xl p-6 border"
-                style={{
-                  background: `linear-gradient(145deg, ${C.bgCard}, ${col.dimColor})`,
-                  borderColor: `${col.color}30`,
-                }}
-              >
-                <div
-                  className="flex items-center justify-center w-12 h-12 rounded-xl mx-auto mb-4 border"
-                  style={{ background: `${col.color}15`, borderColor: `${col.color}40` }}
-                >
-                  <div style={{ color: col.color }}>{col.icon}</div>
+              { key: "automated", color: C.primaryLight, dimColor: C.primaryDim, icon: <Cpu size={26} /> },
+              { key: "traceable", color: C.yellow, dimColor: C.yellowDim, icon: <Clock size={26} /> },
+              { key: "regulatory", color: C.green, dimColor: C.greenDim, icon: <Shield size={26} /> },
+            ].map((col) => {
+              const points = t(`soraProcess.highlights.${col.key}.points`, { returnObjects: true }) as string[];
+              return (
+                <div key={col.key} className="rounded-2xl p-6 border" style={{ background: `linear-gradient(145deg, ${C.bgCard}, ${col.dimColor})`, borderColor: `${col.color}30` }}>
+                  <div className="flex items-center justify-center w-12 h-12 rounded-xl mx-auto mb-4 border" style={{ background: `${col.color}15`, borderColor: `${col.color}40` }}>
+                    <div style={{ color: col.color }}>{col.icon}</div>
+                  </div>
+                  <h3 className="text-base font-bold text-center mb-4" style={{ color: C.text }}>
+                    {t(`soraProcess.highlights.${col.key}.title`)}
+                  </h3>
+                  <ul className="space-y-2">
+                    {points.map((p) => (
+                      <li key={p} className="flex items-start gap-2">
+                        <CheckCircle2 size={13} className="flex-shrink-0 mt-0.5" style={{ color: col.color }} />
+                        <span className="text-sm leading-snug" style={{ color: C.textMuted }}>{p}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <h3 className="text-base font-bold text-center mb-4" style={{ color: C.text }}>
-                  {col.title}
-                </h3>
-                <ul className="space-y-2">
-                  {col.points.map((p) => (
-                    <li key={p} className="flex items-start gap-2">
-                      <CheckCircle2 size={13} className="flex-shrink-0 mt-0.5" style={{ color: col.color }} />
-                      <span className="text-sm leading-snug" style={{ color: C.textMuted }}>
-                        {p}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
-        {/* ── FOOTER ── */}
+        {/* FOOTER */}
         <div className="text-center pt-10 border-t" style={{ borderColor: C.border }}>
-          <img
-            src={avisafeLogoText}
-            alt="AviSafe logo"
-            className="h-8 mx-auto mb-3"
-            style={{ filter: "brightness(0) invert(1)", opacity: 0.5 }}
-          />
+          <img src={avisafeLogoText} alt={t("sora.logoAlt")} className="h-8 mx-auto mb-3" style={{ filter: "brightness(0) invert(1)", opacity: 0.5 }} />
           <p className="text-sm" style={{ color: C.textDim }}>
-            Powered by AviSafe · EASA SORA · AI-drevet droneoperasjonsplattform
+            {t("soraProcess.footerNote")}
           </p>
           <p className="text-xs mt-1" style={{ color: C.textDim }}>
             © {new Date().getFullYear()} AviSafe AS

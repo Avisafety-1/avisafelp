@@ -74,7 +74,8 @@ const en: Translations = {
     errorGeneric: "Sorry, something went wrong. Please try again later.",
   },
   product: {
-    soraBanner: "Norway's most advanced tool<br/> for SORA risk assessments",
+    soraBannerLine1: "Norway's most advanced tool",
+    soraBannerLine2: "for SORA risk assessments",
     scrollLeft: "Scroll left",
     scrollRight: "Scroll right",
     browserNoVideo: "Your browser does not support video playback.",
@@ -139,6 +140,9 @@ const en: Translations = {
     colTime: "Time",
   },
   sora: {
+    pageTitle: "SORA – Risk assessment for drone operations | AviSafe",
+    metaDescription: "How AviSafe uses the SORA methodology to make risk assessment of drone operations easier, faster and more precise.",
+    logoAlt: "AviSafe logo",
     badge: "EASA SORA · AI-driven · Specific category",
     h1Top: "Intelligent SORA",
     h1Sub: "from data to decision",
@@ -206,11 +210,95 @@ const en: Translations = {
     footerNote: "Powered by AviSafe · EASA SORA · AI-driven drone-operations platform",
   },
   soraProcess: {
+    pageTitle: "The SORA process – Interactive flow | AviSafe",
+    metaDescription: "Interactive view of the AviSafe SORA process phase by phase – from concept to finished risk assessment.",
     stats: {
       sources: { value: "7+", label: "Data sources" },
       categories: { value: "5", label: "AI categories" },
       sail: { value: "SAIL I–VI", label: "SORA coverage" },
       time: { value: "< 60s", label: "Analysis time" },
+    },
+    phases: {
+      p1: {
+        title: "AviSafe mission data",
+        subtitle: "Structured operational data from the platform",
+        items: [
+          { label: "Mission details", desc: "Location, time, route, client" },
+          { label: "Pilots & competencies", desc: "Certificates, flight hours, recency" },
+          { label: "Drones", desc: "Model, status, flight hours, inspection" },
+          { label: "Equipment", desc: "Maintenance status, availability" },
+        ],
+      },
+      p2: {
+        title: "External data sources",
+        subtitle: "Real-time data from public and regulatory APIs",
+        items: [
+          { label: "Yr.no / OpenMeteo", desc: "Temperature, wind, gusts, visibility, precipitation" },
+          { label: "OpenAIP Airspace", desc: "CTR, TMA, R/D/P zones, restrictions" },
+          { label: "SSB land use (Geonorge WFS)", desc: "Residential, industrial, nature classification" },
+          { label: "SSB population (grid WFS)", desc: "Density per km² — feeds directly into GRC" },
+        ],
+      },
+      p3: {
+        title: "Company settings & hard stops",
+        subtitle: "Operator safety policies — automatic blocks on violations",
+        items: [
+          { label: "Wind limits (m/s)", desc: "Mean wind and gust threshold" },
+          { label: "Temperature limits (°C)", desc: "Minimum and maximum operating temperature" },
+          { label: "Max altitude (m AGL)", desc: "Hard stop — cannot be overridden" },
+          { label: "BVLOS / Night flight", desc: "Allowed or not for the company" },
+          { label: "Max population density", desc: "Threshold for operation approval" },
+          { label: "Required: observer & spare battery", desc: "Operational minimum requirements" },
+          { label: "Operational constraints", desc: "Free text sent to the AI system prompt" },
+          { label: "Operations manual", desc: "Policy documents as AI context" },
+        ],
+      },
+      p4: {
+        title: "Pilot & operator input",
+        subtitle: "Operation-specific parameters defined by the pilot",
+        items: [
+          { label: "Altitude & operation type", desc: "VLOS / BVLOS" },
+          { label: "Proximity to people", desc: "None / sparse / dense built-up area" },
+          { label: "Critical infrastructure", desc: "Proximity and exposure level" },
+          { label: "Number of observers", desc: "Safety watch staffing" },
+          { label: "ATC coordination", desc: "Contact and clearance status" },
+          { label: "Alternate landing site", desc: "Defined emergency landing point" },
+        ],
+      },
+      p5: {
+        title: "AI analysis — first assessment",
+        subtitle: "Claude AI analyses all inputs simultaneously against the SORA framework",
+        items: [
+          { label: "All data sources simultaneously", desc: "700+ parameters analysed in one pass" },
+          { label: "Hard stop check", desc: "Automatic block on violations" },
+          { label: "Risk score 1–10", desc: "Weighted per category" },
+          { label: "Weather assessment", desc: "Wind, visibility, temperature, precipitation" },
+          { label: "Airspace assessment", desc: "CTR/TMA conflicts, clearances" },
+          { label: "Pilot & equipment assessment", desc: "Competence, recency, maintenance" },
+        ],
+      },
+      p6: {
+        title: "Pilot mitigations",
+        subtitle: "Pilots respond to the AI analysis with actions in 5 risk classes",
+        items: [
+          { label: "Weather actions", desc: "Plans for wind exposure and precipitation" },
+          { label: "Airspace actions", desc: "ATC coordination, NOTAM confirmation" },
+          { label: "Pilot assessment", desc: "Justification for competence and recency" },
+          { label: "Mission actions", desc: "Operational contingency plan" },
+          { label: "Equipment actions", desc: "Redundancy, backup systems, inspection" },
+          { label: "Updated ConOps", desc: "Revised operations concept to the AI" },
+        ],
+      },
+      p7: {
+        title: "AI re-assessment — SORA mode",
+        subtitle: "New AI analysis with all mitigations. Structured SORA computation per the EASA SORA AMC framework",
+        items: [
+          { label: "Complete re-analysis", desc: "All mitigations integrated" },
+          { label: "GRC computation", desc: "iGRC → ground mitigations → fGRC" },
+          { label: "ARC classification", desc: "Initial ARC → airspace mitigations → Residual ARC" },
+          { label: "SAIL matrix", desc: "fGRC × Residual ARC → SAIL I–VI" },
+        ],
+      },
     },
     highlights: {
       title: "Why AviSafe SORA?",
@@ -218,6 +306,7 @@ const en: Translations = {
       traceable: { title: "100% traceable", points: ["Complete audit trail", "All inputs and outputs stored", "Pilot signature on every assessment", "PDF export"] },
       regulatory: { title: "Regulator-ready", points: ["EASA SORA AMC framework", "SORA methodology for Specific category", "Automatic SAIL computation", "Norwegian CAA requirements met"] },
     },
+    footerNote: "Powered by AviSafe · EASA SORA · AI-driven drone-operations platform",
   },
   productPage: {
     notFound: "Product not found",
@@ -228,6 +317,20 @@ const en: Translations = {
     prevImage: "Previous image",
     nextImage: "Next image",
     showImage: "Show image",
+    metaDescriptionFallback: "Buy {{title}} from AviSafe",
+  },
+  footer: {
+    privacy: "Privacy Policy",
+    terms: "Terms of Service",
+    contact: "Contact",
+    rights: "All rights reserved.",
+  },
+  cta: {
+    title: "Ready to elevate your safety management?",
+    subtitle: "Join leading aviation organisations using AviSafe to enhance safety and streamline operations",
+    contactBtn: "Contact us today",
+    demoBtn: "Schedule a demo",
+    note: "No credit card required · 30-day trial available",
   },
   notFound: {
     title: "Page not found",

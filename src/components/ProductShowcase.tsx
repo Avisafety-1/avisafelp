@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { useInView } from "@/hooks/use-in-view";
 import { Link } from "react-router-dom";
 import { Plane, ClipboardList, BarChart3, Cloud, Route, ChevronLeft, ChevronRight, FileText, AlertTriangle, CheckSquare, Navigation, Brain, ArrowRight, Sparkles, X } from "lucide-react";
@@ -38,72 +39,34 @@ const djiAnalyseImages = [
   djiAnalyse6, djiAnalyse7, djiAnalyse8, djiAnalyse9, djiAnalyse10
 ];
 
-const features = [{
-  id: "dashboard",
-  icon: Plane,
-  title: "Dashboard",
-  description: "Oversikt over pågående flytur, ressursstatus og nyheter samlet på ett sted.",
-  image: appDashboard,
-  video: "/dashboard-demo.mp4"
-}, {
-  id: "risikovurdering",
-  icon: Brain,
-  title: "Risikovurderinger med AI",
-  description: "Gjennomfør risikovurderinger med kunstig intelligens som hjelper deg å identifisere farer.",
-  image: appRisikovurdering,
-  video: "/ai-risk-demo.mov"
-}, {
-  id: "dronetag",
-  icon: Navigation,
-  title: "Dronetag-integrasjon",
-  description: "Dronetag Remote ID – direkte integrert i AviSafe. Analyser historisk data",
-  image: appStartflytur,
-  video: "/dronetag-demo.mp4"
-}, {
-  id: "startflytur-video",
-  icon: Navigation,
-  title: "Start flytur",
-  description: "Start flytur med SafeSky-integrasjon for live posisjonsdeling.",
-  image: appStartflytur,
-  video: "/startflytur-demo.mp4"
-}, {
-  id: "ruteplanlegging",
-  icon: Route,
-  title: "Oppdragsplanlegging",
-  description: "Planlegg flyruter visuelt på kartet med automatisk beregning av distanse og luftromssjekk.",
-  image: appRuteplanlegging,
-  video: "/oppdrag-demo.mp4"
-}, {
-  id: "flyforhold",
-  icon: Cloud,
-  title: "Værdata og flyforhold",
-  description: "Sanntids værdata med advarsler om luftromsbegrensninger og prognoser.",
-  image: appFlyforhold
-}, {
-  id: "statistikk",
-  icon: BarChart3,
-  title: "Statistikk",
-  description: "Få innsikt i totale oppdrag, flyvetimer, hendelsesfrekvens og aktive ressurser.",
-  image: appStatistikk
-}, {
-  id: "dokumenter",
-  icon: FileText,
-  title: "Dokumenthåndtering",
-  description: "Søk og organiser regelverk, prosedyrer, sjekklister og rapporter.",
-  image: appDokumenter
-}, {
-  id: "hendelser",
-  icon: AlertTriangle,
-  title: "Hendelsesrapportering",
-  description: "Rapporter og følg opp hendelser med detaljert logging og kommentarer.",
-  image: appHendelse
-}];
+type Feature = {
+  id: string;
+  tKey: string;
+  icon: typeof Plane;
+  image: string;
+  video?: string;
+};
+
+const featuresBase: Feature[] = [
+  { id: "dashboard", tKey: "dashboard", icon: Plane, image: appDashboard, video: "/dashboard-demo.mp4" },
+  { id: "risikovurdering", tKey: "risikovurdering", icon: Brain, image: appRisikovurdering, video: "/ai-risk-demo.mov" },
+  { id: "dronetag", tKey: "dronetag", icon: Navigation, image: appStartflytur, video: "/dronetag-demo.mp4" },
+  { id: "startflytur-video", tKey: "startflyturVideo", icon: Navigation, image: appStartflytur, video: "/startflytur-demo.mp4" },
+  { id: "ruteplanlegging", tKey: "ruteplanlegging", icon: Route, image: appRuteplanlegging, video: "/oppdrag-demo.mp4" },
+  { id: "flyforhold", tKey: "flyforhold", icon: Cloud, image: appFlyforhold },
+  { id: "statistikk", tKey: "statistikk", icon: BarChart3, image: appStatistikk },
+  { id: "dokumenter", tKey: "dokumenter", icon: FileText, image: appDokumenter },
+  { id: "hendelser", tKey: "hendelser", icon: AlertTriangle, image: appHendelse },
+];
 const PhoneMockup = ({
   feature
 }: {
-  feature: typeof features[0];
+  feature: Feature;
 }) => {
+  const { t } = useTranslation();
   const Icon = feature.icon;
+  const title = t(`product.features.${feature.tKey}.title`);
+  const description = t(`product.features.${feature.tKey}.description`);
   const { ref: inViewRef, isInView } = useInView();
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -118,10 +81,10 @@ const PhoneMockup = ({
       <div className="text-center px-2 min-h-28 flex flex-col justify-end mb-4">
         <div className="inline-flex items-center justify-center gap-2 bg-[hsl(var(--text-dark-blue))]/10 text-[hsl(var(--text-dark-blue))] px-4 py-2 rounded-full mb-3">
           <Icon className="w-5 h-5" />
-          <span className="font-semibold text-sm">{feature.title}</span>
+          <span className="font-semibold text-sm">{title}</span>
         </div>
         <p className="text-xs text-[hsl(var(--text-dark-blue))] leading-relaxed line-clamp-3">
-          {feature.description}
+          {description}
         </p>
       </div>
 
@@ -145,7 +108,7 @@ const PhoneMockup = ({
               poster={feature.image}
             />
           ) : (
-            <img src={feature.image} alt={`AviSafe ${feature.title} – ${feature.description}`} className="w-full h-full object-cover object-top" loading="lazy" />
+            <img src={feature.image} alt={`AviSafe ${title} – ${description}`} className="w-full h-full object-cover object-top" loading="lazy" />
           )}
         </div>
         
@@ -155,7 +118,9 @@ const PhoneMockup = ({
     </div>;
 };
 
+
 const LazyDemoVideo = () => {
+  const { t } = useTranslation();
   const { ref, isInView } = useInView();
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -177,7 +142,7 @@ const LazyDemoVideo = () => {
           preload="none"
           className="w-full h-auto"
         >
-          Din nettleser støtter ikke videoavspilling.
+          {t("product.browserNoVideo")}
         </video>
       </div>
     </div>
@@ -185,6 +150,7 @@ const LazyDemoVideo = () => {
 };
 
 const DjiAnalyseCarousel = () => {
+  const { t } = useTranslation();
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
@@ -209,7 +175,7 @@ const DjiAnalyseCarousel = () => {
           <img
             key={i}
             src={img}
-            alt={`DJI flyanalyse ${i + 1}`}
+            alt={`${t("product.dji.analyseAlt")} ${i + 1}`}
             className="flex-shrink-0 w-auto h-[200px] md:h-[260px] rounded-xl shadow-lg snap-center cursor-pointer hover:opacity-90 transition-opacity"
             loading="lazy"
             onClick={() => setLightboxIndex(i)}
@@ -229,26 +195,26 @@ const DjiAnalyseCarousel = () => {
           >
             <button
               className="absolute -top-8 right-0 text-white/90 hover:text-white z-10"
-              aria-label="Lukk bildevisning"
+              aria-label={t("product.dji.lightboxClose")}
               onClick={() => setLightboxIndex(null)}
             >
               <X className="w-6 h-6" />
             </button>
             <button
               className="flex-shrink-0 text-black hover:text-black/70"
-              aria-label="Forrige bilde"
+              aria-label={t("product.dji.lightboxPrev")}
               onClick={() => setLightboxIndex((lightboxIndex - 1 + djiAnalyseImages.length) % djiAnalyseImages.length)}
             >
               <ChevronLeft className="w-7 h-7" />
             </button>
             <img
               src={djiAnalyseImages[lightboxIndex]}
-              alt={`DJI flyanalyse ${lightboxIndex + 1}`}
+              alt={`${t("product.dji.analyseAlt")} ${lightboxIndex + 1}`}
               className="max-w-[85vw] md:max-w-[70vw] max-h-[85vh] object-contain rounded-xl shadow-2xl"
             />
             <button
               className="flex-shrink-0 text-black hover:text-black/70"
-              aria-label="Neste bilde"
+              aria-label={t("product.dji.lightboxNext")}
               onClick={() => setLightboxIndex((lightboxIndex + 1) % djiAnalyseImages.length)}
             >
               <ChevronRight className="w-7 h-7" />
@@ -261,6 +227,7 @@ const DjiAnalyseCarousel = () => {
 };
 
 const ProductShowcase = () => {
+  const { t } = useTranslation();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isAutoScrolling, setIsAutoScrolling] = useState(true);
   const [isHovering, setIsHovering] = useState(false);
@@ -327,7 +294,7 @@ const ProductShowcase = () => {
                   className="text-2xl md:text-4xl font-bold mb-7 leading-tight"
                   style={{ color: "hsl(210 20% 96%)" }}
                 >
-                  Norges mest avanserte verktøy<br className="hidden md:block" /> for SORA-risikovurderinger
+                  {t("product.soraBannerLine1")}<br className="hidden md:block" /> {t("product.soraBannerLine2")}
                 </h2>
 
                 {/* CTA Button */}
@@ -340,7 +307,7 @@ const ProductShowcase = () => {
                     boxShadow: "0 0 20px hsl(210 80% 28% / 0.5)"
                   }}
                 >
-                  Se hvordan det fungerer
+                  {t("common.seeHowItWorks")}
                   <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
                 </div>
               </div>
@@ -354,13 +321,13 @@ const ProductShowcase = () => {
       <div className="relative">
         {/* Navigation Buttons - Desktop */}
         <div className="hidden md:block">
-          <Button variant="outline" size="icon" aria-label="Bla til venstre" className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm shadow-lg" onClick={() => {
+          <Button variant="outline" size="icon" aria-label={t("product.scrollLeft")} className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm shadow-lg" onClick={() => {
           handleInteraction();
           scroll("left");
         }}>
             <ChevronLeft className="w-5 h-5" />
           </Button>
-          <Button variant="outline" size="icon" aria-label="Bla til høyre" className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm shadow-lg" onClick={() => {
+          <Button variant="outline" size="icon" aria-label={t("product.scrollRight")} className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm shadow-lg" onClick={() => {
           handleInteraction();
           scroll("right");
         }}>
@@ -374,7 +341,7 @@ const ProductShowcase = () => {
         scrollbarWidth: "none",
         msOverflowStyle: "none"
       }} onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)} onTouchStart={handleInteraction} onWheel={handleInteraction}>
-          {features.map(feature => <div key={feature.id} className="snap-center">
+          {featuresBase.map(feature => <div key={feature.id} className="snap-center">
               <PhoneMockup feature={feature} />
             </div>)}
         </div>
@@ -387,7 +354,7 @@ const ProductShowcase = () => {
       <div className="container mx-auto px-4 mt-12 md:mt-16">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground">Integrasjoner</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground">{t("common.integrations")}</h2>
           </div>
 
           <div className="space-y-6 md:space-y-8">
@@ -399,12 +366,10 @@ const ProductShowcase = () => {
 
               <div className="text-center mb-8">
                 <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                  Full støtte for DJI RC PRO/PLUS
+                  {t("product.dji.title")}
                 </h3>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Støtter opplasting av DJI fly-logger fra over 40 dronemodeller. 
-                  AviSafe integrerer sømløst med DJI-kontrollere for automatisk import av flydata, 
-                  loggføring og dokumentasjon direkte i plattformen.
+                  {t("product.dji.body")}
                 </p>
               </div>
 
@@ -438,10 +403,10 @@ const ProductShowcase = () => {
               {/* Avansert analyse */}
               <div className="text-center mt-10 mb-6">
                 <h4 className="text-xl md:text-2xl font-bold text-foreground mb-3">
-                  Avansert analyse fra loggfiler
+                  {t("product.dji.advancedTitle")}
                 </h4>
                 <p className="text-base text-muted-foreground leading-relaxed">
-                  Analyser data i detalj – app warnings, kontrollinput, batteri, vind, hastighet og mer.
+                  {t("product.dji.advancedBody")}
                 </p>
               </div>
 
@@ -464,7 +429,7 @@ const ProductShowcase = () => {
                 <img src={arduLogo} alt="ArduPilot logo" className="w-64 md:w-96 h-auto" loading="lazy" />
               </div>
               <p className="text-base text-muted-foreground leading-relaxed text-center">
-                  AviSafe støtter nå opplasting av flylogger fra ArduPilot, slik at du enkelt kan analysere og dokumentere operasjoner på samme måte som med andre loggkilder.
+                  {t("product.ardu.body")}
                 </p>
             </div>
 
@@ -481,13 +446,10 @@ const ProductShowcase = () => {
 
               <div className="text-center">
                 <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                  SafeSky - live publisering og situasjonsbilde
+                  {t("product.safesky.title")}
                 </h3>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  AviSafe er integrert med SafeSky for live posisjonsdeling og økt situasjonsforståelse under operasjoner.
-                  Når en flytur startes i AviSafe kan relevant informasjon og posisjonsdata deles i SafeSky, slik at både
-                  operatør og andre luftromsbrukere får bedre oversikt. Resultatet er enklere samhandling, færre misforståelser
-                  og tryggere operasjoner – med dokumentasjon og sporbarhet samlet i én plattform.
+                  {t("product.safesky.body")}
                 </p>
               </div>
             </div>
@@ -499,10 +461,9 @@ const ProductShowcase = () => {
               </div>
 
               <div className="text-center mb-8">
-                <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">Dronetag</h3>
+                <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">{t("product.dronetag.title")}</h3>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  AviSafe, offisiell forhandler av Dronetag i Norge. I vår plattform er Dronetag og SafeSky en naturlig
-                  integrasjon for å bedre flysikkerheten til alle luftromsaktører.
+                  {t("product.dronetag.body")}
                 </p>
               </div>
 
@@ -528,13 +489,10 @@ const ProductShowcase = () => {
               </div>
               <div className="text-center">
                 <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                  ECCAIRS2 – rapportering gjort enkelt
+                  {t("product.eccairs.title")}
                 </h3>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  AviSafe er integrert med ECCAIRS2, EUs offisielle system for hendelsesrapportering i luftfarten. Det betyr
-                  at hendelser kan registreres strukturert i AviSafe og sendes direkte til ECCAIRS2 via API – med korrekt
-                  taksonomi og obligatoriske felter på plass. Mindre manuelt arbeid, færre feil og trygg compliance mot EASA
-                  og Luftfartstilsynet.
+                  {t("product.eccairs.body")}
                 </p>
               </div>
             </div>
