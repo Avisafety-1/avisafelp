@@ -164,11 +164,11 @@ const ScrollExpandMedia = ({
 
         {/* Video — starts as thin line under header, grows downward */}
         <div
-          className="relative z-10 w-full px-4 sm:px-6 lg:px-10 mt-0 shrink-0"
+          className="relative z-10 w-full mt-0 shrink-0"
           style={{ paddingTop: `${HEADER_OFFSET}px` }}
         >
           <div
-            className="mx-auto w-full overflow-hidden rounded-2xl"
+            className="w-full overflow-hidden rounded-b-2xl"
             style={{
               height: videoHeight,
               boxShadow: "0px 10px 40px rgba(0,0,0,0.25)",
