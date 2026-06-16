@@ -121,6 +121,7 @@ const PhoneMockup = ({
 
 const LazyDemoVideo = () => {
   const { t } = useTranslation();
+  const { ref, isInView } = useInView();
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -141,7 +142,7 @@ const LazyDemoVideo = () => {
           preload="none"
           className="w-full h-auto"
         >
-          Din nettleser støtter ikke videoavspilling.
+          {t("product.browserNoVideo")}
         </video>
       </div>
     </div>
@@ -149,7 +150,7 @@ const LazyDemoVideo = () => {
 };
 
 const DjiAnalyseCarousel = () => {
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const { t } = useTranslation();
 
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (lightboxIndex === null) return;
