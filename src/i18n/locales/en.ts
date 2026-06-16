@@ -8,6 +8,13 @@ const en: Translations = {
     gallery: "Gallery",
     team: "Team",
     contact: "Contact",
+    sms: "SMS",
+    smsOverview: "Overview",
+    smsIntegrations: "Integrations",
+    smsSecurity: "Security",
+    operations: "Operations",
+    articlesMedia: "Articles & Media",
+    newsletter: "Newsletter",
   },
   common: {
     contact: "Contact us",
