@@ -63,7 +63,7 @@ interface FluxLabelProps {
 
 function FluxLabel({ label, reduced, className }: FluxLabelProps) {
   const base = cn(
-    "absolute inset-0 flex items-center justify-center text-center text-2xl font-semibold tracking-tight text-muted-foreground sm:text-3xl md:text-4xl px-4",
+    "absolute inset-0 flex items-center justify-center text-center text-4xl font-semibold tracking-tight text-muted-foreground sm:text-5xl md:text-6xl px-4",
     className,
   );
 
