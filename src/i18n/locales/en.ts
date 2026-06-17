@@ -38,9 +38,10 @@ const en: Translations = {
     openMenu: "Open menu",
   },
   hero: {
-    h1: "AviSafe — Omfattende verktøy for sikkerhetsstyring i luftfarten",
-    subline:
-      "AviSafe er en moderne plattform for sikkerhetsstyring og operativ kontroll. Gjennom automatisering, smarte integrasjoner og intuitive arbeidsflyter hjelper AviSafe virksomheter med å redusere administrativt arbeid, styrke sporbarheten og skape bedre beslutningsgrunnlag. Plattformen er utviklet for organisasjoner som ønsker å skalere effektivt, operere i samsvar med regulatoriske krav og bygge en sterk sikkerhetskultur",
+    h1: "AviSafe — Comprehensive aviation safety management tools",
+    sublineHeadline: "AviSafe is a modern platform for safety management and operational control.",
+    sublineBody:
+      "Through automation, smart integrations and intuitive workflows, AviSafe helps businesses reduce administrative work, strengthen traceability and create better decision-making foundations. The platform is developed for organisations that want to scale effectively, operate in compliance with regulatory requirements and build a strong safety culture.",
     trustedBy: "Trusted by",
     newsletterTitle: "Subscribe to the AviSafe newsletter",
     expandLine1: "Aviation-grade Safety",
