@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { ChevronDown } from "lucide-react";
 import heroDrone from "@/assets/hero-drone.jpg.asset.json";
 import heroDroneMobile from "@/assets/hero-drone-mobile.jpg.asset.json";
 import heroVideo from "@/assets/hero-video.mp4.asset.json";
