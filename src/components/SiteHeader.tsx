@@ -104,6 +104,7 @@ const SiteHeader = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [newsletterOpen, setNewsletterOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
