@@ -183,7 +183,7 @@ export function ProgressiveFluxLoader({
     >
       {showLabel && (
         <div
-          className="relative h-16 w-full select-none"
+          className="relative h-24 w-full select-none"
         >
           <FluxLabel
             label={label}
