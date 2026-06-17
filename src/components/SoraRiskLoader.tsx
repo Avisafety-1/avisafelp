@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 import { ProgressiveFluxLoader, type ProgressiveFluxPhase } from "@/components/ui/progressive-flux-loader";
 
 const PHASES: ProgressiveFluxPhase[] = [
