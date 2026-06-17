@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import droneLandscape from "@/assets/drone-landscape.png";
+import heroDrone from "@/assets/hero-drone.jpg.asset.json";
 import heroVideo from "@/assets/hero-video.mp4.asset.json";
 import heroVideoWebm from "@/assets/hero-video.webm.asset.json";
 import trustedLogo1 from "@/assets/trusted-logo-1.png";
@@ -19,7 +19,7 @@ const Hero = () => {
       <ScrollExpandMedia
         mediaSrc={heroVideo.url}
         webmSrc={heroVideoWebm.url}
-        bgImageSrc={droneLandscape}
+        bgImageSrc={heroDrone.url}
         titleTop={t("hero.expandLine1")}
         titleBottom={t("hero.expandLine2")}
       >
