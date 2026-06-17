@@ -2,7 +2,6 @@ import { useRef, useEffect, useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useInView } from "@/hooks/use-in-view";
 import { Plane, ClipboardList, BarChart3, Cloud, Route, ChevronLeft, ChevronRight, FileText, AlertTriangle, CheckSquare, Navigation, Brain, Sparkles } from "lucide-react";
-import AiSearch from "@/components/AiSearch";
 import IntegrationsSelector from "@/components/IntegrationsSelector";
 import SoraRiskLoader from "@/components/SoraRiskLoader";
 import SectionReveal from "@/components/SectionReveal";
