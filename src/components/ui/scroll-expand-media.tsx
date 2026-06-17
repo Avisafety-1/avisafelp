@@ -117,10 +117,70 @@ const ScrollExpandMedia = ({
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-    video.playbackRate = 0.5;
-    video.play().catch(() => {
-      // Autoplay may be blocked until user interaction; attributes handle most cases.
-    });
+
+    // Ensure attributes are set on the DOM element (Safari/iOS reliability)
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+    video.setAttribute("muted", "");
+    video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "");
+    video.setAttribute("autoplay", "");
+
+    let userGestureCleanup: (() => void) | null = null;
+
+    const attemptPlay = () => {
+      const p = video.play();
+      if (p && typeof p.then === "function") {
+        p.catch(() => {
+          // Autoplay blocked — retry on first user gesture
+          if (userGestureCleanup) return;
+          const retry = () => {
+            video.play().catch(() => {});
+            if (userGestureCleanup) userGestureCleanup();
+          };
+          const opts: AddEventListenerOptions = { once: true, passive: true };
+          window.addEventListener("pointerdown", retry, opts);
+          window.addEventListener("touchstart", retry, opts);
+          window.addEventListener("keydown", retry, opts);
+          userGestureCleanup = () => {
+            window.removeEventListener("pointerdown", retry);
+            window.removeEventListener("touchstart", retry);
+            window.removeEventListener("keydown", retry);
+            userGestureCleanup = null;
+          };
+        });
+      }
+    };
+
+    const onLoadedMetadata = () => {
+      try {
+        video.playbackRate = 0.5;
+      } catch {
+        /* ignore */
+      }
+      attemptPlay();
+    };
+    const onCanPlay = () => attemptPlay();
+    const onVisibility = () => {
+      if (document.visibilityState === "visible" && video.paused) attemptPlay();
+    };
+
+    video.addEventListener("loadedmetadata", onLoadedMetadata);
+    video.addEventListener("canplay", onCanPlay);
+    document.addEventListener("visibilitychange", onVisibility);
+
+    // Kick off load and an initial attempt
+    if (video.readyState >= 1) onLoadedMetadata();
+    else video.load();
+    attemptPlay();
+
+    return () => {
+      video.removeEventListener("loadedmetadata", onLoadedMetadata);
+      video.removeEventListener("canplay", onCanPlay);
+      document.removeEventListener("visibilitychange", onVisibility);
+      if (userGestureCleanup) userGestureCleanup();
+    };
   }, [mediaSrc, webmSrc]);
 
   const headerHeightPx = isMobileState ? 64 : 80;
