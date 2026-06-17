@@ -235,7 +235,6 @@ const SiteHeader = () => {
                 </a>
               </div>
               <LanguageSwitcher variant={scrolled ? "light" : "dark"} />
-              <LanguageSwitcher variant={scrolled ? "light" : "dark"} />
               {/* Mobile menu */}
               <Sheet open={open} onOpenChange={setOpen}>
                 <SheetTrigger asChild>
