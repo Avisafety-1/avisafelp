@@ -96,7 +96,14 @@ const ScrollExpandMedia = ({
     };
 
     const handleScroll = () => {
-      if (!expandedRef.current) window.scrollTo(0, 0);
+      // If something (e.g. header nav click) scrolled the page while the hero
+      // hasn't been "expanded" yet, treat it as fully expanded so navigation
+      // to other sections isn't snapped back to the top.
+      if (!expandedRef.current && window.scrollY > 0) {
+        setMediaFullyExpanded(true);
+        setShowContent(true);
+        setScrollProgress(1);
+      }
     };
 
     window.addEventListener("wheel", handleWheel, { passive: false });
