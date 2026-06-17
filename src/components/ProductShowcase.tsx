@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Plane, ClipboardList, BarChart3, Cloud, Route, ChevronLeft, ChevronRight, FileText, AlertTriangle, CheckSquare, Navigation, Brain, ArrowRight, Sparkles } from "lucide-react";
 import AiSearch from "@/components/AiSearch";
 import IntegrationsSelector from "@/components/IntegrationsSelector";
+import SoraRiskLoader from "@/components/SoraRiskLoader";
 import { Button } from "@/components/ui/button";
 import appRuteplanlegging from "@/assets/app-ruteplanlegging.jpg";
 import appRisikovurdering from "@/assets/app-risikovurdering.jpeg";
@@ -224,6 +225,8 @@ const ProductShowcase = () => {
             </div>
           </Link>
         </div>
+
+        <SoraRiskLoader />
 
       </div>
 
