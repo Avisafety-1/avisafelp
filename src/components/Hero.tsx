@@ -19,7 +19,7 @@ const Hero = () => {
       <ScrollExpandMedia
         mediaSrc={heroVideo.url}
         webmSrc={heroVideoWebm.url}
-        bgImageSrc={droneLandscape}
+        bgImageSrc={heroDrone.url}
         titleTop={t("hero.expandLine1")}
         titleBottom={t("hero.expandLine2")}
       >
