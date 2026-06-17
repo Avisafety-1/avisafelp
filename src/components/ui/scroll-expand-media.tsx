@@ -6,6 +6,7 @@ interface ScrollExpandMediaProps {
   webmSrc?: string;
   posterSrc?: string;
   bgImageSrc: string;
+  mobileBgImageSrc?: string;
   titleTop: string;
   titleBottom: string;
   children?: ReactNode;
