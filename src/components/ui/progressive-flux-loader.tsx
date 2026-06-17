@@ -87,36 +87,12 @@ function FluxLabel({ label, reduced, className }: FluxLabelProps) {
         key={label}
         aria-hidden
         className={base}
-        style={{ transformStyle: "preserve-3d" }}
-        initial={{ opacity: 0, z: -380, scale: 0.65, filter: "blur(14px)" }}
-        animate={{
-          opacity: [0, 1, 1, 1],
-          z: [-380, 60, -8, 0],
-          scale: [0.65, 1.08, 0.985, 1],
-          filter: ["blur(14px)", "blur(0px)", "blur(0px)", "blur(0px)"],
-        }}
-        exit={{
-          opacity: 0,
-          z: 220,
-          scale: 1.35,
-          filter: "blur(10px)",
-          transition: { duration: 0.45, ease: [0.7, 0, 0.84, 0] },
-        }}
-        transition={Z_TRANSITION}
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -8 }}
+        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
       >
-        <span className="inline-flex flex-wrap justify-center">
-          {label.split("").map((char, index) => (
-            <motion.span
-              key={`${label}-${index}`}
-              className="inline-block"
-              initial={{ opacity: 0, y: 12, filter: "blur(8px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ ...LETTER_TRANSITION, delay: 0.18 + index * 0.035 }}
-            >
-              {char === " " ? "\u00A0" : char}
-            </motion.span>
-          ))}
-        </span>
+        {label}
       </motion.div>
     </AnimatePresence>
   );
