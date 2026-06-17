@@ -40,6 +40,8 @@ const no = {
     sublineHeadline: "AviSafe er en moderne plattform for sikkerhetsstyring og operativ kontroll.",
     sublineBody:
       "Gjennom automatisering, smarte integrasjoner og intuitive arbeidsflyter hjelper AviSafe virksomheter med å redusere administrativt arbeid, styrke sporbarheten og skape bedre beslutningsgrunnlag. Plattformen er utviklet for organisasjoner som ønsker å skalere effektivt, operere i samsvar med regulatoriske krav og bygge en sterk sikkerhetskultur.",
+    sublineExtra:
+      "Ikke bare et system for sikkerhetsstyring – AviSafe fungerer som operativ ryggrad i organisasjonen din. Ved å koble sammen mennesker, ressurser, data og prosedyrer, skaper plattformen en sanntidsforståelse av pågående aktiviteter og fremvoksende risikoer – slik at teamet ditt kan ligge i forkant, være compliant og ha kontroll.",
     trustedBy: "Trusted by",
     newsletterTitle: "Meld deg på AviSafe nyhetsbrev",
     expandLine1: "Aviation-grade Safety",

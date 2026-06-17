@@ -42,6 +42,8 @@ const en: Translations = {
     sublineHeadline: "AviSafe is a modern platform for safety management and operational control.",
     sublineBody:
       "Through automation, smart integrations and intuitive workflows, AviSafe helps businesses reduce administrative work, strengthen traceability and create better decision-making foundations. The platform is developed for organisations that want to scale effectively, operate in compliance with regulatory requirements and build a strong safety culture.",
+    sublineExtra:
+      "More than a safety management system, AviSafe acts as the operational backbone of your organisation. By connecting people, assets, data and procedures, the platform creates a real-time understanding of ongoing activities and emerging risks—helping teams stay ahead, stay compliant and stay in control.",
     trustedBy: "Trusted by",
     newsletterTitle: "Subscribe to the AviSafe newsletter",
     expandLine1: "Aviation-grade Safety",
