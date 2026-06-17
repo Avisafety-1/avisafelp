@@ -63,6 +63,9 @@ const Hero = () => {
                 <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-muted-foreground leading-relaxed font-medium">
                   {t("hero.sublineBody")}
                 </p>
+                <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-muted-foreground leading-relaxed font-medium">
+                  {t("hero.sublineExtra")}
+                </p>
               </div>
               <AppPreviewPhone />
             </div>
