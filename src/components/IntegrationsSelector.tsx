@@ -56,6 +56,12 @@ const options: Option[] = [
     icon: <FileWarning size={22} className="text-white" />,
     contain: true,
   },
+  {
+    title: "Loggfiler",
+    description: "Automatisk import og behandling av loggfiler",
+    image: logfilesDashboard.url,
+    icon: <FileText size={22} className="text-white" />,
+  },
 ];
 
 const IntegrationsSelector = () => {
