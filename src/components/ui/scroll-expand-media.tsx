@@ -147,9 +147,9 @@ const ScrollExpandMedia = ({
           <div className="absolute inset-0 bg-black/10" />
         </motion.div>
 
-        {/* Mobile background image — portrait crop with top padding below header/video */}
+        {/* Mobile background image — portrait crop filling from top */}
         <motion.div
-          className="sm:hidden absolute inset-x-0 top-[80px] bottom-0 z-0 overflow-hidden bg-[#0d0d0d] flex items-start justify-center"
+          className="sm:hidden absolute inset-0 z-0 overflow-hidden bg-[#0d0d0d] flex items-start justify-center"
           initial={{ opacity: 1 }}
           animate={{ opacity: 1 - scrollProgress }}
           transition={{ duration: 0.1 }}
