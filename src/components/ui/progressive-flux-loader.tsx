@@ -47,11 +47,6 @@ const BAR_SHADOW = `0 0 18px color-mix(in oklab, ${FLUX_FROM} 55%, transparent),
 const SHEEN_GRADIENT =
   "linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.55) 50%, transparent 100%)";
 
-const Z_TRANSITION: Transition = { duration: 0.9, ease: [0.22, 1, 0.36, 1] };
-const LETTER_TRANSITION: Transition = {
-  duration: 0.45,
-  ease: [0.22, 1, 0.36, 1],
-};
 
 function pickLabel(value: number, sortedPhases: ProgressiveFluxPhase[]) {
   let active = sortedPhases[0]?.label ?? "";
