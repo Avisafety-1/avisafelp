@@ -21,6 +21,7 @@ const Hero = () => {
         mediaSrc={heroVideo.url}
         webmSrc={heroVideoWebm.url}
         bgImageSrc={heroDrone.url}
+        mobileBgImageSrc={heroDroneMobile.url}
         titleTop={t("hero.expandLine1")}
         titleBottom={t("hero.expandLine2")}
       >
