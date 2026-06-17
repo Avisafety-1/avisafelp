@@ -2,7 +2,6 @@ import { useRef, useEffect, useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useInView } from "@/hooks/use-in-view";
 import { Plane, ClipboardList, BarChart3, Cloud, Route, ChevronLeft, ChevronRight, FileText, AlertTriangle, CheckSquare, Navigation, Brain, Sparkles } from "lucide-react";
-import AiSearch from "@/components/AiSearch";
 import IntegrationsSelector from "@/components/IntegrationsSelector";
 import SoraRiskLoader from "@/components/SoraRiskLoader";
 import SectionReveal from "@/components/SectionReveal";
@@ -144,11 +143,6 @@ const ProductShowcase = () => {
     setIsAutoScrolling(false);
   };
   return <section className="relative z-30 pt-0 pb-0 overflow-hidden bg-transparent">
-      {/* AI Search */}
-      <SectionReveal>
-        <AiSearch />
-      </SectionReveal>
-
       <SectionReveal>
         <div>
           <SoraRiskLoader />
