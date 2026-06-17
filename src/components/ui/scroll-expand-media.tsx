@@ -161,13 +161,15 @@ const ScrollExpandMedia = ({
           <div className="absolute inset-0 bg-black/10" />
         </motion.div>
 
-        {/* Text lines — centered, split apart on scroll */}
+        {/* Text lines — centered, moves upward on scroll */}
         <div
           className="absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-none"
         >
           <motion.h2
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white max-w-4xl px-4 mix-blend-difference"
             style={{ marginTop: "50px" }}
+            animate={{ y: -scrollProgress * 200 }}
+            transition={{ duration: 0.3 }}
           >
             {titleBottom}
           </motion.h2>
