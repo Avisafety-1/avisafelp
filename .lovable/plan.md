@@ -1,41 +1,45 @@
-# Scroll-Expand Video Hero
+## Mål
 
-Replace the current static hero (drone landscape image + centered AviSafe logo) with an interactive scroll-expand media component, adapted from the 21st.dev pattern you pasted but rewritten for our Vite + React stack (no Next.js `Image`, no `'use client'`).
+Vise AviSafe-mobilappen som en interaktiv demo på landingssiden: et langt, sammensydd bilde av de 4 opplastede skjermbildene ligger inne i en realistisk telefon-ramme. Brukeren kan scrolle inne i rammen som om de brukte appen. Plasseres i området markert med rødt — mellom subline-teksten og "Norway's most advanced tool for SORA"-blokken.
 
-## What it looks like
+## Hva som lages
 
-1. On load: background = current `drone-landscape.png`, with a small centered video card (the attached `Snapchat-320838701.mp4`) on top.
-2. Two text lines sit centered behind/around the video:
-   - **Line 1 (top):** `Aviation-grade Safety`
-   - **Line 2 (bottom):** `Operational Intelligence for Professional Drone Operations`
-3. As the user scrolls (wheel / touch), the video expands toward fullscreen, the background fades out, and the two text lines slide apart horizontally (line 1 left, line 2 right).
-4. When the video reaches full size, page scroll is released and the rest of the site (Trusted-by banner, subline, ProductShowcase, …) becomes scrollable as normal.
-5. Scrolling back to the very top reverses the animation.
+1. **Sammensydd bilde** — De 4 opplastede skjermbildene stables vertikalt til ett langt PNG (`src/assets/app-preview-stitched.png`). Rekkefølge basert på naturlig brukerflyt:
+   1. Screenshot_20260617_065139_Chrome.jpg (Home: Start/End flight, News, Resource status)
+   2. Screenshot_20260617_065203_Chrome (Upcoming missions, Documents) — den røde annoteringen croppes vekk
+   3. Screenshot_20260617_065243_Chrome.jpg (Documents fortsatt, Calendar, Incidents)
+   4. Screenshot_20260617_065331_Chrome.jpg (Incidents detalj + graf)
+   
+   Statuslinjen (klokke/batteri) og Android-navigasjonsbaren croppes vekk på alle bilder slik at sømmene blir usynlige. Alle bildene normaliseres til samme bredde.
 
-i18n: both text lines added to `hero.expandLine1` / `hero.expandLine2` in `no.ts` and `en.ts` (Norwegian copy mirrors English wording per your existing pattern — confirm if you want a different NO translation).
+2. **Ny komponent** `src/components/AppPreviewPhone.tsx`:
+   - En CSS-tegnet telefonramme (avrundede hjørner ~44px, mørk bezel, subtil notch/dynamisk øy på toppen, skygge).
+   - Innvendig viewport med `overflow-y: auto` som inneholder det sammensydde bildet i full bredde.
+   - Smooth scroll, skjult scrollbar (`scrollbar-width: none`), `-webkit-overflow-scrolling: touch`.
+   - Touch/wheel-scroll fungerer uavhengig av sidescroll når musepekeren er over rammen.
+   - Responsiv: ~280px bred på mobil, ~320–340px på desktop. Høyde ~600–640px (klassisk telefon-aspekt).
 
-## Files
+3. **Plassering i `src/components/Hero.tsx`**:
+   - Inni `ScrollExpandMedia`-children, like under subline-`<p>` og før Trusted-by-banner allerede er ovenfor — ifølge merkingen skal rammen ligge mellom subline og neste seksjon. Plasseres derfor i en ny sentrert container rett etter subline-`<div>`, før children-blokken lukkes.
+   - Sentrert med litt vertikal padding.
 
-**New**
-- `src/components/ui/scroll-expand-media.tsx` — port of the pasted component, adapted:
-  - Remove `'use client'` and `next/image`; use plain `<img>` and our `framer-motion` (already in deps — will add if missing).
-  - Support a second title line (`titleTop`, `titleBottom`) so both texts split apart on scroll instead of splitting one title by first word.
-  - Accept `mediaSrc` / `bgImageSrc` as imported asset URLs.
-- `src/assets/hero-video.mp4.asset.json` — Lovable asset pointer to the uploaded `Snapchat-320838701.mp4` (kept off-repo via CDN).
+## Tekniske detaljer
 
-**Edited**
-- `src/components/Hero.tsx` — replace the drone-landscape + logo block with `<ScrollExpandMedia …>`. Keep the Trusted-by banner and subline below it (they appear after the expand completes, as part of normal page flow).
-- `src/i18n/locales/no.ts`, `src/i18n/locales/en.ts` — add `hero.expandLine1`, `hero.expandLine2`.
+- Bildesammensying gjøres med Python/PIL i sandboxen, output skrives direkte til `src/assets/app-preview-stitched.png` (importeres som vanlig ES6-bilde — ikke lovable-asset, slik at Vite kan optimalisere).
+- Crop-strategi per bilde: fjern top ~80–120px (statuslinje) og bunn ~60–120px (nav-bar) der det er nødvendig. Bilde #1 (Lovable-skjermdumpen) brukes ikke i sammensying — det er bare referansebildet med rød ring.
+- Telefonrammen bygges som ren JSX + Tailwind (ingen ekstra avhengigheter). Notch er en liten sort pille øverst.
+- Ingen endring i `scroll-expand-media.tsx` — bare i `Hero.tsx`-children.
+- Ingen i18n-tekst trengs (rammen er ren visuell demo).
 
-**Untouched**
-- Header behavior, ProductShowcase, Security, etc. The scroll-hijack only runs while the hero is in view and not yet fully expanded; once expanded, normal scroll resumes and `SiteHeader` keeps its existing dark→white transition.
+## Filer
 
-## Technical notes
+**Nye**
+- `src/assets/app-preview-stitched.png` — generert ved bygging av planen
+- `src/components/AppPreviewPhone.tsx`
 
-- Component hijacks `wheel` / `touch` events only until `mediaFullyExpanded` is true; then it releases and the page scrolls normally. `scrollProgress` drives video width/height and the `translateX` of both text lines.
-- Mobile: smaller expansion deltas (matches the pasted component's `isMobile` branch).
-- AviSafe black logo currently overlaid on the hero image is removed in this layout (the two text lines replace it). If you want the logo to remain visible during/after the expand, tell me where to place it and I'll fold that in.
+**Endret**
+- `src/components/Hero.tsx` — legger til `<AppPreviewPhone />` rett under subline-teksten
 
-## Open question
+## Åpent spørsmål
 
-The Norwegian site is fully `nb`. Do you want the two lines kept in English on both languages (as a tagline), or translated to Norwegian for `no.ts`? Default in this plan: keep English on both.
+Ingen — fortsetter med rekkefølgen ovenfor med mindre du vil ha annen.
