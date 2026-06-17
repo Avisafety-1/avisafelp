@@ -98,35 +98,6 @@ const PhoneMockup = ({
 };
 
 
-const LazyDemoVideo = () => {
-  const { t } = useTranslation();
-  const { ref, isInView } = useInView();
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    if (isInView && videoRef.current) {
-      videoRef.current.play().catch(() => {});
-    }
-  }, [isInView]);
-
-  return (
-    <div ref={ref} className="container mx-auto px-4 mt-12 md:mt-16">
-      <div className="relative rounded-2xl overflow-hidden shadow-xl max-w-4xl mx-auto">
-        <video
-          ref={videoRef}
-          src={isInView ? "/avisafe-demo.mp4" : undefined}
-          loop
-          muted
-          playsInline
-          preload="none"
-          className="w-full h-auto"
-        >
-          {t("product.browserNoVideo")}
-        </video>
-      </div>
-    </div>
-  );
-};
 
 const ProductShowcase = () => {
   const { t } = useTranslation();
@@ -209,8 +180,6 @@ const ProductShowcase = () => {
         </div>
       </div>
 
-      {/* Demo Video Section */}
-      <LazyDemoVideo />
 
       {/* New interactive integrations selector */}
       <IntegrationsSelector />
