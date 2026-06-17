@@ -144,45 +144,53 @@ const ProductShowcase = () => {
   };
   return <section className="relative z-30 pt-0 pb-0 overflow-hidden bg-transparent">
       {/* AI Search */}
-      <AiSearch />
+      <SectionReveal>
+        <AiSearch />
+      </SectionReveal>
 
-      <div>
-        <SoraRiskLoader />
-      </div>
+      <SectionReveal>
+        <div>
+          <SoraRiskLoader />
+        </div>
+      </SectionReveal>
 
       {/* Scroll Container */}
-      <div className="relative">
-        {/* Navigation Buttons - Desktop */}
-        <div className="hidden md:block">
-          <Button variant="outline" size="icon" aria-label={t("product.scrollLeft")} className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm shadow-lg" onClick={() => {
-          handleInteraction();
-          scroll("left");
-        }}>
-            <ChevronLeft className="w-5 h-5" />
-          </Button>
-          <Button variant="outline" size="icon" aria-label={t("product.scrollRight")} className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm shadow-lg" onClick={() => {
-          handleInteraction();
-          scroll("right");
-        }}>
-            <ChevronRight className="w-5 h-5" />
-          </Button>
-              </div>
+      <SectionReveal>
+        <div className="relative">
+          {/* Navigation Buttons - Desktop */}
+          <div className="hidden md:block">
+            <Button variant="outline" size="icon" aria-label={t("product.scrollLeft")} className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm shadow-lg" onClick={() => {
+            handleInteraction();
+            scroll("left");
+          }}>
+              <ChevronLeft className="w-5 h-5" />
+            </Button>
+            <Button variant="outline" size="icon" aria-label={t("product.scrollRight")} className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm shadow-lg" onClick={() => {
+            handleInteraction();
+            scroll("right");
+          }}>
+              <ChevronRight className="w-5 h-5" />
+            </Button>
+                </div>
 
 
-        {/* Scrollable Phone Gallery */}
-        <div ref={scrollContainerRef} className="flex gap-6 md:gap-8 overflow-x-auto pb-6 px-6 md:px-12 snap-x snap-mandatory" style={{
-        scrollbarWidth: "none",
-        msOverflowStyle: "none"
-      }} onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)} onTouchStart={handleInteraction} onWheel={handleInteraction}>
-          {featuresBase.map(feature => <div key={feature.id} className="snap-center">
-              <PhoneMockup feature={feature} />
-            </div>)}
+          {/* Scrollable Phone Gallery */}
+          <div ref={scrollContainerRef} className="flex gap-6 md:gap-8 overflow-x-auto pb-6 px-6 md:px-12 snap-x snap-mandatory" style={{
+          scrollbarWidth: "none",
+          msOverflowStyle: "none"
+        }} onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)} onTouchStart={handleInteraction} onWheel={handleInteraction}>
+            {featuresBase.map(feature => <div key={feature.id} className="snap-center">
+                <PhoneMockup feature={feature} />
+              </div>)}
+          </div>
         </div>
-      </div>
+      </SectionReveal>
 
 
       {/* New interactive integrations selector */}
-      <IntegrationsSelector />
+      <SectionReveal>
+        <IntegrationsSelector />
+      </SectionReveal>
     </section>;
 };
 export default ProductShowcase;
