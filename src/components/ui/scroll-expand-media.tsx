@@ -145,10 +145,9 @@ const ScrollExpandMedia = ({
           <div className="absolute inset-0 bg-black/10" />
         </motion.div>
 
-        {/* Mobile background image — starts below video, zoomed 50% */}
+        {/* Mobile background image — full-bleed with adjusted focus */}
         <motion.div
-          className="sm:hidden absolute left-0 right-0 z-0 overflow-hidden"
-          style={{ top: `${headerHeightPx + minHeightPx}px` }}
+          className="sm:hidden absolute inset-0 z-0"
           initial={{ opacity: 1 }}
           animate={{ opacity: 1 - scrollProgress }}
           transition={{ duration: 0.1 }}
@@ -156,7 +155,8 @@ const ScrollExpandMedia = ({
           <img
             src={bgImageSrc}
             alt=""
-            className="w-[150%] h-auto -ml-[25%]"
+            className="w-full h-full object-cover"
+            style={{ objectPosition: 'center 30%' }}
           />
           <div className="absolute inset-0 bg-black/10" />
         </motion.div>
