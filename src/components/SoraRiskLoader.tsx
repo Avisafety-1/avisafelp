@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 import { ProgressiveFluxLoader, type ProgressiveFluxPhase } from "@/components/ui/progressive-flux-loader";
 
 const PHASES: ProgressiveFluxPhase[] = [
@@ -68,6 +70,23 @@ const SoraRiskLoader = () => {
             className="max-w-2xl"
             textClassName="text-white"
           />
+
+          {/* CTA */}
+          <div className="mt-10 text-center">
+            <Link
+              to="/sora"
+              className="inline-flex items-center gap-2 font-semibold px-6 py-3 rounded-xl border transition-all duration-200 text-sm md:text-base hover:scale-[1.03]"
+              style={{
+                background: "hsl(210 80% 28%)",
+                borderColor: "hsl(210 80% 50% / 0.4)",
+                color: "hsl(210 20% 96%)",
+                boxShadow: "0 0 20px hsl(210 80% 28% / 0.5)",
+              }}
+            >
+              Lær mer
+              <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+            </Link>
+          </div>
         </div>
       </div>
     </section>

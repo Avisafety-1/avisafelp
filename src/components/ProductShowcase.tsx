@@ -1,8 +1,7 @@
 import { useRef, useEffect, useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useInView } from "@/hooks/use-in-view";
-import { Link } from "react-router-dom";
-import { Plane, ClipboardList, BarChart3, Cloud, Route, ChevronLeft, ChevronRight, FileText, AlertTriangle, CheckSquare, Navigation, Brain, ArrowRight, Sparkles } from "lucide-react";
+import { Plane, ClipboardList, BarChart3, Cloud, Route, ChevronLeft, ChevronRight, FileText, AlertTriangle, CheckSquare, Navigation, Brain, Sparkles } from "lucide-react";
 import AiSearch from "@/components/AiSearch";
 import IntegrationsSelector from "@/components/IntegrationsSelector";
 import SoraRiskLoader from "@/components/SoraRiskLoader";
@@ -177,57 +176,7 @@ const ProductShowcase = () => {
       <AiSearch />
 
       <div>
-        {/* SORA Banner */}
-        <div className="mb-10">
-          <Link to="/sora" className="block group">
-            <div
-              className="relative w-full overflow-hidden shadow-2xl border"
-              style={{
-                background: "hsl(210 30% 6%)",
-                borderColor: "hsl(210 50% 25%)",
-                boxShadow: "0 0 40px hsl(210 80% 28% / 0.35), 0 20px 60px hsl(210 30% 6% / 0.8)"
-              }}
-            >
-              {/* Top accent line */}
-              <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(to right, transparent, hsl(210 80% 50% / 0.8), transparent)" }} />
-
-              <div className="relative px-6 sm:px-8 lg:px-12 py-12 md:py-16 lg:py-20 text-center">
-                {/* Heading */}
-                <h2
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-5 md:mb-6 leading-tight tracking-tight"
-                  style={{ color: "hsl(210 20% 96%)" }}
-                >
-                  {t("product.soraBannerLine1")}
-                </h2>
-
-                {/* Body */}
-                <p
-                  className="text-lg sm:text-xl md:text-2xl font-medium max-w-3xl mx-auto mb-8 md:mb-10 leading-relaxed"
-                  style={{ color: "hsl(210 30% 75%)" }}
-                >
-                  {t("product.soraBannerLine2")}
-                </p>
-
-                {/* CTA Button */}
-                <div
-                  className="inline-flex items-center gap-2 font-semibold px-6 py-3 rounded-xl border transition-all duration-200 text-sm md:text-base group-hover:scale-[1.03]"
-                  style={{
-                    background: "hsl(210 80% 28%)",
-                    borderColor: "hsl(210 80% 50% / 0.4)",
-                    color: "hsl(210 20% 96%)",
-                    boxShadow: "0 0 20px hsl(210 80% 28% / 0.5)"
-                  }}
-                >
-                  {t("common.seeHowItWorks")}
-                  <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
-                </div>
-              </div>
-            </div>
-          </Link>
-        </div>
-
         <SoraRiskLoader />
-
       </div>
 
       {/* Scroll Container */}
