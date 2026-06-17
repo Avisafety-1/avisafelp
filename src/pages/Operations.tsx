@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
-import droneAsset from "@/assets/drone-m350.jpg.asset.json";
+import droneAsset from "@/assets/operations-drone.jpg.asset.json";
 
 const Operations = () => {
   const { t, i18n } = useTranslation();
