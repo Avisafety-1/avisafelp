@@ -20,7 +20,7 @@ const PHASES: ProgressiveFluxPhase[] = [
 const SoraRiskLoader = () => {
   return (
     <section className="relative z-30 py-16 md:py-24 bg-transparent">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="px-4 sm:px-6 lg:px-8">
         <div
           className="relative overflow-hidden rounded-2xl border px-6 sm:px-10 py-12 md:py-16"
           style={{
@@ -52,7 +52,7 @@ const SoraRiskLoader = () => {
               Slik bygges risikovurderingen
             </h3>
             <p
-              className="mt-4 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed"
+              className="mt-4 text-sm sm:text-base max-w-3xl mx-auto leading-relaxed"
               style={{ color: "hsl(210 30% 75%)" }}
             >
               AviSafe vurderer over 17 datakilder for å bygge en komplett
@@ -67,7 +67,7 @@ const SoraRiskLoader = () => {
             phases={PHASES}
             duration={18}
             loop
-            className="max-w-2xl"
+            className="max-w-3xl"
             textClassName="text-white"
           />
 
