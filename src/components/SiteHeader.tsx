@@ -140,6 +140,11 @@ const SiteHeader = () => {
     ? "bg-white text-[hsl(210,45%,12%)] hover:bg-gray-100 border border-black/10"
     : "bg-black text-white hover:bg-black/80 border border-white/15";
 
+  const productItems = [
+    { label: "Risikovurdering", action: () => goTo("/sora") },
+    { label: "Oversikt", action: () => scrollToId("hero-section") },
+  ];
+
   const smsItems = [
     { label: t("nav.smsOverview"), action: () => scrollToId("product-section") },
     { label: t("nav.smsIntegrations"), action: () => scrollToId("product-section") },
