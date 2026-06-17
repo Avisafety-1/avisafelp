@@ -130,37 +130,50 @@ const ScrollExpandMedia = ({
     let userGestureCleanup: (() => void) | null = null;
 
     const attemptPlay = () => {
+      // Re-assert muted before each attempt (some browsers reset on src load)
+      video.muted = true;
       const p = video.play();
       if (p && typeof p.then === "function") {
-        p.catch(() => {
-          // Autoplay blocked — retry on first user gesture
+        p.then(() => {
+          // Apply slow playback only after successful play (some browsers
+          // refuse to autoplay when playbackRate != 1 on initial load)
+          try {
+            video.playbackRate = 0.5;
+          } catch {
+            /* ignore */
+          }
+          if (userGestureCleanup) userGestureCleanup();
+        }).catch(() => {
+          // Autoplay blocked — retry on any user interaction
           if (userGestureCleanup) return;
           const retry = () => {
-            video.play().catch(() => {});
-            if (userGestureCleanup) userGestureCleanup();
+            attemptPlay();
           };
-          const opts: AddEventListenerOptions = { once: true, passive: true };
-          window.addEventListener("pointerdown", retry, opts);
-          window.addEventListener("touchstart", retry, opts);
-          window.addEventListener("keydown", retry, opts);
+          const events = [
+            "pointerdown",
+            "touchstart",
+            "touchend",
+            "mousedown",
+            "mousemove",
+            "keydown",
+            "scroll",
+            "wheel",
+          ] as const;
+          const opts: AddEventListenerOptions = { passive: true };
+          events.forEach((ev) =>
+            window.addEventListener(ev, retry, opts)
+          );
           userGestureCleanup = () => {
-            window.removeEventListener("pointerdown", retry);
-            window.removeEventListener("touchstart", retry);
-            window.removeEventListener("keydown", retry);
+            events.forEach((ev) =>
+              window.removeEventListener(ev, retry)
+            );
             userGestureCleanup = null;
           };
         });
       }
     };
 
-    const onLoadedMetadata = () => {
-      try {
-        video.playbackRate = 0.5;
-      } catch {
-        /* ignore */
-      }
-      attemptPlay();
-    };
+    const onLoadedMetadata = () => attemptPlay();
     const onCanPlay = () => attemptPlay();
     const onVisibility = () => {
       if (document.visibilityState === "visible" && video.paused) attemptPlay();
