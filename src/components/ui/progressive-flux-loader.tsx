@@ -5,7 +5,6 @@ import {
   AnimatePresence,
   motion,
   useReducedMotion,
-  type Transition,
 } from "framer-motion";
 
 import { cn } from "@/lib/utils";
