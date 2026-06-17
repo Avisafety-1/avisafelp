@@ -257,6 +257,24 @@ const SiteHeader = () => {
                 <SheetContent side="right" className="bg-[hsl(210,45%,8%)] border-white/10 text-white">
                   <nav className="flex flex-col gap-1 mt-10">
                     <Accordion type="multiple" className="w-full">
+                      <AccordionItem value="product" className="border-white/10">
+                        <AccordionTrigger className="px-3 py-3 text-base font-medium uppercase tracking-wide hover:bg-white/10 rounded-md hover:no-underline">
+                          Produkt
+                        </AccordionTrigger>
+                        <AccordionContent className="pb-1">
+                          <div className="flex flex-col">
+                            {productItems.map((it, idx) => (
+                              <button
+                                key={idx}
+                                onClick={it.action}
+                                className="text-left px-6 py-2.5 text-sm hover:bg-white/10 rounded-md text-white/85"
+                              >
+                                {it.label}
+                              </button>
+                            ))}
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
                       <AccordionItem value="sms" className="border-white/10">
                         <AccordionTrigger className="px-3 py-3 text-base font-medium uppercase tracking-wide hover:bg-white/10 rounded-md hover:no-underline">
                           {t("nav.sms")}
