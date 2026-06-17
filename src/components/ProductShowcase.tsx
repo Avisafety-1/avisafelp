@@ -347,9 +347,6 @@ const ProductShowcase = () => {
         </div>
       </div>
 
-      {/* Demo Video Section */}
-      <LazyDemoVideo />
-
       {/* Integrations Section */}
       <div id="integrations-section" className="container mx-auto px-4 mt-12 md:mt-16 scroll-mt-24">
 
