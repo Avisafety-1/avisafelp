@@ -273,12 +273,12 @@ const ProductShowcase = () => {
       {/* AI Search */}
       <AiSearch />
 
-      <div className="container mx-auto px-4">
+      <div>
         {/* SORA Banner */}
         <div className="mb-10">
           <Link to="/sora" className="block group">
             <div
-              className="relative max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl border"
+              className="relative w-full overflow-hidden shadow-2xl border"
               style={{
                 background: "hsl(210 30% 6%)",
                 borderColor: "hsl(210 50% 25%)",
@@ -288,14 +288,22 @@ const ProductShowcase = () => {
               {/* Top accent line */}
               <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(to right, transparent, hsl(210 80% 50% / 0.8), transparent)" }} />
 
-              <div className="relative px-8 py-10 md:py-12 text-center">
+              <div className="relative px-6 sm:px-8 lg:px-12 py-12 md:py-16 lg:py-20 text-center">
                 {/* Heading */}
                 <h2
-                  className="text-2xl md:text-4xl font-bold mb-7 leading-tight"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-5 md:mb-6 leading-tight tracking-tight"
                   style={{ color: "hsl(210 20% 96%)" }}
                 >
-                  {t("product.soraBannerLine1")}<br className="hidden md:block" /> {t("product.soraBannerLine2")}
+                  {t("product.soraBannerLine1")}
                 </h2>
+
+                {/* Body */}
+                <p
+                  className="text-lg sm:text-xl md:text-2xl font-medium max-w-3xl mx-auto mb-8 md:mb-10 leading-relaxed"
+                  style={{ color: "hsl(210 30% 75%)" }}
+                >
+                  {t("product.soraBannerLine2")}
+                </p>
 
                 {/* CTA Button */}
                 <div
