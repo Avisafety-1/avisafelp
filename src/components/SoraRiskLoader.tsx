@@ -50,11 +50,14 @@ const SoraRiskLoader = () => {
               Slik bygges risikovurderingen
             </h3>
             <p
-              className="mt-3 text-sm sm:text-base max-w-2xl mx-auto"
+              className="mt-4 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed"
               style={{ color: "hsl(210 30% 75%)" }}
             >
-              I sanntid henter og analyserer AviSafe alt som påvirker oppdraget – fra
-              vær og luftrom til drone- og pilotstatus.
+              AviSafe vurderer over 17 datakilder for å bygge en komplett
+              risikovurdering for alle dine oppdrag. Prosessen tar 30 sekunder og
+              gir deg mulighet til å kommentere på identifiserte risikofaktorer.
+              Kjør ny vurdering med mitigeringer og AviSafe genererer en
+              SORA-rapport for oppdraget.
             </p>
           </div>
 
