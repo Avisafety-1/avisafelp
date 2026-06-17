@@ -373,9 +373,9 @@ const no = {
   },
   operations: {
     pageTitle: "Operasjoner – AviSafe",
-    metaDescription: "AviSafe søker om operatørtillatelse og hjelper selskaper i gang med sine droneoperasjoner.",
+    metaDescription: "AviSafe er i ferd med å utvide sitt operative dronetilbud og vil kunne påta seg et bredt spekter av oppdrag.",
     h1: "Operasjoner",
-    body: "AviSafe søker om operatørtillatelse og ønsker å hjelpe selskaper i gang med sine operasjoner. Ta kontakt med oss for å høre hvor vi er i prosessen.",
+    body: "AviSafe er i ferd med å utvide sitt operative dronetilbud og vil kunne påta seg et bredt spekter av oppdrag i tiden som kommer. Samtidig ønsker vi å hjelpe virksomheter med å komme i gang med droneoperasjoner – enten gjennom etablering av egen organisasjon og nødvendige godkjenninger, eller som en del av AviSafe-økosystemet. Vårt mål er å gjøre det enklere å ta i bruk droneteknologi på en trygg, effektiv og skalerbar måte.\n\n\n",
     cta: "Kontakt oss",
   },
 };
