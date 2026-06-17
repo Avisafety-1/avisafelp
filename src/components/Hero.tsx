@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { ChevronDown } from "lucide-react";
 import heroDrone from "@/assets/hero-drone.jpg.asset.json";
 import heroDroneMobile from "@/assets/hero-drone-mobile.jpg.asset.json";
 import heroVideo from "@/assets/hero-video.mp4.asset.json";
@@ -13,6 +15,7 @@ import AppPreviewPhone from "@/components/AppPreviewPhone";
 
 const Hero = () => {
   const { t } = useTranslation();
+  const [expanded, setExpanded] = useState(false);
   return (
     <section className="relative flex flex-col overflow-hidden bg-transparent">
       <h1 className="sr-only">{t("hero.h1")}</h1>
@@ -60,12 +63,25 @@ const Hero = () => {
                 <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
                   {t("hero.sublineHeadline")}
                 </h2>
-                <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-muted-foreground leading-relaxed font-medium">
-                  {t("hero.sublineBody")}
-                </p>
-                <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-muted-foreground leading-relaxed font-medium">
-                  {t("hero.sublineExtra")}
-                </p>
+                <div className={`${expanded ? "block" : "hidden md:block"}`}>
+                  <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-muted-foreground leading-relaxed font-medium">
+                    {t("hero.sublineBody")}
+                  </p>
+                  <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-muted-foreground leading-relaxed font-medium mt-4">
+                    {t("hero.sublineExtra")}
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setExpanded((v) => !v)}
+                  className="md:hidden mx-auto mt-2 text-muted-foreground hover:text-foreground transition-colors"
+                  aria-label={expanded ? "Skjul tekst" : "Vis mer tekst"}
+                >
+                  <ChevronDown
+                    size={28}
+                    className={`transition-transform duration-300 ${expanded ? "rotate-180" : ""}`}
+                  />
+                </button>
               </div>
               <AppPreviewPhone />
             </div>
