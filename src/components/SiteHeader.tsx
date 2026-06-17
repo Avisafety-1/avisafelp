@@ -197,8 +197,12 @@ const SiteHeader = () => {
                 {t("nav.newsletter")}
               </button>
 
+              <button onClick={() => scrollToId("team-section")} className={`${navButtonBase} ${navButtonTheme}`}>
+                {t("nav.whoWeAre")}
+              </button>
+
               <button
-                onClick={() => (window.location.href = "mailto:kontakt@avisafe.no")}
+                onClick={() => { setOpen(false); setContactOpen(true); }}
                 className={`${navButtonBase} ${navButtonTheme}`}
               >
                 {t("nav.contact")}
