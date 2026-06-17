@@ -52,7 +52,7 @@ const Index = () => {
       </Helmet>
 
       {/* Hero — full-bleed, lives under the fixed header */}
-      <section className="relative w-full">
+      <section id="hero-section" className="relative w-full">
         <Hero />
       </section>
 
