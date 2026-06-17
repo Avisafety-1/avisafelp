@@ -20,9 +20,9 @@ const PHASES: ProgressiveFluxPhase[] = [
 const SoraRiskLoader = () => {
   return (
     <section className="relative z-30 py-16 md:py-24 bg-transparent">
-      <div className="px-4 sm:px-6 lg:px-8">
+      <div className="md:px-4 lg:px-8">
         <div
-          className="relative overflow-hidden rounded-2xl border px-6 sm:px-10 py-12 md:py-16"
+          className="relative overflow-hidden md:rounded-2xl md:border md:px-6 lg:px-10 py-12 md:py-16 px-4"
           style={{
             background: "hsl(210 30% 8%)",
             borderColor: "hsl(210 50% 25%)",
