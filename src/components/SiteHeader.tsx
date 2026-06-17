@@ -237,10 +237,10 @@ const SiteHeader = () => {
               </div>
               <LanguageSwitcher variant={scrolled ? "light" : "dark"} />
               <Button
-                asChild
+                onClick={() => setContactOpen(true)}
                 className="hidden sm:inline-flex h-9 rounded-full bg-[#123b87] hover:bg-[#0e2f6b] text-white px-5 text-sm font-semibold shadow-lg"
               >
-                <a href="mailto:kontakt@avisafe.no">{t("nav.contact")}</a>
+                {t("nav.contact")}
               </Button>
 
               {/* Mobile menu */}
