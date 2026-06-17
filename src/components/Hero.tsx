@@ -55,7 +55,7 @@ const Hero = () => {
 
           {/* Subline */}
           <div className="container mx-auto px-4 sm:px-6 text-center py-8 md:py-12">
-            <p className="text-base sm:text-xl md:text-2xl text-muted-foreground max-w-xs sm:max-w-lg md:max-w-2xl mx-auto leading-relaxed font-medium px-2">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-xs sm:max-w-2xl md:max-w-4xl mx-auto leading-relaxed font-medium px-2 whitespace-pre-line">
               {t("hero.subline")}
             </p>
             <AppPreviewPhone />
