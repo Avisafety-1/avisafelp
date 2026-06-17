@@ -63,7 +63,7 @@ const Index = () => {
       </SectionReveal>
 
       {/* Team — full-width subtle band */}
-      <SectionReveal className="relative w-full bg-[hsl(210,30%,92%)] py-24 md:py-32">
+      <SectionReveal id="team-section" className="relative w-full bg-[hsl(210,30%,92%)] py-24 md:py-32 scroll-mt-24">
         <Team />
       </SectionReveal>
     </div>

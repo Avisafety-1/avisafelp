@@ -361,7 +361,7 @@ const SiteHeader = () => {
             >
               <Phone className="w-5 h-5 text-[#123b87] shrink-0" />
               <div className="flex flex-col">
-                <span className="text-sm font-medium text-foreground">Tikard Bjørklund</span>
+                <span className="text-sm font-medium text-foreground">Rikard Bjørklund</span>
                 <span className="text-xs text-muted-foreground">+47 469 41 552</span>
               </div>
             </a>
