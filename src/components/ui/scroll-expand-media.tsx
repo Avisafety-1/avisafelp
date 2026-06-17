@@ -17,6 +17,7 @@ const ScrollExpandMedia = ({
   webmSrc,
   posterSrc,
   bgImageSrc,
+  mobileBgImageSrc,
   titleTop,
   titleBottom,
   children,
