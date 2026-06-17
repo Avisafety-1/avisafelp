@@ -1,8 +1,7 @@
 import { useRef, useEffect, useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useInView } from "@/hooks/use-in-view";
-import { Link } from "react-router-dom";
-import { Plane, ClipboardList, BarChart3, Cloud, Route, ChevronLeft, ChevronRight, FileText, AlertTriangle, CheckSquare, Navigation, Brain, ArrowRight, Sparkles } from "lucide-react";
+import { Plane, ClipboardList, BarChart3, Cloud, Route, ChevronLeft, ChevronRight, FileText, AlertTriangle, CheckSquare, Navigation, Brain, Sparkles } from "lucide-react";
 import AiSearch from "@/components/AiSearch";
 import IntegrationsSelector from "@/components/IntegrationsSelector";
 import SoraRiskLoader from "@/components/SoraRiskLoader";
