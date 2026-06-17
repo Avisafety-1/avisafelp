@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { Plane, Radio, Cpu, FileWarning, Map, Wifi } from "lucide-react";
+import { Plane, Radio, Cpu, FileWarning, Map, Wifi, FileText } from "lucide-react";
 import djiMap from "@/assets/dji-map.png";
 import djiFlighthub2 from "@/assets/dji-flighthub2.jpg";
 import safeskyLogo from "@/assets/safesky-logo.png";
 import arduLogo from "@/assets/ardu-logo.png";
 import eccairs2Logo from "@/assets/eccairs2-logo.jpeg";
 import dronetagMini from "@/assets/dronetag-mini.jpeg";
+import logfilesDashboard from "@/assets/logfiles-dashboard.png.asset.json";
 
 type Option = {
   title: string;
@@ -54,6 +55,12 @@ const options: Option[] = [
     image: eccairs2Logo,
     icon: <FileWarning size={22} className="text-white" />,
     contain: true,
+  },
+  {
+    title: "Loggfiler",
+    description: "Automatisk import og behandling av loggfiler",
+    image: logfilesDashboard.url,
+    icon: <FileText size={22} className="text-white" />,
   },
 ];
 
