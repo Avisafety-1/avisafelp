@@ -38,9 +38,9 @@ const en: Translations = {
     openMenu: "Open menu",
   },
   hero: {
-    h1: "AviSafe — Comprehensive aviation safety management tools",
+    h1: "AviSafe — Omfattende verktøy for sikkerhetsstyring i luftfarten",
     subline:
-      "AviSafe enables safer and more efficient operations by giving aviation operators comprehensive tools for safety management",
+      "AviSafe er en moderne plattform for sikkerhetsstyring og operativ kontroll. Gjennom automatisering, smarte integrasjoner og intuitive arbeidsflyter hjelper AviSafe virksomheter med å redusere administrativt arbeid, styrke sporbarheten og skape bedre beslutningsgrunnlag. Plattformen er utviklet for organisasjoner som ønsker å skalere effektivt, operere i samsvar med regulatoriske krav og bygge en sterk sikkerhetskultur",
     trustedBy: "Trusted by",
     newsletterTitle: "Subscribe to the AviSafe newsletter",
     expandLine1: "Aviation-grade Safety",
