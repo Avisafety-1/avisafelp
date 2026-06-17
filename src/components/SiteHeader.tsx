@@ -142,7 +142,7 @@ const SiteHeader = () => {
 
   const smsItems = [
     { label: t("nav.smsOverview"), action: () => scrollToId("product-section") },
-    { label: t("nav.smsIntegrations"), action: () => scrollToId("integrations-section") },
+    { label: t("nav.smsIntegrations"), action: () => scrollToId("product-section") },
     { label: t("nav.smsSecurity"), action: () => scrollToId("security-section") },
   ];
 

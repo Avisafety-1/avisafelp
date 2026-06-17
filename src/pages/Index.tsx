@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Hero from "@/components/Hero";
 import ProductShowcase from "@/components/ProductShowcase";
 import Security from "@/components/Security";
@@ -12,16 +12,24 @@ const Index = () => {
   const { i18n } = useTranslation();
   const isNo = i18n.language?.startsWith("no");
   const location = useLocation();
+  const navigate = useNavigate();
 
   // Handle scroll-to coming from cross-route nav
   useEffect(() => {
     const state = location.state as { scrollTo?: string } | null;
     if (state?.scrollTo) {
-      requestAnimationFrame(() => {
-        document.getElementById(state.scrollTo!)?.scrollIntoView({ behavior: "smooth" });
-      });
+      const id = state.scrollTo;
+      const timer = setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+        // Clean up state so re-renders don't scroll again
+        navigate(location.pathname, { replace: true, state: {} });
+      }, 450);
+      return () => clearTimeout(timer);
     }
-  }, [location.state]);
+  }, [location.state, location.pathname, navigate]);
 
   return (
     <div className="min-h-screen bg-[hsl(210,30%,96%)]">
