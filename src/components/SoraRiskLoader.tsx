@@ -1,23 +1,26 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { ProgressiveFluxLoader, type ProgressiveFluxPhase } from "@/components/ui/progressive-flux-loader";
 
-const PHASES: ProgressiveFluxPhase[] = [
-  { at: 0, label: "Henter værdata…" },
-  { at: 8, label: "Sjekker NOTAM…" },
-  { at: 18, label: "Analyserer luftrom…" },
-  { at: 28, label: "Leser loggbøker…" },
-  { at: 38, label: "Beregner befolkningstetthet…" },
-  { at: 48, label: "Kontrollerer dronevedlikehold…" },
-  { at: 58, label: "Vurderer batteristatus…" },
-  { at: 68, label: "Sjekker pilotkompetanse…" },
-  { at: 76, label: "Evaluerer terreng…" },
-  { at: 84, label: "Identifiserer risikofaktorer…" },
-  { at: 92, label: "Genererer SORA-rapport…" },
-  { at: 100, label: "Risikovurdering klar" },
-];
-
 const SoraRiskLoader = () => {
+  const { t } = useTranslation();
+
+  const PHASES: ProgressiveFluxPhase[] = [
+    { at: 0, label: t("soraLoader.phases.weather") },
+    { at: 8, label: t("soraLoader.phases.notam") },
+    { at: 18, label: t("soraLoader.phases.airspace") },
+    { at: 28, label: t("soraLoader.phases.logs") },
+    { at: 38, label: t("soraLoader.phases.population") },
+    { at: 48, label: t("soraLoader.phases.maintenance") },
+    { at: 58, label: t("soraLoader.phases.battery") },
+    { at: 68, label: t("soraLoader.phases.pilot") },
+    { at: 76, label: t("soraLoader.phases.terrain") },
+    { at: 84, label: t("soraLoader.phases.risk") },
+    { at: 92, label: t("soraLoader.phases.report") },
+    { at: 100, label: t("soraLoader.phases.done") },
+  ];
+
   return (
     <section className="relative z-30 py-16 md:py-24 bg-transparent">
       <div className="md:px-4 lg:px-8">
@@ -43,23 +46,19 @@ const SoraRiskLoader = () => {
               className="text-base sm:text-xl font-semibold uppercase tracking-[0.2em] mb-3"
               style={{ color: "hsl(195 90% 70%)" }}
             >
-              AviSafe SORA-motor
+              {t("soraLoader.eyebrow")}
             </p>
             <h3
               className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight"
               style={{ color: "hsl(210 20% 96%)" }}
             >
-              Slik bygges risikovurderingen
+              {t("soraLoader.heading")}
             </h3>
             <p
               className="mt-4 text-lg sm:text-2xl max-w-3xl mx-auto leading-relaxed"
               style={{ color: "hsl(210 30% 75%)" }}
             >
-              AviSafe vurderer over 17 datakilder for å bygge en komplett
-              risikovurdering for alle dine oppdrag. Prosessen tar 30 sekunder og
-              gir deg mulighet til å kommentere på identifiserte risikofaktorer.
-              Kjør ny vurdering med mitigeringer og AviSafe genererer en
-              SORA-rapport for oppdraget.
+              {t("soraLoader.body")}
             </p>
           </div>
 
@@ -83,7 +82,7 @@ const SoraRiskLoader = () => {
                 boxShadow: "0 0 20px hsl(210 80% 28% / 0.5)",
               }}
             >
-              Lær mer
+              {t("soraLoader.cta")}
               <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
             </Link>
           </div>
