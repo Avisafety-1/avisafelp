@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import heroDrone from "@/assets/hero-drone.jpg.asset.json";
+import heroDroneMobile from "@/assets/hero-drone-mobile.jpg.asset.json";
 import heroVideo from "@/assets/hero-video.mp4.asset.json";
 import heroVideoWebm from "@/assets/hero-video.webm.asset.json";
 import trustedLogo1 from "@/assets/trusted-logo-1.png";
@@ -20,6 +21,7 @@ const Hero = () => {
         mediaSrc={heroVideo.url}
         webmSrc={heroVideoWebm.url}
         bgImageSrc={heroDrone.url}
+        mobileBgImageSrc={heroDroneMobile.url}
         titleTop={t("hero.expandLine1")}
         titleBottom={t("hero.expandLine2")}
       >

@@ -6,6 +6,7 @@ interface ScrollExpandMediaProps {
   webmSrc?: string;
   posterSrc?: string;
   bgImageSrc: string;
+  mobileBgImageSrc?: string;
   titleTop: string;
   titleBottom: string;
   children?: ReactNode;
@@ -16,6 +17,7 @@ const ScrollExpandMedia = ({
   webmSrc,
   posterSrc,
   bgImageSrc,
+  mobileBgImageSrc,
   titleTop,
   titleBottom,
   children,
@@ -145,17 +147,18 @@ const ScrollExpandMedia = ({
           <div className="absolute inset-0 bg-black/10" />
         </motion.div>
 
-        {/* Mobile background image — full width with natural aspect ratio */}
+        {/* Mobile background image — portrait crop with top padding below header/video */}
         <motion.div
-          className="sm:hidden absolute inset-0 z-0 overflow-hidden bg-[#0d0d0d] flex items-start justify-center"
+          className="sm:hidden absolute inset-x-0 top-[80px] bottom-0 z-0 overflow-hidden bg-[#0d0d0d] flex items-start justify-center"
           initial={{ opacity: 1 }}
           animate={{ opacity: 1 - scrollProgress }}
           transition={{ duration: 0.1 }}
         >
           <img
-            src={bgImageSrc}
+            src={mobileBgImageSrc || bgImageSrc}
             alt=""
-            className="w-full h-auto max-h-full"
+            className="w-full h-full object-cover"
+            style={{ objectPosition: 'center 20%' }}
           />
           <div className="absolute inset-0 bg-black/10" />
         </motion.div>
