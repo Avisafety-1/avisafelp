@@ -1,45 +1,46 @@
+
 ## Mål
+På mobil vises integrasjonskortene i `IntegrationsSelector` i dag som smale vertikale striper som klemmes sammen — vanskelige å se og trykke på. Vi gir mobil en helt egen layout uten å endre desktop-oppførselen.
 
-Vise AviSafe-mobilappen som en interaktiv demo på landingssiden: et langt, sammensydd bilde av de 4 opplastede skjermbildene ligger inne i en realistisk telefon-ramme. Brukeren kan scrolle inne i rammen som om de brukte appen. Plasseres i området markert med rødt — mellom subline-teksten og "Norway's most advanced tool for SORA"-blokken.
+## Ny mobil-oppførsel
+- Kortene stables som et "kort-stack": hvert kort er like bredt som skjermen (container-bredde) og vises i full størrelse (samme aspektforhold som det aktive kortet).
+- Kun den øverste delen av hvert kort er synlig som standard — ca. halvparten av kortets høyde stikker opp over kortet under (peek-høyde ≈ 50 % av korthøyden).
+- Når man trykker på et kort:
+  - Det valgte kortet løftes opp slik at hele kortet vises i full bredde og full høyde.
+  - Kortene som ligger *under* det aktive forskyves nedover slik at de fremdeles peeker frem nederst på skjermen (man kan trykke på dem for å velge dem i stedet).
+  - Kortene *over* det aktive beholder sin peek-posisjon på toppen, så man kan trykke seg tilbake oppover.
+- Bilde vises i full størrelse (cover), label/ikon nederst som i dag.
+- Smooth `transition` på `transform` (samme varighet som dagens 700 ms).
 
-## Hva som lages
-
-1. **Sammensydd bilde** — De 4 opplastede skjermbildene stables vertikalt til ett langt PNG (`src/assets/app-preview-stitched.png`). Rekkefølge basert på naturlig brukerflyt:
-   1. Screenshot_20260617_065139_Chrome.jpg (Home: Start/End flight, News, Resource status)
-   2. Screenshot_20260617_065203_Chrome (Upcoming missions, Documents) — den røde annoteringen croppes vekk
-   3. Screenshot_20260617_065243_Chrome.jpg (Documents fortsatt, Calendar, Incidents)
-   4. Screenshot_20260617_065331_Chrome.jpg (Incidents detalj + graf)
-   
-   Statuslinjen (klokke/batteri) og Android-navigasjonsbaren croppes vekk på alle bilder slik at sømmene blir usynlige. Alle bildene normaliseres til samme bredde.
-
-2. **Ny komponent** `src/components/AppPreviewPhone.tsx`:
-   - En CSS-tegnet telefonramme (avrundede hjørner ~44px, mørk bezel, subtil notch/dynamisk øy på toppen, skygge).
-   - Innvendig viewport med `overflow-y: auto` som inneholder det sammensydde bildet i full bredde.
-   - Smooth scroll, skjult scrollbar (`scrollbar-width: none`), `-webkit-overflow-scrolling: touch`.
-   - Touch/wheel-scroll fungerer uavhengig av sidescroll når musepekeren er over rammen.
-   - Responsiv: ~280px bred på mobil, ~320–340px på desktop. Høyde ~600–640px (klassisk telefon-aspekt).
-
-3. **Plassering i `src/components/Hero.tsx`**:
-   - Inni `ScrollExpandMedia`-children, like under subline-`<p>` og før Trusted-by-banner allerede er ovenfor — ifølge merkingen skal rammen ligge mellom subline og neste seksjon. Plasseres derfor i en ny sentrert container rett etter subline-`<div>`, før children-blokken lukkes.
-   - Sentrert med litt vertikal padding.
+## Layout-skisse (mobil)
+```text
+┌───────────────────────┐  ← kort 1 (peek topp)
+├───────────────────────┤  ← kort 2 (peek topp)
+│                       │
+│   AKTIVT KORT         │  full høyde, full bredde
+│   (kort 3)            │
+│                       │
+├───────────────────────┤  ← kort 4 (peek bunn)
+├───────────────────────┤  ← kort 5 (peek bunn)
+└───────────────────────┘
+```
 
 ## Tekniske detaljer
+- Endring kun i `src/components/IntegrationsSelector.tsx`.
+- Bruk eksisterende `useIsMobile()` hook (`src/hooks/use-mobile.tsx`) til å bytte mellom dagens horisontale "accordion" (desktop, uendret) og ny stack-layout (mobil).
+- Mobil-implementasjon:
+  - Container: `relative` med fast høyde = `cardHeight + (n-1) * peekHeight`. Korthøyde ≈ `70vw` (gir kvadratisk-ish kort i mobilbredde), peek ≈ `cardHeight / 2`.
+  - Hvert kort: `absolute inset-x-0`, `height: cardHeight`, `transform: translateY(offset)`.
+  - Offset-formel:
+    - `i < activeIndex` → `i * peek` (stables på toppen)
+    - `i === activeIndex` → `activeIndex * peek`
+    - `i > activeIndex` → `activeIndex * peek + cardHeight - peek + (i - activeIndex - 1) * peek + peek` (dvs. starter rett under aktivt kort og peeker nedover)
+  - `zIndex` = `i` for naturlig stabling (øvre kort over, nedre under aktivt — justeres slik at aktivt kort alltid er øverst i z).
+  - Beholder rounded corners + shadow per kort så stacken ser tydelig ut.
+- Label/ikon: alltid synlig på aktivt kort; på inaktive vises kun ikon (label fades inn ved aktivering, som i dag).
+- Desktop (md+): ingen endring — eksisterende flex-layout brukes uendret.
 
-- Bildesammensying gjøres med Python/PIL i sandboxen, output skrives direkte til `src/assets/app-preview-stitched.png` (importeres som vanlig ES6-bilde — ikke lovable-asset, slik at Vite kan optimalisere).
-- Crop-strategi per bilde: fjern top ~80–120px (statuslinje) og bunn ~60–120px (nav-bar) der det er nødvendig. Bilde #1 (Lovable-skjermdumpen) brukes ikke i sammensying — det er bare referansebildet med rød ring.
-- Telefonrammen bygges som ren JSX + Tailwind (ingen ekstra avhengigheter). Notch er en liten sort pille øverst.
-- Ingen endring i `scroll-expand-media.tsx` — bare i `Hero.tsx`-children.
-- Ingen i18n-tekst trengs (rammen er ren visuell demo).
-
-## Filer
-
-**Nye**
-- `src/assets/app-preview-stitched.png` — generert ved bygging av planen
-- `src/components/AppPreviewPhone.tsx`
-
-**Endret**
-- `src/components/Hero.tsx` — legger til `<AppPreviewPhone />` rett under subline-teksten
-
-## Åpent spørsmål
-
-Ingen — fortsetter med rekkefølgen ovenfor med mindre du vil ha annen.
+## Akseptansekriterier
+- På mobil (<768 px) ser man en stack med alle 7 kortene; aktivt kort fyller bredden og full korthøyde.
+- Trykk på et peekende kort animerer det opp/ned til full visning og forskyver de andre.
+- Desktop ser identisk ut med dagens versjon.
