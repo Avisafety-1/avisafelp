@@ -130,9 +130,9 @@ const ScrollExpandMedia = ({
   return (
     <div className="transition-colors duration-700 ease-in-out overflow-x-hidden">
       <section className="relative flex flex-col items-center min-h-[100dvh]">
-        {/* Background image - full cover on all sizes, with mobile-friendly focal point */}
+        {/* Background image - hidden on mobile (video is the hero), full cover on desktop */}
         <motion.div
-          className="absolute inset-0 z-0"
+          className="hidden sm:block absolute inset-0 z-0"
           initial={{ opacity: 1 }}
           animate={{ opacity: 1 - scrollProgress }}
           transition={{ duration: 0.1 }}
