@@ -184,7 +184,6 @@ export function ProgressiveFluxLoader({
       {showLabel && (
         <div
           className="relative h-16 w-full select-none"
-          style={reduced ? undefined : { perspective: "1000px" }}
         >
           <FluxLabel
             label={label}
