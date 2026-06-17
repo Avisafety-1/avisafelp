@@ -378,7 +378,7 @@ const en: Translations = {
     metaDescription: "AviSafe is expanding its operational drone offering and will be able to undertake a wide range of missions.",
     h1: "Operations",
     body: "AviSafe is in the process of expanding its operational drone offering and will be able to undertake a wide range of missions in the time to come. At the same time, we want to help businesses get started with drone operations – either through establishing their own organization and necessary approvals, or as part of the AviSafe ecosystem. Our goal is to make it easier to adopt drone technology in a safe, efficient, and scalable way.\n\n\n",
-    ...
+    cta: "Contact us",
   },
 };
 
