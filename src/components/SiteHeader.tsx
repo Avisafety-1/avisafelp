@@ -235,13 +235,7 @@ const SiteHeader = () => {
                 </a>
               </div>
               <LanguageSwitcher variant={scrolled ? "light" : "dark"} />
-              <Button
-                onClick={() => setContactOpen(true)}
-                className="hidden sm:inline-flex h-9 rounded-full bg-[#123b87] hover:bg-[#0e2f6b] text-white px-5 text-sm font-semibold shadow-lg"
-              >
-                {t("nav.contact")}
-              </Button>
-
+              <LanguageSwitcher variant={scrolled ? "light" : "dark"} />
               {/* Mobile menu */}
               <Sheet open={open} onOpenChange={setOpen}>
                 <SheetTrigger asChild>
