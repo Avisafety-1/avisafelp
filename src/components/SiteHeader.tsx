@@ -140,15 +140,12 @@ const SiteHeader = () => {
     ? "bg-white text-[hsl(210,45%,12%)] hover:bg-gray-100 border border-black/10"
     : "bg-black text-white hover:bg-black/80 border border-white/15";
 
-  const productItems = [
-    { label: "Risikovurdering", action: () => goTo("/sora") },
-    { label: "Oversikt", action: () => scrollToId("hero-section") },
-  ];
-
   const smsItems = [
     { label: t("nav.smsOverview"), action: () => scrollToId("product-section") },
     { label: t("nav.smsIntegrations"), action: () => scrollToId("product-section") },
     { label: t("nav.smsSecurity"), action: () => scrollToId("security-section") },
+    { label: "Risikovurdering", action: () => goTo("/sora") },
+    { label: "Oversikt", action: () => scrollToId("hero-section") },
   ];
 
   const articlesItems = [
@@ -189,8 +186,6 @@ const SiteHeader = () => {
 
             {/* Desktop nav */}
             <nav className="hidden lg:flex items-center gap-2">
-              <HoverDropdown label="Produkt" items={productItems} scrolled={scrolled} />
-
               <HoverDropdown label={t("nav.sms")} items={smsItems} scrolled={scrolled} />
 
               <button onClick={() => goTo("/operations")} className={`${navButtonBase} ${navButtonTheme}`}>
@@ -257,24 +252,6 @@ const SiteHeader = () => {
                 <SheetContent side="right" className="bg-[hsl(210,45%,8%)] border-white/10 text-white">
                   <nav className="flex flex-col gap-1 mt-10">
                     <Accordion type="multiple" className="w-full">
-                      <AccordionItem value="product" className="border-white/10">
-                        <AccordionTrigger className="px-3 py-3 text-base font-medium uppercase tracking-wide hover:bg-white/10 rounded-md hover:no-underline">
-                          Produkt
-                        </AccordionTrigger>
-                        <AccordionContent className="pb-1">
-                          <div className="flex flex-col">
-                            {productItems.map((it, idx) => (
-                              <button
-                                key={idx}
-                                onClick={it.action}
-                                className="text-left px-6 py-2.5 text-sm hover:bg-white/10 rounded-md text-white/85"
-                              >
-                                {it.label}
-                              </button>
-                            ))}
-                          </div>
-                        </AccordionContent>
-                      </AccordionItem>
                       <AccordionItem value="sms" className="border-white/10">
                         <AccordionTrigger className="px-3 py-3 text-base font-medium uppercase tracking-wide hover:bg-white/10 rounded-md hover:no-underline">
                           {t("nav.sms")}
