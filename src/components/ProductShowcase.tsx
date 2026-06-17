@@ -143,12 +143,11 @@ const ProductShowcase = () => {
     setIsAutoScrolling(false);
   };
   return <section className="relative z-30 pt-0 pb-0 overflow-hidden bg-transparent">
-      {/* AI Search */}
       <SectionReveal>
-        <AiSearch />
+        <div>
+          <SoraRiskLoader />
+        </div>
       </SectionReveal>
-
-      <SectionReveal>
         <div>
           <SoraRiskLoader />
         </div>
