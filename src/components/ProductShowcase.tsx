@@ -180,8 +180,6 @@ const ProductShowcase = () => {
         </div>
       </div>
 
-      {/* Demo Video Section */}
-      <LazyDemoVideo />
 
       {/* New interactive integrations selector */}
       <IntegrationsSelector />
