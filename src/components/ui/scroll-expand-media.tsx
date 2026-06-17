@@ -161,13 +161,15 @@ const ScrollExpandMedia = ({
           <div className="absolute inset-0 bg-black/10" />
         </motion.div>
 
-        {/* Text lines — centered, split apart on scroll */}
+        {/* Text lines — centered, moves upward on scroll */}
         <div
           className="absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-none"
         >
           <motion.h2
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white max-w-4xl px-4 mix-blend-difference"
             style={{ marginTop: "50px" }}
+            animate={{ y: -scrollProgress * 200 }}
+            transition={{ duration: 0.3 }}
           >
             {titleBottom}
           </motion.h2>
@@ -209,13 +211,12 @@ const ScrollExpandMedia = ({
           </div>
         </div>
 
-        {/* titleTop — placed right under the video, moves upward on scroll */}
+        {/* titleTop — placed right under the video */}
         <motion.h2
           className="relative z-20 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold px-4 text-center pointer-events-none"
           style={{ marginTop: "30px" }}
           animate={{
             color: scrollProgress > 0.1 ? "hsl(210, 45%, 12%)" : "#ffffff",
-            y: -scrollProgress * 250,
           }}
           transition={{ duration: 0.3 }}
         >
