@@ -40,19 +40,19 @@ const SoraRiskLoader = () => {
 
           <div className="text-center mb-10">
             <p
-              className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] mb-3"
+              className="text-base sm:text-xl font-semibold uppercase tracking-[0.2em] mb-3"
               style={{ color: "hsl(195 90% 70%)" }}
             >
               AviSafe SORA-motor
             </p>
             <h3
-              className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight"
+              className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight"
               style={{ color: "hsl(210 20% 96%)" }}
             >
               Slik bygges risikovurderingen
             </h3>
             <p
-              className="mt-4 text-sm sm:text-base max-w-3xl mx-auto leading-relaxed"
+              className="mt-4 text-lg sm:text-2xl max-w-3xl mx-auto leading-relaxed"
               style={{ color: "hsl(210 30% 75%)" }}
             >
               AviSafe vurderer over 17 datakilder for å bygge en komplett
@@ -75,7 +75,7 @@ const SoraRiskLoader = () => {
           <div className="mt-10 text-center">
             <Link
               to="/sora"
-              className="inline-flex items-center gap-2 font-semibold px-6 py-3 rounded-xl border transition-all duration-200 text-sm md:text-base hover:scale-[1.03]"
+              className="inline-flex items-center gap-2 font-semibold px-6 py-3 rounded-xl border transition-all duration-200 text-base md:text-xl hover:scale-[1.03]"
               style={{
                 background: "hsl(210 80% 28%)",
                 borderColor: "hsl(210 80% 50% / 0.4)",
