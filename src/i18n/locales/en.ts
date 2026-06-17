@@ -94,8 +94,8 @@ const en: Translations = {
     errorGeneric: "Sorry, something went wrong. Please try again later.",
   },
   product: {
-    soraBannerLine1: "Norway's most advanced tool",
-    soraBannerLine2: "for SORA risk assessments",
+    soraBannerLine1: "Automatic SORA — more than 17 sources processed in 30 seconds.",
+    soraBannerLine2: "Gives you a structured and clear risk assessment of the operation.",
     scrollLeft: "Scroll left",
     scrollRight: "Scroll right",
     browserNoVideo: "Your browser does not support video playback.",
