@@ -121,17 +121,31 @@ const ScrollExpandMedia = ({
     // Ensure attributes are set on the DOM element (Safari/iOS reliability)
     video.muted = true;
     video.defaultMuted = true;
+    video.volume = 0;
     video.playsInline = true;
+    video.controls = false;
     video.setAttribute("muted", "");
     video.setAttribute("playsinline", "");
     video.setAttribute("webkit-playsinline", "");
+    video.setAttribute("x-webkit-airplay", "deny");
     video.setAttribute("autoplay", "");
+    video.removeAttribute("controls");
 
     let userGestureCleanup: (() => void) | null = null;
+    let retryTimers: number[] = [];
+
+    const clearRetryTimers = () => {
+      retryTimers.forEach((timer) => window.clearTimeout(timer));
+      retryTimers = [];
+    };
 
     const attemptPlay = () => {
       // Re-assert muted before each attempt (some browsers reset on src load)
       video.muted = true;
+      video.defaultMuted = true;
+      video.volume = 0;
+      video.controls = false;
+      video.removeAttribute("controls");
       const p = video.play();
       if (p && typeof p.then === "function") {
         p.then(() => {
@@ -142,6 +156,7 @@ const ScrollExpandMedia = ({
           } catch {
             /* ignore */
           }
+          clearRetryTimers();
           if (userGestureCleanup) userGestureCleanup();
         }).catch(() => {
           // Autoplay blocked — retry on any user interaction
@@ -175,23 +190,32 @@ const ScrollExpandMedia = ({
 
     const onLoadedMetadata = () => attemptPlay();
     const onCanPlay = () => attemptPlay();
+    const onLoadedData = () => attemptPlay();
     const onVisibility = () => {
       if (document.visibilityState === "visible" && video.paused) attemptPlay();
     };
 
     video.addEventListener("loadedmetadata", onLoadedMetadata);
     video.addEventListener("canplay", onCanPlay);
+    video.addEventListener("loadeddata", onLoadedData);
     document.addEventListener("visibilitychange", onVisibility);
 
     // Kick off load and an initial attempt
     if (video.readyState >= 1) onLoadedMetadata();
     else video.load();
     attemptPlay();
+    retryTimers = [80, 200, 500, 1000, 1800, 3000].map((delay) =>
+      window.setTimeout(() => {
+        if (video.paused) attemptPlay();
+      }, delay)
+    );
 
     return () => {
       video.removeEventListener("loadedmetadata", onLoadedMetadata);
       video.removeEventListener("canplay", onCanPlay);
+      video.removeEventListener("loadeddata", onLoadedData);
       document.removeEventListener("visibilitychange", onVisibility);
+      clearRetryTimers();
       if (userGestureCleanup) userGestureCleanup();
     };
   }, [mediaSrc, webmSrc]);
@@ -270,7 +294,11 @@ const ScrollExpandMedia = ({
                 loop
                 playsInline
                 preload="auto"
-                className="w-full h-full object-cover"
+                controls={false}
+                disablePictureInPicture
+                disableRemotePlayback
+                controlsList="nodownload noplaybackrate noremoteplayback"
+                className="hero-autoplay-video w-full h-full object-cover"
               >
                 <source src={mediaSrc} type="video/mp4" />
                 {webmSrc && <source src={webmSrc} type="video/webm" />}
