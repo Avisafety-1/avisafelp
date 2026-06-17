@@ -15,6 +15,7 @@ import AppPreviewPhone from "@/components/AppPreviewPhone";
 
 const Hero = () => {
   const { t } = useTranslation();
+  const [expanded, setExpanded] = useState(false);
   return (
     <section className="relative flex flex-col overflow-hidden bg-transparent">
       <h1 className="sr-only">{t("hero.h1")}</h1>
