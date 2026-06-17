@@ -148,7 +148,6 @@ const SiteHeader = () => {
 
   const articlesItems = [
     { label: t("nav.articles"), action: () => goTo("/artikler") },
-    { label: t("nav.gallery"), action: () => goTo("/galleri") },
   ];
 
   return (
