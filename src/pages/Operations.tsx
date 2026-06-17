@@ -29,7 +29,7 @@ const Operations = () => {
           <h1 className="text-4xl md:text-5xl font-bold text-[hsl(var(--text-dark-blue))] mb-6">
             {t("operations.h1")}
           </h1>
-          <p className="text-lg md:text-xl text-foreground/80 leading-relaxed">
+          <p className="text-lg md:text-xl text-foreground/80 leading-relaxed whitespace-pre-wrap">
             {t("operations.body")}
           </p>
         </div>
