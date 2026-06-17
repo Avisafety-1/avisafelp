@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Index from "./pages/Index";
 import Product from "./pages/Product";
 import SoraProcess from "./pages/SoraProcess";
@@ -17,27 +17,36 @@ import SiteHeader from "./components/SiteHeader";
 
 const queryClient = new QueryClient();
 
+const AppRoutes = () => {
+  const location = useLocation();
+  const hideHeader = location.pathname.startsWith("/artikler");
+  return (
+    <>
+      {!hideHeader && <SiteHeader />}
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="/product/:handle" element={<Product />} />
+        <Route path="/sora-prosess" element={<SoraProcess />} />
+        <Route path="/sora" element={<Sora />} />
+        <Route path="/logg" element={<Logg />} />
+        <Route path="/artikler" element={<Artikler />} />
+        <Route path="/artikler/:slug" element={<Artikkel />} />
+        <Route path="/galleri" element={<Galleri />} />
+        <Route path="/operations" element={<Operations />} />
+        <Route path="/operasjoner" element={<Operations />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
+  );
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <SiteHeader />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/product/:handle" element={<Product />} />
-          <Route path="/sora-prosess" element={<SoraProcess />} />
-          <Route path="/sora" element={<Sora />} />
-          <Route path="/logg" element={<Logg />} />
-          <Route path="/artikler" element={<Artikler />} />
-          <Route path="/artikler/:slug" element={<Artikkel />} />
-          <Route path="/galleri" element={<Galleri />} />
-          <Route path="/operations" element={<Operations />} />
-          <Route path="/operasjoner" element={<Operations />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <AppRoutes />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
