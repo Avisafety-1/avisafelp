@@ -375,10 +375,10 @@ const en: Translations = {
   },
   operations: {
     pageTitle: "Operations – AviSafe",
-    metaDescription: "AviSafe is applying for an operator permit and helps companies get started with their drone operations.",
+    metaDescription: "AviSafe is expanding its operational drone offering and will be able to undertake a wide range of missions.",
     h1: "Operations",
-    body: "AviSafe is applying for an operator permit and wants to help companies get started with their operations. Get in touch to hear where we are in the process.",
-    cta: "Contact us",
+    body: "AviSafe is in the process of expanding its operational drone offering and will be able to undertake a wide range of missions in the time to come. At the same time, we want to help businesses get started with drone operations – either through establishing their own organization and necessary approvals, or as part of the AviSafe ecosystem. Our goal is to make it easier to adopt drone technology in a safe, efficient, and scalable way.\n\n\n",
+    ...
   },
 };
 
