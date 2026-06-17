@@ -341,6 +341,33 @@ const SiteHeader = () => {
           />
         </DialogContent>
       </Dialog>
+
+      <Dialog open={contactOpen} onOpenChange={setContactOpen}>
+        <DialogContent className="max-w-sm p-0 overflow-hidden">
+          <DialogHeader className="px-6 pt-6 pb-2">
+            <DialogTitle>{t("nav.contactTitle")}</DialogTitle>
+          </DialogHeader>
+          <div className="px-6 pb-6 pt-2 space-y-3">
+            <a
+              href="mailto:kontakt@avisafe.no"
+              className="flex items-center gap-3 rounded-lg border border-border bg-card px-4 py-3 hover:bg-accent transition-colors"
+            >
+              <Mail className="w-5 h-5 text-[#123b87] shrink-0" />
+              <span className="text-sm font-medium text-foreground">kontakt@avisafe.no</span>
+            </a>
+            <a
+              href="tel:+4746941552"
+              className="flex items-center gap-3 rounded-lg border border-border bg-card px-4 py-3 hover:bg-accent transition-colors"
+            >
+              <Phone className="w-5 h-5 text-[#123b87] shrink-0" />
+              <div className="flex flex-col">
+                <span className="text-sm font-medium text-foreground">Tikard Bjørklund</span>
+                <span className="text-xs text-muted-foreground">+47 469 41 552</span>
+              </div>
+            </a>
+          </div>
+        </DialogContent>
+      </Dialog>
     </>
   );
 };
