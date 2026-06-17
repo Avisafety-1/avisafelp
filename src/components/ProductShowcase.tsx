@@ -4,6 +4,7 @@ import { useInView } from "@/hooks/use-in-view";
 import { Link } from "react-router-dom";
 import { Plane, ClipboardList, BarChart3, Cloud, Route, ChevronLeft, ChevronRight, FileText, AlertTriangle, CheckSquare, Navigation, Brain, ArrowRight, Sparkles, X } from "lucide-react";
 import AiSearch from "@/components/AiSearch";
+import IntegrationsSelector from "@/components/IntegrationsSelector";
 import { Button } from "@/components/ui/button";
 import appRuteplanlegging from "@/assets/app-ruteplanlegging.jpg";
 import appRisikovurdering from "@/assets/app-risikovurdering.jpeg";
@@ -357,6 +358,9 @@ const ProductShowcase = () => {
 
       {/* Demo Video Section */}
       <LazyDemoVideo />
+
+      {/* New interactive integrations selector */}
+      <IntegrationsSelector />
 
       {/* Integrations Section */}
       <div id="integrations-section" className="container mx-auto px-4 mt-12 md:mt-16 scroll-mt-24">
