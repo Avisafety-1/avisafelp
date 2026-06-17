@@ -56,7 +56,7 @@ const Hero = () => {
           {/* Subline + Phone side-by-side on desktop */}
           <div className="container mx-auto px-4 sm:px-6 py-8 md:py-12">
             <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 lg:gap-16">
-              <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-xs sm:max-w-2xl md:max-w-xl lg:max-w-2xl leading-relaxed font-medium px-2 whitespace-pre-line text-center md:text-left">
+              <p className="text-base sm:text-lg md:text-2xl lg:text-3xl text-muted-foreground max-w-xs sm:max-w-2xl md:max-w-2xl lg:max-w-3xl leading-relaxed font-medium px-2 whitespace-pre-line text-center md:text-left">
                 {t("hero.subline")}
               </p>
               <AppPreviewPhone />
