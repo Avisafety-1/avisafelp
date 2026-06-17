@@ -259,8 +259,8 @@ const ScrollExpandMedia = ({
                 preload="auto"
                 className="w-full h-full object-cover"
               >
-                {webmSrc && <source src={webmSrc} type="video/webm" />}
                 <source src={mediaSrc} type="video/mp4" />
+                {webmSrc && <source src={webmSrc} type="video/webm" />}
               </video>
               <motion.div
                 className="absolute inset-0 bg-black/30"
