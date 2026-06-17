@@ -308,15 +308,19 @@ const SiteHeader = () => {
                     >
                       {t("nav.newsletter")}
                     </button>
+                    <button
+                      onClick={() => scrollToId("team-section")}
+                      className="text-left px-3 py-3 text-base font-medium uppercase tracking-wide hover:bg-white/10 rounded-md"
+                    >
+                      {t("nav.whoWeAre")}
+                    </button>
 
-                    <SheetClose asChild>
-                      <a
-                        href="mailto:kontakt@avisafe.no"
-                        className="mt-4 inline-flex items-center justify-center h-11 rounded-full bg-[#123b87] hover:bg-[#0e2f6b] text-white px-5 font-semibold"
-                      >
-                        {t("nav.contact")}
-                      </a>
-                    </SheetClose>
+                    <button
+                      onClick={() => { setOpen(false); setContactOpen(true); }}
+                      className="mt-4 inline-flex items-center justify-center h-11 rounded-full bg-[#123b87] hover:bg-[#0e2f6b] text-white px-5 font-semibold"
+                    >
+                      {t("nav.contact")}
+                    </button>
                   </nav>
                 </SheetContent>
               </Sheet>
