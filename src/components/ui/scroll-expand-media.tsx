@@ -145,9 +145,9 @@ const ScrollExpandMedia = ({
           <div className="absolute inset-0 bg-black/10" />
         </motion.div>
 
-        {/* Mobile background image — starts below video */}
+        {/* Mobile background image — starts below video, zoomed 50% */}
         <motion.div
-          className="sm:hidden absolute left-0 right-0 z-0"
+          className="sm:hidden absolute left-0 right-0 z-0 overflow-hidden"
           style={{ top: `${headerHeightPx + minHeightPx}px` }}
           initial={{ opacity: 1 }}
           animate={{ opacity: 1 - scrollProgress }}
@@ -156,7 +156,7 @@ const ScrollExpandMedia = ({
           <img
             src={bgImageSrc}
             alt=""
-            className="w-full h-auto"
+            className="w-[150%] h-auto -ml-[25%]"
           />
           <div className="absolute inset-0 bg-black/10" />
         </motion.div>
