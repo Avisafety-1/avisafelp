@@ -1,9 +1,9 @@
 import { useEffect, useState, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Menu, ChevronDown } from "lucide-react";
+import { Menu, ChevronDown, Mail, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
   Accordion,
   AccordionContent,
@@ -104,6 +104,7 @@ const SiteHeader = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [newsletterOpen, setNewsletterOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -196,8 +197,12 @@ const SiteHeader = () => {
                 {t("nav.newsletter")}
               </button>
 
+              <button onClick={() => scrollToId("team-section")} className={`${navButtonBase} ${navButtonTheme}`}>
+                {t("nav.whoWeAre")}
+              </button>
+
               <button
-                onClick={() => (window.location.href = "mailto:kontakt@avisafe.no")}
+                onClick={() => { setOpen(false); setContactOpen(true); }}
                 className={`${navButtonBase} ${navButtonTheme}`}
               >
                 {t("nav.contact")}
@@ -232,10 +237,10 @@ const SiteHeader = () => {
               </div>
               <LanguageSwitcher variant={scrolled ? "light" : "dark"} />
               <Button
-                asChild
+                onClick={() => setContactOpen(true)}
                 className="hidden sm:inline-flex h-9 rounded-full bg-[#123b87] hover:bg-[#0e2f6b] text-white px-5 text-sm font-semibold shadow-lg"
               >
-                <a href="mailto:kontakt@avisafe.no">{t("nav.contact")}</a>
+                {t("nav.contact")}
               </Button>
 
               {/* Mobile menu */}
@@ -303,15 +308,19 @@ const SiteHeader = () => {
                     >
                       {t("nav.newsletter")}
                     </button>
+                    <button
+                      onClick={() => scrollToId("team-section")}
+                      className="text-left px-3 py-3 text-base font-medium uppercase tracking-wide hover:bg-white/10 rounded-md"
+                    >
+                      {t("nav.whoWeAre")}
+                    </button>
 
-                    <SheetClose asChild>
-                      <a
-                        href="mailto:kontakt@avisafe.no"
-                        className="mt-4 inline-flex items-center justify-center h-11 rounded-full bg-[#123b87] hover:bg-[#0e2f6b] text-white px-5 font-semibold"
-                      >
-                        {t("nav.contact")}
-                      </a>
-                    </SheetClose>
+                    <button
+                      onClick={() => { setOpen(false); setContactOpen(true); }}
+                      className="mt-4 inline-flex items-center justify-center h-11 rounded-full bg-[#123b87] hover:bg-[#0e2f6b] text-white px-5 font-semibold"
+                    >
+                      {t("nav.contact")}
+                    </button>
                   </nav>
                 </SheetContent>
               </Sheet>
@@ -330,6 +339,33 @@ const SiteHeader = () => {
             title="AviSafe nyhetsbrev"
             className="w-full h-[420px] border-0"
           />
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={contactOpen} onOpenChange={setContactOpen}>
+        <DialogContent className="max-w-sm p-0 overflow-hidden">
+          <DialogHeader className="px-6 pt-6 pb-2">
+            <DialogTitle>{t("nav.contactTitle")}</DialogTitle>
+          </DialogHeader>
+          <div className="px-6 pb-6 pt-2 space-y-3">
+            <a
+              href="mailto:kontakt@avisafe.no"
+              className="flex items-center gap-3 rounded-lg border border-border bg-card px-4 py-3 hover:bg-accent transition-colors"
+            >
+              <Mail className="w-5 h-5 text-[#123b87] shrink-0" />
+              <span className="text-sm font-medium text-foreground">kontakt@avisafe.no</span>
+            </a>
+            <a
+              href="tel:+4746941552"
+              className="flex items-center gap-3 rounded-lg border border-border bg-card px-4 py-3 hover:bg-accent transition-colors"
+            >
+              <Phone className="w-5 h-5 text-[#123b87] shrink-0" />
+              <div className="flex flex-col">
+                <span className="text-sm font-medium text-foreground">Tikard Bjørklund</span>
+                <span className="text-xs text-muted-foreground">+47 469 41 552</span>
+              </div>
+            </a>
+          </div>
         </DialogContent>
       </Dialog>
     </>

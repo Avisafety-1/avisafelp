@@ -15,6 +15,8 @@ const en: Translations = {
     operations: "Operations",
     articlesMedia: "Articles & Media",
     newsletter: "Newsletter",
+    whoWeAre: "Who we are",
+    contactTitle: "Contact information",
   },
   common: {
     contact: "Contact us",
