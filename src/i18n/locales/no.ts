@@ -92,8 +92,8 @@ const no = {
     errorGeneric: "Beklager, noe gikk galt. Prøv igjen senere.",
   },
   product: {
-    soraBannerLine1: "Norges mest avanserte verktøy",
-    soraBannerLine2: "for SORA-risikovurderinger",
+    soraBannerLine1: "Automatisk SORA — mer enn 17 kilder behandles på 30 sekunder.",
+    soraBannerLine2: "Gir deg en strukturert og oversiktlig risikovurdering av operasjonen.",
     scrollLeft: "Bla til venstre",
     scrollRight: "Bla til høyre",
     browserNoVideo: "Din nettleser støtter ikke videoavspilling.",
