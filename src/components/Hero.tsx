@@ -8,6 +8,7 @@ import dnLogoWhite from "@/assets/dn-logo-white.png";
 import tensioLogo from "@/assets/tensio-logo.png";
 import breiliDriftLogo from "@/assets/breili-drift-logo.png";
 import ScrollExpandMedia from "@/components/ui/scroll-expand-media";
+import AppPreviewPhone from "@/components/AppPreviewPhone";
 
 const Hero = () => {
   const { t } = useTranslation();
@@ -55,6 +56,7 @@ const Hero = () => {
             <p className="text-base sm:text-xl md:text-2xl text-muted-foreground max-w-xs sm:max-w-lg md:max-w-2xl mx-auto leading-relaxed font-medium px-2">
               {t("hero.subline")}
             </p>
+            <AppPreviewPhone />
           </div>
         </div>
       </ScrollExpandMedia>
