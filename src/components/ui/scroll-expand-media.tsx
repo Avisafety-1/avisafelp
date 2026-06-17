@@ -130,7 +130,7 @@ const ScrollExpandMedia = ({
   return (
     <div className="transition-colors duration-700 ease-in-out overflow-x-hidden">
       <section className="relative flex flex-col items-center min-h-[100dvh]">
-        {/* Background image - hidden on mobile (video is the hero), full cover on desktop */}
+        {/* Desktop background image — full cover */}
         <motion.div
           className="hidden sm:block absolute inset-0 z-0"
           initial={{ opacity: 1 }}
@@ -141,6 +141,21 @@ const ScrollExpandMedia = ({
             src={bgImageSrc}
             alt=""
             className="w-full h-full object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-black/10" />
+        </motion.div>
+
+        {/* Mobile background image — natural size */}
+        <motion.div
+          className="sm:hidden absolute top-0 left-0 right-0 z-0"
+          initial={{ opacity: 1 }}
+          animate={{ opacity: 1 - scrollProgress }}
+          transition={{ duration: 0.1 }}
+        >
+          <img
+            src={bgImageSrc}
+            alt=""
+            className="w-full h-auto"
           />
           <div className="absolute inset-0 bg-black/10" />
         </motion.div>
