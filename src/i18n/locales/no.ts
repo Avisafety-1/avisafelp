@@ -13,6 +13,8 @@ const no = {
     operations: "Operasjoner",
     articlesMedia: "Artikler/Media",
     newsletter: "Nyhetsbrev",
+    whoWeAre: "Hvem er vi",
+    contactTitle: "Kontaktinformasjon",
   },
   common: {
     contact: "Kontakt oss",
