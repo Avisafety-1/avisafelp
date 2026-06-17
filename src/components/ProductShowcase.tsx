@@ -148,10 +148,6 @@ const ProductShowcase = () => {
           <SoraRiskLoader />
         </div>
       </SectionReveal>
-        <div>
-          <SoraRiskLoader />
-        </div>
-      </SectionReveal>
 
       {/* Scroll Container */}
       <SectionReveal>
