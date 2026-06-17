@@ -2,7 +2,7 @@ import { useRef, useEffect, useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useInView } from "@/hooks/use-in-view";
 import { Link } from "react-router-dom";
-import { Plane, ClipboardList, BarChart3, Cloud, Route, ChevronLeft, ChevronRight, FileText, AlertTriangle, CheckSquare, Navigation, Brain, ArrowRight, Sparkles, X } from "lucide-react";
+import { Plane, ClipboardList, BarChart3, Cloud, Route, ChevronLeft, ChevronRight, FileText, AlertTriangle, CheckSquare, Navigation, Brain, ArrowRight, Sparkles } from "lucide-react";
 import AiSearch from "@/components/AiSearch";
 import IntegrationsSelector from "@/components/IntegrationsSelector";
 import { Button } from "@/components/ui/button";
@@ -15,30 +15,8 @@ import appHendelse from "@/assets/app-hendelse.jpg";
 import appFlyforhold from "@/assets/app-flyforhold.jpg";
 import appSjekkliste from "@/assets/app-sjekkliste.jpg";
 import appStartflytur from "@/assets/app-startflytur.jpg";
-import dronetagMini from "@/assets/dronetag-mini.jpeg";
-import eccairs2Logo from "@/assets/eccairs2-logo.jpeg";
-import dronetagLogo from "@/assets/dronetag-logo.png";
-import safeskyLogo from "@/assets/safesky-logo.png";
-import djiLogo from "@/assets/dji-logo.png";
-import arduLogo from "@/assets/ardu-logo.png";
-import djiMap from "@/assets/dji-map.png";
-import djiDashboard from "@/assets/dji-dashboard.png";
-import djiAnalyse1 from "@/assets/dji-analyse-1.jpeg";
-import djiAnalyse2 from "@/assets/dji-analyse-2.jpeg";
-import djiAnalyse3 from "@/assets/dji-analyse-3.jpeg";
-import djiAnalyse4 from "@/assets/dji-analyse-4.jpeg";
-import djiAnalyse5 from "@/assets/dji-analyse-5.jpeg";
-import djiAnalyse6 from "@/assets/dji-analyse-6.jpeg";
-import djiAnalyse7 from "@/assets/dji-analyse-7.jpeg";
-import djiAnalyse8 from "@/assets/dji-analyse-8.jpeg";
-import djiAnalyse9 from "@/assets/dji-analyse-9.jpeg";
-import djiAnalyse10 from "@/assets/dji-analyse-10.jpeg";
-import djiFlighthub2 from "@/assets/dji-flighthub2.jpg";
 
-const djiAnalyseImages = [
-  djiAnalyse1, djiAnalyse2, djiAnalyse3, djiAnalyse4, djiAnalyse5,
-  djiAnalyse6, djiAnalyse7, djiAnalyse8, djiAnalyse9, djiAnalyse10
-];
+
 
 type Feature = {
   id: string;
@@ -146,83 +124,6 @@ const LazyDemoVideo = () => {
           {t("product.browserNoVideo")}
         </video>
       </div>
-    </div>
-  );
-};
-
-const DjiAnalyseCarousel = () => {
-  const { t } = useTranslation();
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-
-  const handleKeyDown = useCallback((e: KeyboardEvent) => {
-    if (lightboxIndex === null) return;
-    if (e.key === "Escape") setLightboxIndex(null);
-    if (e.key === "ArrowRight") setLightboxIndex(i => i !== null ? (i + 1) % djiAnalyseImages.length : null);
-    if (e.key === "ArrowLeft") setLightboxIndex(i => i !== null ? (i - 1 + djiAnalyseImages.length) % djiAnalyseImages.length : null);
-  }, [lightboxIndex]);
-
-  useEffect(() => {
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [handleKeyDown]);
-
-  return (
-    <div className="relative">
-      <div
-        className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory"
-        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-      >
-        {djiAnalyseImages.map((img, i) => (
-          <img
-            key={i}
-            src={img}
-            alt={`${t("product.dji.analyseAlt")} ${i + 1}`}
-            className="flex-shrink-0 w-auto h-[200px] md:h-[260px] rounded-xl shadow-lg snap-center cursor-pointer hover:opacity-90 transition-opacity"
-            loading="lazy"
-            onClick={() => setLightboxIndex(i)}
-          />
-        ))}
-      </div>
-
-      {/* Lightbox - fixed but compact around image */}
-      {lightboxIndex !== null && (
-        <div
-          className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-center justify-center"
-          onClick={() => setLightboxIndex(null)}
-        >
-          <div
-            className="relative flex items-center gap-2 mx-2"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              className="absolute -top-8 right-0 text-white/90 hover:text-white z-10"
-              aria-label={t("product.dji.lightboxClose")}
-              onClick={() => setLightboxIndex(null)}
-            >
-              <X className="w-6 h-6" />
-            </button>
-            <button
-              className="flex-shrink-0 text-black hover:text-black/70"
-              aria-label={t("product.dji.lightboxPrev")}
-              onClick={() => setLightboxIndex((lightboxIndex - 1 + djiAnalyseImages.length) % djiAnalyseImages.length)}
-            >
-              <ChevronLeft className="w-7 h-7" />
-            </button>
-            <img
-              src={djiAnalyseImages[lightboxIndex]}
-              alt={`${t("product.dji.analyseAlt")} ${lightboxIndex + 1}`}
-              className="max-w-[85vw] md:max-w-[70vw] max-h-[85vh] object-contain rounded-xl shadow-2xl"
-            />
-            <button
-              className="flex-shrink-0 text-black hover:text-black/70"
-              aria-label={t("product.dji.lightboxNext")}
-              onClick={() => setLightboxIndex((lightboxIndex + 1) % djiAnalyseImages.length)}
-            >
-              <ChevronRight className="w-7 h-7" />
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
@@ -361,157 +262,6 @@ const ProductShowcase = () => {
 
       {/* New interactive integrations selector */}
       <IntegrationsSelector />
-
-      {/* Integrations Section */}
-      <div id="integrations-section" className="container mx-auto px-4 mt-12 md:mt-16 scroll-mt-24">
-
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground">{t("common.integrations")}</h2>
-          </div>
-
-          <div className="space-y-6 md:space-y-8">
-            {/* DJI */}
-            <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 md:p-12 shadow-xl">
-              <div className="flex items-center justify-center mb-6">
-                <img src={djiLogo} alt="DJI logo" className="h-14 md:h-16 w-auto" loading="lazy" />
-              </div>
-
-              <div className="text-center mb-8">
-                <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                  {t("product.dji.title")}
-                </h3>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  {t("product.dji.body")}
-                </p>
-              </div>
-
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-                <div className="relative -rotate-1">
-                  <img
-                    src={djiMap}
-                    alt="DJI RC PRO kartvisning"
-                    className="w-full sm:w-[340px] md:w-[400px] h-auto rounded-2xl shadow-xl"
-                    style={{
-                      maskImage: 'radial-gradient(ellipse 85% 75% at center, black 50%, transparent 100%)',
-                      WebkitMaskImage: 'radial-gradient(ellipse 85% 75% at center, black 50%, transparent 100%)'
-                    }}
-                    loading="lazy"
-                  />
-                </div>
-                <div className="relative rotate-1">
-                  <img
-                    src={djiDashboard}
-                    alt="DJI RC PRO dashboard"
-                    className="w-full sm:w-[340px] md:w-[400px] h-auto rounded-2xl shadow-xl"
-                    style={{
-                      maskImage: 'radial-gradient(ellipse 85% 75% at center, black 50%, transparent 100%)',
-                      WebkitMaskImage: 'radial-gradient(ellipse 85% 75% at center, black 50%, transparent 100%)'
-                    }}
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-
-              {/* Avansert analyse */}
-              <div className="text-center mt-10 mb-6">
-                <h4 className="text-xl md:text-2xl font-bold text-foreground mb-3">
-                  {t("product.dji.advancedTitle")}
-                </h4>
-                <p className="text-base text-muted-foreground leading-relaxed">
-                  {t("product.dji.advancedBody")}
-                </p>
-              </div>
-
-              <DjiAnalyseCarousel />
-
-              {/* FlightHub 2 export */}
-              <div className="mt-10 max-w-2xl mx-auto">
-                <img
-                  src={djiFlighthub2}
-                  alt="AviSafe eksport av rutefiler og SORA buffersoner til DJI FlightHub 2"
-                  className="w-full h-auto rounded-2xl shadow-xl"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-
-            {/* ArduPilot */}
-            <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl px-4 py-3 md:px-6 md:py-4 shadow-xl">
-              <div className="flex items-center justify-center">
-                <img src={arduLogo} alt="ArduPilot logo" className="w-64 md:w-96 h-auto" loading="lazy" />
-              </div>
-              <p className="text-base text-muted-foreground leading-relaxed text-center">
-                  {t("product.ardu.body")}
-                </p>
-            </div>
-
-            {/* SafeSky */}
-            <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 md:p-12 shadow-xl">
-              <div className="flex items-center justify-center mb-6">
-                <img
-                  src={safeskyLogo}
-                  alt="SafeSky logo"
-                  className="h-14 md:h-16 w-auto"
-                  loading="lazy"
-                />
-              </div>
-
-              <div className="text-center">
-                <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                  {t("product.safesky.title")}
-                </h3>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  {t("product.safesky.body")}
-                </p>
-              </div>
-            </div>
-
-            {/* Dronetag */}
-            <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 md:p-12 shadow-xl">
-              <div className="flex items-center justify-center mb-6">
-                <img src={dronetagLogo} alt="Dronetag logo" className="h-14 md:h-16 w-auto" loading="lazy" />
-              </div>
-
-              <div className="text-center mb-8">
-                <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">{t("product.dronetag.title")}</h3>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  {t("product.dronetag.body")}
-                </p>
-              </div>
-
-              <div className="relative rounded-2xl overflow-hidden shadow-xl">
-                <img
-                  src={dronetagMini}
-                  alt="Dronetag Mini - Make the drone visible to anyone, anywhere, anytime"
-                  className="w-full h-auto object-cover"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-
-            {/* ECCAIRS2 */}
-            <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 md:p-12 shadow-xl">
-              <div className="flex items-center justify-center mb-6">
-                <img
-                  src={eccairs2Logo}
-                  alt="ECCAIRS2 logo"
-                  className="h-14 md:h-16 w-auto"
-                  loading="lazy"
-                />
-              </div>
-              <div className="text-center">
-                <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                  {t("product.eccairs.title")}
-                </h3>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  {t("product.eccairs.body")}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>;
 };
 export default ProductShowcase;
