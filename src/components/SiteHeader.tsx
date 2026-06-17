@@ -141,7 +141,6 @@ const SiteHeader = () => {
     : "bg-black text-white hover:bg-black/80 border border-white/15";
 
   const smsItems = [
-    { label: t("nav.smsOverview"), action: () => scrollToId("product-section") },
     { label: t("nav.smsIntegrations"), action: () => scrollToId("product-section") },
     { label: t("nav.smsSecurity"), action: () => scrollToId("security-section") },
     { label: "Risikovurdering", action: () => goTo("/sora") },
