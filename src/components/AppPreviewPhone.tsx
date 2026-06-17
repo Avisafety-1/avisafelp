@@ -2,11 +2,10 @@ import stitched from "@/assets/app-preview-stitched.jpg.asset.json";
 
 const AppPreviewPhone = () => {
   return (
-    <div className="w-full flex justify-center py-10 md:py-14">
+    <div className="w-full md:w-auto flex justify-center py-10 md:py-0">
       <div
-        className="relative"
+        className="relative w-[min(320px,80vw)] md:w-[640px]"
         style={{
-          width: "min(320px, 80vw)",
           aspectRatio: "9 / 19.5",
         }}
       >
