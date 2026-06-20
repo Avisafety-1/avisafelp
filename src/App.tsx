@@ -51,7 +51,7 @@ const AppRoutes = () => {
 };
 
 const App = () => {
-  useEffect(() => { initAnalytics(); }, []);
+  useEffect(() => { initAnalytics(); initCtaTracking(); }, []);
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
