@@ -102,16 +102,17 @@ const Statistikk = () => {
   const fetchStats = async () => {
     setLoading(true);
     const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString();
-    const { data, error } = await supabase
-      .from("page_views")
-      .select("*")
-      .gte("created_at", since)
-      .order("created_at", { ascending: false })
-      .limit(10000);
-    if (error) console.error(error);
-    else setRows((data as Row[]) || []);
+    const [pv, ev] = await Promise.all([
+      supabase.from("page_views").select("*").gte("created_at", since).order("created_at", { ascending: false }).limit(10000),
+      supabase.from("events").select("*").gte("created_at", since).order("created_at", { ascending: false }).limit(10000),
+    ]);
+    if (pv.error) console.error(pv.error);
+    else setRows((pv.data as Row[]) || []);
+    if (ev.error) console.error(ev.error);
+    else setEvents((ev.data as EventRow[]) || []);
     setLoading(false);
   };
+
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
