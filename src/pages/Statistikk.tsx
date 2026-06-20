@@ -293,12 +293,15 @@ const Statistikk = () => {
         </div>
 
         {/* KPI cards */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 mb-4 sm:mb-6">
+        <div className="grid grid-cols-2 lg:grid-cols-6 gap-2 sm:gap-4 mb-4 sm:mb-6">
           <Stat label="Visninger" value={stats.total.toLocaleString("no-NO")} />
           <Stat label="Unike besøk" value={stats.uniqueSessions.toLocaleString("no-NO")} />
           <Stat label="Snitt-tid" value={`${stats.avgDuration}s`} />
+          <Stat label="Fluktrate" value={`${stats.bounceRate}%`} />
+          <Stat label="Snitt scroll" value={`${stats.avgScroll}%`} />
           <Stat label="Topp-land" value={stats.byCountry[0]?.key || "—"} />
         </div>
+
 
         {/* Daily chart */}
         <Card title="Trafikk over tid" className="mb-4 sm:mb-6">
