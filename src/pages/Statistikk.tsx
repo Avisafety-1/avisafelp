@@ -249,7 +249,7 @@ const Statistikk = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[hsl(210,30%,96%)] pt-20 sm:pt-24 pb-16">
+    <div className="min-h-screen bg-[hsl(210,30%,96%)] pt-20 sm:pt-24 pb-16 overflow-x-hidden">
       <Helmet>
         <title>Statistikk – AviSafe</title>
         <meta name="robots" content="noindex,nofollow" />
@@ -326,11 +326,18 @@ const Statistikk = () => {
             <WorldMap data={stats.byCountry} />
           </Card>
           <Card title="Topp land" className="lg:col-span-2">
-            <div className="h-56 sm:h-72 -mx-2">
+            <div className="h-56 sm:h-72 -mx-2 w-full overflow-hidden">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={stats.byCountry.slice(0, 8)} layout="vertical" margin={{ top: 4, right: 16, bottom: 0, left: 8 }}>
+                <BarChart data={stats.byCountry.slice(0, 8)} layout="vertical" margin={{ top: 4, right: 12, bottom: 0, left: 4 }}>
                   <XAxis type="number" fontSize={11} stroke="#64748b" allowDecimals={false} />
-                  <YAxis type="category" dataKey="key" fontSize={11} stroke="#64748b" width={90} />
+                  <YAxis
+                    type="category"
+                    dataKey="key"
+                    fontSize={11}
+                    stroke="#64748b"
+                    width={72}
+                    tickFormatter={(v: string) => (v && v.length > 10 ? v.slice(0, 9) + "…" : v)}
+                  />
                   <Tooltip contentStyle={{ fontSize: 12, borderRadius: 8 }} />
                   <Bar dataKey="value" fill={BRAND} radius={[0, 6, 6, 0]} />
                 </BarChart>
@@ -372,14 +379,14 @@ const Statistikk = () => {
 // ---------- UI helpers ----------
 
 const Stat = ({ label, value }: { label: string; value: string | number }) => (
-  <div className="bg-white rounded-xl sm:rounded-2xl p-3 sm:p-5 shadow-sm border border-slate-200">
-    <p className="text-[10px] sm:text-xs uppercase tracking-wide text-slate-500">{label}</p>
+  <div className="bg-white rounded-xl sm:rounded-2xl p-3 sm:p-5 shadow-sm border border-slate-200 min-w-0 overflow-hidden">
+    <p className="text-[10px] sm:text-xs uppercase tracking-wide text-slate-500 truncate">{label}</p>
     <p className="text-lg sm:text-2xl font-bold mt-1 text-[hsl(210,45%,12%)] truncate">{value}</p>
   </div>
 );
 
 const Card = ({ title, children, className = "" }: { title: string; children: React.ReactNode; className?: string }) => (
-  <div className={`bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-200 ${className}`}>
+  <div className={`bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-200 min-w-0 overflow-hidden ${className}`}>
     <h3 className="font-semibold mb-3 text-sm sm:text-base text-[hsl(210,45%,12%)]">{title}</h3>
     {children}
   </div>
@@ -392,9 +399,9 @@ const ListCard = ({ title, items, empty = "—" }: { title: string; items: { key
     ) : (
       <ul className="space-y-1.5">
         {items.map((it, i) => (
-          <li key={i} className="flex justify-between gap-3 text-sm border-b border-slate-100 pb-1.5 last:border-0">
-            <span className="truncate text-slate-700">{it.key}</span>
-            <span className="font-mono text-slate-900 shrink-0">{it.value}</span>
+          <li key={i} className="flex justify-between items-center gap-3 text-sm border-b border-slate-100 pb-1.5 last:border-0">
+            <span className="truncate text-slate-700 min-w-0 flex-1">{it.key}</span>
+            <span className="font-mono text-slate-900 shrink-0 tabular-nums">{it.value}</span>
           </li>
         ))}
       </ul>
@@ -409,14 +416,18 @@ const PieCard = ({ title, data }: { title: string; data: { key: string; value: n
       {top.length === 0 ? (
         <p className="text-sm text-slate-500">—</p>
       ) : (
-        <div className="h-48">
+        <div className="h-56">
           <ResponsiveContainer width="100%" height="100%">
-            <PieChart>
-              <Pie data={top} dataKey="value" nameKey="key" innerRadius={36} outerRadius={64} paddingAngle={2}>
+            <PieChart margin={{ top: 0, right: 0, bottom: 0, left: 0 }}>
+              <Pie data={top} dataKey="value" nameKey="key" innerRadius={28} outerRadius={52} paddingAngle={2}>
                 {top.map((_, i) => <Cell key={i} fill={PIE_COLORS[i % PIE_COLORS.length]} />)}
               </Pie>
               <Tooltip contentStyle={{ fontSize: 12, borderRadius: 8 }} />
-              <Legend wrapperStyle={{ fontSize: 11 }} iconSize={8} />
+              <Legend
+                wrapperStyle={{ fontSize: 11, lineHeight: "14px", maxWidth: "100%" }}
+                iconSize={8}
+                formatter={(v: string) => (v && v.length > 14 ? v.slice(0, 13) + "…" : v)}
+              />
             </PieChart>
           </ResponsiveContainer>
         </div>
