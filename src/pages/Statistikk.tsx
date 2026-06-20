@@ -416,14 +416,18 @@ const PieCard = ({ title, data }: { title: string; data: { key: string; value: n
       {top.length === 0 ? (
         <p className="text-sm text-slate-500">—</p>
       ) : (
-        <div className="h-48">
+        <div className="h-56">
           <ResponsiveContainer width="100%" height="100%">
-            <PieChart>
-              <Pie data={top} dataKey="value" nameKey="key" innerRadius={36} outerRadius={64} paddingAngle={2}>
+            <PieChart margin={{ top: 0, right: 0, bottom: 0, left: 0 }}>
+              <Pie data={top} dataKey="value" nameKey="key" innerRadius={28} outerRadius={52} paddingAngle={2}>
                 {top.map((_, i) => <Cell key={i} fill={PIE_COLORS[i % PIE_COLORS.length]} />)}
               </Pie>
               <Tooltip contentStyle={{ fontSize: 12, borderRadius: 8 }} />
-              <Legend wrapperStyle={{ fontSize: 11 }} iconSize={8} />
+              <Legend
+                wrapperStyle={{ fontSize: 11, lineHeight: "14px", maxWidth: "100%" }}
+                iconSize={8}
+                formatter={(v: string) => (v && v.length > 14 ? v.slice(0, 13) + "…" : v)}
+              />
             </PieChart>
           </ResponsiveContainer>
         </div>
