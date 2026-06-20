@@ -76,37 +76,64 @@ export type Database = {
       }
       page_views: {
         Row: {
+          browser: string | null
           city: string | null
           country: string | null
+          country_code: string | null
           created_at: string
+          device_type: string | null
           duration_ms: number | null
           id: string
+          language: string | null
+          os: string | null
           path: string
           referrer: string | null
+          screen_size: string | null
           session_id: string | null
           user_agent: string | null
+          utm_campaign: string | null
+          utm_medium: string | null
+          utm_source: string | null
         }
         Insert: {
+          browser?: string | null
           city?: string | null
           country?: string | null
+          country_code?: string | null
           created_at?: string
+          device_type?: string | null
           duration_ms?: number | null
           id?: string
+          language?: string | null
+          os?: string | null
           path: string
           referrer?: string | null
+          screen_size?: string | null
           session_id?: string | null
           user_agent?: string | null
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
         }
         Update: {
+          browser?: string | null
           city?: string | null
           country?: string | null
+          country_code?: string | null
           created_at?: string
+          device_type?: string | null
           duration_ms?: number | null
           id?: string
+          language?: string | null
+          os?: string | null
           path?: string
           referrer?: string | null
+          screen_size?: string | null
           session_id?: string | null
           user_agent?: string | null
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
         }
         Relationships: []
       }

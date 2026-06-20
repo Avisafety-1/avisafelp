@@ -45,7 +45,7 @@ export function getSessionId(): string {
   return id;
 }
 
-type Geo = { country?: string; city?: string };
+type Geo = { country?: string; city?: string; country_code?: string };
 
 async function getGeo(): Promise<Geo> {
   try {
@@ -57,11 +57,49 @@ async function getGeo(): Promise<Geo> {
     const geo: Geo = {
       country: data?.country_name || data?.country,
       city: data?.city,
+      country_code: data?.country_code || data?.country,
     };
     sessionStorage.setItem(GEO_KEY, JSON.stringify(geo));
     return geo;
   } catch {
     return {};
+  }
+}
+
+function detectDevice(ua: string): string {
+  if (/iPad|Tablet|PlayBook|Silk/i.test(ua)) return "tablet";
+  if (/Mobi|Android|iPhone|iPod|Opera Mini|IEMobile/i.test(ua)) return "mobile";
+  return "desktop";
+}
+
+function detectBrowser(ua: string): string {
+  if (/Edg\//i.test(ua)) return "Edge";
+  if (/OPR\/|Opera/i.test(ua)) return "Opera";
+  if (/Chrome\//i.test(ua) && !/Chromium/i.test(ua)) return "Chrome";
+  if (/Firefox\//i.test(ua)) return "Firefox";
+  if (/Safari\//i.test(ua) && !/Chrome/i.test(ua)) return "Safari";
+  return "Annet";
+}
+
+function detectOS(ua: string): string {
+  if (/Windows NT/i.test(ua)) return "Windows";
+  if (/Mac OS X/i.test(ua) && !/Mobile/i.test(ua)) return "macOS";
+  if (/iPhone|iPad|iPod/i.test(ua)) return "iOS";
+  if (/Android/i.test(ua)) return "Android";
+  if (/Linux/i.test(ua)) return "Linux";
+  return "Annet";
+}
+
+function getUtm() {
+  try {
+    const p = new URLSearchParams(window.location.search);
+    return {
+      utm_source: p.get("utm_source"),
+      utm_medium: p.get("utm_medium"),
+      utm_campaign: p.get("utm_campaign"),
+    };
+  } catch {
+    return { utm_source: null, utm_medium: null, utm_campaign: null };
   }
 }
 
@@ -93,15 +131,26 @@ export async function trackPageView(path: string, durationMs?: number) {
   }
 
   // Own DB
+  const ua = navigator.userAgent;
   const geo = await getGeo();
+  const utm = getUtm();
   await supabase.from("page_views").insert({
     path,
     referrer: document.referrer || null,
     country: geo.country || null,
     city: geo.city || null,
-    user_agent: navigator.userAgent,
+    country_code: geo.country_code || null,
+    user_agent: ua,
     session_id: getSessionId(),
     duration_ms: durationMs ?? null,
+    device_type: detectDevice(ua),
+    browser: detectBrowser(ua),
+    os: detectOS(ua),
+    screen_size: `${window.screen.width}x${window.screen.height}`,
+    language: navigator.language || null,
+    utm_source: utm.utm_source,
+    utm_medium: utm.utm_medium,
+    utm_campaign: utm.utm_campaign,
   });
 }
 
