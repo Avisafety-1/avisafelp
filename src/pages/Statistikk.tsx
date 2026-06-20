@@ -326,11 +326,18 @@ const Statistikk = () => {
             <WorldMap data={stats.byCountry} />
           </Card>
           <Card title="Topp land" className="lg:col-span-2">
-            <div className="h-56 sm:h-72 -mx-2">
+            <div className="h-56 sm:h-72 -mx-2 w-full overflow-hidden">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={stats.byCountry.slice(0, 8)} layout="vertical" margin={{ top: 4, right: 16, bottom: 0, left: 8 }}>
+                <BarChart data={stats.byCountry.slice(0, 8)} layout="vertical" margin={{ top: 4, right: 12, bottom: 0, left: 4 }}>
                   <XAxis type="number" fontSize={11} stroke="#64748b" allowDecimals={false} />
-                  <YAxis type="category" dataKey="key" fontSize={11} stroke="#64748b" width={90} />
+                  <YAxis
+                    type="category"
+                    dataKey="key"
+                    fontSize={11}
+                    stroke="#64748b"
+                    width={72}
+                    tickFormatter={(v: string) => (v && v.length > 10 ? v.slice(0, 9) + "…" : v)}
+                  />
                   <Tooltip contentStyle={{ fontSize: 12, borderRadius: 8 }} />
                   <Bar dataKey="value" fill={BRAND} radius={[0, 6, 6, 0]} />
                 </BarChart>
