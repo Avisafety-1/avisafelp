@@ -41,6 +41,16 @@ type Row = {
   created_at: string;
 };
 
+type EventRow = {
+  name: string;
+  path: string | null;
+  scroll_depth: number | null;
+  duration_ms: number | null;
+  session_id: string | null;
+  meta: unknown;
+  created_at: string;
+};
+
 const WORLD_TOPO =
   "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
@@ -55,6 +65,7 @@ const Statistikk = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [rows, setRows] = useState<Row[]>([]);
+  const [events, setEvents] = useState<EventRow[]>([]);
   const [loading, setLoading] = useState(false);
   const [days, setDays] = useState(30);
 
@@ -91,16 +102,17 @@ const Statistikk = () => {
   const fetchStats = async () => {
     setLoading(true);
     const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString();
-    const { data, error } = await supabase
-      .from("page_views")
-      .select("*")
-      .gte("created_at", since)
-      .order("created_at", { ascending: false })
-      .limit(10000);
-    if (error) console.error(error);
-    else setRows((data as Row[]) || []);
+    const [pv, ev] = await Promise.all([
+      supabase.from("page_views").select("*").gte("created_at", since).order("created_at", { ascending: false }).limit(10000),
+      supabase.from("events").select("*").gte("created_at", since).order("created_at", { ascending: false }).limit(10000),
+    ]);
+    if (pv.error) console.error(pv.error);
+    else setRows((pv.data as Row[]) || []);
+    if (ev.error) console.error(ev.error);
+    else setEvents((ev.data as EventRow[]) || []);
     setLoading(false);
   };
+
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -150,8 +162,59 @@ const Statistikk = () => {
       Besøkende: v.sessions.size,
     }));
 
-    return { total, uniqueSessions, avgDuration, byPath, byCountry, byReferrer, byDevice, byBrowser, byOS, byUtm, byLang, daily };
-  }, [rows, days]);
+    // ----- Session-based metrics (landing, exit, bounce) -----
+    const bySession = new Map<string, Row[]>();
+    for (const r of rows) {
+      if (!r.session_id) continue;
+      const list = bySession.get(r.session_id) || [];
+      list.push(r);
+      bySession.set(r.session_id, list);
+    }
+    let bounces = 0;
+    const landings: string[] = [];
+    const exits: string[] = [];
+    for (const list of bySession.values()) {
+      const sorted = [...list].sort((a, b) => a.created_at.localeCompare(b.created_at));
+      landings.push(sorted[0].path);
+      exits.push(sorted[sorted.length - 1].path);
+      if (sorted.length === 1) bounces += 1;
+    }
+    const sessionCount = bySession.size;
+    const bounceRate = sessionCount ? Math.round((bounces / sessionCount) * 100) : 0;
+    const byLanding = aggregate(landings);
+    const byExit = aggregate(exits);
+
+    // ----- Event metrics -----
+    const engagementEvents = events.filter(e => e.name === "page_engagement");
+    const scrolls = engagementEvents.map(e => e.scroll_depth).filter((n): n is number => typeof n === "number");
+    const avgScroll = scrolls.length ? Math.round(scrolls.reduce((a, b) => a + b, 0) / scrolls.length) : 0;
+
+    const ctaEvents = events.filter(e => e.name === "cta_click");
+    const byCta = aggregate(ctaEvents.map(e => {
+      const m = e.meta as { label?: string } | null;
+      return m?.label || "—";
+    }));
+
+    // Per-page average time from engagement events
+    const timePerPage = new Map<string, { sum: number; n: number }>();
+    for (const e of engagementEvents) {
+      if (!e.path || !e.duration_ms) continue;
+      const cur = timePerPage.get(e.path) || { sum: 0, n: 0 };
+      cur.sum += e.duration_ms;
+      cur.n += 1;
+      timePerPage.set(e.path, cur);
+    }
+    const byTime = Array.from(timePerPage.entries())
+      .map(([key, v]) => ({ key, value: `${Math.round(v.sum / v.n / 1000)}s` }))
+      .sort((a, b) => parseInt(b.value) - parseInt(a.value));
+
+    return {
+      total, uniqueSessions, avgDuration, byPath, byCountry, byReferrer,
+      byDevice, byBrowser, byOS, byUtm, byLang, daily,
+      bounceRate, byLanding, byExit, avgScroll, byCta, byTime,
+    };
+  }, [rows, events, days]);
+
 
   if (authLoading) {
     return <div className="min-h-screen flex items-center justify-center"><Loader2 className="animate-spin" /></div>;
@@ -230,12 +293,15 @@ const Statistikk = () => {
         </div>
 
         {/* KPI cards */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 mb-4 sm:mb-6">
+        <div className="grid grid-cols-2 lg:grid-cols-6 gap-2 sm:gap-4 mb-4 sm:mb-6">
           <Stat label="Visninger" value={stats.total.toLocaleString("no-NO")} />
           <Stat label="Unike besøk" value={stats.uniqueSessions.toLocaleString("no-NO")} />
           <Stat label="Snitt-tid" value={`${stats.avgDuration}s`} />
+          <Stat label="Fluktrate" value={`${stats.bounceRate}%`} />
+          <Stat label="Snitt scroll" value={`${stats.avgScroll}%`} />
           <Stat label="Topp-land" value={stats.byCountry[0]?.key || "—"} />
         </div>
+
 
         {/* Daily chart */}
         <Card title="Trafikk over tid" className="mb-4 sm:mb-6">
@@ -284,9 +350,14 @@ const Statistikk = () => {
         <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
           <ListCard title="Topp sider" items={stats.byPath.slice(0, 15)} />
           <ListCard title="Henvisninger" items={stats.byReferrer.slice(0, 15)} />
+          <ListCard title="Landingssider" items={stats.byLanding.slice(0, 10)} empty="Ingen data" />
+          <ListCard title="Avslutningssider" items={stats.byExit.slice(0, 10)} empty="Ingen data" />
+          <ListCard title="CTA-klikk" items={stats.byCta.slice(0, 10)} empty="Ingen CTA-klikk registrert ennå" />
+          <ListCard title="Snitt-tid per side" items={stats.byTime.slice(0, 10)} empty="Ingen engasjementsdata ennå" />
           <ListCard title="UTM-kilder" items={stats.byUtm.slice(0, 10)} empty="Ingen kampanjebesøk ennå" />
           <ListCard title="Språk" items={stats.byLang.slice(0, 10)} />
         </div>
+
 
         {!GA_MEASUREMENT_ID && (
           <div className="mt-6 p-4 rounded-xl bg-amber-50 border border-amber-200 text-sm text-amber-900">

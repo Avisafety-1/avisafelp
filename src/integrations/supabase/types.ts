@@ -74,6 +74,39 @@ export type Database = {
         }
         Relationships: []
       }
+      events: {
+        Row: {
+          created_at: string
+          duration_ms: number | null
+          id: string
+          meta: Json | null
+          name: string
+          path: string | null
+          scroll_depth: number | null
+          session_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          duration_ms?: number | null
+          id?: string
+          meta?: Json | null
+          name: string
+          path?: string | null
+          scroll_depth?: number | null
+          session_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          duration_ms?: number | null
+          id?: string
+          meta?: Json | null
+          name?: string
+          path?: string | null
+          scroll_depth?: number | null
+          session_id?: string | null
+        }
+        Relationships: []
+      }
       page_views: {
         Row: {
           browser: string | null

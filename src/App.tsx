@@ -19,7 +19,7 @@ import Personvern from "./pages/Personvern";
 import SiteHeader from "./components/SiteHeader";
 import CookieBanner from "./components/CookieBanner";
 import { usePageTracking } from "./hooks/usePageTracking";
-import { initAnalytics } from "./lib/analytics";
+import { initAnalytics, initCtaTracking } from "./lib/analytics";
 
 const queryClient = new QueryClient();
 
@@ -51,7 +51,7 @@ const AppRoutes = () => {
 };
 
 const App = () => {
-  useEffect(() => { initAnalytics(); }, []);
+  useEffect(() => { initAnalytics(); initCtaTracking(); }, []);
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>

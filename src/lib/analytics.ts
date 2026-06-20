@@ -158,4 +158,85 @@ export function trackEvent(name: string, params?: Record<string, unknown>) {
   const consent = getConsent();
   if (!consent?.analytics) return;
   if (window.gtag) window.gtag("event", name, params || {});
+  void supabase.from("events").insert({
+    name,
+    session_id: getSessionId(),
+    path: typeof window !== "undefined" ? window.location.pathname : null,
+    scroll_depth: typeof params?.scroll_depth === "number" ? (params.scroll_depth as number) : null,
+    duration_ms: typeof params?.duration_ms === "number" ? (params.duration_ms as number) : null,
+    meta: (params ?? null) as never,
+  });
 }
+
+let pageTracking: { path: string; startedAt: number; maxScroll: number; cleanup: () => void } | null = null;
+
+function computeScrollPct(): number {
+  const doc = document.documentElement;
+  const scrollTop = window.scrollY || doc.scrollTop;
+  const viewport = window.innerHeight || doc.clientHeight;
+  const full = Math.max(doc.scrollHeight, doc.offsetHeight) - viewport;
+  if (full <= 0) return 100;
+  return Math.min(100, Math.max(0, Math.round((scrollTop / full) * 100)));
+}
+
+export function endPageTracking() {
+  if (!pageTracking) return;
+  const { path, startedAt, maxScroll, cleanup } = pageTracking;
+  pageTracking = null;
+  cleanup();
+  const duration_ms = Date.now() - startedAt;
+  const consent = getConsent();
+  if (!consent?.analytics) return;
+  void supabase.from("events").insert({
+    name: "page_engagement",
+    session_id: getSessionId(),
+    path,
+    scroll_depth: maxScroll,
+    duration_ms,
+    meta: null,
+  });
+}
+
+export function startPageTracking(path: string) {
+  endPageTracking();
+  const state = { path, startedAt: Date.now(), maxScroll: computeScrollPct(), cleanup: () => {} };
+  const onScroll = () => {
+    const pct = computeScrollPct();
+    if (pct > state.maxScroll) state.maxScroll = pct;
+  };
+  const onVisibility = () => {
+    if (document.visibilityState === "hidden") endPageTracking();
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  document.addEventListener("visibilitychange", onVisibility);
+  window.addEventListener("beforeunload", endPageTracking);
+  state.cleanup = () => {
+    window.removeEventListener("scroll", onScroll);
+    document.removeEventListener("visibilitychange", onVisibility);
+    window.removeEventListener("beforeunload", endPageTracking);
+  };
+  pageTracking = state;
+}
+
+export function initCtaTracking() {
+  if (typeof window === "undefined") return;
+  const w = window as unknown as { __ctaInit?: boolean };
+  if (w.__ctaInit) return;
+  w.__ctaInit = true;
+  document.addEventListener(
+    "click",
+    (e) => {
+      const target = e.target as HTMLElement | null;
+      const el = target?.closest?.("[data-cta]") as HTMLElement | null;
+      if (!el) return;
+      const label = el.getAttribute("data-cta") || el.textContent?.trim().slice(0, 80) || "cta";
+      trackEvent("cta_click", {
+        label,
+        path: window.location.pathname,
+        href: (el as HTMLAnchorElement).href || null,
+      });
+    },
+    { capture: true },
+  );
+}
+
