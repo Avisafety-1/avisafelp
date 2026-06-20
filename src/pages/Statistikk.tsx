@@ -41,6 +41,16 @@ type Row = {
   created_at: string;
 };
 
+type EventRow = {
+  name: string;
+  path: string | null;
+  scroll_depth: number | null;
+  duration_ms: number | null;
+  session_id: string | null;
+  meta: unknown;
+  created_at: string;
+};
+
 const WORLD_TOPO =
   "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
