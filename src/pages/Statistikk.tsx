@@ -65,6 +65,7 @@ const Statistikk = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [rows, setRows] = useState<Row[]>([]);
+  const [events, setEvents] = useState<EventRow[]>([]);
   const [loading, setLoading] = useState(false);
   const [days, setDays] = useState(30);
 
