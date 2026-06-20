@@ -399,9 +399,9 @@ const ListCard = ({ title, items, empty = "—" }: { title: string; items: { key
     ) : (
       <ul className="space-y-1.5">
         {items.map((it, i) => (
-          <li key={i} className="flex justify-between gap-3 text-sm border-b border-slate-100 pb-1.5 last:border-0">
-            <span className="truncate text-slate-700">{it.key}</span>
-            <span className="font-mono text-slate-900 shrink-0">{it.value}</span>
+          <li key={i} className="flex justify-between items-center gap-3 text-sm border-b border-slate-100 pb-1.5 last:border-0">
+            <span className="truncate text-slate-700 min-w-0 flex-1">{it.key}</span>
+            <span className="font-mono text-slate-900 shrink-0 tabular-nums">{it.value}</span>
           </li>
         ))}
       </ul>
