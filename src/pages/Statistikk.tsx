@@ -249,7 +249,7 @@ const Statistikk = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[hsl(210,30%,96%)] pt-20 sm:pt-24 pb-16">
+    <div className="min-h-screen bg-[hsl(210,30%,96%)] pt-20 sm:pt-24 pb-16 overflow-x-hidden">
       <Helmet>
         <title>Statistikk – AviSafe</title>
         <meta name="robots" content="noindex,nofollow" />
