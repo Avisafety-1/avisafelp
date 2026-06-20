@@ -65,39 +65,14 @@ async function getGeo(): Promise<Geo> {
   }
 }
 
-let gaLoaded = false;
-function loadGA() {
-  if (gaLoaded || !GA_MEASUREMENT_ID) return;
-  gaLoaded = true;
-  window.dataLayer = window.dataLayer || [];
-  window.gtag = function gtag() {
-    // eslint-disable-next-line prefer-rest-params
-    window.dataLayer.push(arguments);
-  };
-  window.gtag("js", new Date());
-  window.gtag("consent", "default", {
-    ad_storage: "denied",
-    analytics_storage: "granted",
-    ad_user_data: "denied",
-    ad_personalization: "denied",
-  });
-  window.gtag("config", GA_MEASUREMENT_ID, { anonymize_ip: true });
-  const s = document.createElement("script");
-  s.async = true;
-  s.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
-  document.head.appendChild(s);
-}
-
 export function applyConsent(consent: Consent | null) {
-  if (consent?.analytics) loadGA();
-  if (window.gtag) {
-    window.gtag("consent", "update", {
-      analytics_storage: consent?.analytics ? "granted" : "denied",
-      ad_storage: consent?.marketing ? "granted" : "denied",
-      ad_user_data: consent?.marketing ? "granted" : "denied",
-      ad_personalization: consent?.marketing ? "granted" : "denied",
-    });
-  }
+  if (typeof window === "undefined" || !window.gtag) return;
+  window.gtag("consent", "update", {
+    analytics_storage: consent?.analytics ? "granted" : "denied",
+    ad_storage: consent?.marketing ? "granted" : "denied",
+    ad_user_data: consent?.marketing ? "granted" : "denied",
+    ad_personalization: consent?.marketing ? "granted" : "denied",
+  });
 }
 
 export function initAnalytics() {
