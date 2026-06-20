@@ -1,51 +1,17 @@
 ## Mål
+Gi `hauggard@gmail.com` admin-rolle slik at brukeren får tilgang til `/statistikk`.
 
-Implementere Consent Mode v2 slik Google anbefaler i dokumentasjonen du limte inn: Google-taggen lastes på alle sider rett etter `<head>`, med `consent default` satt til `denied` for alle parametere *før* taggen lastes. Samtykkebanneret oppdaterer deretter status via `gtag('consent','update', ...)`.
+## Status
+- Brukeren finnes allerede i auth (logget inn 17:20 i dag, user_id `4721cdd2-14ce-4caa-8c6f-280857fc3187`), så passordet `Samen36a` er allerede aktivt.
+- `/statistikk` sjekker `user_roles` for `role = 'admin'`.
+- Tabellen `public.user_roles` er tom.
 
-Dagens kode laster GA først *etter* at brukeren har akseptert. Det betyr at vi mister "consent mode pings" (anonyme signaler Google bruker for modellering) og bryter Googles anbefalte rekkefølge.
+## Endring
+Legg til én rad i `public.user_roles`:
 
-## Endringer
-
-### 1. `index.html`
-Legg til rett etter `<head>` (før alt annet script):
-
-```html
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-
-  // Default: alt nektet inntil bruker velger i banneret
-  gtag('consent', 'default', {
-    'ad_storage': 'denied',
-    'ad_user_data': 'denied',
-    'ad_personalization': 'denied',
-    'analytics_storage': 'denied',
-    'wait_for_update': 500
-  });
-
-  gtag('set', 'ads_data_redaction', true);
-  gtag('set', 'url_passthrough', true);
-</script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y2627FR6GY"></script>
-<script>
-  gtag('js', new Date());
-  gtag('config', 'G-Y2627FR6GY', { anonymize_ip: true });
-</script>
+```sql
+INSERT INTO public.user_roles (user_id, role)
+VALUES ('4721cdd2-14ce-4caa-8c6f-280857fc3187', 'admin');
 ```
 
-### 2. `src/lib/analytics.ts`
-- Fjerne `loadGA()` (taggen lastes nå i `index.html`).
-- `applyConsent()` kaller bare `gtag('consent','update', ...)` med `analytics_storage`, `ad_storage`, `ad_user_data`, `ad_personalization`.
-- `initAnalytics()` kjører `applyConsent` ved oppstart hvis bruker allerede har samtykket — slik at update sendes "well before page unloads" (jf. common issues).
-- `trackPageView()` til egen DB beholdes som i dag (gated på `analytics`-consent).
-
-### 3. Ingen endringer i `CookieBanner.tsx`
-Banneret kaller allerede `setConsent → applyConsent`, som etter endringen sender riktig `update`-kall.
-
-## Hvorfor
-
-- Følger Googles offisielle rekkefølge (default → load tag → update).
-- Aktiverer consent mode-modellering selv når brukeren nekter analytics.
-- `wait_for_update: 500` gir React-banneret tid til å oppdatere før første event.
-- `ads_data_redaction` + `url_passthrough` er anbefalt for advanced consent mode.
+Ingen kodeendringer – /statistikk gir automatisk tilgang etter at rollen er satt.
