@@ -379,14 +379,14 @@ const Statistikk = () => {
 // ---------- UI helpers ----------
 
 const Stat = ({ label, value }: { label: string; value: string | number }) => (
-  <div className="bg-white rounded-xl sm:rounded-2xl p-3 sm:p-5 shadow-sm border border-slate-200">
-    <p className="text-[10px] sm:text-xs uppercase tracking-wide text-slate-500">{label}</p>
+  <div className="bg-white rounded-xl sm:rounded-2xl p-3 sm:p-5 shadow-sm border border-slate-200 min-w-0 overflow-hidden">
+    <p className="text-[10px] sm:text-xs uppercase tracking-wide text-slate-500 truncate">{label}</p>
     <p className="text-lg sm:text-2xl font-bold mt-1 text-[hsl(210,45%,12%)] truncate">{value}</p>
   </div>
 );
 
 const Card = ({ title, children, className = "" }: { title: string; children: React.ReactNode; className?: string }) => (
-  <div className={`bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-200 ${className}`}>
+  <div className={`bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-200 min-w-0 overflow-hidden ${className}`}>
     <h3 className="font-semibold mb-3 text-sm sm:text-base text-[hsl(210,45%,12%)]">{title}</h3>
     {children}
   </div>
