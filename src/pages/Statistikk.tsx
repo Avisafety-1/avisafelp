@@ -350,9 +350,14 @@ const Statistikk = () => {
         <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
           <ListCard title="Topp sider" items={stats.byPath.slice(0, 15)} />
           <ListCard title="Henvisninger" items={stats.byReferrer.slice(0, 15)} />
+          <ListCard title="Landingssider" items={stats.byLanding.slice(0, 10)} empty="Ingen data" />
+          <ListCard title="Avslutningssider" items={stats.byExit.slice(0, 10)} empty="Ingen data" />
+          <ListCard title="CTA-klikk" items={stats.byCta.slice(0, 10)} empty="Ingen CTA-klikk registrert ennå" />
+          <ListCard title="Snitt-tid per side" items={stats.byTime.slice(0, 10)} empty="Ingen engasjementsdata ennå" />
           <ListCard title="UTM-kilder" items={stats.byUtm.slice(0, 10)} empty="Ingen kampanjebesøk ennå" />
           <ListCard title="Språk" items={stats.byLang.slice(0, 10)} />
         </div>
+
 
         {!GA_MEASUREMENT_ID && (
           <div className="mt-6 p-4 rounded-xl bg-amber-50 border border-amber-200 text-sm text-amber-900">
