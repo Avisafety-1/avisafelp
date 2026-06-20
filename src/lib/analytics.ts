@@ -164,7 +164,7 @@ export function trackEvent(name: string, params?: Record<string, unknown>) {
     path: typeof window !== "undefined" ? window.location.pathname : null,
     scroll_depth: typeof params?.scroll_depth === "number" ? (params.scroll_depth as number) : null,
     duration_ms: typeof params?.duration_ms === "number" ? (params.duration_ms as number) : null,
-    meta: params ? (params as Record<string, unknown>) : null,
+    meta: (params ?? null) as never,
   });
 }
 
