@@ -162,8 +162,59 @@ const Statistikk = () => {
       Besøkende: v.sessions.size,
     }));
 
-    return { total, uniqueSessions, avgDuration, byPath, byCountry, byReferrer, byDevice, byBrowser, byOS, byUtm, byLang, daily };
-  }, [rows, days]);
+    // ----- Session-based metrics (landing, exit, bounce) -----
+    const bySession = new Map<string, Row[]>();
+    for (const r of rows) {
+      if (!r.session_id) continue;
+      const list = bySession.get(r.session_id) || [];
+      list.push(r);
+      bySession.set(r.session_id, list);
+    }
+    let bounces = 0;
+    const landings: string[] = [];
+    const exits: string[] = [];
+    for (const list of bySession.values()) {
+      const sorted = [...list].sort((a, b) => a.created_at.localeCompare(b.created_at));
+      landings.push(sorted[0].path);
+      exits.push(sorted[sorted.length - 1].path);
+      if (sorted.length === 1) bounces += 1;
+    }
+    const sessionCount = bySession.size;
+    const bounceRate = sessionCount ? Math.round((bounces / sessionCount) * 100) : 0;
+    const byLanding = aggregate(landings);
+    const byExit = aggregate(exits);
+
+    // ----- Event metrics -----
+    const engagementEvents = events.filter(e => e.name === "page_engagement");
+    const scrolls = engagementEvents.map(e => e.scroll_depth).filter((n): n is number => typeof n === "number");
+    const avgScroll = scrolls.length ? Math.round(scrolls.reduce((a, b) => a + b, 0) / scrolls.length) : 0;
+
+    const ctaEvents = events.filter(e => e.name === "cta_click");
+    const byCta = aggregate(ctaEvents.map(e => {
+      const m = e.meta as { label?: string } | null;
+      return m?.label || "—";
+    }));
+
+    // Per-page average time from engagement events
+    const timePerPage = new Map<string, { sum: number; n: number }>();
+    for (const e of engagementEvents) {
+      if (!e.path || !e.duration_ms) continue;
+      const cur = timePerPage.get(e.path) || { sum: 0, n: 0 };
+      cur.sum += e.duration_ms;
+      cur.n += 1;
+      timePerPage.set(e.path, cur);
+    }
+    const byTime = Array.from(timePerPage.entries())
+      .map(([key, v]) => ({ key, value: `${Math.round(v.sum / v.n / 1000)}s` }))
+      .sort((a, b) => parseInt(b.value) - parseInt(a.value));
+
+    return {
+      total, uniqueSessions, avgDuration, byPath, byCountry, byReferrer,
+      byDevice, byBrowser, byOS, byUtm, byLang, daily,
+      bounceRate, byLanding, byExit, avgScroll, byCta, byTime,
+    };
+  }, [rows, events, days]);
+
 
   if (authLoading) {
     return <div className="min-h-screen flex items-center justify-center"><Loader2 className="animate-spin" /></div>;
