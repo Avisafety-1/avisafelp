@@ -17,6 +17,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import ShopCartButton from "@/components/ShopCartButton";
 import avisafeLogoBlackAsset from "@/assets/avisafe-logo-black.png.asset.json";
 import avisafeLogoWhiteAsset from "@/assets/avisafe-logo-white.png.asset.json";
 
@@ -191,6 +192,11 @@ const SiteHeader = () => {
                 {t("nav.operations")}
               </button>
 
+              <button onClick={() => goTo("/butikk")} className={`${navButtonBase} ${navButtonTheme}`}>
+                {t("nav.shop")}
+              </button>
+
+
               <HoverDropdown label={t("nav.articlesMedia")} items={articlesItems} scrolled={scrolled} />
 
               <button onClick={openNewsletter} className={`${navButtonBase} ${navButtonTheme}`}>
@@ -235,6 +241,7 @@ const SiteHeader = () => {
                   <LinkedInIcon className="w-4 h-4" />
                 </a>
               </div>
+              <ShopCartButton scrolled={scrolled} />
               <LanguageSwitcher variant={scrolled ? "light" : "dark"} />
               {/* Mobile menu */}
               <Sheet open={open} onOpenChange={setOpen}>
