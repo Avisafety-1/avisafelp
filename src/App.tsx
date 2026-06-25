@@ -16,8 +16,11 @@ import Galleri from "./pages/Galleri";
 import Operations from "./pages/Operations";
 import Statistikk from "./pages/Statistikk";
 import Personvern from "./pages/Personvern";
+import Butikk from "./pages/Butikk";
+import ButikkCheckout from "./pages/ButikkCheckout";
 import SiteHeader from "./components/SiteHeader";
 import CookieBanner from "./components/CookieBanner";
+import ShopCartDrawer from "./components/ShopCartDrawer";
 import { usePageTracking } from "./hooks/usePageTracking";
 import { initAnalytics, initCtaTracking } from "./lib/analytics";
 
@@ -43,9 +46,12 @@ const AppRoutes = () => {
         <Route path="/operasjoner" element={<Operations />} />
         <Route path="/statistikk" element={<Statistikk />} />
         <Route path="/personvern" element={<Personvern />} />
+        <Route path="/butikk" element={<Butikk />} />
+        <Route path="/butikk/checkout" element={<ButikkCheckout />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <CookieBanner />
+      <ShopCartDrawer />
     </>
   );
 };
