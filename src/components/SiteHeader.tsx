@@ -192,11 +192,6 @@ const SiteHeader = () => {
                 {t("nav.operations")}
               </button>
 
-              <button onClick={() => goTo("/butikk")} className={`${navButtonBase} ${navButtonTheme}`}>
-                {t("nav.shop")}
-              </button>
-
-
               <HoverDropdown label={t("nav.articlesMedia")} items={articlesItems} scrolled={scrolled} />
 
               <button onClick={openNewsletter} className={`${navButtonBase} ${navButtonTheme}`}>
@@ -205,6 +200,10 @@ const SiteHeader = () => {
 
               <button onClick={() => scrollToId("team-section")} className={`${navButtonBase} ${navButtonTheme}`}>
                 {t("nav.whoWeAre")}
+              </button>
+
+              <button onClick={() => goTo("/butikk")} className={`${navButtonBase} ${navButtonTheme}`}>
+                {t("nav.shop")}
               </button>
 
               <button
