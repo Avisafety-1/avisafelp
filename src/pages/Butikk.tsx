@@ -162,6 +162,11 @@ const Butikk = () => {
                 </Button>
               </div>
 
+              <div className="mt-3 flex items-center gap-2 text-sm font-medium text-emerald-700">
+                <span className="inline-block w-2 h-2 rounded-full bg-emerald-500" />
+                9 stk på lager
+              </div>
+
               <ul className="mt-6 space-y-2 text-sm text-[hsl(210,45%,25%)]">
                 {[
                   "Fri frakt i Norge",
