@@ -22,8 +22,8 @@ export const DRONETAG_MINI: ShopProduct = {
   shortDescription:
     "Kompakt Remote ID-sender med Network + Direct RID, 14 timers batteritid og kun 32 gram.",
   priceNok: 4899,
-  image: heroAsset.url,
-  gallery: [heroAsset.url, p1.url, p2.url, p3.url, p4.url, p5.url],
+  image: p2.url,
+  gallery: [p2.url, heroAsset.url, p1.url, p3.url, p4.url, p5.url],
 };
 
 export const SHOP_PRODUCTS: ShopProduct[] = [DRONETAG_MINI];
