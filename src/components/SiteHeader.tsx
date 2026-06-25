@@ -241,8 +241,8 @@ const SiteHeader = () => {
                   <LinkedInIcon className="w-4 h-4" />
                 </a>
               </div>
-              <ShopCartButton scrolled={scrolled} />
               <LanguageSwitcher variant={scrolled ? "light" : "dark"} />
+              <ShopCartButton scrolled={scrolled} />
               {/* Mobile menu */}
               <Sheet open={open} onOpenChange={setOpen}>
                 <SheetTrigger asChild>
