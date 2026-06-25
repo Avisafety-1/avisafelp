@@ -192,11 +192,6 @@ const SiteHeader = () => {
                 {t("nav.operations")}
               </button>
 
-              <button onClick={() => goTo("/butikk")} className={`${navButtonBase} ${navButtonTheme}`}>
-                {t("nav.shop")}
-              </button>
-
-
               <HoverDropdown label={t("nav.articlesMedia")} items={articlesItems} scrolled={scrolled} />
 
               <button onClick={openNewsletter} className={`${navButtonBase} ${navButtonTheme}`}>
@@ -205,6 +200,10 @@ const SiteHeader = () => {
 
               <button onClick={() => scrollToId("team-section")} className={`${navButtonBase} ${navButtonTheme}`}>
                 {t("nav.whoWeAre")}
+              </button>
+
+              <button onClick={() => goTo("/butikk")} className={`${navButtonBase} ${navButtonTheme}`}>
+                {t("nav.shop")}
               </button>
 
               <button
@@ -303,12 +302,6 @@ const SiteHeader = () => {
                       {t("nav.operations")}
                     </button>
                     <button
-                      onClick={() => goTo("/butikk")}
-                      className="text-left px-3 py-3 text-base font-medium uppercase tracking-wide hover:bg-white/10 rounded-md"
-                    >
-                      {t("nav.shop")}
-                    </button>
-                    <button
                       onClick={openNewsletter}
                       className="text-left px-3 py-3 text-base font-medium uppercase tracking-wide hover:bg-white/10 rounded-md"
                     >
@@ -319,6 +312,12 @@ const SiteHeader = () => {
                       className="text-left px-3 py-3 text-base font-medium uppercase tracking-wide hover:bg-white/10 rounded-md"
                     >
                       {t("nav.whoWeAre")}
+                    </button>
+                    <button
+                      onClick={() => goTo("/butikk")}
+                      className="text-left px-3 py-3 text-base font-medium uppercase tracking-wide hover:bg-white/10 rounded-md"
+                    >
+                      {t("nav.shop")}
                     </button>
 
                     <button
