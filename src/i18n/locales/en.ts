@@ -70,6 +70,7 @@ const en: Translations = {
       title: "Product Development",
       cv: [
         "13 years of experience as a pilot",
+        "Experience with planning, management and supervision of major air operations",
         "Bachelor's degree in Air Power and Leadership from the Royal Norwegian Air Force Academy",
         "2 years of experience as Safety Manager (EASA)",
         "Aircraft Accident Investigation (AAI) and Human Factors in Accident Investigation (HFAI), Southern California Safety Institute (SCSI)",

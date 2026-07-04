@@ -68,6 +68,7 @@ const no = {
       title: "Produktutvikling",
       cv: [
         "13 års erfaring som pilot",
+        "Erfaring med planlegging, ledelse og supervisjon av større luftoperasjoner",
         "Bachelor i luftmakt og ledelse fra Luftkrigskolen",
         "2 års erfaring som Safety Manager (EASA)",
         "Aircraft Accident Investigation (AAI) og Human Factors in Accident Investigation (HFAI) fra Southern California Safety Institue (SCSI)",
