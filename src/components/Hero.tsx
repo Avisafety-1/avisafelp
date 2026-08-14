@@ -7,7 +7,7 @@ import heroVideo from "@/assets/hero-video.mp4.asset.json";
 import heroVideoWebm from "@/assets/hero-video.webm.asset.json";
 import trustedLogo1 from "@/assets/trusted-logo-1.png";
 import norconsultLogoWhite from "@/assets/norconsult-logo-white.png";
-import dnLogoWhite from "@/assets/dn-logo-white.png";
+import dronenordLogoWhite from "@/assets/dronenord-logo-white.png.asset.json";
 import tensioLogo from "@/assets/tensio-logo.png";
 import breiliDriftLogo from "@/assets/breili-drift-logo.png";
 import ScrollExpandMedia from "@/components/ui/scroll-expand-media";
@@ -40,7 +40,7 @@ const Hero = () => {
               <img src={trustedLogo1} alt="UAS Voss" className="h-9 w-auto" />
               <img src={tensioLogo} alt="Tensio" className="h-9 w-auto" />
               <img src={norconsultLogoWhite} alt="Norconsult" className="h-7 w-auto" />
-              <img src={dnLogoWhite} alt="DN" className="h-9 w-auto" />
+              <img src={dronenordLogoWhite.url} alt="Dronenord" className="h-9 w-auto" />
               <img src={breiliDriftLogo} alt="Breili Drift" className="h-9 w-auto" />
             </div>
             <div className="sm:hidden flex animate-marquee w-max">
@@ -49,7 +49,7 @@ const Hero = () => {
                   <img src={trustedLogo1} alt="UAS Voss" className="h-7 w-auto" />
                   <img src={tensioLogo} alt="Tensio" className="h-7 w-auto" />
                   <img src={norconsultLogoWhite} alt="Norconsult" className="h-5 w-auto" />
-                  <img src={dnLogoWhite} alt="DN" className="h-7 w-auto" />
+                  <img src={dronenordLogoWhite.url} alt="Dronenord" className="h-7 w-auto" />
                   <img src={breiliDriftLogo} alt="Breili Drift" className="h-7 w-auto" />
                 </div>
               ))}
