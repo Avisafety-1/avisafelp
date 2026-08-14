@@ -29,7 +29,7 @@ const Hero = () => {
         titleBottom={t("hero.expandLine2")}
       >
         {/* Trusted By Banner */}
-        <div className="w-full animate-fade-in">
+        <div className="w-full animate-fade-in mt-8 sm:mt-12 md:mt-16 lg:mt-20">
           <div className="flex items-center justify-center mb-1">
             <span className="text-xs sm:text-sm text-foreground/70 font-semibold tracking-widest uppercase">
               {t("hero.trustedBy")}
