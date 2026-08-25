@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Card } from "@/components/ui/card";
-import teamMember1 from "@/assets/team-member-1.jpg";
-import teamMember2 from "@/assets/team-member-2.jpg";
+import teamMember1 from "@/assets/team-member-1.jpg.asset.json";
+import teamMember2 from "@/assets/team-member-2.jpg.asset.json";
 
 const Team = () => {
   const { t } = useTranslation();
@@ -9,13 +9,13 @@ const Team = () => {
     {
       name: "Rikard Bjørklund",
       title: t("team.rikard.title"),
-      image: teamMember1,
+      image: teamMember1.url,
       cv: t("team.rikard.cv", { returnObjects: true }) as string[],
     },
     {
       name: "Gard Haug-Hansen",
       title: t("team.gard.title"),
-      image: teamMember2,
+      image: teamMember2.url,
       cv: t("team.gard.cv", { returnObjects: true }) as string[],
     },
   ];
@@ -41,7 +41,7 @@ const Team = () => {
                     src={member.image}
                     alt={member.name}
                     loading="lazy"
-                    className={`w-full h-full object-cover ${index === 0 ? "scale-150 -translate-y-6 object-center" : "object-top"}`}
+                    className="w-full h-full object-cover object-top"
                   />
                 </div>
                 <h3 className="text-2xl md:text-3xl font-semibold text-card-foreground mb-2">{member.name}</h3>
