@@ -51,6 +51,7 @@ const Hero = () => {
                   <img src={trustedLogo1} alt="UAS Voss" className="h-7 w-auto" />
                   <img src={tensioLogo} alt="Tensio" className="h-7 w-auto" />
                   <img src={norconsultLogoWhite} alt="Norconsult" className="h-5 w-auto" />
+                  <img src={elverumVgsLogo.url} alt="Elverum videregående skole" className="h-7 w-auto" />
                   <img src={dronenordLogoWhite.url} alt="Dronenord" className="h-9 w-auto" />
                   <img src={breiliDriftLogo} alt="Breili Drift" className="h-7 w-auto" />
                 </div>
