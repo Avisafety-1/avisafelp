@@ -9,7 +9,7 @@ import trustedLogo1 from "@/assets/trusted-logo-1.png";
 import norconsultLogoWhite from "@/assets/norconsult-logo-white.png";
 import dronenordLogoWhite from "@/assets/dronenord-logo-white.png.asset.json";
 import elverumVgsLogo from "@/assets/elverum-vgs-white.svg";
-import johanBojerLogo from "@/assets/johan-bojer-v4.png.asset.json";
+import johanBojerLogo from "@/assets/johan-bojer-v5.png.asset.json";
 import tensioLogo from "@/assets/tensio-logo.png";
 import breiliDriftLogo from "@/assets/breili-drift-logo.png";
 import ScrollExpandMedia from "@/components/ui/scroll-expand-media";
