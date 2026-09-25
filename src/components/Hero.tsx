@@ -9,6 +9,7 @@ import trustedLogo1 from "@/assets/trusted-logo-1.png";
 import norconsultLogoWhite from "@/assets/norconsult-logo-white.png";
 import dronenordLogoWhite from "@/assets/dronenord-logo-white.png.asset.json";
 import elverumVgsLogo from "@/assets/elverum-vgs-white.svg";
+import johanBojerLogo from "@/assets/johan-bojer-white.png.asset.json";
 import tensioLogo from "@/assets/tensio-logo.png";
 import breiliDriftLogo from "@/assets/breili-drift-logo.png";
 import ScrollExpandMedia from "@/components/ui/scroll-expand-media";
@@ -42,6 +43,7 @@ const Hero = () => {
               <img src={tensioLogo} alt="Tensio" className="h-9 w-auto" />
               <img src={norconsultLogoWhite} alt="Norconsult" className="h-7 w-auto" />
               <img src={elverumVgsLogo} alt="Elverum videregående skole" className="h-9 w-auto" />
+              <img src={johanBojerLogo.url} alt="Johan Bojer videregående skole" className="h-9 w-auto" />
               <img src={dronenordLogoWhite.url} alt="Dronenord" className="h-11 w-auto" />
               <img src={breiliDriftLogo} alt="Breili Drift" className="h-9 w-auto" />
             </div>
@@ -52,6 +54,7 @@ const Hero = () => {
                   <img src={tensioLogo} alt="Tensio" className="h-7 w-auto" />
                   <img src={norconsultLogoWhite} alt="Norconsult" className="h-5 w-auto" />
                   <img src={elverumVgsLogo} alt="Elverum videregående skole" className="h-7 w-auto" />
+                  <img src={johanBojerLogo.url} alt="Johan Bojer videregående skole" className="h-7 w-auto" />
                   <img src={dronenordLogoWhite.url} alt="Dronenord" className="h-9 w-auto" />
                   <img src={breiliDriftLogo} alt="Breili Drift" className="h-7 w-auto" />
                 </div>
