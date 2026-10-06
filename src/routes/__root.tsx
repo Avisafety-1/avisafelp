@@ -8,7 +8,6 @@ import {
   type ErrorComponentProps,
 } from "@tanstack/react-router";
 import { QueryClientProvider, type QueryClient } from "@tanstack/react-query";
-import { HelmetProvider } from "react-helmet-async";
 
 import appCss from "../styles.css?url";
 // ported from main.tsx
@@ -186,14 +185,12 @@ function RootComponent() {
   }, []);
 
   return (
-    <HelmetProvider>
-      <QueryClientProvider client={queryClient}>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <AppChrome />
-        </TooltipProvider>
-      </QueryClientProvider>
-    </HelmetProvider>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <AppChrome />
+      </TooltipProvider>
+    </QueryClientProvider>
   );
 }

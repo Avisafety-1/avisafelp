@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "@/lib/page-head";
 import { useTranslation } from "react-i18next";
 import droneAsset from "@/assets/operations-drone.jpg.asset.json";
 

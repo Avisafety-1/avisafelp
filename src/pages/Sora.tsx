@@ -13,7 +13,7 @@ import {
   Clock,
   Activity,
 } from "lucide-react";
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "@/lib/page-head";
 import { useTranslation } from "react-i18next";
 import avisafeLogoText from "@/assets/avisafe-logo-text.png";
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "@/lib/router-compat";
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "@/lib/page-head";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart, Loader2, ChevronLeft, ChevronRight, ArrowLeft } from "lucide-react";
