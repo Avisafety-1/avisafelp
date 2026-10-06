@@ -163,7 +163,7 @@ const SiteHeader = () => {
     { label: "Live airspace awareness", action: () => goTo("/en/live-airspace-awareness") },
     { label: "Partners", action: () => goTo("/en/partners") },
   ];
-  const whoWeAre = () => (onEnglish ? goTo("/en/about") : goTo("/om-oss"));
+  const whoWeAre = () => scrollToId("team-section");
 
   const articlesItems = [
     { label: t("nav.articles"), action: () => goTo("/artikler") },
