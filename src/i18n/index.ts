@@ -3,8 +3,6 @@ import { initReactI18next } from "react-i18next";
 import no from "./locales/no";
 import en from "./locales/en";
 
-const STORAGE_KEY = "avisafe-lang";
-const COUNTRY_CACHE_KEY = "avisafe-country";
 
 export const SUPPORTED_LANGUAGES = ["no", "en"] as const;
 export type SupportedLanguage = (typeof SUPPORTED_LANGUAGES)[number];
@@ -32,16 +30,20 @@ const updateHtmlLang = (lng: string) => {
 };
 i18n.on("languageChanged", updateHtmlLang);
 
-function isSupported(value: string | null): value is SupportedLanguage {
-  return value === "no" || value === "en";
+/** Language is always derived from the URL: /en and /en/* are English, everything else Norwegian. */
+export function languageForPath(pathname: string): SupportedLanguage {
+  return pathname === "/en" || pathname.startsWith("/en/") ? "en" : "no";
 }
 
-// Applies the stored language choice, or (if none) IP-based detection:
-// Norway -> no, else en. Runs only in the browser after hydration.
-// React hydrates Suspense boundaries (e.g. lazily loaded route components)
-// after the root commits, so wait until the browser is idle before changing
-// the global language — otherwise those boundaries hydrate with a different
-// language than the server rendered.
+/** Syncs i18n to the current URL after hydration. Never uses IP lookup or stored choices. */
+export async function syncLanguageToPath(pathname: string) {
+  if (typeof window === "undefined") return;
+  const target = languageForPath(pathname);
+  if (i18n.language === target) return;
+  await afterHydrationSettles();
+  await i18n.changeLanguage(target);
+}
+
 function afterHydrationSettles(): Promise<void> {
   return new Promise((resolve) => {
     const idle = () => {
@@ -54,35 +56,6 @@ function afterHydrationSettles(): Promise<void> {
     if (document.readyState === "complete") idle();
     else window.addEventListener("load", idle, { once: true });
   });
-}
-
-export async function applyClientLanguage() {
-  if (typeof window === "undefined") return;
-  await afterHydrationSettles();
-  try {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (isSupported(stored)) {
-      if (i18n.language !== stored) await i18n.changeLanguage(stored);
-      return;
-    }
-    let country = localStorage.getItem(COUNTRY_CACHE_KEY);
-    if (!country) {
-      const res = await fetch("https://ipapi.co/json/", { cache: "no-store" });
-      if (res.ok) {
-        const data = (await res.json()) as { country_code?: string; country?: string };
-        country = (data?.country_code || data?.country || "").toString().toUpperCase();
-        if (country) localStorage.setItem(COUNTRY_CACHE_KEY, country);
-      }
-    }
-    const target: SupportedLanguage = country === "NO" ? "no" : "en";
-    if (i18n.language !== target) await i18n.changeLanguage(target);
-    localStorage.setItem(STORAGE_KEY, target);
-  } catch {
-    if (!localStorage.getItem(STORAGE_KEY)) {
-      await i18n.changeLanguage("en");
-      localStorage.setItem(STORAGE_KEY, "en");
-    }
-  }
 }
 
 export default i18n;

@@ -5,6 +5,7 @@ import {
   Scripts,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   type ErrorComponentProps,
 } from "@tanstack/react-router";
 import { QueryClientProvider, type QueryClient } from "@tanstack/react-query";
@@ -12,7 +13,8 @@ import { QueryClientProvider, type QueryClient } from "@tanstack/react-query";
 import appCss from "../styles.css?url";
 // ported from main.tsx
 import "@/i18n";
-import { applyClientLanguage } from "@/i18n";
+import { languageForPath, syncLanguageToPath } from "@/i18n";
+import LanguageBanner from "@/components/LanguageBanner";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -130,8 +132,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const htmlLang = languageForPath(pathname) === "en" ? "en" : "nb";
   return (
-    <html lang="nb" suppressHydrationWarning>
+    <html lang={htmlLang} suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
@@ -148,10 +152,14 @@ function AppChrome() {
   const hideHeader =
     location.pathname.startsWith("/artikler") || location.pathname.startsWith("/statistikk");
   usePageTracking();
+  useEffect(() => {
+    void syncLanguageToPath(location.pathname);
+  }, [location.pathname]);
   return (
     <>
       {!hideHeader && <SiteHeader />}
       <Outlet />
+      <LanguageBanner />
       <CookieBanner />
       <ShopCartDrawer />
     </>
@@ -164,7 +172,6 @@ function RootComponent() {
   useEffect(() => {
     initAnalytics();
     initCtaTracking();
-    void applyClientLanguage();
   }, []);
 
   return (

@@ -203,7 +203,6 @@ export default function SoraProcess() {
       style={{ background: C.bg, color: C.text, fontFamily: "ui-sans-serif, system-ui, sans-serif" }}
     >
       <Helmet>
-        <html lang={isNo ? "nb" : "en"} />
         <title>{t("soraProcess.pageTitle")}</title>
         <meta name="description" content={t("soraProcess.metaDescription")} />
         <link rel="canonical" href="https://avisafe.no/sora-prosess" />
