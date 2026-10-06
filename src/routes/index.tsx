@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { pageHead } from "@/lib/seo";
+import { pageHead, SOFTWARE_APP_LD, ldScript } from "@/lib/seo";
 import Index from "@/pages/Index";
 
 const FOUNDERS_LD = {
@@ -17,7 +17,8 @@ export const Route = createFileRoute("/")({
     return {
       ...base,
       scripts: [
-        { type: "application/ld+json", children: JSON.stringify(FOUNDERS_LD) },
+        ldScript(FOUNDERS_LD),
+        ldScript(SOFTWARE_APP_LD),
       ],
     };
   },
