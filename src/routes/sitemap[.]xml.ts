@@ -10,54 +10,6 @@ import {
 
 const BASE_URL = "https://avisafe.no";
 
-const SHOPIFY_STOREFRONT_URL = "https://2qa2r5-0f.myshopify.com/api/2025-07/graphql.json";
-// Public Storefront API token (already used in the browser bundle).
-const SHOPIFY_STOREFRONT_TOKEN = "ad8e753ac2d07ef1901cd70e212d8644";
-
-type ShopifyPage = {
-  data?: {
-    products?: {
-      pageInfo: { hasNextPage: boolean; endCursor: string | null };
-      edges: Array<{ node: { handle: string } }>;
-    };
-  };
-  errors?: unknown[];
-};
-
-async function fetchAllProductHandles(): Promise<string[]> {
-  const handles: string[] = [];
-  let after: string | null = null;
-  for (;;) {
-    const res = await fetch(SHOPIFY_STOREFRONT_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Shopify-Storefront-Access-Token": SHOPIFY_STOREFRONT_TOKEN,
-      },
-      body: JSON.stringify({
-        query: `query SitemapProducts($after: String) {
-          products(first: 250, after: $after, sortKey: ID) {
-            pageInfo { hasNextPage endCursor }
-            edges { node { handle } }
-          }
-        }`,
-        variables: { after },
-      }),
-    });
-    if (!res.ok) throw new Error(`Shopify request failed [${res.status}]: ${await res.text()}`);
-    const json = (await res.json()) as ShopifyPage;
-    if (json.errors && json.errors.length > 0) {
-      throw new Error(`Shopify GraphQL errors: ${JSON.stringify(json.errors)}`);
-    }
-    const products = json.data?.products;
-    if (!products) throw new Error("Shopify response missing products");
-    for (const edge of products.edges) handles.push(edge.node.handle);
-    if (!products.pageInfo.hasNextPage || !products.pageInfo.endCursor) break;
-    after = products.pageInfo.endCursor;
-  }
-  return handles;
-}
-
 export const Route = createFileRoute("/sitemap.xml")({
   staticData: { sitemap: false },
   server: {
@@ -105,21 +57,6 @@ export const Route = createFileRoute("/sitemap.xml")({
               if (path) entries.push({ path });
             }
             offset += data.length;
-          }
-        }
-
-        // Shop products
-        const productRouteId = "/product/$handle";
-        if (isSitemapRouteIncluded(router.routesById[productRouteId])) {
-          for (const handle of await fetchAllProductHandles()) {
-            const location = router.buildLocation({
-              to: "/product/$handle",
-              params: { handle },
-              search: () => ({}),
-              hash: "",
-            });
-            const path = sitemapPathForLocation(router, location, productRouteId);
-            if (path) entries.push({ path });
           }
         }
 
