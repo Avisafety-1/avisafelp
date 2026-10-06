@@ -84,3 +84,13 @@ Ingen kundenavn, tall, sertifiseringer eller sitater blir funnet på.
 - Migrering (A) berører hele appen. Animasjoner, video-autoplay, handlevogn og innlogging på /statistikk må testes på nytt.
 - hreflang og `/en`-adresser endrer hvordan språk velges. Dagens IP-baserte bytte begrenses til forsiden.
 - Endringene synes på avisafe.no først etter publisering. Crawlere henter sidene på nytt i sitt eget tempo.
+
+## Justeringer godkjent av bruker (gjelder over alt over)
+- Steg 0 er gjort: llms.txt skrevet om på engelsk. Feil beskrivelse fantes kun der.
+- Rendering: alternativ A. Brukeren starter migreringen selv. Etterpå får brukeren en testliste (handlevogn/checkout, /statistikk-innlogging, video-autoplay, animasjoner). SEO-arbeidet starter først etter bekreftelse.
+- Språk: ingen IP-basert bytte eller omdirigering noe sted, heller ikke på forsiden. Et diskré banner («Switch to English» / «Bytt til norsk») vises basert på nettleserspråket. hreflang settes bare når en ekte motpart finnes; sider som bare finnes på engelsk får `en` + `x-default`.
+- Fase 4 (ikke bygg ennå): norske landingssider /sikkerhetsstyring-droner, /sora-risikovurdering, /hendelsesrapportering, /droneflate, /luftromsbilde.
+- Regelverk: occurrence-reporting = (EU) 376/2014 + art. 19 i (EU) 2019/947. SMS-siden er for operatører i spesifikk kategori og LUC-innehavere. Formuleringer som «built to support» og «designed around», aldri «compliance» eller godkjenning.
+- Fakta: grunnleggere, segmenter, ECCAIRS E2 API, DJI Cloud API og SafeSky som oppgitt. Resten forblir [FYLL INN].
+- noindex på /statistikk og /butikk/checkout.
+- Verifisering etter hver fase: `curl -A GPTBot` mot forsiden, én landingsside og én artikkel.
