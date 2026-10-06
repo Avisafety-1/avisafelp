@@ -16,6 +16,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { scrollToSection } from "@/lib/scroll-to-section";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import ShopCartButton from "@/components/ShopCartButton";
 import avisafeLogoBlackAsset from "@/assets/avisafe-logo-black.png.asset.json";
@@ -122,7 +123,7 @@ const SiteHeader = () => {
         navigate("/", { state: { scrollTo: id } });
         return;
       }
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      scrollToSection(id);
     });
 
   // Let the mobile menu finish closing before changing page; navigating while
@@ -148,7 +149,7 @@ const SiteHeader = () => {
 
   const smsItems = [
     { label: "Oversikt", action: () => scrollToId("hero-section") },
-    { label: t("nav.smsIntegrations"), action: () => scrollToId("product-section") },
+    { label: t("nav.smsIntegrations"), action: () => scrollToId("integrations-section") },
     { label: t("nav.smsSecurity"), action: () => scrollToId("security-section") },
     { label: "Risikovurdering", action: () => goTo("/sora") },
   ];

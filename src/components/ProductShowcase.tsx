@@ -183,7 +183,7 @@ const ProductShowcase = () => {
 
 
       {/* New interactive integrations selector */}
-      <SectionReveal>
+      <SectionReveal id="integrations-section" className="scroll-mt-24">
         <IntegrationsSelector />
       </SectionReveal>
     </section>;
