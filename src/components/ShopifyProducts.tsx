@@ -39,8 +39,8 @@ const ImageCarousel = ({ images, title }: { images: Array<{ node: { url: string;
   return (
     <div className="relative w-full h-full group/carousel">
       <img
-        src={images[currentIndex].node.url}
-        alt={images[currentIndex].node.altText || title}
+        src={images[currentIndex]?.node.url}
+        alt={images[currentIndex]?.node.altText || title}
         className="w-full h-full object-contain"
       />
       

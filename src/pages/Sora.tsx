@@ -67,7 +67,7 @@ interface ProsePhaseCardProps {
   dimColor: string;
   midColor: string;
   prose: string;
-  glow?: boolean;
+  glow?: boolean | undefined;
 }
 
 const ProsePhaseCard = ({
@@ -243,15 +243,15 @@ export default function Sora() {
             <div key={pk}>
               <ProsePhaseCard
                 phase={i + 1}
-                icon={phaseStyles[i].icon}
+                icon={phaseStyles[i]!.icon}
                 title={t(`sora.phases.${pk}.title`)}
                 subtitle={t(`sora.phases.${pk}.subtitle`)}
                 phaseLabel={t("sora.phase")}
-                accentColor={phaseStyles[i].accent}
-                dimColor={phaseStyles[i].dim}
-                midColor={phaseStyles[i].mid}
+                accentColor={phaseStyles[i]!.accent}
+                dimColor={phaseStyles[i]!.dim}
+                midColor={phaseStyles[i]!.mid}
                 prose={t(`sora.phases.${pk}.prose`)}
-                glow={phaseStyles[i].glow}
+                glow={phaseStyles[i]!.glow}
               />
               <FlowConnector label={t(`sora.connectors.${connectorKeys[i]}`)} />
             </div>

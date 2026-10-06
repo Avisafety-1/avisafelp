@@ -150,8 +150,8 @@ const Product = () => {
               {images.length > 0 ? (
                 <>
                   <img
-                    src={images[currentImageIndex].node.url}
-                    alt={images[currentImageIndex].node.altText || product.node.title}
+                    src={images[currentImageIndex]?.node.url}
+                    alt={images[currentImageIndex]?.node.altText || product.node.title}
                     className="w-full h-full object-contain"
                   />
                   

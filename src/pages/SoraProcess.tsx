@@ -85,7 +85,7 @@ interface PhaseCardProps {
   dimColor: string;
   midColor: string;
   items: Item[];
-  glow?: boolean;
+  glow?: boolean | undefined;
 }
 
 const PhaseCard = ({ phase, icon, title, subtitle, phaseLabel, accentColor, dimColor, midColor, items, glow }: PhaseCardProps) => (
@@ -262,20 +262,20 @@ export default function SoraProcess() {
         <div className="space-y-0">
           {phaseKeys.map((pk, idx) => {
             const items = t(`soraProcess.phases.${pk}.items`, { returnObjects: true }) as { label: string; desc: string }[];
-            const itemsWithIcons: Item[] = items.map((it, j) => ({ ...it, icon: itemIcons[idx][j] }));
+            const itemsWithIcons: Item[] = items.map((it, j) => ({ ...it, icon: itemIcons[idx]?.[j] }));
             return (
               <div key={pk}>
                 <PhaseCard
                   phase={idx + 1}
-                  icon={phaseStyles[idx].icon}
+                  icon={phaseStyles[idx]!.icon}
                   title={t(`soraProcess.phases.${pk}.title`)}
                   subtitle={t(`soraProcess.phases.${pk}.subtitle`)}
                   phaseLabel={t("sora.phase")}
-                  accentColor={phaseStyles[idx].accent}
-                  dimColor={phaseStyles[idx].dim}
-                  midColor={phaseStyles[idx].mid}
+                  accentColor={phaseStyles[idx]!.accent}
+                  dimColor={phaseStyles[idx]!.dim}
+                  midColor={phaseStyles[idx]!.mid}
                   items={itemsWithIcons}
-                  glow={phaseStyles[idx].glow}
+                  glow={phaseStyles[idx]!.glow}
                 />
                 <FlowConnector label={t(`sora.connectors.${connectorKeys[idx]}`)} />
               </div>

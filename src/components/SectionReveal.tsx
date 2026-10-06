@@ -23,7 +23,7 @@ const SectionReveal = ({ className, delay = 0, children, ...rest }: SectionRevea
     }
     const obs = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry?.isIntersecting) {
           setVisible(true);
           obs.disconnect();
         }

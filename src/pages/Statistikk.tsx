@@ -58,7 +58,7 @@ const BRAND = "#123b87";
 const PIE_COLORS = ["#123b87", "#3b82f6", "#60a5fa", "#93c5fd", "#bfdbfe", "#dbeafe"];
 
 const Statistikk = () => {
-  const [user, setUser] = useState<{ id: string; email?: string } | null>(null);
+  const [user, setUser] = useState<{ id: string; email?: string | undefined } | null>(null);
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
   const [authLoading, setAuthLoading] = useState(true);
   const [email, setEmail] = useState("");
@@ -141,7 +141,7 @@ const Statistikk = () => {
     const byUtm = aggregate(rows
       .map(r => r.utm_source)
       .filter((s): s is string => !!s));
-    const byLang = aggregate(rows.map(r => (r.language || "—").split("-")[0]));
+    const byLang = aggregate(rows.map(r => (r.language || "—").split("-")[0] ?? "—"));
 
     // Daily series
     const dayMap = new Map<string, { views: number; sessions: Set<string> }>();
@@ -175,8 +175,11 @@ const Statistikk = () => {
     const exits: string[] = [];
     for (const list of bySession.values()) {
       const sorted = [...list].sort((a, b) => a.created_at.localeCompare(b.created_at));
-      landings.push(sorted[0].path);
-      exits.push(sorted[sorted.length - 1].path);
+      const first = sorted[0];
+      const last = sorted[sorted.length - 1];
+      if (!first || !last) continue;
+      landings.push(first.path);
+      exits.push(last.path);
       if (sorted.length === 1) bounces += 1;
     }
     const sessionCount = bySession.size;

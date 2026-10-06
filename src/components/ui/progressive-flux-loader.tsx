@@ -188,7 +188,7 @@ export function ProgressiveFluxLoader({
           <FluxLabel
             label={label}
             reduced={reduced}
-            className={textClassName}
+            {...(textClassName !== undefined && { className: textClassName })}
           />
         </div>
       )}

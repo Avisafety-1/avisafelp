@@ -29,6 +29,7 @@ const Index = () => {
       }, 450);
       return () => clearTimeout(timer);
     }
+    return undefined;
   }, [location.state, location.pathname, navigate]);
 
   return (

@@ -27,7 +27,7 @@ const AiSearch = () => {
     let timeout: ReturnType<typeof setTimeout>;
 
     const tick = () => {
-      const currentQuestion = questions[questionIndex];
+      const currentQuestion = questions[questionIndex] ?? "";
 
       if (!isDeleting) {
         charIndex++;

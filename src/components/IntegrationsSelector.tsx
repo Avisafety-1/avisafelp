@@ -13,7 +13,7 @@ type Option = {
   title: string;
   description: string;
   image: string;
-  icon: JSX.Element;
+  icon: React.JSX.Element;
   contain?: boolean;
 };
 
