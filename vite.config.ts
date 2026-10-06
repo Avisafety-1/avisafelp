@@ -12,4 +12,11 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  vite: {
+    // react-helmet-async ships CJS as "main"; bundle its ESM build for SSR so
+    // named imports (Helmet, HelmetProvider) resolve on the server.
+    ssr: {
+      noExternal: ["react-helmet-async"],
+    },
+  },
 });
