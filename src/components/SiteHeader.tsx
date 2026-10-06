@@ -163,7 +163,9 @@ const SiteHeader = () => {
     { label: "Live airspace awareness", action: () => goTo("/en/live-airspace-awareness") },
     { label: "Partners", action: () => goTo("/en/partners") },
   ];
-  const whoWeAre = () => scrollToId("team-section");
+  // "Hvem er vi" scrolls to the team section on the Norwegian front page;
+  // the English /en landing has no team section, so it uses the About page.
+  const whoWeAre = () => (onEnglish ? goTo("/en/about") : scrollToId("team-section"));
 
   const articlesItems = [
     { label: t("nav.articles"), action: () => goTo("/artikler") },
