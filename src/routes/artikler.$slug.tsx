@@ -17,7 +17,8 @@ export const Route = createFileRoute("/artikler/$slug")({
     return { article: (data as ArticleMeta | null) ?? null };
   },
   head: ({ params, loaderData }) => {
-    const a = loaderData?.article;
+    const found = loaderData?.article;
+    const a = found ? { ...found, title: found.title.trim().replace(/\.$/, "") } : null;
     if (!a) return { meta: [{ title: "Artikkel | AviSafe" }, { name: "robots", content: "noindex" }] };
     const plain = (a.content || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
     const raw = plain.length >= 50 ? plain : `Les ${a.title} på AviSafe – innsikt for droneoperatører.`;
