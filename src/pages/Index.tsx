@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Helmet } from "@/lib/page-head";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "@/lib/router-compat";
+import { scrollToSection } from "@/lib/scroll-to-section";
 import Hero from "@/components/Hero";
 import ProductShowcase from "@/components/ProductShowcase";
 import Security from "@/components/Security";
@@ -20,10 +21,7 @@ const Index = () => {
     if (state?.scrollTo) {
       const id = state.scrollTo;
       const timer = setTimeout(() => {
-        const el = document.getElementById(id);
-        if (el) {
-          el.scrollIntoView({ behavior: "smooth" });
-        }
+        scrollToSection(id);
         // Clean up state so re-renders don't scroll again
         navigate(location.pathname, { replace: true, state: {} });
       }, 450);
