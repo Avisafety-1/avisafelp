@@ -4,7 +4,18 @@
 
 AviSafe was founded in Norway in 2025 by Gard Haug-Hansen (CEO and co-founder; pilot and former EASA Safety Manager at a Norwegian airport) and Rikard Bjørklund (co-founder, sales and marketing). It is used by grid and energy companies, municipalities and schools in Norway. AviSafe is built to support operators in the EASA specific category and LUC holders. Contact: kontakt@avisafe.no.
 
-## Pages
+## English pages
+
+- [AviSafe in English](https://avisafe.no/en): Overview of the AviSafe platform for drone operators in the EASA specific category.
+- [Drone safety management system](https://avisafe.no/en/drone-safety-management-system): SMS built around the four ICAO pillars for specific-category operators and LUC holders (UAS.LUC.030).
+- [SORA risk assessment](https://avisafe.no/en/sora-risk-assessment): Decision support for risk assessment under SORA 2.5 (JARUS/EASA) with a structured, traceable report.
+- [Occurrence reporting](https://avisafe.no/en/occurrence-reporting): Occurrence reporting and follow-up with direct ECCAIRS 2 integration via the E2 API.
+- [Drone fleet management](https://avisafe.no/en/drone-fleet-management): Drones, equipment, pilots, competence, maintenance and flight logs, with DJI Cloud API, Dronetag and ArduPilot integrations.
+- [Live airspace awareness](https://avisafe.no/en/live-airspace-awareness): Live SafeSky air traffic, position sharing at take-off, NOTAM and airspace checks, and real-time weather.
+- [About](https://avisafe.no/en/about): AviSafe AS, Norway, founded 2025 by Gard Haug-Hansen and Rikard Bjørklund.
+- [Partners](https://avisafe.no/en/partners): Integrations with SafeSky, DJI, ECCAIRS 2, Dronetag and ArduPilot.
+
+## Norwegian pages
 
 - [Home](https://avisafe.no/): Overview of the AviSafe operations platform, security approach and team.
 - [SORA](https://avisafe.no/sora): AviSafe provides support for risk assessment under SORA 2.5 for drone missions.
@@ -18,6 +29,9 @@ AviSafe was founded in Norway in 2025 by Gard Haug-Hansen (CEO and co-founder; p
 - DJI: live position and telemetry from DJI FlightHub 2 (Sync) and DJI Pilot 2 via DJI Cloud API.
 - SafeSky: live air traffic in the map. Coverage: https://www.safesky.app/post/aviation-grade-safety-for-a-maturing-drone-industry
 - ECCAIRS: direct occurrence submission via the ECCAIRS E2 API.
+
+- [Om oss](https://avisafe.no/om-oss): About AviSafe in Norwegian.
+- [Partnere](https://avisafe.no/partnere): Partners and integrations in Norwegian.
 
 ## Optional
 
