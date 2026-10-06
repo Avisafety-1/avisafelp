@@ -1,10 +1,13 @@
 import { Link } from "@/lib/router-compat";
 import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useEffect, useState } from "react";
 import { ProgressiveFluxLoader, type ProgressiveFluxPhase } from "@/components/ui/progressive-flux-loader";
 
 const SoraRiskLoader = () => {
   const { t } = useTranslation();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   const PHASES: ProgressiveFluxPhase[] = [
     { at: 0, label: t("soraLoader.phases.weather") },
@@ -62,13 +65,20 @@ const SoraRiskLoader = () => {
             </p>
           </div>
 
-          <ProgressiveFluxLoader
-            phases={PHASES}
-            duration={18}
-            loop
-            className="max-w-3xl"
-            textClassName="text-white"
-          />
+          {mounted ? (
+            <ProgressiveFluxLoader
+              phases={PHASES}
+              duration={18}
+              loop
+              className="max-w-3xl"
+              textClassName="text-white"
+            />
+          ) : (
+            <div aria-hidden="true" className="mx-auto max-w-3xl space-y-4">
+              <div className="h-6 w-1/2 mx-auto rounded bg-white/10 animate-pulse" />
+              <div className="h-3 w-full rounded-full bg-white/10 animate-pulse" />
+            </div>
+          )}
 
           {/* CTA */}
           <div className="mt-10 text-center">
