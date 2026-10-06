@@ -1,30 +1,25 @@
 import { useTranslation } from "react-i18next";
 import { Globe } from "lucide-react";
+import { Link, useLocation } from "@/lib/router-compat";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
-const LANGS = [
-  { code: "no", label: "Norsk", flag: "🇳🇴" },
-  { code: "en", label: "English", flag: "🇬🇧" },
-] as const;
+import { isEnglishPath, switchTargetFor } from "@/lib/alternates";
 
 interface Props {
   className?: string;
   variant?: "light" | "dark";
 }
 
+/** Links to the same page in the other language when it exists, otherwise to / or /en. */
 const LanguageSwitcher = ({ className = "", variant = "light" }: Props) => {
-  const { i18n, t } = useTranslation();
-  const current = LANGS.find((l) => i18n.language?.startsWith(l.code)) ?? LANGS[1];
-
-  const change = (code: string) => {
-    // In-session only; nothing stored, so the URL decides language on every load.
-    void i18n.changeLanguage(code);
-  };
+  const { t } = useTranslation();
+  const { pathname } = useLocation();
+  const onEnglish = isEnglishPath(pathname);
+  const target = switchTargetFor(pathname);
 
   const triggerClasses =
     variant === "dark"
@@ -40,16 +35,16 @@ const LanguageSwitcher = ({ className = "", variant = "light" }: Props) => {
         <Globe className="h-4 w-4" />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="min-w-[8rem]">
-        {LANGS.map((l) => (
-          <DropdownMenuItem
-            key={l.code}
-            onClick={() => change(l.code)}
-            className={i18n.language?.startsWith(l.code) ? "font-semibold" : ""}
-          >
-            <span className="mr-2">{l.flag}</span>
-            {l.label}
-          </DropdownMenuItem>
-        ))}
+        <DropdownMenuItem asChild className={!onEnglish ? "font-semibold" : ""}>
+          <Link to={onEnglish ? target : pathname}>
+            <span className="mr-2">🇳🇴</span>Norsk
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild className={onEnglish ? "font-semibold" : ""}>
+          <Link to={onEnglish ? pathname : target}>
+            <span className="mr-2">🇬🇧</span>English
+          </Link>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

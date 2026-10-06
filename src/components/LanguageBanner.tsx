@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
-import { useTranslation } from "react-i18next";
-import { useLocation } from "@/lib/router-compat";
+import { Link, useLocation } from "@/lib/router-compat";
 import { languageForPath } from "@/i18n";
+import { switchTargetFor } from "@/lib/alternates";
 
 const PREF_KEY = "avisafe-lang-banner";
 
@@ -11,7 +11,6 @@ const PREF_KEY = "avisafe-lang-banner";
  * controls whether the banner shows; it never decides which content renders.
  */
 const LanguageBanner = () => {
-  const { i18n } = useTranslation();
   const location = useLocation();
   const [show, setShow] = useState(false);
   const pageLang = languageForPath(location.pathname);
@@ -45,16 +44,13 @@ const LanguageBanner = () => {
       aria-label="Language"
       className="fixed bottom-4 left-4 z-[60] flex items-center gap-2 rounded-full border border-border bg-card/90 px-4 py-2 text-sm text-foreground shadow-lg backdrop-blur"
     >
-      <button
-        type="button"
+      <Link
+        to={switchTargetFor(location.pathname)}
         className="font-medium underline-offset-2 hover:underline"
-        onClick={() => {
-          void i18n.changeLanguage(suggest);
-          remember(suggest);
-        }}
+        onClick={() => remember(suggest)}
       >
         {suggest === "en" ? "Switch to English" : "Bytt til norsk"}
-      </button>
+      </Link>
       <button
         type="button"
         aria-label={suggest === "en" ? "Close" : "Lukk"}
