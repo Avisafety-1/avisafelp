@@ -93,6 +93,7 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+  staticData: { sitemap: false },
   head: () => ({
     meta: [
       { charSet: "utf-8" },
@@ -109,7 +110,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "drone, dronetag, droneoperatør, UAS, RPAS, flylogg, dronelogg, flysikkerhet, remote id, norway, norge",
       },
-      { name: "robots", content: "index, follow" },
       { property: "og:title", content: "AviSafe - Drone Operasjonssystem for Profesjonelle" },
       {
         property: "og:description",
