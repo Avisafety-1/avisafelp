@@ -116,19 +116,24 @@ const SiteHeader = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const scrollToId = (id: string) => {
+  const scrollToId = (id: string) =>
+    afterMenuClose(() => {
+      if (location.pathname !== "/") {
+        navigate("/", { state: { scrollTo: id } });
+        return;
+      }
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    });
+
+  // Let the mobile menu finish closing before changing page; navigating while
+  // it animates out can leave an invisible menu layer blocking taps.
+  const afterMenuClose = (fn: () => void) => {
+    if (!open) return fn();
     setOpen(false);
-    if (location.pathname !== "/") {
-      navigate("/", { state: { scrollTo: id } });
-      return;
-    }
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    window.setTimeout(fn, 320);
   };
 
-  const goTo = (path: string) => {
-    setOpen(false);
-    navigate(path);
-  };
+  const goTo = (path: string) => afterMenuClose(() => navigate(path));
 
   const openNewsletter = () => {
     setOpen(false);

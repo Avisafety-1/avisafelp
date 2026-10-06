@@ -72,8 +72,9 @@ export function Helmet({ children }: { children?: ReactNode }) {
         selector = `meta[property="${props["property"]}"]`;
       if (type === "link" && props["rel"] === "canonical") selector = 'link[rel="canonical"]';
 
-      const existing = selector ? Array.from(head.querySelectorAll<HTMLElement>(selector)) : [];
-      existing.forEach((node) => node.remove());
+      // Never remove or replace tags React rendered from route head() — React owns
+      // those nodes and crashes if they disappear. Route head() always wins.
+      if (selector && head.querySelector(selector)) continue;
 
       const node = document.createElement(type);
       for (const [key, value] of Object.entries(props)) {
@@ -87,7 +88,6 @@ export function Helmet({ children }: { children?: ReactNode }) {
 
       cleanups.push(() => {
         node.remove();
-        existing.forEach((prev) => head.appendChild(prev));
       });
     }
 
