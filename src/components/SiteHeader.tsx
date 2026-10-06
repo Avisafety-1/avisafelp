@@ -153,7 +153,7 @@ const SiteHeader = () => {
     { label: onEnglish ? "Overview" : "Oversikt", action: () => scrollToId("hero-section") },
     { label: t("nav.smsIntegrations"), action: () => scrollToId("integrations-section") },
     { label: t("nav.smsSecurity"), action: () => scrollToId("security-section") },
-    { label: onEnglish ? "Risk assessment" : "Risikovurdering", action: () => goTo(onEnglish ? "/en/sora-risk-assessment" : "/sora") },
+    { label: onEnglish ? "Risk assessment" : "Risikovurdering", action: () => scrollToId("sora-section") },
   ];
 
   // "Hvem er vi" scrolls to the team section on the Norwegian front page;
