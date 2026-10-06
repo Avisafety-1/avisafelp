@@ -251,7 +251,7 @@ const no = {
       traceable: { title: "Sporbar", prose: "Hver vurdering er fullstendig dokumentert med et komplett revisjonsspor. Alle beslutninger, inputs og resultater er lagret og kan etterprøves til enhver tid." },
       regulatory: { title: "Bygget rundt SORA 2.5", prose: "Verktøyet bygger på SORA 2.5 (JARUS/EASA) for spesifikk kategori og strukturerer dokumentasjonen operatøren trenger for sin søknad." },
     },
-    footerNote: "Powered by AviSafe · EASA SORA · AI-drevet droneoperasjonsplattform",
+    footerNote: "Powered by AviSafe · SORA 2.5 · Beslutningsstøtte for droneoperatører",
   },
   soraProcess: {
     pageTitle: "SORA-prosessen – Interaktiv flyt | AviSafe",
@@ -350,7 +350,7 @@ const no = {
       traceable: { title: "100% sporbar", points: ["Komplett revisjonsspor", "Alle inputs og outputs lagret", "Pilot-signatur på hver vurdering", "Eksport til PDF"] },
       regulatory: { title: "Bygget rundt SORA 2.5", points: ["Bygger på SORA 2.5 (JARUS/EASA)", "For spesifikk kategori", "Forslag til SAIL-nivå", "Strukturerer dokumentasjonen"] },
     },
-    footerNote: "Powered by AviSafe · EASA SORA · AI-drevet droneoperasjonsplattform",
+    footerNote: "Powered by AviSafe · SORA 2.5 · Beslutningsstøtte for droneoperatører",
   },
   productPage: {
     notFound: "Produkt ikke funnet",

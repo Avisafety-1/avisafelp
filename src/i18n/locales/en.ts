@@ -253,7 +253,7 @@ const en: Translations = {
       traceable: { title: "Traceable", prose: "Every assessment is fully documented with a complete audit trail. All decisions, inputs and results are stored and can be reviewed at any time." },
       regulatory: { title: "Built around SORA 2.5", prose: "The tool is based on SORA 2.5 (JARUS/EASA) for the specific category and structures the documentation the operator needs for their application." },
     },
-    footerNote: "Powered by AviSafe · EASA SORA · AI-driven drone-operations platform",
+    footerNote: "Powered by AviSafe · SORA 2.5 · Decision support for drone operators",
   },
   soraProcess: {
     pageTitle: "The SORA process – Interactive flow | AviSafe",
@@ -352,7 +352,7 @@ const en: Translations = {
       traceable: { title: "100% traceable", points: ["Complete audit trail", "All inputs and outputs stored", "Pilot signature on every assessment", "PDF export"] },
       regulatory: { title: "Built around SORA 2.5", points: ["Based on SORA 2.5 (JARUS/EASA)", "For the specific category", "Suggested SAIL level", "Structures the documentation"] },
     },
-    footerNote: "Powered by AviSafe · EASA SORA · AI-driven drone-operations platform",
+    footerNote: "Powered by AviSafe · SORA 2.5 · Decision support for drone operators",
   },
   productPage: {
     notFound: "Product not found",

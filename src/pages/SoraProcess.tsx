@@ -371,6 +371,7 @@ export default function SoraProcess() {
                 <div className="text-5xl font-black tracking-widest mb-2" style={{ color: C.green }}>{t("sora.output.go")}</div>
                 <p className="text-sm" style={{ color: C.textMuted }}>{t("sora.output.goNoteProcess")}</p>
               </div>
+              <p className="mt-3 text-xs leading-relaxed text-center" style={{ color: C.textMuted }}>{t("sora.output.disclaimer")}</p>
             </div>
           </div>
         </div>
