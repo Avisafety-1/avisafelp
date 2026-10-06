@@ -7,7 +7,11 @@ export function scrollToSection(id: string) {
   const target = () => {
     const el = document.getElementById(id);
     if (!el) return null;
-    return id === "hero-section" ? 0 : el.getBoundingClientRect().top + window.scrollY - headerOffset();
+    if (id === "hero-section") return 0;
+    // offsetTop ignores the slide-in transform of not-yet-revealed sections.
+    let top = 0;
+    for (let n: HTMLElement | null = el; n; n = n.offsetParent as HTMLElement | null) top += n.offsetTop;
+    return top - headerOffset();
   };
   const go = (behavior: ScrollBehavior) => {
     const y = target();
