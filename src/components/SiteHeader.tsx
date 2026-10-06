@@ -148,6 +148,17 @@ const SiteHeader = () => {
     { label: "Risikovurdering", action: () => goTo("/sora") },
   ];
 
+  const onEnglish = location.pathname === "/en" || location.pathname.startsWith("/en/");
+  const solutionItems = [
+    { label: "Safety management system", action: () => goTo("/en/drone-safety-management-system") },
+    { label: "SORA risk assessment", action: () => goTo("/en/sora-risk-assessment") },
+    { label: "Occurrence reporting", action: () => goTo("/en/occurrence-reporting") },
+    { label: "Fleet management", action: () => goTo("/en/drone-fleet-management") },
+    { label: "Live airspace awareness", action: () => goTo("/en/live-airspace-awareness") },
+    { label: "Partners", action: () => goTo("/en/partners") },
+  ];
+  const whoWeAre = () => (onEnglish ? goTo("/en/about") : goTo("/om-oss"));
+
   const articlesItems = [
     { label: t("nav.articles"), action: () => goTo("/artikler") },
   ];
@@ -164,7 +175,7 @@ const SiteHeader = () => {
         <div className="w-full px-4 sm:px-6 lg:px-10">
           <div className="flex h-16 md:h-20 items-center justify-between gap-4">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-2 shrink-0 group relative">
+            <Link to={onEnglish ? "/en" : "/"} className="flex items-center gap-2 shrink-0 group relative">
               <span className="relative block h-7 md:h-9 w-auto">
                 <img
                   src={avisafeLogoWhiteAsset.url}
@@ -186,7 +197,11 @@ const SiteHeader = () => {
 
             {/* Desktop nav */}
             <nav className="hidden lg:flex items-center gap-2">
-              <HoverDropdown label={t("nav.sms")} items={smsItems} scrolled={scrolled} />
+              {onEnglish ? (
+                <HoverDropdown label="Platform" items={solutionItems} scrolled={scrolled} />
+              ) : (
+                <HoverDropdown label={t("nav.sms")} items={smsItems} scrolled={scrolled} />
+              )}
 
               <button onClick={() => goTo("/operations")} className={`${navButtonBase} ${navButtonTheme}`}>
                 {t("nav.operations")}
@@ -198,7 +213,7 @@ const SiteHeader = () => {
                 {t("nav.newsletter")}
               </button>
 
-              <button onClick={() => scrollToId("team-section")} className={`${navButtonBase} ${navButtonTheme}`}>
+              <button onClick={whoWeAre} className={`${navButtonBase} ${navButtonTheme}`}>
                 {t("nav.whoWeAre")}
               </button>
 
@@ -259,11 +274,11 @@ const SiteHeader = () => {
                     <Accordion type="multiple" className="w-full">
                       <AccordionItem value="sms" className="border-white/10">
                         <AccordionTrigger className="px-3 py-3 text-base font-medium uppercase tracking-wide hover:bg-white/10 rounded-md hover:no-underline">
-                          {t("nav.sms")}
+                          {onEnglish ? "Platform" : t("nav.sms")}
                         </AccordionTrigger>
                         <AccordionContent className="pb-1">
                           <div className="flex flex-col">
-                            {smsItems.map((it, idx) => (
+                            {(onEnglish ? solutionItems : smsItems).map((it, idx) => (
                               <button
                                 key={idx}
                                 onClick={it.action}
@@ -308,7 +323,7 @@ const SiteHeader = () => {
                       {t("nav.newsletter")}
                     </button>
                     <button
-                      onClick={() => scrollToId("team-section")}
+                      onClick={whoWeAre}
                       className="text-left px-3 py-3 text-base font-medium uppercase tracking-wide hover:bg-white/10 rounded-md"
                     >
                       {t("nav.whoWeAre")}
