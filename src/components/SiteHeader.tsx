@@ -119,8 +119,9 @@ const SiteHeader = () => {
 
   const scrollToId = (id: string) =>
     afterMenuClose(() => {
-      if (location.pathname !== "/") {
-        navigate("/", { state: { scrollTo: id } });
+      const home = location.pathname === "/en" || location.pathname.startsWith("/en/") ? "/en" : "/";
+      if (location.pathname !== home) {
+        navigate(home, { state: { scrollTo: id } });
         return;
       }
       scrollToSection(id);
@@ -147,25 +148,17 @@ const SiteHeader = () => {
     ? "bg-white text-[hsl(210,45%,12%)] hover:bg-gray-100 border border-black/10"
     : "bg-black text-white hover:bg-black/80 border border-white/15";
 
+  const onEnglish = location.pathname === "/en" || location.pathname.startsWith("/en/");
   const smsItems = [
-    { label: "Oversikt", action: () => scrollToId("hero-section") },
+    { label: onEnglish ? "Overview" : "Oversikt", action: () => scrollToId("hero-section") },
     { label: t("nav.smsIntegrations"), action: () => scrollToId("integrations-section") },
     { label: t("nav.smsSecurity"), action: () => scrollToId("security-section") },
-    { label: "Risikovurdering", action: () => goTo("/sora") },
+    { label: onEnglish ? "Risk assessment" : "Risikovurdering", action: () => goTo(onEnglish ? "/en/sora-risk-assessment" : "/sora") },
   ];
 
-  const onEnglish = location.pathname === "/en" || location.pathname.startsWith("/en/");
-  const solutionItems = [
-    { label: "Safety management system", action: () => goTo("/en/drone-safety-management-system") },
-    { label: "SORA risk assessment", action: () => goTo("/en/sora-risk-assessment") },
-    { label: "Occurrence reporting", action: () => goTo("/en/occurrence-reporting") },
-    { label: "Fleet management", action: () => goTo("/en/drone-fleet-management") },
-    { label: "Live airspace awareness", action: () => goTo("/en/live-airspace-awareness") },
-    { label: "Partners", action: () => goTo("/en/partners") },
-  ];
   // "Hvem er vi" scrolls to the team section on the Norwegian front page;
   // the English /en landing has no team section, so it uses the About page.
-  const whoWeAre = () => (onEnglish ? goTo("/en/about") : scrollToId("team-section"));
+  const whoWeAre = () => scrollToId("team-section");
 
   const articlesItems = [
     { label: t("nav.articles"), action: () => goTo("/artikler") },
@@ -205,11 +198,7 @@ const SiteHeader = () => {
 
             {/* Desktop nav */}
             <nav className="hidden lg:flex items-center gap-2">
-              {onEnglish ? (
-                <HoverDropdown label="Platform" items={solutionItems} scrolled={scrolled} />
-              ) : (
-                <HoverDropdown label={t("nav.sms")} items={smsItems} scrolled={scrolled} />
-              )}
+              <HoverDropdown label={t("nav.sms")} items={smsItems} scrolled={scrolled} />
 
               <button onClick={() => goTo("/operations")} className={`${navButtonBase} ${navButtonTheme}`}>
                 {t("nav.operations")}
@@ -282,11 +271,11 @@ const SiteHeader = () => {
                     <Accordion type="multiple" className="w-full">
                       <AccordionItem value="sms" className="border-white/10">
                         <AccordionTrigger className="px-3 py-3 text-base font-medium uppercase tracking-wide hover:bg-white/10 rounded-md hover:no-underline">
-                          {onEnglish ? "Platform" : t("nav.sms")}
+                          {t("nav.sms")}
                         </AccordionTrigger>
                         <AccordionContent className="pb-1">
                           <div className="flex flex-col">
-                            {(onEnglish ? solutionItems : smsItems).map((it, idx) => (
+                            {smsItems.map((it, idx) => (
                               <button
                                 key={idx}
                                 onClick={it.action}
