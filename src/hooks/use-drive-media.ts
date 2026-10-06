@@ -1,19 +1,7 @@
 import { useEffect, useState } from "react";
+import { driveMedia, type DriveMediaFile } from "@/lib/driveMedia.functions";
 
-export type DriveMediaFile = {
-  id: string;
-  name: string;
-  mimeType: string;
-  kind: "image" | "video" | "other";
-  size?: number;
-  modifiedTime?: string;
-  thumbnail: string | null;
-  url: string;
-  downloadUrl: string;
-  embedUrl: string | null;
-  width?: number;
-  height?: number;
-};
+export type { DriveMediaFile };
 
 export function useDriveMedia() {
   const [files, setFiles] = useState<DriveMediaFile[]>([]);
@@ -22,24 +10,16 @@ export function useDriveMedia() {
 
   useEffect(() => {
     let cancelled = false;
-    const supaUrl = import.meta.env.VITE_SUPABASE_URL as string;
-    const anon = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string;
 
-    fetch(`${supaUrl}/functions/v1/drive-media`, {
-      headers: { apikey: anon, Authorization: `Bearer ${anon}` },
-    })
-      .then(async (r) => {
-        if (!r.ok) throw new Error(`HTTP ${r.status}`);
-        return r.json();
-      })
-      .then((data: { files: DriveMediaFile[] }) => {
+    driveMedia()
+      .then((data) => {
         if (cancelled) return;
         setFiles(data.files ?? []);
         setLoading(false);
       })
-      .catch((e: Error) => {
+      .catch((e: unknown) => {
         if (cancelled) return;
-        setError(e.message);
+        setError(e instanceof Error ? e.message : String(e));
         setLoading(false);
       });
 
