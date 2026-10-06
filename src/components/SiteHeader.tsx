@@ -206,11 +206,7 @@ const SiteHeader = () => {
 
             {/* Desktop nav */}
             <nav className="hidden lg:flex items-center gap-2">
-              {false ? (
-                <HoverDropdown label="Platform" items={solutionItems} scrolled={scrolled} />
-              ) : (
-                <HoverDropdown label={t("nav.sms")} items={smsItems} scrolled={scrolled} />
-              )}
+              <HoverDropdown label={t("nav.sms")} items={smsItems} scrolled={scrolled} />
 
               <button onClick={() => goTo("/operations")} className={`${navButtonBase} ${navButtonTheme}`}>
                 {t("nav.operations")}
