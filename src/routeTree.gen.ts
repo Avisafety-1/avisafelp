@@ -15,6 +15,7 @@ import { Route as LoggRouteImport } from './routes/logg'
 import { Route as OperasjonerRouteImport } from './routes/operasjoner'
 import { Route as OperationsRouteImport } from './routes/operations'
 import { Route as PersonvernRouteImport } from './routes/personvern'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SoraRouteImport } from './routes/sora'
 import { Route as SoraProsessRouteImport } from './routes/sora-prosess'
 import { Route as StatistikkRouteImport } from './routes/statistikk'
@@ -52,6 +53,11 @@ const OperationsRoute = OperationsRouteImport.update({
 const PersonvernRoute = PersonvernRouteImport.update({
   id: '/personvern',
   path: '/personvern',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SoraRoute = SoraRouteImport.update({
@@ -102,6 +108,7 @@ export interface FileRoutesByFullPath {
   '/operasjoner': typeof OperasjonerRoute
   '/operations': typeof OperationsRoute
   '/personvern': typeof PersonvernRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sora': typeof SoraRoute
   '/sora-prosess': typeof SoraProsessRoute
   '/statistikk': typeof StatistikkRoute
@@ -118,6 +125,7 @@ export interface FileRoutesByTo {
   '/operasjoner': typeof OperasjonerRoute
   '/operations': typeof OperationsRoute
   '/personvern': typeof PersonvernRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sora': typeof SoraRoute
   '/sora-prosess': typeof SoraProsessRoute
   '/statistikk': typeof StatistikkRoute
@@ -135,6 +143,7 @@ export interface FileRoutesById {
   '/operasjoner': typeof OperasjonerRoute
   '/operations': typeof OperationsRoute
   '/personvern': typeof PersonvernRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sora': typeof SoraRoute
   '/sora-prosess': typeof SoraProsessRoute
   '/statistikk': typeof StatistikkRoute
@@ -153,6 +162,7 @@ export interface FileRouteTypes {
     | '/operasjoner'
     | '/operations'
     | '/personvern'
+    | '/sitemap.xml'
     | '/sora'
     | '/sora-prosess'
     | '/statistikk'
@@ -169,6 +179,7 @@ export interface FileRouteTypes {
     | '/operasjoner'
     | '/operations'
     | '/personvern'
+    | '/sitemap.xml'
     | '/sora'
     | '/sora-prosess'
     | '/statistikk'
@@ -185,6 +196,7 @@ export interface FileRouteTypes {
     | '/operasjoner'
     | '/operations'
     | '/personvern'
+    | '/sitemap.xml'
     | '/sora'
     | '/sora-prosess'
     | '/statistikk'
@@ -202,6 +214,7 @@ export interface RootRouteChildren {
   OperasjonerRoute: typeof OperasjonerRoute
   OperationsRoute: typeof OperationsRoute
   PersonvernRoute: typeof PersonvernRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SoraRoute: typeof SoraRoute
   SoraProsessRoute: typeof SoraProsessRoute
   StatistikkRoute: typeof StatistikkRoute
@@ -254,6 +267,13 @@ declare module '@tanstack/react-router' {
       path: '/personvern'
       fullPath: '/personvern'
       preLoaderRoute: typeof PersonvernRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sora': {
@@ -322,6 +342,7 @@ const rootRouteChildren: RootRouteChildren = {
   OperasjonerRoute: OperasjonerRoute,
   OperationsRoute: OperationsRoute,
   PersonvernRoute: PersonvernRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   SoraRoute: SoraRoute,
   SoraProsessRoute: SoraProsessRoute,
   StatistikkRoute: StatistikkRoute,
