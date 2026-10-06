@@ -9,7 +9,6 @@ const Operations = () => {
   return (
     <div className="min-h-screen bg-[hsl(210,30%,96%)] pb-24">
       <Helmet>
-        <html lang={isNo ? "nb" : "en"} />
         <title>{t("operations.pageTitle")}</title>
         <meta name="description" content={t("operations.metaDescription")} />
         <link rel="canonical" href="https://avisafe.no/operations" />

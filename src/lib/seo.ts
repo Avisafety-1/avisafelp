@@ -38,3 +38,39 @@ export function pageHead({ path, title, description, type = "website", image, no
         ],
   };
 }
+
+export const SOFTWARE_APP_LD = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "AviSafe",
+  url: SITE_URL,
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  description:
+    "Norsk plattform for droneoperatører: flåtestyring, sikkerhetsstyring (SMS), hendelsesrapportering, støtte for SORA 2.5-risikovurdering og live luftromsbilde.",
+  publisher: { "@type": "Organization", name: "AviSafe", url: SITE_URL },
+};
+
+export function breadcrumbLd(items: { name: string; path: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((it, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: it.name,
+      item: `${SITE_URL}${it.path}`,
+    })),
+  };
+}
+
+export const ldScript = (data: unknown) => ({ type: "application/ld+json", children: JSON.stringify(data) });
+
+/** ~150 chars cut at a whole word, no double punctuation. */
+export function excerpt(html: string | null | undefined, max = 150): string {
+  const text = (html || "").replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim();
+  if (text.length <= max) return text.replace(/\.{2,}$/, ".");
+  const cut = text.slice(0, max);
+  const word = cut.slice(0, Math.max(cut.lastIndexOf(" "), 1)).replace(/[\s,.;:–-]+$/, "");
+  return `${word}…`;
+}

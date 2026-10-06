@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "@/lib/router-compat";
-import { Helmet } from "@/lib/page-head";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
@@ -56,24 +55,8 @@ const Artikkel = () => {
     );
   }
 
-  const articleUrl = `https://avisafe.no/artikler/${article.slug}`;
-  const plainText = (article.content || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
-  const fallback = `Les ${article.title} på AviSafe – innsikt og veiledning for norske droneoperatører.`;
-  const rawDescription = plainText.length >= 50 ? plainText : fallback;
-  const description = rawDescription.length > 157 ? `${rawDescription.slice(0, 157).trimEnd()}…` : rawDescription;
-
   return (
     <div className="min-h-screen bg-background">
-      <Helmet>
-        <title>{`${article.title} – AviSafe`}</title>
-        <meta name="description" content={description} />
-        <link rel="canonical" href={articleUrl} />
-        <meta property="og:title" content={article.title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:type" content="article" />
-        <meta property="og:url" content={articleUrl} />
-        {article.cover_image_url && <meta property="og:image" content={article.cover_image_url} />}
-      </Helmet>
       <header className="border-b bg-card px-4 sm:px-8 py-4">
         <div className="max-w-4xl mx-auto flex items-center gap-3">
           <Link to="/artikler">

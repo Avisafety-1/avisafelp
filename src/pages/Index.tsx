@@ -35,7 +35,6 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-[hsl(210,30%,96%)]">
       <Helmet>
-        <html lang={isNo ? "nb" : "en"} />
       </Helmet>
 
       {/* Hero — full-bleed, lives under the fixed header */}

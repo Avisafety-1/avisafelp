@@ -22,12 +22,8 @@ const LanguageSwitcher = ({ className = "", variant = "light" }: Props) => {
   const current = LANGS.find((l) => i18n.language?.startsWith(l.code)) ?? LANGS[1];
 
   const change = (code: string) => {
+    // In-session only; nothing stored, so the URL decides language on every load.
     void i18n.changeLanguage(code);
-    try {
-      localStorage.setItem("avisafe-lang", code);
-    } catch {
-      /* ignore */
-    }
   };
 
   const triggerClasses =

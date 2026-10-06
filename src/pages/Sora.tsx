@@ -167,7 +167,6 @@ export default function Sora() {
       style={{ background: C.bg, color: C.text, fontFamily: "ui-sans-serif, system-ui, sans-serif" }}
     >
       <Helmet>
-        <html lang={isNo ? "nb" : "en"} />
         <title>{t("sora.pageTitle")}</title>
         <meta name="description" content={t("sora.metaDescription")} />
         <link rel="canonical" href="https://avisafe.no/sora" />
