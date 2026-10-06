@@ -1,0 +1,17 @@
+{
+  "customizations": [
+    { "token": "--primary/--secondary/--accent and full HSL palette (light + dark)", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--hero-gradient", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--hero-glow", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--card-shadow", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--transition-smooth", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--text-dark-blue", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--hero-bg / bg-hero-bg", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "animate-marquee + .hero-autoplay-video rules", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "bg-hero-gradient", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "shadow-hero-glow / shadow-card-custom", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "animate-fade-in / animate-slide-up", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "container (centered, 2rem padding, 1400px 2xl)", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "@tailwindcss/typography plugin (prose)", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" }
+  ]
+}
