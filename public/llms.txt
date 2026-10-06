@@ -1,17 +1,24 @@
 # AviSafe
 
-> AviSafe leverer moderne sikkerhetsløsninger for norske aviser og mediehus, med SORA-prosess for trygg håndtering av sensitiv informasjon.
+> AviSafe is a Norwegian B2B SaaS platform for drone operators, combining fleet management, a safety management system (SMS), occurrence reporting with direct ECCAIRS integration, SORA risk assessment and a live airspace picture in one operations system.
 
-AviSafe er en norsk plattform som hjelper aviser og mediehus med å beskytte kilder, redaksjonelt arbeid og sensitive data. Vi tilbyr SORA-prosessen, integrasjoner og verktøy for sikker drift. Kontakt: kontakt@avisafe.no.
+AviSafe was founded in Norway in 2025 by Gard Haug-Hansen (CEO and co-founder; pilot and former EASA Safety Manager at a Norwegian airport) and Rikard Bjørklund (co-founder, sales and marketing). It is used by grid and energy companies, municipalities and schools in Norway. AviSafe is built to support operators in the EASA specific category and LUC holders. Contact: kontakt@avisafe.no.
 
 ## Pages
 
-- [Forside](/): Oversikt over AviSafe, produkt, sikkerhet og team.
-- [SORA](/sora): Introduksjon til SORA-prosessen for sikker informasjonshåndtering.
-- [SORA-prosess](/sora-prosess): Interaktiv flyt som forklarer SORA-prosessen i detalj.
-- [Logg](/logg): Logg og oversikt over hendelser i plattformen.
-- [Artikler](/artikler): Artikler og innsikt om sikkerhet i mediebransjen.
+- [Home](https://avisafe.no/): Overview of the AviSafe operations platform, security approach and team.
+- [SORA](https://avisafe.no/sora): How AviSafe supports SORA 2.5 risk assessments for drone missions.
+- [SORA process](https://avisafe.no/sora-prosess): Interactive overview of the SORA workflow in AviSafe.
+- [Operations](https://avisafe.no/operasjoner): Drone services and operational support offered by AviSafe.
+- [Articles](https://avisafe.no/artikler): Articles and guidance on drone safety and regulation for operators.
+- [Changelog](https://avisafe.no/logg): Product updates and new features in the platform.
+
+## Integrations
+
+- DJI: live position and telemetry from DJI FlightHub 2 (Sync) and DJI Pilot 2 via DJI Cloud API.
+- SafeSky: live air traffic in the map. Coverage: https://www.safesky.app/post/aviation-grade-safety-for-a-maturing-drone-industry
+- ECCAIRS: direct occurrence submission via the ECCAIRS E2 API.
 
 ## Optional
 
-- [Produkt](/product/avisafe): Detaljside for AviSafe-produktet.
+- [Shop](https://avisafe.no/butikk): Buy Dronetag Mini Remote ID devices.
