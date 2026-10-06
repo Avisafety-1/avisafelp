@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "@/lib/router-compat";
 import Hero from "@/components/Hero";
 import ProductShowcase from "@/components/ProductShowcase";
 import Security from "@/components/Security";

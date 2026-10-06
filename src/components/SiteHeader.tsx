@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "@/lib/router-compat";
 import { useTranslation } from "react-i18next";
 import { Menu, ChevronDown, Mail, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
