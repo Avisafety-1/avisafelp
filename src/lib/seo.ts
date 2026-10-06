@@ -76,3 +76,17 @@ export function excerpt(html: string | null | undefined, max = 150): string {
   const word = cut.slice(0, Math.max(cut.lastIndexOf(" "), 1)).replace(/[\s,.;:–-]+$/, "");
   return `${word}…`;
 }
+
+export const ORGANIZATION_REF = { "@type": "Organization", name: "AviSafe", url: SITE_URL };
+
+export function faqLd(items: { q: string; a: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+}
