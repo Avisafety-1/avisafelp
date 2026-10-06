@@ -36,20 +36,6 @@ const Index = () => {
     <div className="min-h-screen bg-[hsl(210,30%,96%)]">
       <Helmet>
         <html lang={isNo ? "nb" : "en"} />
-        <title>
-          {isNo
-            ? "AviSafe – Operasjonssystem for droneoperatører"
-            : "AviSafe – Operations platform for drone operators"}
-        </title>
-        <meta
-          name="description"
-          content={
-            isNo
-              ? "AviSafe er operasjonssystemet for norske droneoperatører: planlegg flyoperasjoner, loggfør data og hold deg compliant."
-              : "AviSafe is the operations platform for professional drone operators: plan flights, log data and stay compliant."
-          }
-        />
-        <link rel="canonical" href="https://avisafe.no/" />
       </Helmet>
 
       {/* Hero — full-bleed, lives under the fixed header */}
