@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "@/lib/router-compat";
 import { useTranslation } from "react-i18next";
 import { Menu, ChevronDown, Mail, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -71,7 +71,7 @@ const HoverDropdown = ({ label, items, scrolled }: HoverDropdownProps) => {
       onMouseLeave={handleLeave}
     >
       <button
-        className={`px-4 py-2 text-sm font-medium uppercase tracking-wider transition-colors duration-300 inline-flex items-center gap-1 outline-none rounded-md ${buttonBg}`}
+        className={`px-4 py-2 text-sm font-medium uppercase tracking-wider transition-colors duration-300 inline-flex items-center gap-1 outline-hidden rounded-md ${buttonBg}`}
       >
         {label}
         <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
@@ -136,7 +136,7 @@ const SiteHeader = () => {
   };
 
   const navButtonBase =
-    "px-4 py-2 text-sm font-medium uppercase tracking-wider transition-colors duration-300 inline-flex items-center gap-1 outline-none rounded-md";
+    "px-4 py-2 text-sm font-medium uppercase tracking-wider transition-colors duration-300 inline-flex items-center gap-1 outline-hidden rounded-md";
   const navButtonTheme = scrolled
     ? "bg-white text-[hsl(210,45%,12%)] hover:bg-gray-100 border border-black/10"
     : "bg-black text-white hover:bg-black/80 border border-white/15";
@@ -157,8 +157,8 @@ const SiteHeader = () => {
       <header
         className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-white/90 backdrop-blur-xl border-b border-black/10 shadow-sm"
-            : "bg-[hsl(210,45%,8%)] border-b border-white/10 shadow-sm"
+            ? "bg-white/90 backdrop-blur-xl border-b border-black/10 shadow-xs"
+            : "bg-[hsl(210,45%,8%)] border-b border-white/10 shadow-xs"
         }`}
       >
         <div className="w-full px-4 sm:px-6 lg:px-10">

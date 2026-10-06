@@ -1,0 +1,4 @@
+{"functions": [
+  {"name": "drive-media", "classification": "internal-only", "signal": "called via /functions/v1/drive-media from src/hooks/use-drive-media.ts", "outcome": "migrated"},
+  {"name": "avisafe-ai", "classification": "Deno-only dependency", "signal": "imports deno.land/std serve and streams text/event-stream; only caller is the unused AiSearch component", "outcome": "left"}
+]}

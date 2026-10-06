@@ -13,7 +13,7 @@ import {
   Clock,
   Activity,
 } from "lucide-react";
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "@/lib/page-head";
 import { useTranslation } from "react-i18next";
 import avisafeLogoText from "@/assets/avisafe-logo-text.png";
 
@@ -67,7 +67,7 @@ interface ProsePhaseCardProps {
   dimColor: string;
   midColor: string;
   prose: string;
-  glow?: boolean;
+  glow?: boolean | undefined;
 }
 
 const ProsePhaseCard = ({
@@ -104,7 +104,7 @@ const ProsePhaseCard = ({
     <div className="relative p-6">
       <div className="flex items-start gap-4 mb-5">
         <div
-          className="flex items-center justify-center w-11 h-11 rounded-xl flex-shrink-0"
+          className="flex items-center justify-center w-11 h-11 rounded-xl shrink-0"
           style={{ background: midColor, border: `1px solid ${accentColor}50` }}
         >
           <div style={{ color: accentColor }}>{icon}</div>
@@ -112,7 +112,7 @@ const ProsePhaseCard = ({
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1">
             <span
-              className="text-xs font-bold tracking-widest uppercase px-2 py-0.5 rounded"
+              className="text-xs font-bold tracking-widest uppercase px-2 py-0.5 rounded-sm"
               style={{ background: midColor, color: accentColor }}
             >
               {phaseLabel} {phase}
@@ -243,15 +243,15 @@ export default function Sora() {
             <div key={pk}>
               <ProsePhaseCard
                 phase={i + 1}
-                icon={phaseStyles[i].icon}
+                icon={phaseStyles[i]!.icon}
                 title={t(`sora.phases.${pk}.title`)}
                 subtitle={t(`sora.phases.${pk}.subtitle`)}
                 phaseLabel={t("sora.phase")}
-                accentColor={phaseStyles[i].accent}
-                dimColor={phaseStyles[i].dim}
-                midColor={phaseStyles[i].mid}
+                accentColor={phaseStyles[i]!.accent}
+                dimColor={phaseStyles[i]!.dim}
+                midColor={phaseStyles[i]!.mid}
                 prose={t(`sora.phases.${pk}.prose`)}
-                glow={phaseStyles[i].glow}
+                glow={phaseStyles[i]!.glow}
               />
               <FlowConnector label={t(`sora.connectors.${connectorKeys[i]}`)} />
             </div>

@@ -45,7 +45,7 @@ const ArticleEditor = ({ article, onSaved, onCancel }: ArticleEditorProps) => {
     content: article?.content || "<p>Skriv artikkelen din her...</p>",
     editorProps: {
       attributes: {
-        class: 'prose prose-lg max-w-none min-h-[300px] focus:outline-none p-4',
+        class: 'prose prose-lg max-w-none min-h-[300px] focus:outline-hidden p-4',
       },
     },
   });
@@ -147,7 +147,7 @@ const ArticleEditor = ({ article, onSaved, onCancel }: ArticleEditorProps) => {
         </Button>
         <div className="flex items-center gap-2">
           <label className="flex items-center gap-2 text-sm">
-            <input type="checkbox" checked={published} onChange={e => setPublished(e.target.checked)} className="rounded" />
+            <input type="checkbox" checked={published} onChange={e => setPublished(e.target.checked)} className="rounded-sm" />
             Publisert
           </label>
           <Button onClick={handleSave} disabled={saving || !title.trim()}>

@@ -39,7 +39,7 @@ const LanguageSwitcher = ({ className = "", variant = "light" }: Props) => {
     <DropdownMenu>
       <DropdownMenuTrigger
         aria-label={t("language.label")}
-        className={`inline-flex items-center justify-center rounded-full border p-2 backdrop-blur-sm transition-colors ${triggerClasses} ${className}`}
+        className={`inline-flex items-center justify-center rounded-full border p-2 backdrop-blur-xs transition-colors ${triggerClasses} ${className}`}
       >
         <Globe className="h-4 w-4" />
       </DropdownMenuTrigger>

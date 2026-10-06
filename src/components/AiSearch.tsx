@@ -27,7 +27,7 @@ const AiSearch = () => {
     let timeout: ReturnType<typeof setTimeout>;
 
     const tick = () => {
-      const currentQuestion = questions[questionIndex];
+      const currentQuestion = questions[questionIndex] ?? "";
 
       if (!isDeleting) {
         charIndex++;
@@ -165,12 +165,12 @@ const AiSearch = () => {
         {/* Search Input */}
         <form onSubmit={handleSubmit} className="relative">
           <div
-            className="flex items-center gap-3 bg-card/80 backdrop-blur-sm border border-border/50 shadow-xl px-4 py-3 md:px-6 md:py-4"
+            className="flex items-center gap-3 bg-card/80 backdrop-blur-xs border border-border/50 shadow-xl px-4 py-3 md:px-6 md:py-4"
             style={{
               borderRadius: isOpen ? "1rem 1rem 0 0" : "1rem",
             }}
           >
-            <Sparkles className="w-5 h-5 text-primary flex-shrink-0" />
+            <Sparkles className="w-5 h-5 text-primary shrink-0" />
             <input
               ref={inputRef}
               type="text"
@@ -178,7 +178,7 @@ const AiSearch = () => {
               onChange={(e) => setQuery(e.target.value)}
               placeholder={placeholderText || t("ai.placeholderFallback")}
               aria-label={t("ai.ariaSearch")}
-              className="flex-1 bg-transparent border-none outline-none text-foreground placeholder:text-muted-foreground text-sm md:text-base"
+              className="flex-1 bg-transparent border-none outline-hidden text-foreground placeholder:text-muted-foreground text-sm md:text-base"
             />
             {(query || isOpen) && (
               <button
@@ -209,7 +209,7 @@ const AiSearch = () => {
         {isOpen && messages.length > 0 && (
           <div
             ref={responseRef}
-            className="bg-card/80 backdrop-blur-sm border border-t-0 border-border/50 rounded-b-2xl shadow-xl max-h-[50vh] overflow-y-auto"
+            className="bg-card/80 backdrop-blur-xs border border-t-0 border-border/50 rounded-b-2xl shadow-xl max-h-[50vh] overflow-y-auto"
           >
             <div className="px-4 py-4 md:px-6 space-y-4">
               {messages.map((msg, i) => (
@@ -222,7 +222,7 @@ const AiSearch = () => {
                     <div className="text-sm text-foreground leading-relaxed whitespace-pre-wrap">
                       {msg.content}
                       {isLoading && i === messages.length - 1 && (
-                        <span className="inline-block w-1.5 h-4 bg-primary/60 ml-0.5 animate-pulse rounded-sm" />
+                        <span className="inline-block w-1.5 h-4 bg-primary/60 ml-0.5 animate-pulse rounded-xs" />
                       )}
                     </div>
                   )}

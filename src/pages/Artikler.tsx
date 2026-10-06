@@ -1,12 +1,12 @@
 import { useState, useEffect, useMemo } from "react";
-import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { Link } from "@/lib/router-compat";
+import { Helmet } from "@/lib/page-head";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Menu, Plus, LogIn, LogOut, Pencil, Trash2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import ArticleEditor from "@/components/ArticleEditor";
-import PdfViewer from "@/components/PdfViewer";
+import PdfViewer from "@/components/PdfViewerLazy";
 
 type Article = {
   id: string;
@@ -235,7 +235,7 @@ const Artikler = () => {
                   {new Date(selected.created_at).toLocaleDateString('nb-NO', { year: 'numeric', month: 'long', day: 'numeric' })}
                 </span>
                 {!selected.published && (
-                  <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded">Utkast</span>
+                  <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded-sm">Utkast</span>
                 )}
                 {user && (
                   <div className="ml-auto flex gap-2">

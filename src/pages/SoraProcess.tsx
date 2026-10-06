@@ -25,7 +25,7 @@ import {
   Navigation,
   AlertTriangle,
 } from "lucide-react";
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "@/lib/page-head";
 import { useTranslation } from "react-i18next";
 import avisafeLogoText from "@/assets/avisafe-logo-text.png";
 
@@ -85,7 +85,7 @@ interface PhaseCardProps {
   dimColor: string;
   midColor: string;
   items: Item[];
-  glow?: boolean;
+  glow?: boolean | undefined;
 }
 
 const PhaseCard = ({ phase, icon, title, subtitle, phaseLabel, accentColor, dimColor, midColor, items, glow }: PhaseCardProps) => (
@@ -111,7 +111,7 @@ const PhaseCard = ({ phase, icon, title, subtitle, phaseLabel, accentColor, dimC
     <div className="relative p-6">
       <div className="flex items-start gap-4 mb-5">
         <div
-          className="flex items-center justify-center w-11 h-11 rounded-xl flex-shrink-0"
+          className="flex items-center justify-center w-11 h-11 rounded-xl shrink-0"
           style={{ background: midColor, border: `1px solid ${accentColor}50` }}
         >
           <div style={{ color: accentColor }}>{icon}</div>
@@ -119,7 +119,7 @@ const PhaseCard = ({ phase, icon, title, subtitle, phaseLabel, accentColor, dimC
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1">
             <span
-              className="text-xs font-bold tracking-widest uppercase px-2 py-0.5 rounded"
+              className="text-xs font-bold tracking-widest uppercase px-2 py-0.5 rounded-sm"
               style={{ background: midColor, color: accentColor }}
             >
               {phaseLabel} {phase}
@@ -141,7 +141,7 @@ const PhaseCard = ({ phase, icon, title, subtitle, phaseLabel, accentColor, dimC
             style={{ background: `${accentColor}08`, border: `1px solid ${accentColor}18` }}
           >
             {item.icon && (
-              <div className="flex-shrink-0 mt-0.5" style={{ color: `${accentColor}cc` }}>
+              <div className="shrink-0 mt-0.5" style={{ color: `${accentColor}cc` }}>
                 {item.icon}
               </div>
             )}
@@ -262,20 +262,20 @@ export default function SoraProcess() {
         <div className="space-y-0">
           {phaseKeys.map((pk, idx) => {
             const items = t(`soraProcess.phases.${pk}.items`, { returnObjects: true }) as { label: string; desc: string }[];
-            const itemsWithIcons: Item[] = items.map((it, j) => ({ ...it, icon: itemIcons[idx][j] }));
+            const itemsWithIcons: Item[] = items.map((it, j) => ({ ...it, icon: itemIcons[idx]?.[j] }));
             return (
               <div key={pk}>
                 <PhaseCard
                   phase={idx + 1}
-                  icon={phaseStyles[idx].icon}
+                  icon={phaseStyles[idx]!.icon}
                   title={t(`soraProcess.phases.${pk}.title`)}
                   subtitle={t(`soraProcess.phases.${pk}.subtitle`)}
                   phaseLabel={t("sora.phase")}
-                  accentColor={phaseStyles[idx].accent}
-                  dimColor={phaseStyles[idx].dim}
-                  midColor={phaseStyles[idx].mid}
+                  accentColor={phaseStyles[idx]!.accent}
+                  dimColor={phaseStyles[idx]!.dim}
+                  midColor={phaseStyles[idx]!.mid}
                   items={itemsWithIcons}
-                  glow={phaseStyles[idx].glow}
+                  glow={phaseStyles[idx]!.glow}
                 />
                 <FlowConnector label={t(`sora.connectors.${connectorKeys[idx]}`)} />
               </div>
@@ -398,7 +398,7 @@ export default function SoraProcess() {
                   <ul className="space-y-2">
                     {points.map((p) => (
                       <li key={p} className="flex items-start gap-2">
-                        <CheckCircle2 size={13} className="flex-shrink-0 mt-0.5" style={{ color: col.color }} />
+                        <CheckCircle2 size={13} className="shrink-0 mt-0.5" style={{ color: col.color }} />
                         <span className="text-sm leading-snug" style={{ color: C.textMuted }}>{p}</span>
                       </li>
                     ))}

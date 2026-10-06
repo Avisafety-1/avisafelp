@@ -39,7 +39,7 @@ const CTA = () => {
             <Button
               variant="outline"
               size="xl"
-              className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm"
+              className="border-white/30 text-white hover:bg-white/10 backdrop-blur-xs"
             >
               {t("cta.demoBtn")}
             </Button>

@@ -70,12 +70,12 @@ const ScrollExpandMedia = ({
     };
 
     const handleTouchStart = (e: TouchEvent) => {
-      touchStartYRef.current = e.touches[0].clientY;
+      touchStartYRef.current = e.touches[0]?.clientY ?? 0;
     };
 
     const handleTouchMove = (e: TouchEvent) => {
       if (!touchStartYRef.current) return;
-      const touchY = e.touches[0].clientY;
+      const touchY = e.touches[0]?.clientY ?? 0;
       const deltaY = touchStartYRef.current - touchY;
 
       if (expandedRef.current && deltaY < -20 && window.scrollY <= 5) {

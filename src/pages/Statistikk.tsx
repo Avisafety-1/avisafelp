@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "@/lib/page-head";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -58,7 +58,7 @@ const BRAND = "#123b87";
 const PIE_COLORS = ["#123b87", "#3b82f6", "#60a5fa", "#93c5fd", "#bfdbfe", "#dbeafe"];
 
 const Statistikk = () => {
-  const [user, setUser] = useState<{ id: string; email?: string } | null>(null);
+  const [user, setUser] = useState<{ id: string; email?: string | undefined } | null>(null);
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
   const [authLoading, setAuthLoading] = useState(true);
   const [email, setEmail] = useState("");
@@ -141,7 +141,7 @@ const Statistikk = () => {
     const byUtm = aggregate(rows
       .map(r => r.utm_source)
       .filter((s): s is string => !!s));
-    const byLang = aggregate(rows.map(r => (r.language || "—").split("-")[0]));
+    const byLang = aggregate(rows.map(r => (r.language || "—").split("-")[0] ?? "—"));
 
     // Daily series
     const dayMap = new Map<string, { views: number; sessions: Set<string> }>();
@@ -175,8 +175,11 @@ const Statistikk = () => {
     const exits: string[] = [];
     for (const list of bySession.values()) {
       const sorted = [...list].sort((a, b) => a.created_at.localeCompare(b.created_at));
-      landings.push(sorted[0].path);
-      exits.push(sorted[sorted.length - 1].path);
+      const first = sorted[0];
+      const last = sorted[sorted.length - 1];
+      if (!first || !last) continue;
+      landings.push(first.path);
+      exits.push(last.path);
       if (sorted.length === 1) bounces += 1;
     }
     const sessionCount = bySession.size;
@@ -223,7 +226,7 @@ const Statistikk = () => {
   if (!user) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[hsl(210,30%,96%)] px-4 pt-24">
-        <form onSubmit={handleLogin} className="w-full max-w-sm space-y-4 bg-white p-6 rounded-2xl shadow">
+        <form onSubmit={handleLogin} className="w-full max-w-sm space-y-4 bg-white p-6 rounded-2xl shadow-sm">
           <h1 className="text-2xl font-bold text-center">Logg inn</h1>
           {error && <p className="text-sm text-destructive text-center">{error}</p>}
           <Input type="email" placeholder="E-post" value={email} onChange={(e) => setEmail(e.target.value)} required />
@@ -263,7 +266,7 @@ const Statistikk = () => {
         </div>
 
         {/* Sticky controls */}
-        <div className="sticky top-16 z-10 -mx-3 sm:mx-0 mb-4 sm:mb-6 bg-[hsl(210,30%,96%)]/90 backdrop-blur px-3 sm:px-0 py-2 sm:py-0 sm:bg-transparent">
+        <div className="sticky top-16 z-10 -mx-3 sm:mx-0 mb-4 sm:mb-6 bg-[hsl(210,30%,96%)]/90 backdrop-blur-sm px-3 sm:px-0 py-2 sm:py-0 sm:bg-transparent">
           <div className="flex flex-wrap gap-2 items-center">
             <select
               value={days}
@@ -379,14 +382,14 @@ const Statistikk = () => {
 // ---------- UI helpers ----------
 
 const Stat = ({ label, value }: { label: string; value: string | number }) => (
-  <div className="bg-white rounded-xl sm:rounded-2xl p-3 sm:p-5 shadow-sm border border-slate-200 min-w-0 overflow-hidden">
+  <div className="bg-white rounded-xl sm:rounded-2xl p-3 sm:p-5 shadow-xs border border-slate-200 min-w-0 overflow-hidden">
     <p className="text-[10px] sm:text-xs uppercase tracking-wide text-slate-500 truncate">{label}</p>
     <p className="text-lg sm:text-2xl font-bold mt-1 text-[hsl(210,45%,12%)] truncate">{value}</p>
   </div>
 );
 
 const Card = ({ title, children, className = "" }: { title: string; children: React.ReactNode; className?: string }) => (
-  <div className={`bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-200 min-w-0 overflow-hidden ${className}`}>
+  <div className={`bg-white rounded-2xl p-4 sm:p-5 shadow-xs border border-slate-200 min-w-0 overflow-hidden ${className}`}>
     <h3 className="font-semibold mb-3 text-sm sm:text-base text-[hsl(210,45%,12%)]">{title}</h3>
     {children}
   </div>
