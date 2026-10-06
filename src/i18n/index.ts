@@ -38,8 +38,27 @@ function isSupported(value: string | null): value is SupportedLanguage {
 
 // Applies the stored language choice, or (if none) IP-based detection:
 // Norway -> no, else en. Runs only in the browser after hydration.
+// React hydrates Suspense boundaries (e.g. lazily loaded route components)
+// after the root commits, so wait until the browser is idle before changing
+// the global language — otherwise those boundaries hydrate with a different
+// language than the server rendered.
+function afterHydrationSettles(): Promise<void> {
+  return new Promise((resolve) => {
+    const idle = () => {
+      if ("requestIdleCallback" in window) {
+        window.requestIdleCallback(() => resolve(), { timeout: 2000 });
+      } else {
+        setTimeout(resolve, 200);
+      }
+    };
+    if (document.readyState === "complete") idle();
+    else window.addEventListener("load", idle, { once: true });
+  });
+}
+
 export async function applyClientLanguage() {
   if (typeof window === "undefined") return;
+  await afterHydrationSettles();
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (isSupported(stored)) {
