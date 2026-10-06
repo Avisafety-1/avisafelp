@@ -61,7 +61,7 @@ const Artikkel = () => {
   const fallback = `Les ${article.title} på AviSafe – innsikt og veiledning for norske droneoperatører.`;
   const rawDescription = plainText.length >= 50 ? plainText : fallback;
   const description = rawDescription.length > 157 ? `${rawDescription.slice(0, 157).trimEnd()}…` : rawDescription;
-  const jsonLd = {
+  const _jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: article.title,
@@ -89,7 +89,6 @@ const Artikkel = () => {
         <meta property="og:type" content="article" />
         <meta property="og:url" content={articleUrl} />
         {article.cover_image_url && <meta property="og:image" content={article.cover_image_url} />}
-        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
       <header className="border-b bg-card px-4 sm:px-8 py-4">
         <div className="max-w-4xl mx-auto flex items-center gap-3">

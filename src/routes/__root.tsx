@@ -46,8 +46,13 @@ const ORGANIZATION_LD = {
   name: "AviSafe",
   url: "https://avisafe.no",
   logo: "https://avisafe.no/logo.png",
-  description: "Komplett operasjonssystem for droneoperatører",
-  sameAs: [],
+  description: "Norsk B2B SaaS-plattform for droneoperatører: flåtestyring, sikkerhetsstyring (SMS), hendelsesrapportering, SORA-risikovurdering og live luftromsbilde.",
+  foundingDate: "2025",
+  email: "kontakt@avisafe.no",
+  sameAs: [
+    "https://www.linkedin.com/company/avisafe-as/",
+    "https://www.facebook.com/profile.php?id=61583893445784",
+  ],
 };
 
 const WEBSITE_LD = {
@@ -98,32 +103,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1.0" },
-      { title: "AviSafe - Drone Operasjonssystem for Profesjonelle" },
-      {
-        name: "description",
-        content:
-          "AviSafe er operasjonssystemet for norske droneoperatører: planlegg flyoperasjoner, loggfør data og hold deg compliant.",
-      },
       { name: "author", content: "AviSafe" },
-      {
-        name: "keywords",
-        content:
-          "drone, dronetag, droneoperatør, UAS, RPAS, flylogg, dronelogg, flysikkerhet, remote id, norway, norge",
-      },
-      { property: "og:title", content: "AviSafe - Drone Operasjonssystem for Profesjonelle" },
-      {
-        property: "og:description",
-        content: "Komplett operasjonssystem for droneoperatører. Planlegg, loggfør og hold deg compliant.",
-      },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://avisafe.no/" },
       { property: "og:site_name", content: "AviSafe" },
       { property: "og:locale", content: "nb_NO" },
-      { property: "og:image", content: "https://avisafe.no/og-image.png" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "AviSafe - Drone Operasjonssystem" },
-      { name: "twitter:description", content: "Komplett operasjonssystem for droneoperatører" },
-      { name: "twitter:image", content: "https://avisafe.no/og-image.png" },
       { name: "google-site-verification", content: "AFU5Se7MOVV3UB4QjmdaQOuYOjap8yMn9-PjdwiJQQE" },
     ],
     links: [
