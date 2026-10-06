@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, Plus, LogIn, LogOut, Pencil, Trash2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import ArticleEditor from "@/components/ArticleEditor";
-import PdfViewer from "@/components/PdfViewer";
+import PdfViewer from "@/components/PdfViewerLazy";
 
 type Article = {
   id: string;

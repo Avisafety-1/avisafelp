@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet-async";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
-import PdfViewer from "@/components/PdfViewer";
+import PdfViewer from "@/components/PdfViewerLazy";
 
 type Article = {
   id: string;
