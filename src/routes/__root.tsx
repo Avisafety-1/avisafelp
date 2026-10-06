@@ -13,7 +13,9 @@ import { QueryClientProvider, type QueryClient } from "@tanstack/react-query";
 import appCss from "../styles.css?url";
 // ported from main.tsx
 import "@/i18n";
-import { languageForPath, syncLanguageToPath } from "@/i18n";
+import { languageForPath, i18nForPath } from "@/i18n";
+import { I18nextProvider } from "react-i18next";
+import SiteFooter from "@/components/SiteFooter";
 import LanguageBanner from "@/components/LanguageBanner";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -108,7 +110,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "author", content: "AviSafe" },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "AviSafe" },
-      { property: "og:locale", content: "nb_NO" },
       { name: "google-site-verification", content: "AFU5Se7MOVV3UB4QjmdaQOuYOjap8yMn9-PjdwiJQQE" },
     ],
     links: [
@@ -152,13 +153,11 @@ function AppChrome() {
   const hideHeader =
     location.pathname.startsWith("/artikler") || location.pathname.startsWith("/statistikk");
   usePageTracking();
-  useEffect(() => {
-    void syncLanguageToPath(location.pathname);
-  }, [location.pathname]);
   return (
     <>
       {!hideHeader && <SiteHeader />}
       <Outlet />
+      {!hideHeader && <SiteFooter />}
       <LanguageBanner />
       <CookieBanner />
       <ShopCartDrawer />
@@ -174,7 +173,9 @@ function RootComponent() {
     initCtaTracking();
   }, []);
 
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
   return (
+    <I18nextProvider i18n={i18nForPath(pathname)}>
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
@@ -182,5 +183,6 @@ function RootComponent() {
         <AppChrome />
       </TooltipProvider>
     </QueryClientProvider>
+    </I18nextProvider>
   );
 }

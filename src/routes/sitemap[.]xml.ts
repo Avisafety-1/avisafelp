@@ -8,6 +8,8 @@ import {
   type SitemapEntry,
 } from "@/lib/sitemap";
 
+import { alternatesFor } from "@/lib/alternates";
+
 const BASE_URL = "https://avisafe.no";
 
 export const Route = createFileRoute("/sitemap.xml")({
@@ -16,7 +18,10 @@ export const Route = createFileRoute("/sitemap.xml")({
     handlers: {
       GET: async () => {
         const router = await getRouterInstance();
-        const entries: SitemapEntry[] = sitemapStaticPaths(router).map((path) => ({ path }));
+        const entries: SitemapEntry[] = sitemapStaticPaths(router).map((path) => {
+          const clean = path.length > 1 ? path.replace(/\/$/, "") : path;
+          return { path, alternates: alternatesFor(clean) };
+        });
 
         // Published articles
         const articleRouteId = "/artikler/$slug";
@@ -54,7 +59,7 @@ export const Route = createFileRoute("/sitemap.xml")({
                 hash: "",
               });
               const path = sitemapPathForLocation(router, location, articleRouteId);
-              if (path) entries.push({ path });
+              if (path) entries.push({ path, alternates: alternatesFor(path) });
             }
             offset += data.length;
           }

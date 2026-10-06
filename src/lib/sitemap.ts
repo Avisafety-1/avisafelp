@@ -57,6 +57,7 @@ export function sitemapPathForLocation(
 export interface SitemapEntry {
   path: string;
   lastmod?: string;
+  alternates?: { hreflang: string; path: string }[];
 }
 
 function isSafeSitemapPath(pathname: string): boolean {
@@ -94,8 +95,10 @@ export function sitemapXML(baseURL: string, entries: SitemapEntry[]): string {
     if (seen.has(url.href)) continue;
     seen.add(url.href);
     urls.push(
-      `<url><loc>${escape(url.href)}</loc>${entry.lastmod ? `<lastmod>${escape(entry.lastmod)}</lastmod>` : ""}</url>`,
+      `<url><loc>${escape(url.href)}</loc>${entry.lastmod ? `<lastmod>${escape(entry.lastmod)}</lastmod>` : ""}${(entry.alternates ?? [])
+        .map((a) => `<xhtml:link rel="alternate" hreflang="${escape(a.hreflang)}" href="${escape(new URL(a.path, origin).href)}"/>`)
+        .join("")}</url>`,
     );
   }
-  return `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.join("")}</urlset>`;
+  return `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${urls.join("")}</urlset>`;
 }

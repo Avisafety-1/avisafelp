@@ -20,42 +20,31 @@ void i18n.use(initReactI18next).init({
   supportedLngs: SUPPORTED_LANGUAGES as unknown as string[],
   nonExplicitSupportedLngs: true,
   interpolation: { escapeValue: false },
+  initAsync: false,
 });
 
-// Update <html lang> on language change
-const updateHtmlLang = (lng: string) => {
-  if (typeof document !== "undefined") {
-    document.documentElement.lang = lng === "no" ? "nb" : "en";
-  }
-};
-i18n.on("languageChanged", updateHtmlLang);
 
 /** Language is always derived from the URL: /en and /en/* are English, everything else Norwegian. */
 export function languageForPath(pathname: string): SupportedLanguage {
   return pathname === "/en" || pathname.startsWith("/en/") ? "en" : "no";
 }
 
-/** Syncs i18n to the current URL after hydration. Never uses IP lookup or stored choices. */
-export async function syncLanguageToPath(pathname: string) {
-  if (typeof window === "undefined") return;
-  const target = languageForPath(pathname);
-  if (i18n.language === target) return;
-  await afterHydrationSettles();
-  await i18n.changeLanguage(target);
-}
+/** Separate English instance so server and client render the URL's language without mutating shared state. */
+export const i18nEn = i18n.createInstance();
+void i18nEn.use(initReactI18next).init({
+  resources: {
+    no: { translation: no },
+    en: { translation: en },
+  },
+  lng: "en",
+  fallbackLng: "en",
+  supportedLngs: SUPPORTED_LANGUAGES as unknown as string[],
+  interpolation: { escapeValue: false },
+  initAsync: false,
+});
 
-function afterHydrationSettles(): Promise<void> {
-  return new Promise((resolve) => {
-    const idle = () => {
-      if ("requestIdleCallback" in window) {
-        window.requestIdleCallback(() => resolve(), { timeout: 2000 });
-      } else {
-        setTimeout(resolve, 200);
-      }
-    };
-    if (document.readyState === "complete") idle();
-    else window.addEventListener("load", idle, { once: true });
-  });
+export function i18nForPath(pathname: string) {
+  return languageForPath(pathname) === "en" ? i18nEn : i18n;
 }
 
 export default i18n;

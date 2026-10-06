@@ -12,8 +12,10 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as GalleriRouteImport } from './routes/galleri'
 import { Route as LoggRouteImport } from './routes/logg'
+import { Route as OmOssRouteImport } from './routes/om-oss'
 import { Route as OperasjonerRouteImport } from './routes/operasjoner'
 import { Route as OperationsRouteImport } from './routes/operations'
+import { Route as PartnereRouteImport } from './routes/partnere'
 import { Route as PersonvernRouteImport } from './routes/personvern'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SoraRouteImport } from './routes/sora'
@@ -23,6 +25,14 @@ import { Route as ArtiklerIndexRouteImport } from './routes/artikler.index'
 import { Route as ArtiklerSlugRouteImport } from './routes/artikler.$slug'
 import { Route as ButikkIndexRouteImport } from './routes/butikk.index'
 import { Route as ButikkCheckoutRouteImport } from './routes/butikk.checkout'
+import { Route as EnIndexRouteImport } from './routes/en.index'
+import { Route as EnAboutRouteImport } from './routes/en.about'
+import { Route as EnDroneFleetManagementRouteImport } from './routes/en.drone-fleet-management'
+import { Route as EnDroneSafetyManagementSystemRouteImport } from './routes/en.drone-safety-management-system'
+import { Route as EnLiveAirspaceAwarenessRouteImport } from './routes/en.live-airspace-awareness'
+import { Route as EnOccurrenceReportingRouteImport } from './routes/en.occurrence-reporting'
+import { Route as EnPartnersRouteImport } from './routes/en.partners'
+import { Route as EnSoraRiskAssessmentRouteImport } from './routes/en.sora-risk-assessment'
 import { Route as ProductHandleRouteImport } from './routes/product.$handle'
 
 const IndexRoute = IndexRouteImport.update({
@@ -40,6 +50,11 @@ const LoggRoute = LoggRouteImport.update({
   path: '/logg',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OmOssRoute = OmOssRouteImport.update({
+  id: '/om-oss',
+  path: '/om-oss',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OperasjonerRoute = OperasjonerRouteImport.update({
   id: '/operasjoner',
   path: '/operasjoner',
@@ -48,6 +63,11 @@ const OperasjonerRoute = OperasjonerRouteImport.update({
 const OperationsRoute = OperationsRouteImport.update({
   id: '/operations',
   path: '/operations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnereRoute = PartnereRouteImport.update({
+  id: '/partnere',
+  path: '/partnere',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PersonvernRoute = PersonvernRouteImport.update({
@@ -95,6 +115,47 @@ const ButikkCheckoutRoute = ButikkCheckoutRouteImport.update({
   path: '/butikk/checkout',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EnIndexRoute = EnIndexRouteImport.update({
+  id: '/en/',
+  path: '/en/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnAboutRoute = EnAboutRouteImport.update({
+  id: '/en/about',
+  path: '/en/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnDroneFleetManagementRoute = EnDroneFleetManagementRouteImport.update({
+  id: '/en/drone-fleet-management',
+  path: '/en/drone-fleet-management',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnDroneSafetyManagementSystemRoute =
+  EnDroneSafetyManagementSystemRouteImport.update({
+    id: '/en/drone-safety-management-system',
+    path: '/en/drone-safety-management-system',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const EnLiveAirspaceAwarenessRoute = EnLiveAirspaceAwarenessRouteImport.update({
+  id: '/en/live-airspace-awareness',
+  path: '/en/live-airspace-awareness',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnOccurrenceReportingRoute = EnOccurrenceReportingRouteImport.update({
+  id: '/en/occurrence-reporting',
+  path: '/en/occurrence-reporting',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnPartnersRoute = EnPartnersRouteImport.update({
+  id: '/en/partners',
+  path: '/en/partners',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnSoraRiskAssessmentRoute = EnSoraRiskAssessmentRouteImport.update({
+  id: '/en/sora-risk-assessment',
+  path: '/en/sora-risk-assessment',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductHandleRoute = ProductHandleRouteImport.update({
   id: '/product/$handle',
   path: '/product/$handle',
@@ -105,8 +166,10 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/galleri': typeof GalleriRoute
   '/logg': typeof LoggRoute
+  '/om-oss': typeof OmOssRoute
   '/operasjoner': typeof OperasjonerRoute
   '/operations': typeof OperationsRoute
+  '/partnere': typeof PartnereRoute
   '/personvern': typeof PersonvernRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sora': typeof SoraRoute
@@ -114,16 +177,26 @@ export interface FileRoutesByFullPath {
   '/statistikk': typeof StatistikkRoute
   '/artikler/$slug': typeof ArtiklerSlugRoute
   '/butikk/checkout': typeof ButikkCheckoutRoute
+  '/en/about': typeof EnAboutRoute
+  '/en/drone-fleet-management': typeof EnDroneFleetManagementRoute
+  '/en/drone-safety-management-system': typeof EnDroneSafetyManagementSystemRoute
+  '/en/live-airspace-awareness': typeof EnLiveAirspaceAwarenessRoute
+  '/en/occurrence-reporting': typeof EnOccurrenceReportingRoute
+  '/en/partners': typeof EnPartnersRoute
+  '/en/sora-risk-assessment': typeof EnSoraRiskAssessmentRoute
   '/product/$handle': typeof ProductHandleRoute
   '/artikler/': typeof ArtiklerIndexRoute
   '/butikk/': typeof ButikkIndexRoute
+  '/en/': typeof EnIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/galleri': typeof GalleriRoute
   '/logg': typeof LoggRoute
+  '/om-oss': typeof OmOssRoute
   '/operasjoner': typeof OperasjonerRoute
   '/operations': typeof OperationsRoute
+  '/partnere': typeof PartnereRoute
   '/personvern': typeof PersonvernRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sora': typeof SoraRoute
@@ -131,17 +204,27 @@ export interface FileRoutesByTo {
   '/statistikk': typeof StatistikkRoute
   '/artikler/$slug': typeof ArtiklerSlugRoute
   '/butikk/checkout': typeof ButikkCheckoutRoute
+  '/en/about': typeof EnAboutRoute
+  '/en/drone-fleet-management': typeof EnDroneFleetManagementRoute
+  '/en/drone-safety-management-system': typeof EnDroneSafetyManagementSystemRoute
+  '/en/live-airspace-awareness': typeof EnLiveAirspaceAwarenessRoute
+  '/en/occurrence-reporting': typeof EnOccurrenceReportingRoute
+  '/en/partners': typeof EnPartnersRoute
+  '/en/sora-risk-assessment': typeof EnSoraRiskAssessmentRoute
   '/product/$handle': typeof ProductHandleRoute
   '/artikler': typeof ArtiklerIndexRoute
   '/butikk': typeof ButikkIndexRoute
+  '/en': typeof EnIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/galleri': typeof GalleriRoute
   '/logg': typeof LoggRoute
+  '/om-oss': typeof OmOssRoute
   '/operasjoner': typeof OperasjonerRoute
   '/operations': typeof OperationsRoute
+  '/partnere': typeof PartnereRoute
   '/personvern': typeof PersonvernRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sora': typeof SoraRoute
@@ -149,9 +232,17 @@ export interface FileRoutesById {
   '/statistikk': typeof StatistikkRoute
   '/artikler/$slug': typeof ArtiklerSlugRoute
   '/butikk/checkout': typeof ButikkCheckoutRoute
+  '/en/about': typeof EnAboutRoute
+  '/en/drone-fleet-management': typeof EnDroneFleetManagementRoute
+  '/en/drone-safety-management-system': typeof EnDroneSafetyManagementSystemRoute
+  '/en/live-airspace-awareness': typeof EnLiveAirspaceAwarenessRoute
+  '/en/occurrence-reporting': typeof EnOccurrenceReportingRoute
+  '/en/partners': typeof EnPartnersRoute
+  '/en/sora-risk-assessment': typeof EnSoraRiskAssessmentRoute
   '/product/$handle': typeof ProductHandleRoute
   '/artikler/': typeof ArtiklerIndexRoute
   '/butikk/': typeof ButikkIndexRoute
+  '/en/': typeof EnIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -159,8 +250,10 @@ export interface FileRouteTypes {
     | '/'
     | '/galleri'
     | '/logg'
+    | '/om-oss'
     | '/operasjoner'
     | '/operations'
+    | '/partnere'
     | '/personvern'
     | '/sitemap.xml'
     | '/sora'
@@ -168,16 +261,26 @@ export interface FileRouteTypes {
     | '/statistikk'
     | '/artikler/$slug'
     | '/butikk/checkout'
+    | '/en/about'
+    | '/en/drone-fleet-management'
+    | '/en/drone-safety-management-system'
+    | '/en/live-airspace-awareness'
+    | '/en/occurrence-reporting'
+    | '/en/partners'
+    | '/en/sora-risk-assessment'
     | '/product/$handle'
     | '/artikler/'
     | '/butikk/'
+    | '/en/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/galleri'
     | '/logg'
+    | '/om-oss'
     | '/operasjoner'
     | '/operations'
+    | '/partnere'
     | '/personvern'
     | '/sitemap.xml'
     | '/sora'
@@ -185,16 +288,26 @@ export interface FileRouteTypes {
     | '/statistikk'
     | '/artikler/$slug'
     | '/butikk/checkout'
+    | '/en/about'
+    | '/en/drone-fleet-management'
+    | '/en/drone-safety-management-system'
+    | '/en/live-airspace-awareness'
+    | '/en/occurrence-reporting'
+    | '/en/partners'
+    | '/en/sora-risk-assessment'
     | '/product/$handle'
     | '/artikler'
     | '/butikk'
+    | '/en'
   id:
     | '__root__'
     | '/'
     | '/galleri'
     | '/logg'
+    | '/om-oss'
     | '/operasjoner'
     | '/operations'
+    | '/partnere'
     | '/personvern'
     | '/sitemap.xml'
     | '/sora'
@@ -202,17 +315,27 @@ export interface FileRouteTypes {
     | '/statistikk'
     | '/artikler/$slug'
     | '/butikk/checkout'
+    | '/en/about'
+    | '/en/drone-fleet-management'
+    | '/en/drone-safety-management-system'
+    | '/en/live-airspace-awareness'
+    | '/en/occurrence-reporting'
+    | '/en/partners'
+    | '/en/sora-risk-assessment'
     | '/product/$handle'
     | '/artikler/'
     | '/butikk/'
+    | '/en/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   GalleriRoute: typeof GalleriRoute
   LoggRoute: typeof LoggRoute
+  OmOssRoute: typeof OmOssRoute
   OperasjonerRoute: typeof OperasjonerRoute
   OperationsRoute: typeof OperationsRoute
+  PartnereRoute: typeof PartnereRoute
   PersonvernRoute: typeof PersonvernRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SoraRoute: typeof SoraRoute
@@ -220,9 +343,17 @@ export interface RootRouteChildren {
   StatistikkRoute: typeof StatistikkRoute
   ArtiklerSlugRoute: typeof ArtiklerSlugRoute
   ButikkCheckoutRoute: typeof ButikkCheckoutRoute
+  EnAboutRoute: typeof EnAboutRoute
+  EnDroneFleetManagementRoute: typeof EnDroneFleetManagementRoute
+  EnDroneSafetyManagementSystemRoute: typeof EnDroneSafetyManagementSystemRoute
+  EnLiveAirspaceAwarenessRoute: typeof EnLiveAirspaceAwarenessRoute
+  EnOccurrenceReportingRoute: typeof EnOccurrenceReportingRoute
+  EnPartnersRoute: typeof EnPartnersRoute
+  EnSoraRiskAssessmentRoute: typeof EnSoraRiskAssessmentRoute
   ProductHandleRoute: typeof ProductHandleRoute
   ArtiklerIndexRoute: typeof ArtiklerIndexRoute
   ButikkIndexRoute: typeof ButikkIndexRoute
+  EnIndexRoute: typeof EnIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -248,6 +379,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoggRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/om-oss': {
+      id: '/om-oss'
+      path: '/om-oss'
+      fullPath: '/om-oss'
+      preLoaderRoute: typeof OmOssRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/operasjoner': {
       id: '/operasjoner'
       path: '/operasjoner'
@@ -260,6 +398,13 @@ declare module '@tanstack/react-router' {
       path: '/operations'
       fullPath: '/operations'
       preLoaderRoute: typeof OperationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partnere': {
+      id: '/partnere'
+      path: '/partnere'
+      fullPath: '/partnere'
+      preLoaderRoute: typeof PartnereRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/personvern': {
@@ -325,6 +470,62 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ButikkCheckoutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/en/': {
+      id: '/en/'
+      path: '/en'
+      fullPath: '/en/'
+      preLoaderRoute: typeof EnIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/about': {
+      id: '/en/about'
+      path: '/en/about'
+      fullPath: '/en/about'
+      preLoaderRoute: typeof EnAboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/drone-fleet-management': {
+      id: '/en/drone-fleet-management'
+      path: '/en/drone-fleet-management'
+      fullPath: '/en/drone-fleet-management'
+      preLoaderRoute: typeof EnDroneFleetManagementRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/drone-safety-management-system': {
+      id: '/en/drone-safety-management-system'
+      path: '/en/drone-safety-management-system'
+      fullPath: '/en/drone-safety-management-system'
+      preLoaderRoute: typeof EnDroneSafetyManagementSystemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/live-airspace-awareness': {
+      id: '/en/live-airspace-awareness'
+      path: '/en/live-airspace-awareness'
+      fullPath: '/en/live-airspace-awareness'
+      preLoaderRoute: typeof EnLiveAirspaceAwarenessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/occurrence-reporting': {
+      id: '/en/occurrence-reporting'
+      path: '/en/occurrence-reporting'
+      fullPath: '/en/occurrence-reporting'
+      preLoaderRoute: typeof EnOccurrenceReportingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/partners': {
+      id: '/en/partners'
+      path: '/en/partners'
+      fullPath: '/en/partners'
+      preLoaderRoute: typeof EnPartnersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/sora-risk-assessment': {
+      id: '/en/sora-risk-assessment'
+      path: '/en/sora-risk-assessment'
+      fullPath: '/en/sora-risk-assessment'
+      preLoaderRoute: typeof EnSoraRiskAssessmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/product/$handle': {
       id: '/product/$handle'
       path: '/product/$handle'
@@ -339,8 +540,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   GalleriRoute: GalleriRoute,
   LoggRoute: LoggRoute,
+  OmOssRoute: OmOssRoute,
   OperasjonerRoute: OperasjonerRoute,
   OperationsRoute: OperationsRoute,
+  PartnereRoute: PartnereRoute,
   PersonvernRoute: PersonvernRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SoraRoute: SoraRoute,
@@ -348,9 +551,17 @@ const rootRouteChildren: RootRouteChildren = {
   StatistikkRoute: StatistikkRoute,
   ArtiklerSlugRoute: ArtiklerSlugRoute,
   ButikkCheckoutRoute: ButikkCheckoutRoute,
+  EnAboutRoute: EnAboutRoute,
+  EnDroneFleetManagementRoute: EnDroneFleetManagementRoute,
+  EnDroneSafetyManagementSystemRoute: EnDroneSafetyManagementSystemRoute,
+  EnLiveAirspaceAwarenessRoute: EnLiveAirspaceAwarenessRoute,
+  EnOccurrenceReportingRoute: EnOccurrenceReportingRoute,
+  EnPartnersRoute: EnPartnersRoute,
+  EnSoraRiskAssessmentRoute: EnSoraRiskAssessmentRoute,
   ProductHandleRoute: ProductHandleRoute,
   ArtiklerIndexRoute: ArtiklerIndexRoute,
   ButikkIndexRoute: ButikkIndexRoute,
+  EnIndexRoute: EnIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
