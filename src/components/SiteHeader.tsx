@@ -156,14 +156,6 @@ const SiteHeader = () => {
     { label: onEnglish ? "Risk assessment" : "Risikovurdering", action: () => goTo(onEnglish ? "/en/sora-risk-assessment" : "/sora") },
   ];
 
-  const solutionItems = [
-    { label: "Safety management system", action: () => goTo("/en/drone-safety-management-system") },
-    { label: "SORA risk assessment", action: () => goTo("/en/sora-risk-assessment") },
-    { label: "Occurrence reporting", action: () => goTo("/en/occurrence-reporting") },
-    { label: "Fleet management", action: () => goTo("/en/drone-fleet-management") },
-    { label: "Live airspace awareness", action: () => goTo("/en/live-airspace-awareness") },
-    { label: "Partners", action: () => goTo("/en/partners") },
-  ];
   // "Hvem er vi" scrolls to the team section on the Norwegian front page;
   // the English /en landing has no team section, so it uses the About page.
   const whoWeAre = () => scrollToId("team-section");
