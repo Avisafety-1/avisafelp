@@ -14,7 +14,7 @@ export function scrollToSection(id: string) {
     if (y !== null) window.scrollTo({ top: Math.max(0, y), behavior });
   };
   go("smooth");
-  [700, 1400].forEach((ms) =>
+  [700, 1400, 2200, 3000].forEach((ms) =>
     window.setTimeout(() => {
       const y = target();
       if (y !== null && Math.abs(window.scrollY - Math.max(0, y)) > 4) go("smooth");
