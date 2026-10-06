@@ -25,7 +25,7 @@ const SoraRiskLoader = () => {
   ];
 
   return (
-    <section className="relative z-30 py-16 md:py-24 bg-transparent">
+    <section id="sora-section" className="relative z-30 py-16 md:py-24 bg-transparent scroll-mt-24">
       <div className="md:px-4 lg:px-8">
         <div
           className="relative overflow-hidden md:rounded-2xl md:border md:px-6 lg:px-10 py-12 md:py-16 px-4"
