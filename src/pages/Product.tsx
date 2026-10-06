@@ -129,7 +129,7 @@ const Product = () => {
         </script>
       </Helmet>
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-border">
+      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
         <div className="max-w-7xl mx-auto px-3 sm:px-4 py-3 flex items-center justify-between">
           <Link to="/#shop">
             <Button variant="ghost" size="sm" className="gap-1 px-2">
@@ -204,7 +204,7 @@ const Product = () => {
                     <button
                       key={index}
                       onClick={() => setCurrentImageIndex(index)}
-                      className={`w-16 h-16 flex-shrink-0 rounded-md overflow-hidden border-2 transition-colors ${
+                      className={`w-16 h-16 shrink-0 rounded-md overflow-hidden border-2 transition-colors ${
                         index === currentImageIndex ? "border-primary" : "border-transparent"
                       }`}
                     >

@@ -15,7 +15,7 @@ export function DriveMediaGrid() {
         {Array.from({ length: 8 }).map((_, i) => (
           <div
             key={i}
-            className="aspect-square rounded-2xl bg-white/40 backdrop-blur-sm animate-pulse border border-white/60"
+            className="aspect-square rounded-2xl bg-white/40 backdrop-blur-xs animate-pulse border border-white/60"
           />
         ))}
       </div>
@@ -46,7 +46,7 @@ export function DriveMediaGrid() {
             key={f.id}
             type="button"
             onClick={() => setActive(f)}
-            className="group relative aspect-square overflow-hidden rounded-2xl border border-white/60 bg-white/40 backdrop-blur-sm shadow-sm hover:shadow-md transition-all"
+            className="group relative aspect-square overflow-hidden rounded-2xl border border-white/60 bg-white/40 backdrop-blur-xs shadow-xs hover:shadow-md transition-all"
             aria-label={t("media.open", "Åpne") + " " + f.name}
           >
             {f.thumbnail ? (

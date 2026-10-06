@@ -96,7 +96,7 @@ const Butikk = () => {
           <section className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
             {/* Gallery */}
             <div className="space-y-4">
-              <div className="aspect-square rounded-3xl overflow-hidden bg-white border border-black/5 shadow-sm">
+              <div className="aspect-square rounded-3xl overflow-hidden bg-white border border-black/5 shadow-xs">
                 <img
                   src={activeImg}
                   alt={product.title}
@@ -196,7 +196,7 @@ const Butikk = () => {
               {features.map((f) => (
                 <div
                   key={f.title}
-                  className="p-6 rounded-2xl bg-white border border-black/5 shadow-sm"
+                  className="p-6 rounded-2xl bg-white border border-black/5 shadow-xs"
                 >
                   <div className="w-11 h-11 rounded-xl bg-[#123b87]/10 text-[#123b87] flex items-center justify-center">
                     <f.icon className="w-5 h-5" />

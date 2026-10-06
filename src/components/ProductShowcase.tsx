@@ -55,7 +55,7 @@ const PhoneMockup = ({
     }
   }, [isInView, feature.video]);
 
-  return <div ref={inViewRef} className="flex-shrink-0 w-[280px] md:w-[320px] flex flex-col items-center gap-4">
+  return <div ref={inViewRef} className="shrink-0 w-[280px] md:w-[320px] flex flex-col items-center gap-4">
       {/* Feature Info - Above Phone */}
       <div className="text-center px-2 min-h-28 flex flex-col justify-end mb-4">
         <div className="inline-flex items-center justify-center gap-2 bg-[hsl(var(--text-dark-blue))]/10 text-[hsl(var(--text-dark-blue))] px-4 py-2 rounded-full mb-3">
@@ -154,13 +154,13 @@ const ProductShowcase = () => {
         <div className="relative">
           {/* Navigation Buttons - Desktop */}
           <div className="hidden md:block">
-            <Button variant="outline" size="icon" aria-label={t("product.scrollLeft")} className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm shadow-lg" onClick={() => {
+            <Button variant="outline" size="icon" aria-label={t("product.scrollLeft")} className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-xs shadow-lg" onClick={() => {
             handleInteraction();
             scroll("left");
           }}>
               <ChevronLeft className="w-5 h-5" />
             </Button>
-            <Button variant="outline" size="icon" aria-label={t("product.scrollRight")} className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm shadow-lg" onClick={() => {
+            <Button variant="outline" size="icon" aria-label={t("product.scrollRight")} className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-xs shadow-lg" onClick={() => {
             handleInteraction();
             scroll("right");
           }}>

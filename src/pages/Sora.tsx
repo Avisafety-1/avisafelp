@@ -104,7 +104,7 @@ const ProsePhaseCard = ({
     <div className="relative p-6">
       <div className="flex items-start gap-4 mb-5">
         <div
-          className="flex items-center justify-center w-11 h-11 rounded-xl flex-shrink-0"
+          className="flex items-center justify-center w-11 h-11 rounded-xl shrink-0"
           style={{ background: midColor, border: `1px solid ${accentColor}50` }}
         >
           <div style={{ color: accentColor }}>{icon}</div>
@@ -112,7 +112,7 @@ const ProsePhaseCard = ({
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1">
             <span
-              className="text-xs font-bold tracking-widest uppercase px-2 py-0.5 rounded"
+              className="text-xs font-bold tracking-widest uppercase px-2 py-0.5 rounded-sm"
               style={{ background: midColor, color: accentColor }}
             >
               {phaseLabel} {phase}

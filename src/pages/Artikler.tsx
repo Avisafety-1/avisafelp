@@ -235,7 +235,7 @@ const Artikler = () => {
                   {new Date(selected.created_at).toLocaleDateString('nb-NO', { year: 'numeric', month: 'long', day: 'numeric' })}
                 </span>
                 {!selected.published && (
-                  <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded">Utkast</span>
+                  <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded-sm">Utkast</span>
                 )}
                 {user && (
                   <div className="ml-auto flex gap-2">

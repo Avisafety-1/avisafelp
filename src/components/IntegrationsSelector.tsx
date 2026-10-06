@@ -168,7 +168,7 @@ const IntegrationsSelector = () => {
                       transition: "opacity 400ms ease",
                     }}
                   >
-                    <div className="min-w-[32px] h-[32px] flex items-center justify-center rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex-shrink-0">
+                    <div className="min-w-[32px] h-[32px] flex items-center justify-center rounded-full bg-black/60 backdrop-blur-md border border-white/20 shrink-0">
                       {option.icon}
                     </div>
                     <div className="text-white font-semibold text-sm truncate">{option.title}</div>
@@ -176,7 +176,7 @@ const IntegrationsSelector = () => {
 
                   {/* Full label nederst når aktiv */}
                   <div className="absolute left-0 right-0 bottom-4 flex items-center px-4 gap-3 pointer-events-none">
-                    <div className="min-w-[44px] h-[44px] flex items-center justify-center rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex-shrink-0">
+                    <div className="min-w-[44px] h-[44px] flex items-center justify-center rounded-full bg-black/60 backdrop-blur-md border border-white/20 shrink-0">
                       {option.icon}
                     </div>
                     <div className="text-white">
@@ -213,7 +213,7 @@ const IntegrationsSelector = () => {
                 <div
                   key={option.title}
                   onClick={() => setActiveIndex(index)}
-                  className="relative overflow-hidden cursor-pointer transition-[flex-grow,box-shadow] duration-700 ease-in-out"
+                  className="relative overflow-hidden cursor-pointer transition-[grow,box-shadow] duration-700 ease-in-out"
                   style={{
                     flex: isActive ? "7 1 0%" : "1 1 0%",
                     minWidth: 56,
@@ -225,7 +225,7 @@ const IntegrationsSelector = () => {
                     backgroundRepeat: "no-repeat",
                     opacity: animated.includes(index) ? 1 : 0,
                     transform: animated.includes(index) ? "translateX(0)" : "translateX(-40px)",
-                    transitionProperty: "flex-grow, box-shadow, background-size, opacity, transform",
+                    transitionProperty: "grow, box-shadow, background-size, opacity, transform",
                     boxShadow: isActive
                       ? "0 20px 60px rgba(0,0,0,0.45)"
                       : "0 10px 30px rgba(0,0,0,0.25)",
@@ -241,7 +241,7 @@ const IntegrationsSelector = () => {
                     }}
                   />
                   <div className="absolute left-0 right-0 bottom-4 md:bottom-5 flex items-center px-3 md:px-4 gap-3 pointer-events-none">
-                    <div className="min-w-[40px] h-[40px] md:min-w-[44px] md:h-[44px] flex items-center justify-center rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex-shrink-0">
+                    <div className="min-w-[40px] h-[40px] md:min-w-[44px] md:h-[44px] flex items-center justify-center rounded-full bg-black/60 backdrop-blur-md border border-white/20 shrink-0">
                       {option.icon}
                     </div>
                     <div className="text-white whitespace-nowrap overflow-hidden">

@@ -45,7 +45,7 @@ export const CartDrawer = () => {
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
-        <Button variant="outline" size="icon" aria-label={`Åpne handlekurv${totalItems > 0 ? ` (${totalItems} produkter)` : ""}`} className="relative bg-background/80 backdrop-blur-sm border-border hover:bg-background">
+        <Button variant="outline" size="icon" aria-label={`Åpne handlekurv${totalItems > 0 ? ` (${totalItems} produkter)` : ""}`} className="relative bg-background/80 backdrop-blur-xs border-border hover:bg-background">
           <ShoppingCart className="h-5 w-5" />
           {totalItems > 0 && (
             <Badge className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-primary text-primary-foreground">
@@ -56,7 +56,7 @@ export const CartDrawer = () => {
       </SheetTrigger>
       
       <SheetContent className="w-full sm:max-w-lg flex flex-col h-full">
-        <SheetHeader className="flex-shrink-0">
+        <SheetHeader className="shrink-0">
           <SheetTitle>Handlekurv</SheetTitle>
           <SheetDescription>
             {totalItems === 0 ? "Handlekurven er tom" : `${totalItems} produkt${totalItems !== 1 ? 'er' : ''} i handlekurven`}
@@ -77,7 +77,7 @@ export const CartDrawer = () => {
                 <div className="space-y-4">
                   {items.map((item) => (
                     <div key={item.variantId} className="flex gap-4 p-2 rounded-lg bg-muted/50">
-                      <div className="w-16 h-16 bg-secondary/20 rounded-md overflow-hidden flex-shrink-0">
+                      <div className="w-16 h-16 bg-secondary/20 rounded-md overflow-hidden shrink-0">
                         {item.product.node.images?.edges?.[0]?.node && (
                           <img
                             src={item.product.node.images.edges[0].node.url}
@@ -99,7 +99,7 @@ export const CartDrawer = () => {
                         </p>
                       </div>
                       
-                      <div className="flex flex-col items-end gap-2 flex-shrink-0">
+                      <div className="flex flex-col items-end gap-2 shrink-0">
                         <Button
                           variant="ghost"
                           size="icon"
@@ -137,7 +137,7 @@ export const CartDrawer = () => {
                 </div>
               </div>
               
-              <div className="flex-shrink-0 space-y-4 pt-4 border-t bg-background">
+              <div className="shrink-0 space-y-4 pt-4 border-t bg-background">
                 <div className="flex justify-between items-center">
                   <span className="text-lg font-semibold">Totalt</span>
                   <span className="text-xl font-bold text-primary">
