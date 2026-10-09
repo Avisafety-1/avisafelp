@@ -115,6 +115,18 @@ const en: Translations = {
       dokumenter: { title: "Document management", description: "Search and organise regulations, procedures, checklists and reports." },
       hendelser: { title: "Incident reporting", description: "Report and follow up incidents with detailed logging and comments." },
     },
+    integrationsSelector: {
+      heading: "Integrations",
+      instruction: "Select a card to explore our integrations",
+      dji: "Integrated maps, dashboard and flight data",
+      flightHub: "Export routes and SORA buffers directly",
+      safeSky: "Real-time airspace awareness",
+      arduPilot: "Open autopilot platform",
+      dronetag: "Remote ID – visible to everyone, anywhere",
+      eccairs: "Automated occurrence reporting to authorities",
+      logFilesTitle: "Log files",
+      logFiles: "Automatic import and processing of log files",
+    },
     dji: {
       title: "Full support for DJI RC PRO/PLUS",
       body: "Supports flight-log upload from more than 40 DJI drone models. AviSafe integrates seamlessly with DJI controllers for automatic flight-data import, logging and documentation directly in the platform.",
