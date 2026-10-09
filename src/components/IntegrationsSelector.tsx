@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Plane, Radio, Cpu, FileWarning, Map, Wifi, FileText } from "lucide-react";
 import djiMap from "@/assets/dji-map.png";
 import djiFlighthub2 from "@/assets/dji-flighthub2.jpg";
@@ -17,58 +18,58 @@ type Option = {
   contain?: boolean;
 };
 
-const options: Option[] = [
-  {
-    title: "DJI",
-    description: "Kart, dashboard og flight-data integrert",
-    image: djiMap,
-    icon: <Plane size={22} className="text-white" />,
-  },
-  {
-    title: "FlightHub 2",
-    description: "Eksporter ruter og SORA-buffere direkte",
-    image: djiFlighthub2,
-    icon: <Map size={22} className="text-white" />,
-  },
-  {
-    title: "SafeSky",
-    description: "Sanntids luftromsbevissthet",
-    image: safeskyLogo,
-    icon: <Radio size={22} className="text-white" />,
-    contain: true,
-  },
-  {
-    title: "ArduPilot",
-    description: "Åpen autopilot-plattform",
-    image: arduLogo,
-    icon: <Cpu size={22} className="text-white" />,
-    contain: true,
-  },
-  {
-    title: "Dronetag",
-    description: "Remote ID – synlig for alle, hvor som helst",
-    image: dronetagMini,
-    icon: <Wifi size={22} className="text-white" />,
-  },
-  {
-    title: "ECCAIRS 2",
-    description: "Automatisk hendelsesrapportering til myndigheter",
-    image: eccairs2Logo,
-    icon: <FileWarning size={22} className="text-white" />,
-    contain: true,
-  },
-  {
-    title: "Loggfiler",
-    description: "Automatisk import og behandling av loggfiler",
-    image: logfilesDashboard.url,
-    icon: <FileText size={22} className="text-white" />,
-  },
-];
-
 const IntegrationsSelector = () => {
+  const { t } = useTranslation();
   const [activeIndex, setActiveIndex] = useState(0);
   const [animated, setAnimated] = useState<number[]>([]);
   const isMobile = useIsMobile();
+  const options: Option[] = [
+    {
+      title: "DJI",
+      description: t("product.integrationsSelector.dji"),
+      image: djiMap,
+      icon: <Plane size={22} className="text-white" />,
+    },
+    {
+      title: "FlightHub 2",
+      description: t("product.integrationsSelector.flightHub"),
+      image: djiFlighthub2,
+      icon: <Map size={22} className="text-white" />,
+    },
+    {
+      title: "SafeSky",
+      description: t("product.integrationsSelector.safeSky"),
+      image: safeskyLogo,
+      icon: <Radio size={22} className="text-white" />,
+      contain: true,
+    },
+    {
+      title: "ArduPilot",
+      description: t("product.integrationsSelector.arduPilot"),
+      image: arduLogo,
+      icon: <Cpu size={22} className="text-white" />,
+      contain: true,
+    },
+    {
+      title: "Dronetag",
+      description: t("product.integrationsSelector.dronetag"),
+      image: dronetagMini,
+      icon: <Wifi size={22} className="text-white" />,
+    },
+    {
+      title: "ECCAIRS 2",
+      description: t("product.integrationsSelector.eccairs"),
+      image: eccairs2Logo,
+      icon: <FileWarning size={22} className="text-white" />,
+      contain: true,
+    },
+    {
+      title: t("product.integrationsSelector.logFilesTitle"),
+      description: t("product.integrationsSelector.logFiles"),
+      image: logfilesDashboard.url,
+      icon: <FileText size={22} className="text-white" />,
+    },
+  ];
 
   useEffect(() => {
     const timers: ReturnType<typeof setTimeout>[] = [];
@@ -89,9 +90,9 @@ const IntegrationsSelector = () => {
     <section className="container mx-auto px-4 mt-12 md:mt-16">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground">Integrasjoner</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground">{t("product.integrationsSelector.heading")}</h2>
           <p className="text-base md:text-lg text-muted-foreground mt-3">
-            Trykk på et kort for å utforske våre integrasjoner
+            {t("product.integrationsSelector.instruction")}
           </p>
         </div>
 

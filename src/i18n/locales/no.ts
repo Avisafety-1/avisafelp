@@ -113,6 +113,18 @@ const no = {
       dokumenter: { title: "Dokumenthåndtering", description: "Søk og organiser regelverk, prosedyrer, sjekklister og rapporter." },
       hendelser: { title: "Hendelsesrapportering", description: "Rapporter og følg opp hendelser med detaljert logging og kommentarer." },
     },
+    integrationsSelector: {
+      heading: "Integrasjoner",
+      instruction: "Trykk på et kort for å utforske våre integrasjoner",
+      dji: "Kart, dashboard og flydata integrert",
+      flightHub: "Eksporter ruter og SORA-buffere direkte",
+      safeSky: "Luftromsbevissthet i sanntid",
+      arduPilot: "Åpen autopilotplattform",
+      dronetag: "Remote ID – synlig for alle, hvor som helst",
+      eccairs: "Automatisk hendelsesrapportering til myndigheter",
+      logFilesTitle: "Loggfiler",
+      logFiles: "Automatisk import og behandling av loggfiler",
+    },
     dji: {
       title: "Full støtte for DJI RC PRO/PLUS",
       body: "Støtter opplasting av DJI fly-logger fra over 40 dronemodeller. AviSafe integrerer sømløst med DJI-kontrollere for automatisk import av flydata, loggføring og dokumentasjon direkte i plattformen.",
