@@ -91,7 +91,7 @@ export const OPS_DASHBOARD: Record<OpsLang, OpsContent> = {
             "Direktevideo fra droner og alt som sender RTMP eller RTMPS: bodycam, helikopter, en annen operatørs drone, OBS, Larix eller en IP-kamerakoder.",
             "Legg til en ny videokilde på sekunder. Du får en ferdig adresse og strømnøkkel, og kan slå kilden av og på eller lage ny nøkkel.",
             "Flere strømmer fra samme kilde, for eksempel vanlig kamera og IR.",
-            "Vis én, fire eller ni strømmer samtidig.",
+            "Vis alle aktive strømmer samtidig, så mange du har.",
           ],
         },
         {
@@ -120,7 +120,7 @@ export const OPS_DASHBOARD: Record<OpsLang, OpsContent> = {
             "Send meldinger til piloter og innsatspersonell på SMS, e-post og i AviSafe-innboksen, også til folk uten AviSafe-bruker.",
             "Hurtigmeldinger som «Land nå», «Returner», «Hold posisjon», «Endre høyde» og «Ring meg».",
             "Be om svar: mottakeren svarer 1, 2 eller 3 (MOTTATT, WILCO eller CANTCO) på SMS, og svaret dukker opp i dashbordet med en gang.",
-            "SMS-historikk per kontakt, merking som haster, og SMS på norsk eller engelsk.",
+            "SMS-historikk per kontakt, merking som haster, og SMS og svaralternativer på norsk eller engelsk.",
           ],
         },
         {
@@ -158,7 +158,7 @@ export const OPS_DASHBOARD: Record<OpsLang, OpsContent> = {
             "Mottakeren får lenke og 6-sifret tilgangskode på e-post eller SMS, og trenger ingen innlogging.",
             "Du velger hvor lenge delingen varer, og kan stoppe den når som helst. Alle visninger logges.",
             "Delingen er skrivebeskyttet. Meldinger til piloter vises aldri.",
-            "Inviter brukere i AviSafe til å følge dashbordet.",
+            "Inviter hvem som helst til å følge dashbordet, også folk uten AviSafe-bruker.",
           ],
         },
         {
@@ -238,7 +238,7 @@ export const OPS_DASHBOARD: Record<OpsLang, OpsContent> = {
             "Live video from drones and anything that streams over RTMP or RTMPS: body cams, helicopters, another operator's drone, OBS, Larix or an IP camera encoder.",
             "Add a new video source in seconds. You get a ready-made URL and stream key, and can switch the source on and off or generate a new key.",
             "Several streams from one source, for example the normal camera and IR.",
-            "Show one, four or nine streams at once.",
+            "Show every active stream at once, however many you have.",
           ],
         },
         {
@@ -267,7 +267,7 @@ export const OPS_DASHBOARD: Record<OpsLang, OpsContent> = {
             "Message pilots and field personnel by SMS, e-mail and the AviSafe inbox, including people without an AviSafe account.",
             "Quick messages such as “Land now”, “Return”, “Hold position”, “Change altitude” and “Call me”.",
             "Request a reply: the recipient answers 1, 2 or 3 (RECEIVED, WILCO or CANTCO) by SMS, and the reply shows up in the dashboard straight away.",
-            "SMS history per contact, urgent flag, and SMS in English or Norwegian.",
+            "SMS history per contact, urgent flag, and SMS and reply options in English or Norwegian.",
           ],
         },
         {
@@ -305,7 +305,7 @@ export const OPS_DASHBOARD: Record<OpsLang, OpsContent> = {
             "The recipient gets a link and a 6-digit access code by e-mail or SMS, and does not need to log in.",
             "You choose how long the share lasts and can stop it at any time. Every view is logged.",
             "Shares are read-only. Messages to pilots are never shown.",
-            "Invite AviSafe users to follow the dashboard.",
+            "Invite anyone to follow the dashboard, including people without an AviSafe account.",
           ],
         },
         {
