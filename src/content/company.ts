@@ -95,7 +95,7 @@ export const PARTNERS = {
     items: [
       { name: "SafeSky", url: "https://www.safesky.app", text: "Live lufttrafikk fra SafeSky vises i AviSafe-kartet, og dronens posisjon deles ved flystart." },
       { name: "DJI", url: "https://www.dji.com", text: "Live posisjon rett fra DJI Pilot 2 på kontrolleren (uten FlightHub 2-abonnement) eller fra organisasjonens droner via DJI FlightHub 2 (FlightHub Sync). Posisjonen kan deles med SafeSky eller holdes internt. Ruter og SORA-buffere eksporteres til FlightHub 2." },
-      { name: "Atlas UAS", url: "https://atlasuas.com/products/atlaspro", text: "Live video og live posisjon fra dronen i AviSafe, med AI-sporing i videostrømmen som matches automatisk mot AIS." },
+      { name: "Atlas UAS", url: "https://atlasuas.com", text: "Live video og live posisjon fra dronen i AviSafe, med AI-sporing i videostrømmen som matches automatisk mot AIS." },
       { name: "ECCAIRS 2", url: "https://www.aviationreporting.eu", text: "Hendelsesrapporter sendes direkte til ECCAIRS 2 via E2 API." },
       { name: "Dronetag", url: "https://www.dronetag.com", text: "Integrasjon med Dronetag Remote ID-enheter." },
       { name: "ArduPilot", url: "https://ardupilot.org", text: "Integrasjon med ArduPilot-baserte droner og import av loggfiler." },
@@ -112,7 +112,7 @@ export const PARTNERS = {
     items: [
       { name: "SafeSky", url: "https://www.safesky.app", text: "Live air traffic from SafeSky is shown in the AviSafe map, and the drone's position is shared at take-off." },
       { name: "DJI", url: "https://www.dji.com", text: "Live position straight from DJI Pilot 2 on the controller (no FlightHub 2 subscription needed) or from the organisation's drones via DJI FlightHub 2 (FlightHub Sync). The position can be shared with SafeSky or kept internal. Routes and SORA buffers are exported to FlightHub 2." },
-      { name: "Atlas UAS", url: "https://atlasuas.com/products/atlaspro", text: "Live video and live position from the drone in AviSafe, with AI tracking in the video stream matched automatically against AIS." },
+      { name: "Atlas UAS", url: "https://atlasuas.com", text: "Live video and live position from the drone in AviSafe, with AI tracking in the video stream matched automatically against AIS." },
       { name: "ECCAIRS 2", url: "https://www.aviationreporting.eu", text: "Occurrence reports are submitted directly to ECCAIRS 2 via the E2 API." },
       { name: "Dronetag", url: "https://www.dronetag.com", text: "Integration with Dronetag Remote ID devices." },
       { name: "ArduPilot", url: "https://ardupilot.org", text: "Integration with ArduPilot-based drones and import of their log files." },
