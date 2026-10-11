@@ -107,7 +107,7 @@ export const INTEGRATIONS: Integration[] = [
       "AI-sporing av objekter i videoen, med justerbar følsomhet",
       "Fartøy matches automatisk mot AIS – med navn, fart og avstand",
     ],
-    url: "https://atlasuas.com/products/atlaspro",
+    url: "https://atlasuas.com",
   },
   {
     id: "safesky",
