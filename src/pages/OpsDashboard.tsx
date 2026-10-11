@@ -1,11 +1,13 @@
 import {
   ArrowDown,
   CloudSun,
+  FileText,
   LayoutDashboard,
   ListChecks,
   Mail,
   Map as MapIcon,
   MessageSquare,
+  Send,
   Share2,
   Video,
 } from "lucide-react";
@@ -22,8 +24,10 @@ import { scrollToSection } from "@/lib/scroll-to-section";
 const FEATURE_ICONS: Record<OpsFeatureId, LucideIcon> = {
   video: Video,
   map: MapIcon,
+  fh2: Send,
   comms: MessageSquare,
   tasks: ListChecks,
+  log: FileText,
   weather: CloudSun,
   share: Share2,
   layout: LayoutDashboard,
@@ -49,10 +53,14 @@ function DemoButton({ label }: { label: string }) {
 function Screenshot({
   src,
   alt,
+  width,
+  height,
   eager,
 }: {
   src: string;
   alt: string;
+  width: number;
+  height: number;
   eager?: boolean;
 }) {
   return (
@@ -60,8 +68,8 @@ function Screenshot({
       <img
         src={src}
         alt={alt}
-        width={1600}
-        height={950}
+        width={width}
+        height={height}
         loading={eager ? "eager" : "lazy"}
         decoding="async"
         className="block h-auto w-full"
@@ -102,7 +110,13 @@ export default function OpsDashboard({ lang }: { lang: OpsLang }) {
             </div>
           </div>
           <div className="mx-auto mt-12 max-w-6xl md:mt-16">
-            <Screenshot src={c.hero.image.src} alt={c.hero.image.alt} eager />
+            <Screenshot
+              src={c.hero.image.src}
+              alt={c.hero.image.alt}
+              width={c.hero.image.width}
+              height={c.hero.image.height}
+              eager
+            />
           </div>
         </div>
       </section>
@@ -164,11 +178,19 @@ export default function OpsDashboard({ lang }: { lang: OpsLang }) {
               {c.showcase.h2}
             </h2>
           </SectionReveal>
-          <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-2">
+          <div className="mx-auto grid max-w-6xl items-start gap-10 lg:grid-cols-3">
             {c.showcase.items.map((s) => (
-              <SectionReveal key={s.alt}>
+              <SectionReveal
+                key={s.alt}
+                className={s.wide ? "lg:col-span-3" : undefined}
+              >
                 <figure className="space-y-4">
-                  <Screenshot src={s.src} alt={s.alt} />
+                  <Screenshot
+                    src={s.src}
+                    alt={s.alt}
+                    width={s.width}
+                    height={s.height}
+                  />
                   <figcaption className="text-base leading-relaxed text-white/75">
                     {s.caption}
                   </figcaption>

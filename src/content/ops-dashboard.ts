@@ -1,11 +1,14 @@
 /**
  * Copy for the AviSafe Ops dashboard page, one object per language.
  * The page layout lives in src/pages/OpsDashboard.tsx.
- * Names, phone numbers and positions in the screenshots are demo data.
+ * Names, positions and video in the screenshots are demo data; the video
+ * panel shows a still photo in place of a live feed.
  */
 import kommandosentral from "@/assets/ops-kommandosentral.webp";
+import oversiktNorge from "@/assets/ops-oversikt-norge.webp";
 import melding from "@/assets/ops-melding.webp";
-import oppgaverKart from "@/assets/ops-oppgaver-kart.webp";
+import flighthub2 from "@/assets/ops-flighthub2.webp";
+import videokilder from "@/assets/ops-videokilder.webp";
 
 export type OpsLang = "nb" | "en";
 
@@ -15,9 +18,25 @@ export const OPS_PATHS: Record<OpsLang, string> = {
 };
 
 export type OpsFeatureId =
-  "video" | "map" | "comms" | "tasks" | "weather" | "share" | "layout";
+  | "video"
+  | "map"
+  | "fh2"
+  | "comms"
+  | "tasks"
+  | "log"
+  | "weather"
+  | "share"
+  | "layout";
 
-type Image = { src: string; alt: string };
+type Image = { src: string; alt: string; width: number; height: number };
+
+const IMG = {
+  kommandosentral: { src: kommandosentral, width: 1500, height: 1076 },
+  oversiktNorge: { src: oversiktNorge, width: 1500, height: 1076 },
+  melding: { src: melding, width: 636, height: 976 },
+  flighthub2: { src: flighthub2, width: 556, height: 444 },
+  videokilder: { src: videokilder, width: 838, height: 562 },
+};
 
 export type OpsContent = {
   meta: { title: string; description: string };
@@ -35,7 +54,10 @@ export type OpsContent = {
     h2: string;
     items: { id: OpsFeatureId; title: string; points: string[] }[];
   };
-  showcase: { h2: string; items: (Image & { caption: string })[] };
+  showcase: {
+    h2: string;
+    items: (Image & { caption: string; wide?: boolean })[];
+  };
   closing: { h2: string; body: string; requirement: string; cta: string };
 };
 
@@ -44,7 +66,7 @@ export const OPS_DASHBOARD: Record<OpsLang, OpsContent> = {
     meta: {
       title: "Operasjonsdashbord for droneoperasjoner – AviSafe Ops",
       description:
-        "AviSafe Ops samler live video, dronenes posisjon, vær, oppgaver og meldinger til pilotene i ett skjermbilde for operasjonslederen.",
+        "AviSafe Ops samler live video, kart med luftrom og trafikk, vær, oppgaver og SMS med svar fra pilotene i ett skjermbilde for operasjonslederen.",
     },
     home: { name: "Forside", path: "/" },
     navLabel: "Operasjonsdashbord",
@@ -55,8 +77,8 @@ export const OPS_DASHBOARD: Record<OpsLang, OpsContent> = {
       ctaPrimary: "Be om demo",
       ctaSecondary: "Se funksjonene",
       image: {
-        src: kommandosentral,
-        alt: "AviSafe Ops kommandosentral med aktive droner, kart med søkesektor, videopaneler, hendelseslogg og vær fra MET",
+        ...IMG.kommandosentral,
+        alt: "AviSafe Ops kommandosentral med aktiv videokilde, kart med luftromssoner, flytrafikk og søkeområde, oppgaveliste, hendelseslogg og vær fra MET",
       },
     },
     features: {
@@ -66,9 +88,10 @@ export const OPS_DASHBOARD: Record<OpsLang, OpsContent> = {
           id: "video",
           title: "Live video fra alle kilder",
           points: [
-            "Direktevideo fra droner og andre kilder som sender RTMPS, for eksempel bodycam, kjøretøykamera eller bakkekamera.",
-            "Velg mellom videovegg, videofokus eller kartfokus.",
-            "Legg til nye videokilder på sekunder.",
+            "Direktevideo fra droner og alt som sender RTMP eller RTMPS: bodycam, helikopter, en annen operatørs drone, OBS, Larix eller en IP-kamerakoder.",
+            "Legg til en ny videokilde på sekunder. Du får en ferdig adresse og strømnøkkel, og kan slå kilden av og på eller lage ny nøkkel.",
+            "Flere strømmer fra samme kilde, for eksempel vanlig kamera og IR.",
+            "Vis én, fire eller ni strømmer samtidig.",
           ],
         },
         {
@@ -76,52 +99,75 @@ export const OPS_DASHBOARD: Record<OpsLang, OpsContent> = {
           title: "Sanntidskart",
           points: [
             "Dronenes posisjon, høyde, fart og batteri, med spor bak hver drone.",
-            "Luftromsrestriksjoner og SafeSky-trafikk som kartlag.",
-            "Tegn søkesektorer, linjer og punkter direkte i kartet, og send dem til DJI FlightHub 2.",
+            "Luftromssoner og flytrafikk fra SafeSky som kartlag.",
+            "Tegn søkeområder, linjer og punkter direkte i kartet. Arealet regnes ut automatisk.",
+            "Koordinater i både grader og UTM, klare til å leses opp på samband.",
+          ],
+        },
+        {
+          id: "fh2",
+          title: "Send til DJI FlightHub 2",
+          points: [
+            "Send søkeområder, linjer og punkter fra kartet til et valgt prosjekt i DJI FlightHub 2.",
+            "De dukker opp som annotasjoner hos pilotene, så alle jobber ut fra samme kart.",
+            "Velg hvilke kartobjekter som skal sendes.",
           ],
         },
         {
           id: "comms",
-          title: "Kommunikasjon med pilotene",
+          title: "SMS og meldinger med svar",
           points: [
-            "Send meldinger til piloter og innsatspersonell på e-post, SMS og i AviSafe-innboksen.",
-            "Hurtigmeldinger som «Land nå», «Returner» og «Hold posisjon».",
-            "Mottakeren kan svare MOTTATT, WILCO eller CANTCO på SMS. Svaret vises med en gang i dashbordet.",
-            "Legg inn kontaktpersoner per drone eller videokilde, også for folk uten AviSafe-bruker.",
+            "Send meldinger til piloter og innsatspersonell på SMS, e-post og i AviSafe-innboksen, også til folk uten AviSafe-bruker.",
+            "Hurtigmeldinger som «Land nå», «Returner», «Hold posisjon», «Endre høyde» og «Ring meg».",
+            "Be om svar: mottakeren svarer 1, 2 eller 3 (MOTTATT, WILCO eller CANTCO) på SMS, og svaret dukker opp i dashbordet med en gang.",
+            "SMS-historikk per kontakt, merking som haster, og SMS på norsk eller engelsk.",
           ],
         },
         {
           id: "tasks",
-          title: "Oppgaver og hendelseslogg",
+          title: "Oppgaver",
           points: [
-            "Gi oppgaver til team og droner, med prioritet og status.",
-            "Flygninger, video, meldinger, svar og notater logges automatisk med tidsstempel.",
-            "Lag en operasjonslogg som PDF med ett klikk.",
+            "Lag oppgaver og tildel dem til personer og team.",
+            "Lag en oppgave rett fra et søkeområde eller punkt i kartet.",
+            "Start, fullfør eller avbryt oppgaver, og se hva som er gjort.",
+          ],
+        },
+        {
+          id: "log",
+          title: "Hendelseslogg og rapport",
+          points: [
+            "Flygninger, video, meldinger, SMS-svar, oppgaver og kartobjekter logges automatisk med tidsstempel.",
+            "Skriv egne notater rett i loggen.",
+            "Lag en PDF-rapport over operasjonen for perioden du velger, for eksempel de siste 24 timene.",
           ],
         },
         {
           id: "weather",
-          title: "Vær fra MET",
+          title: "Vær fra MET som følger kartet",
           points: [
-            "Gjeldende vind, vindkast, temperatur og nedbør.",
-            "Timesprognose med flyvurdering.",
+            "Vind, vindkast, temperatur, nedbør og luftfuktighet der du ser i kartet. Været oppdateres automatisk når du flytter kartet.",
+            "Timesprognose for vind og vindkast med flyvurdering.",
+            "Varsler om lav temperatur som tapper batteriet, og fare for kondens.",
           ],
         },
         {
           id: "share",
-          title: "Del med samarbeidspartnere",
+          title: "Deling med tilgangsstyring",
           points: [
-            "Del hele dashbordet, eller bare video, kart og posisjon, via en lenke og en kode.",
-            "Du velger hvor lenge delingen varer. Mottakeren trenger ingen innlogging.",
-            "Delingen er skrivebeskyttet, og du kan stoppe den når som helst.",
+            "Del hele dashbordet, eller velg selv: video, kart og posisjoner, aktive enheter, vær, hendelseslogg og pilotnavn.",
+            "Mottakeren får lenke og 6-sifret tilgangskode på e-post eller SMS, og trenger ingen innlogging.",
+            "Du velger hvor lenge delingen varer, og kan stoppe den når som helst. Alle visninger logges.",
+            "Delingen er skrivebeskyttet. Meldinger til piloter vises aldri.",
+            "Inviter brukere i AviSafe til å følge dashbordet.",
           ],
         },
         {
           id: "layout",
-          title: "Tilpass etter oppdraget",
+          title: "Maler etter oppdraget",
           points: [
+            "Bytt mellom kommandosentral, videofokus, kartfokus og videovegg med ett klikk.",
             "Flytt paneler og endre størrelsen på dem.",
-            "Lagre oppsettet som en mal, for eksempel «Leteaksjon», og del malen med kollegaer.",
+            "Lagre egne oppsett som maler, for eksempel «Leteaksjon», og del dem med kollegaer.",
           ],
         },
       ],
@@ -130,16 +176,29 @@ export const OPS_DASHBOARD: Record<OpsLang, OpsContent> = {
       h2: "Slik ser det ut",
       items: [
         {
-          src: melding,
-          alt: "Meldingsvindu i AviSafe Ops med hurtigmeldingene Land nå, Returner, Hold posisjon, Endre høyde og Ring meg, og valg for e-post og SMS",
+          ...IMG.oversiktNorge,
+          wide: true,
+          alt: "AviSafe Ops med kart over Norge med luftromssoner, startpunkter for to team, oppgave, hendelseslogg, live video og vær med varsel om lav temperatur",
           caption:
-            "Send melding til en pilot eller innsatsleder med ett klikk. Hurtigmeldinger, SMS og e-post, også til kontakter uten AviSafe-bruker.",
+            "Hele operasjonen i ett bilde: luftromssoner, startpunkter, oppgaver, hendelseslogg, live video og vær med varsler.",
         },
         {
-          src: oppgaverKart,
-          alt: "AviSafe Ops med oppgaveliste, søkesektor og søkelinje i kartet og to droner med posisjon og høyde",
+          ...IMG.melding,
+          alt: "Meldingsvindu med SMS-historikk og WILCO-svar, hurtigmeldinger, valg for e-post, SMS, haster og be om svar, og SMS-språk",
           caption:
-            "Oppgaver knyttet til droner og team, med søkesektorer og søkelinjer tegnet rett i kartet.",
+            "Send melding med ett klikk og be om svar. WILCO-svaret kommer rett inn i dashbordet.",
+        },
+        {
+          ...IMG.flighthub2,
+          alt: "Dialog for å sende søkeområder og punkter fra kartet til et prosjekt i DJI FlightHub 2",
+          caption:
+            "Send søkeområder og punkter til DJI FlightHub 2 som annotasjoner.",
+        },
+        {
+          ...IMG.videokilder,
+          alt: "Dialog for videokilder over RTMP og RTMPS med to aktive kilder, av/på-bryter og ny nøkkel",
+          caption:
+            "Legg til videokilder over RTMP eller RTMPS, for eksempel bodycam, helikopter eller OBS.",
         },
       ],
     },
@@ -154,7 +213,7 @@ export const OPS_DASHBOARD: Record<OpsLang, OpsContent> = {
     meta: {
       title: "Drone operations dashboard – AviSafe Ops",
       description:
-        "AviSafe Ops brings live video, drone positions, weather, tasks and messages to pilots together on one screen for the operations lead.",
+        "AviSafe Ops brings live video, a map with airspace and traffic, weather, tasks and SMS replies from pilots together on one screen for the operations lead.",
     },
     home: { name: "Home", path: "/en" },
     navLabel: "Ops dashboard",
@@ -165,8 +224,8 @@ export const OPS_DASHBOARD: Record<OpsLang, OpsContent> = {
       ctaPrimary: "Request a demo",
       ctaSecondary: "See the features",
       image: {
-        src: kommandosentral,
-        alt: "AviSafe Ops command centre with active drones, a map with a search sector, video panels, an event log and MET Norway weather",
+        ...IMG.kommandosentral,
+        alt: "AviSafe Ops command centre with an active video source, a map with airspace zones, air traffic and a search area, a task list, an event log and MET Norway weather",
       },
     },
     features: {
@@ -176,9 +235,10 @@ export const OPS_DASHBOARD: Record<OpsLang, OpsContent> = {
           id: "video",
           title: "Live video from every source",
           points: [
-            "Live video from drones and any other source that streams over RTMPS, such as body cams, vehicle cameras or ground cameras.",
-            "Switch between video wall, video focus and map focus.",
-            "Add new video sources in seconds.",
+            "Live video from drones and anything that streams over RTMP or RTMPS: body cams, helicopters, another operator's drone, OBS, Larix or an IP camera encoder.",
+            "Add a new video source in seconds. You get a ready-made URL and stream key, and can switch the source on and off or generate a new key.",
+            "Several streams from one source, for example the normal camera and IR.",
+            "Show one, four or nine streams at once.",
           ],
         },
         {
@@ -186,52 +246,75 @@ export const OPS_DASHBOARD: Record<OpsLang, OpsContent> = {
           title: "Real-time map",
           points: [
             "Drone position, altitude, speed and battery, with a track behind each drone.",
-            "Airspace restrictions and SafeSky traffic as map layers.",
-            "Draw search sectors, lines and points directly on the map and send them to DJI FlightHub 2.",
+            "Airspace zones and SafeSky air traffic as map layers.",
+            "Draw search areas, lines and points directly on the map. The area is calculated automatically.",
+            "Coordinates in both degrees and UTM, ready to read out over the radio.",
+          ],
+        },
+        {
+          id: "fh2",
+          title: "Send to DJI FlightHub 2",
+          points: [
+            "Send search areas, lines and points from the map to a chosen DJI FlightHub 2 project.",
+            "They show up as annotations for the pilots, so everyone works from the same map.",
+            "Choose which map objects to send.",
           ],
         },
         {
           id: "comms",
-          title: "Communication with pilots",
+          title: "SMS and messages with replies",
           points: [
-            "Send messages to pilots and field personnel by e-mail, SMS and the AviSafe inbox.",
-            "Quick messages such as “Land now”, “Return” and “Hold position”.",
-            "Recipients can reply MOTTATT (received), WILCO or CANTCO by SMS. The reply shows up in the dashboard straight away.",
-            "Add contact people per drone or video source, including people without an AviSafe account.",
+            "Message pilots and field personnel by SMS, e-mail and the AviSafe inbox, including people without an AviSafe account.",
+            "Quick messages such as “Land now”, “Return”, “Hold position”, “Change altitude” and “Call me”.",
+            "Request a reply: the recipient answers 1, 2 or 3 (RECEIVED, WILCO or CANTCO) by SMS, and the reply shows up in the dashboard straight away.",
+            "SMS history per contact, urgent flag, and SMS in English or Norwegian.",
           ],
         },
         {
           id: "tasks",
-          title: "Tasks and event log",
+          title: "Tasks",
           points: [
-            "Assign tasks to teams and drones, with priority and status.",
-            "Flights, video, messages, replies and notes are logged automatically with a timestamp.",
-            "Create an operations log as a PDF with one click.",
+            "Create tasks and assign them to people and teams.",
+            "Create a task straight from a search area or point on the map.",
+            "Start, complete or cancel tasks, and see what has been done.",
+          ],
+        },
+        {
+          id: "log",
+          title: "Event log and report",
+          points: [
+            "Flights, video, messages, SMS replies, tasks and map objects are logged automatically with a timestamp.",
+            "Write your own notes straight into the log.",
+            "Create a PDF report of the operation for the period you choose, for example the last 24 hours.",
           ],
         },
         {
           id: "weather",
-          title: "Weather from MET Norway",
+          title: "MET Norway weather that follows the map",
           points: [
-            "Current wind, gusts, temperature and precipitation.",
-            "Hourly forecast with a flight assessment.",
+            "Wind, gusts, temperature, precipitation and humidity wherever you look on the map. The weather updates automatically as you move the map.",
+            "Hourly wind and gust forecast with a flight assessment.",
+            "Warnings for low temperatures that drain batteries, and for risk of condensation.",
           ],
         },
         {
           id: "share",
-          title: "Share with partner agencies",
+          title: "Sharing with access control",
           points: [
-            "Share the whole dashboard, or just video, map and position, with a link and a code.",
-            "You choose how long the share lasts. The recipient does not need to log in.",
-            "Shares are read-only, and you can stop them at any time.",
+            "Share the whole dashboard, or pick what to share: video, map and positions, active assets, weather, event log and pilot names.",
+            "The recipient gets a link and a 6-digit access code by e-mail or SMS, and does not need to log in.",
+            "You choose how long the share lasts and can stop it at any time. Every view is logged.",
+            "Shares are read-only. Messages to pilots are never shown.",
+            "Invite AviSafe users to follow the dashboard.",
           ],
         },
         {
           id: "layout",
-          title: "Adapt it to the mission",
+          title: "Templates for every mission",
           points: [
+            "Switch between command centre, video focus, map focus and video wall with one click.",
             "Move and resize panels.",
-            "Save the layout as a template, for example “Search and rescue”, and share it with colleagues.",
+            "Save your own layouts as templates, for example “Search and rescue”, and share them with colleagues.",
           ],
         },
       ],
@@ -240,16 +323,29 @@ export const OPS_DASHBOARD: Record<OpsLang, OpsContent> = {
       h2: "What it looks like",
       items: [
         {
-          src: melding,
-          alt: "Message dialog in AviSafe Ops with the quick messages Land now, Return, Hold position, Change altitude and Call me, and options for e-mail and SMS",
+          ...IMG.oversiktNorge,
+          wide: true,
+          alt: "AviSafe Ops with a map of Norway showing airspace zones, take-off points for two teams, a task, the event log, live video and weather with a low-temperature warning",
           caption:
-            "Message a pilot or incident commander with one click. Quick messages, SMS and e-mail, including contacts without an AviSafe account.",
+            "The whole operation in one view: airspace zones, take-off points, tasks, event log, live video and weather with warnings.",
         },
         {
-          src: oppgaverKart,
-          alt: "AviSafe Ops with a task list, a search sector and search line on the map, and two drones with position and altitude",
+          ...IMG.melding,
+          alt: "Message dialog with SMS history and a WILCO reply, quick messages, options for e-mail, SMS, urgent and request reply, and SMS language",
           caption:
-            "Tasks linked to drones and teams, with search sectors and search lines drawn straight on the map.",
+            "Send a message with one click and request a reply. The WILCO reply comes straight into the dashboard.",
+        },
+        {
+          ...IMG.flighthub2,
+          alt: "Dialog for sending search areas and points from the map to a DJI FlightHub 2 project",
+          caption:
+            "Send search areas and points to DJI FlightHub 2 as annotations.",
+        },
+        {
+          ...IMG.videokilder,
+          alt: "Video sources dialog for RTMP and RTMPS with two active sources, an on/off switch and a new key button",
+          caption:
+            "Add video sources over RTMP or RTMPS, such as body cams, helicopters or OBS.",
         },
       ],
     },
