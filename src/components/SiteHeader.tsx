@@ -150,6 +150,7 @@ const SiteHeader = () => {
 
   const onEnglish = location.pathname === "/en" || location.pathname.startsWith("/en/");
   const compliancePath = onEnglish ? "/en/compliance" : "/compliance";
+  const opsDashboardPath = onEnglish ? "/en/ops-dashboard" : "/operasjonsdashbord";
   const smsItems = [
     { label: onEnglish ? "Overview" : "Oversikt", action: () => scrollToId("hero-section") },
     {
@@ -205,7 +206,7 @@ const SiteHeader = () => {
             <nav className="hidden xl:flex items-center gap-1.5 2xl:gap-2">
               <HoverDropdown label={t("nav.sms")} items={smsItems} scrolled={scrolled} />
 
-              <button onClick={() => goTo("/operasjonsdashbord")} className={`${navButtonBase} ${navButtonTheme}`}>
+              <button onClick={() => goTo(opsDashboardPath)} className={`${navButtonBase} ${navButtonTheme}`}>
                 {t("nav.opsDashboard")}
               </button>
 
@@ -317,7 +318,7 @@ const SiteHeader = () => {
                     </Accordion>
 
                     <button
-                      onClick={() => goTo("/operasjonsdashbord")}
+                      onClick={() => goTo(opsDashboardPath)}
                       className="text-left px-3 py-3 text-base font-medium uppercase tracking-wide hover:bg-white/10 rounded-md"
                     >
                       {t("nav.opsDashboard")}

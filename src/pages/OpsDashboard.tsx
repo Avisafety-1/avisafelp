@@ -11,7 +11,11 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import SectionReveal from "@/components/SectionReveal";
-import { OPS_PAGE, type OpsFeatureId } from "@/content/ops-dashboard";
+import {
+  OPS_DASHBOARD,
+  type OpsFeatureId,
+  type OpsLang,
+} from "@/content/ops-dashboard";
 import { DEMO_MAILTO } from "@/content/en/landing-pages";
 import { scrollToSection } from "@/lib/scroll-to-section";
 
@@ -66,8 +70,9 @@ function Screenshot({
   );
 }
 
-export default function OpsDashboard() {
-  const c = OPS_PAGE;
+export default function OpsDashboard({ lang }: { lang: OpsLang }) {
+  const c = OPS_DASHBOARD[lang];
+  const featuresId = lang === "nb" ? "funksjoner" : "features";
 
   return (
     <main className="min-h-screen overflow-x-hidden">
@@ -88,7 +93,7 @@ export default function OpsDashboard() {
               <DemoButton label={c.hero.ctaPrimary} />
               <button
                 type="button"
-                onClick={() => scrollToSection("funksjoner")}
+                onClick={() => scrollToSection(featuresId)}
                 className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-semibold text-white transition-colors hover:bg-white/10"
               >
                 {c.hero.ctaSecondary}
@@ -104,7 +109,7 @@ export default function OpsDashboard() {
 
       {/* Features */}
       <section
-        id="funksjoner"
+        id={featuresId}
         className={`${LIGHT} scroll-mt-20 py-16 md:py-24`}
         aria-labelledby="funksjoner-h2"
       >

@@ -35,6 +35,7 @@ import { Route as EnDroneFleetManagementRouteImport } from './routes/en.drone-fl
 import { Route as EnDroneSafetyManagementSystemRouteImport } from './routes/en.drone-safety-management-system'
 import { Route as EnLiveAirspaceAwarenessRouteImport } from './routes/en.live-airspace-awareness'
 import { Route as EnOccurrenceReportingRouteImport } from './routes/en.occurrence-reporting'
+import { Route as EnOpsDashboardRouteImport } from './routes/en.ops-dashboard'
 import { Route as EnPartnersRouteImport } from './routes/en.partners'
 import { Route as EnSoraRiskAssessmentRouteImport } from './routes/en.sora-risk-assessment'
 import { Route as ProductHandleRouteImport } from './routes/product.$handle'
@@ -170,6 +171,11 @@ const EnOccurrenceReportingRoute = EnOccurrenceReportingRouteImport.update({
   path: '/en/occurrence-reporting',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EnOpsDashboardRoute = EnOpsDashboardRouteImport.update({
+  id: '/en/ops-dashboard',
+  path: '/en/ops-dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EnPartnersRoute = EnPartnersRouteImport.update({
   id: '/en/partners',
   path: '/en/partners',
@@ -210,6 +216,7 @@ export interface FileRoutesByFullPath {
   '/en/drone-safety-management-system': typeof EnDroneSafetyManagementSystemRoute
   '/en/live-airspace-awareness': typeof EnLiveAirspaceAwarenessRoute
   '/en/occurrence-reporting': typeof EnOccurrenceReportingRoute
+  '/en/ops-dashboard': typeof EnOpsDashboardRoute
   '/en/partners': typeof EnPartnersRoute
   '/en/sora-risk-assessment': typeof EnSoraRiskAssessmentRoute
   '/product/$handle': typeof ProductHandleRoute
@@ -241,6 +248,7 @@ export interface FileRoutesByTo {
   '/en/drone-safety-management-system': typeof EnDroneSafetyManagementSystemRoute
   '/en/live-airspace-awareness': typeof EnLiveAirspaceAwarenessRoute
   '/en/occurrence-reporting': typeof EnOccurrenceReportingRoute
+  '/en/ops-dashboard': typeof EnOpsDashboardRoute
   '/en/partners': typeof EnPartnersRoute
   '/en/sora-risk-assessment': typeof EnSoraRiskAssessmentRoute
   '/product/$handle': typeof ProductHandleRoute
@@ -273,6 +281,7 @@ export interface FileRoutesById {
   '/en/drone-safety-management-system': typeof EnDroneSafetyManagementSystemRoute
   '/en/live-airspace-awareness': typeof EnLiveAirspaceAwarenessRoute
   '/en/occurrence-reporting': typeof EnOccurrenceReportingRoute
+  '/en/ops-dashboard': typeof EnOpsDashboardRoute
   '/en/partners': typeof EnPartnersRoute
   '/en/sora-risk-assessment': typeof EnSoraRiskAssessmentRoute
   '/product/$handle': typeof ProductHandleRoute
@@ -306,6 +315,7 @@ export interface FileRouteTypes {
     | '/en/drone-safety-management-system'
     | '/en/live-airspace-awareness'
     | '/en/occurrence-reporting'
+    | '/en/ops-dashboard'
     | '/en/partners'
     | '/en/sora-risk-assessment'
     | '/product/$handle'
@@ -337,6 +347,7 @@ export interface FileRouteTypes {
     | '/en/drone-safety-management-system'
     | '/en/live-airspace-awareness'
     | '/en/occurrence-reporting'
+    | '/en/ops-dashboard'
     | '/en/partners'
     | '/en/sora-risk-assessment'
     | '/product/$handle'
@@ -368,6 +379,7 @@ export interface FileRouteTypes {
     | '/en/drone-safety-management-system'
     | '/en/live-airspace-awareness'
     | '/en/occurrence-reporting'
+    | '/en/ops-dashboard'
     | '/en/partners'
     | '/en/sora-risk-assessment'
     | '/product/$handle'
@@ -400,6 +412,7 @@ export interface RootRouteChildren {
   EnDroneSafetyManagementSystemRoute: typeof EnDroneSafetyManagementSystemRoute
   EnLiveAirspaceAwarenessRoute: typeof EnLiveAirspaceAwarenessRoute
   EnOccurrenceReportingRoute: typeof EnOccurrenceReportingRoute
+  EnOpsDashboardRoute: typeof EnOpsDashboardRoute
   EnPartnersRoute: typeof EnPartnersRoute
   EnSoraRiskAssessmentRoute: typeof EnSoraRiskAssessmentRoute
   ProductHandleRoute: typeof ProductHandleRoute
@@ -592,6 +605,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnOccurrenceReportingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/en/ops-dashboard': {
+      id: '/en/ops-dashboard'
+      path: '/en/ops-dashboard'
+      fullPath: '/en/ops-dashboard'
+      preLoaderRoute: typeof EnOpsDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/en/partners': {
       id: '/en/partners'
       path: '/en/partners'
@@ -640,6 +660,7 @@ const rootRouteChildren: RootRouteChildren = {
   EnDroneSafetyManagementSystemRoute: EnDroneSafetyManagementSystemRoute,
   EnLiveAirspaceAwarenessRoute: EnLiveAirspaceAwarenessRoute,
   EnOccurrenceReportingRoute: EnOccurrenceReportingRoute,
+  EnOpsDashboardRoute: EnOpsDashboardRoute,
   EnPartnersRoute: EnPartnersRoute,
   EnSoraRiskAssessmentRoute: EnSoraRiskAssessmentRoute,
   ProductHandleRoute: ProductHandleRoute,
