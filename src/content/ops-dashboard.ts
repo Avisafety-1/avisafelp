@@ -31,7 +31,7 @@ export type OpsFeatureId =
 type Image = { src: string; alt: string; width: number; height: number };
 
 const IMG = {
-  kommandosentral: { src: kommandosentral, width: 1500, height: 1076 },
+  kommandosentral: { src: kommandosentral, width: 2000, height: 1468 },
   oversiktNorge: { src: oversiktNorge, width: 1500, height: 1076 },
   melding: { src: melding, width: 636, height: 976 },
   flighthub2: { src: flighthub2, width: 556, height: 444 },
@@ -78,7 +78,7 @@ export const OPS_DASHBOARD: Record<OpsLang, OpsContent> = {
       ctaSecondary: "Se funksjonene",
       image: {
         ...IMG.kommandosentral,
-        alt: "AviOps kommandosentral med aktiv videokilde, kart med luftromssoner, flytrafikk og søkeområde, oppgaveliste, hendelseslogg og vær fra MET",
+        alt: "AviOps kommandosentral med operasjonsvelger, visningsvalg, aktive enheter med roller, kart over Norge med luftromssoner og flytrafikk, live video, oppgaver, hendelseslogg og vær fra MET med varsler",
       },
     },
     features: {
@@ -225,7 +225,7 @@ export const OPS_DASHBOARD: Record<OpsLang, OpsContent> = {
       ctaSecondary: "See the features",
       image: {
         ...IMG.kommandosentral,
-        alt: "AviOps command centre with an active video source, a map with airspace zones, air traffic and a search area, a task list, an event log and MET Norway weather",
+        alt: "AviOps command centre with an operation selector, view options, active assets with roles, a map of Norway with airspace zones and air traffic, live video, tasks, an event log and MET Norway weather with warnings",
       },
     },
     features: {
