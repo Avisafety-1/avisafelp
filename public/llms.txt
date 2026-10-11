@@ -11,7 +11,7 @@ AviSafe was founded in Norway in 2025 by Gard Haug-Hansen (CEO and co-founder; p
 - [SORA risk assessment](https://avisafe.no/en/sora-risk-assessment): Decision support for risk assessment under SORA 2.5 (JARUS/EASA) with a structured, traceable report.
 - [Occurrence reporting](https://avisafe.no/en/occurrence-reporting): Occurrence reporting and follow-up with direct ECCAIRS 2 integration via the E2 API.
 - [Drone fleet management](https://avisafe.no/en/drone-fleet-management): Drones, equipment, pilots, competence, maintenance and flight logs, with DJI Cloud API, Dronetag and ArduPilot integrations.
-- [Ops dashboard](https://avisafe.no/en/ops-dashboard): AviSafe Ops, a real-time operations dashboard with live video (RTMP/RTMPS), drone positions, airspace and air traffic, MET Norway weather, tasks, an event log with PDF reports, SMS to pilots with replies, sending map objects to DJI FlightHub 2 and read-only sharing with access codes.
+- [AviOps](https://avisafe.no/en/ops-dashboard): AviOps, a real-time operations dashboard with live video (RTMP/RTMPS), drone positions, airspace and air traffic, MET Norway weather, tasks, an event log with PDF reports, SMS to pilots with replies, sending map objects to DJI FlightHub 2 and read-only sharing with access codes.
 - [Live airspace awareness](https://avisafe.no/en/live-airspace-awareness): Live SafeSky air traffic, position sharing at take-off, NOTAM and airspace checks, and real-time weather.
 - [About](https://avisafe.no/en/about): AviSafe AS, Norway, founded 2025 by Gard Haug-Hansen and Rikard Bjørklund.
 - [Partners](https://avisafe.no/en/partners): Integrations with SafeSky, DJI, ECCAIRS 2, Dronetag and ArduPilot.
@@ -19,7 +19,7 @@ AviSafe was founded in Norway in 2025 by Gard Haug-Hansen (CEO and co-founder; p
 ## Norwegian pages
 
 - [Home](https://avisafe.no/): Overview of the AviSafe operations platform, security approach and team.
-- [Ops dashboard](https://avisafe.no/operasjonsdashbord): Norwegian version of the AviSafe Ops operations dashboard page.
+- [AviOps](https://avisafe.no/operasjonsdashbord): Norwegian version of the AviOps operations dashboard page.
 - [SORA](https://avisafe.no/sora): AviSafe provides support for risk assessment under SORA 2.5 for drone missions.
 - [SORA process](https://avisafe.no/sora-prosess): Interactive overview of the SORA workflow in AviSafe.
 - [Operations](https://avisafe.no/operasjoner): Drone services and operational support offered by AviSafe.

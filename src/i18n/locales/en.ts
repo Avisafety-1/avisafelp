@@ -14,7 +14,7 @@ const en: Translations = {
     smsSecurity: "Security",
     compliance: "Compliance",
     operations: "Operations",
-    opsDashboard: "Ops dashboard",
+    opsDashboard: "AviOps",
     shop: "Shop",
     articlesMedia: "Articles & Media",
     newsletter: "Newsletter",
