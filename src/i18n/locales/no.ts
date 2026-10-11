@@ -67,7 +67,7 @@ const no = {
       ],
     },
     gard: {
-      title: "CEO og medgründer – produktutvikling",
+      title: "CEO og medgründer – Product Manager (PM)",
       cv: [
         "13 års erfaring som pilot",
         "Erfaring med planlegging, ledelse og supervisjon av større luftoperasjoner",

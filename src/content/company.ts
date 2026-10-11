@@ -17,7 +17,7 @@ export const ABOUT = {
       {
         name: "Gard Haug-Hansen",
         jobTitle: "CEO og medgründer",
-        role: "CEO og medgründer – produktutvikling",
+        role: "CEO og medgründer – Product Manager (PM)",
         cv: [
           "13 års erfaring som pilot",
           "Erfaring med planlegging, ledelse og supervisjon av større luftoperasjoner",
@@ -56,7 +56,7 @@ export const ABOUT = {
       {
         name: "Gard Haug-Hansen",
         jobTitle: "CEO and Co-founder",
-        role: "CEO and Co-founder – Product Development",
+        role: "CEO and Co-founder – Product Manager (PM)",
         cv: [
           "13 years of experience as a pilot",
           "Experience with planning, management and supervision of major air operations",

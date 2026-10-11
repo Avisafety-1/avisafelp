@@ -69,7 +69,7 @@ const en: Translations = {
       ],
     },
     gard: {
-      title: "CEO & Co-founder – Product Development",
+      title: "CEO & Co-founder – Product Manager (PM)",
       cv: [
         "13 years of experience as a pilot",
         "Experience with planning, management and supervision of major air operations",
