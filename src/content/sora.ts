@@ -355,9 +355,14 @@ export const SORA_PAGE = {
         "Rapporten ber om manuell sjekk.",
       ],
       [
-        "AviSafe luftromssjekk (interne soner og OpenAIP)",
-        "CTR/TIZ, 5 km-soner, restriksjons- og fareområder langs ruten",
+        "Nasjonale UAS-geosoner (for Norge: dronesoner.no)",
+        "CTR/TIZ, 5 km-soner, restriksjons- og fareområder langs ruten, fra de offisielt publiserte sonene der de finnes",
         "«Må sjekkes manuelt». Luftrom blir minst BETINGET.",
+      ],
+      [
+        "NOTAM",
+        "Aktive NOTAM for området og tidspunktet",
+        "Sjekk NOTAM manuelt.",
       ],
       [
         "SSB befolkning 250 m-rutenett (Norge), Eurostat 1 km (utlandet)",
@@ -465,7 +470,7 @@ export const SORA_PAGE = {
       "Vurderingen er beslutningsstøtte og en del av operatørens SMS. Ved regulatorisk tvil gjelder operatørens godkjente prosedyrer, Luftfartstilsynets krav og EASA-regelverket.",
     ],
     sources:
-      "Kilder: JARUS SORA 2.5 · Luftfartstilsynets SORA 2.5-kalkulator · (EU) 2019/947 og (EU) 2019/945 · MET Norway · NOAA SWPC · SSB · Geonorge · Eurostat",
+      "Kilder: JARUS SORA 2.5 · Luftfartstilsynets SORA 2.5-kalkulator · (EU) 2019/947 og (EU) 2019/945 · dronesoner.no · MET Norway · NOAA SWPC · SSB · Geonorge · Eurostat",
   },
   cta: {
     h2: "Se risikovurderingen på deres egne oppdrag",

@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ComplianceRouteImport } from './routes/compliance'
 import { Route as GalleriRouteImport } from './routes/galleri'
+import { Route as IntegrasjonerRouteImport } from './routes/integrasjoner'
 import { Route as LoggRouteImport } from './routes/logg'
 import { Route as OmOssRouteImport } from './routes/om-oss'
 import { Route as OperasjonerRouteImport } from './routes/operasjoner'
@@ -50,6 +51,11 @@ const ComplianceRoute = ComplianceRouteImport.update({
 const GalleriRoute = GalleriRouteImport.update({
   id: '/galleri',
   path: '/galleri',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IntegrasjonerRoute = IntegrasjonerRouteImport.update({
+  id: '/integrasjoner',
+  path: '/integrasjoner',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoggRoute = LoggRouteImport.update({
@@ -178,6 +184,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/compliance': typeof ComplianceRoute
   '/galleri': typeof GalleriRoute
+  '/integrasjoner': typeof IntegrasjonerRoute
   '/logg': typeof LoggRoute
   '/om-oss': typeof OmOssRoute
   '/operasjoner': typeof OperasjonerRoute
@@ -207,6 +214,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/compliance': typeof ComplianceRoute
   '/galleri': typeof GalleriRoute
+  '/integrasjoner': typeof IntegrasjonerRoute
   '/logg': typeof LoggRoute
   '/om-oss': typeof OmOssRoute
   '/operasjoner': typeof OperasjonerRoute
@@ -237,6 +245,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/compliance': typeof ComplianceRoute
   '/galleri': typeof GalleriRoute
+  '/integrasjoner': typeof IntegrasjonerRoute
   '/logg': typeof LoggRoute
   '/om-oss': typeof OmOssRoute
   '/operasjoner': typeof OperasjonerRoute
@@ -268,6 +277,7 @@ export interface FileRouteTypes {
     | '/'
     | '/compliance'
     | '/galleri'
+    | '/integrasjoner'
     | '/logg'
     | '/om-oss'
     | '/operasjoner'
@@ -297,6 +307,7 @@ export interface FileRouteTypes {
     | '/'
     | '/compliance'
     | '/galleri'
+    | '/integrasjoner'
     | '/logg'
     | '/om-oss'
     | '/operasjoner'
@@ -326,6 +337,7 @@ export interface FileRouteTypes {
     | '/'
     | '/compliance'
     | '/galleri'
+    | '/integrasjoner'
     | '/logg'
     | '/om-oss'
     | '/operasjoner'
@@ -356,6 +368,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ComplianceRoute: typeof ComplianceRoute
   GalleriRoute: typeof GalleriRoute
+  IntegrasjonerRoute: typeof IntegrasjonerRoute
   LoggRoute: typeof LoggRoute
   OmOssRoute: typeof OmOssRoute
   OperasjonerRoute: typeof OperasjonerRoute
@@ -403,6 +416,13 @@ declare module '@tanstack/react-router' {
       path: '/galleri'
       fullPath: '/galleri'
       preLoaderRoute: typeof GalleriRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/integrasjoner': {
+      id: '/integrasjoner'
+      path: '/integrasjoner'
+      fullPath: '/integrasjoner'
+      preLoaderRoute: typeof IntegrasjonerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/logg': {
@@ -580,6 +600,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ComplianceRoute: ComplianceRoute,
   GalleriRoute: GalleriRoute,
+  IntegrasjonerRoute: IntegrasjonerRoute,
   LoggRoute: LoggRoute,
   OmOssRoute: OmOssRoute,
   OperasjonerRoute: OperasjonerRoute,

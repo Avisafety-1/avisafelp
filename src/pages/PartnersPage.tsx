@@ -34,6 +34,7 @@ export default function PartnersPage({ lang }: { lang: "nb" | "en" }) {
           </>
         ) : (
           <p className="text-muted-foreground">
+            <Link to="/integrasjoner" className="text-primary hover:underline">Alle integrasjoner</Link> ·{" "}
             <Link to="/om-oss" className="text-primary hover:underline">Om AviSafe</Link> ·{" "}
             <Link to="/sora" className="text-primary hover:underline">SORA</Link>
           </p>

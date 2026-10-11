@@ -2,7 +2,7 @@ import { useRef, useEffect, useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useInView } from "@/hooks/use-in-view";
 import { Plane, ClipboardList, BarChart3, Cloud, Route, ChevronLeft, ChevronRight, FileText, AlertTriangle, CheckSquare, Navigation, Brain, Sparkles } from "lucide-react";
-import IntegrationsSelector from "@/components/IntegrationsSelector";
+import IntegrationsCarousel from "@/components/IntegrationsCarousel";
 import SoraRiskLoader from "@/components/SoraRiskLoader";
 import SectionReveal from "@/components/SectionReveal";
 import { Button } from "@/components/ui/button";
@@ -182,9 +182,8 @@ const ProductShowcase = () => {
       </SectionReveal>
 
 
-      {/* New interactive integrations selector */}
       <SectionReveal id="integrations-section" className="scroll-mt-24">
-        <IntegrationsSelector />
+        <IntegrationsCarousel />
       </SectionReveal>
     </section>;
 };
