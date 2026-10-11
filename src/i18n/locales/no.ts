@@ -56,7 +56,7 @@ const no = {
     subtitle: "Erfarne eksperter dedikert til å gjøre luftfarten tryggere",
     cta: "Er du klar for mer effektiv drift og sikkerhetsstyring?",
     rikard: {
-      title: "Medgründer, salg og markedsføring",
+      title: "Medgründer – Chief Commercial Officer (CCO)",
       cv: [
         "Bakgrunn fra shipping og maritim redningstjeneste",
         "2 års erfaring som Quality Assurance",

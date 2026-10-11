@@ -2,7 +2,7 @@
 
 > AviSafe is a Norwegian B2B SaaS platform for drone operators, combining fleet management, a safety management system (SMS), occurrence reporting with direct ECCAIRS integration, support for risk assessment under SORA 2.5 and a live airspace picture in one operations system.
 
-AviSafe was founded in Norway in 2025 by Gard Haug-Hansen (CEO and co-founder; pilot and former EASA Safety Manager at a Norwegian airport) and Rikard Bjørklund (co-founder, sales and marketing). It is used by grid and energy companies, municipalities and schools in Norway. AviSafe is built to support operators in the EASA specific category and LUC holders. Contact: kontakt@avisafe.no.
+AviSafe was founded in Norway in 2025 by Gard Haug-Hansen (CEO, co-founder and Product Manager; pilot and former EASA Safety Manager at a Norwegian airport) and Rikard Bjørklund (co-founder and Chief Commercial Officer, CCO). It is used by grid and energy companies, municipalities and schools in Norway. AviSafe is built to support operators in the EASA specific category and LUC holders. Contact: kontakt@avisafe.no.
 
 ## English pages
 

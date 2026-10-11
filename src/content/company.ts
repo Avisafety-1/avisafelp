@@ -29,8 +29,8 @@ export const ABOUT = {
       },
       {
         name: "Rikard Bjørklund",
-        jobTitle: "Medgründer, salg og markedsføring",
-        role: "Medgründer, salg og markedsføring",
+        jobTitle: "Medgründer – Chief Commercial Officer (CCO)",
+        role: "Medgründer – Chief Commercial Officer (CCO)",
         cv: [
           "Bakgrunn fra shipping og maritim redningstjeneste",
           "2 års erfaring som Quality Assurance",
@@ -68,8 +68,8 @@ export const ABOUT = {
       },
       {
         name: "Rikard Bjørklund",
-        jobTitle: "Co-founder, Sales and Marketing",
-        role: "Co-founder, Sales and Marketing",
+        jobTitle: "Co-founder – Chief Commercial Officer (CCO)",
+        role: "Co-founder – Chief Commercial Officer (CCO)",
         cv: [
           "Background from shipping and maritime rescue services",
           "2 years of experience in Quality Assurance",

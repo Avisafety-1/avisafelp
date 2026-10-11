@@ -6,7 +6,7 @@ const FOUNDERS_LD = {
   "@context": "https://schema.org",
   "@graph": [
     { "@type": "Person", name: "Gard Haug-Hansen", jobTitle: "CEO og medgründer", worksFor: { "@type": "Organization", name: "AviSafe", url: "https://avisafe.no" } },
-    { "@type": "Person", name: "Rikard Bjørklund", jobTitle: "Medgründer, salg og markedsføring", worksFor: { "@type": "Organization", name: "AviSafe", url: "https://avisafe.no" } },
+    { "@type": "Person", name: "Rikard Bjørklund", jobTitle: "Medgründer – Chief Commercial Officer (CCO)", worksFor: { "@type": "Organization", name: "AviSafe", url: "https://avisafe.no" } },
   ],
 };
 

@@ -58,7 +58,7 @@ const en: Translations = {
     subtitle: "Experienced experts dedicated to making aviation safer",
     cta: "Ready for more efficient operations and safety management?",
     rikard: {
-      title: "Co-founder, Sales & Marketing",
+      title: "Co-founder – Chief Commercial Officer (CCO)",
       cv: [
         "Background from shipping and maritime rescue services",
         "2 years of experience in Quality Assurance",
