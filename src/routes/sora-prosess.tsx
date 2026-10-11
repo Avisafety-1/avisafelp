@@ -1,9 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { pageHead } from "@/lib/seo";
-import SoraProcess from "@/pages/SoraProcess";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 
+// The process page was merged into /sora; keep old links working.
 export const Route = createFileRoute("/sora-prosess")({
-  staticData: { sitemap: true },
-  head: () => pageHead({ path: '/sora-prosess', title: 'SORA-prosessen fase for fase | AviSafe', description: 'Interaktiv oversikt over hvordan AviSafe strukturerer SORA-vurderingen, fra oppdragsgrunnlag til anbefaling.' }),
-  component: SoraProcess,
+  staticData: { sitemap: false },
+  beforeLoad: () => {
+    throw redirect({ to: "/sora", statusCode: 301 });
+  },
 });
