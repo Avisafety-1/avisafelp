@@ -6,6 +6,7 @@ export const LANGUAGE_PAIRS: { nb: string; en: string }[] = [
   { nb: "/", en: "/en" },
   { nb: "/om-oss", en: "/en/about" },
   { nb: "/partnere", en: "/en/partners" },
+  { nb: "/compliance", en: "/en/compliance" },
 ];
 
 export type PageLang = "nb" | "en";

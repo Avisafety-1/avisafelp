@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ComplianceRouteImport } from './routes/compliance'
 import { Route as GalleriRouteImport } from './routes/galleri'
 import { Route as LoggRouteImport } from './routes/logg'
 import { Route as OmOssRouteImport } from './routes/om-oss'
@@ -27,6 +28,7 @@ import { Route as ButikkIndexRouteImport } from './routes/butikk.index'
 import { Route as ButikkCheckoutRouteImport } from './routes/butikk.checkout'
 import { Route as EnIndexRouteImport } from './routes/en.index'
 import { Route as EnAboutRouteImport } from './routes/en.about'
+import { Route as EnComplianceRouteImport } from './routes/en.compliance'
 import { Route as EnDroneFleetManagementRouteImport } from './routes/en.drone-fleet-management'
 import { Route as EnDroneSafetyManagementSystemRouteImport } from './routes/en.drone-safety-management-system'
 import { Route as EnLiveAirspaceAwarenessRouteImport } from './routes/en.live-airspace-awareness'
@@ -38,6 +40,11 @@ import { Route as ProductHandleRouteImport } from './routes/product.$handle'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComplianceRoute = ComplianceRouteImport.update({
+  id: '/compliance',
+  path: '/compliance',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GalleriRoute = GalleriRouteImport.update({
@@ -125,6 +132,11 @@ const EnAboutRoute = EnAboutRouteImport.update({
   path: '/en/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EnComplianceRoute = EnComplianceRouteImport.update({
+  id: '/en/compliance',
+  path: '/en/compliance',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EnDroneFleetManagementRoute = EnDroneFleetManagementRouteImport.update({
   id: '/en/drone-fleet-management',
   path: '/en/drone-fleet-management',
@@ -164,6 +176,7 @@ const ProductHandleRoute = ProductHandleRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/compliance': typeof ComplianceRoute
   '/galleri': typeof GalleriRoute
   '/logg': typeof LoggRoute
   '/om-oss': typeof OmOssRoute
@@ -178,6 +191,7 @@ export interface FileRoutesByFullPath {
   '/artikler/$slug': typeof ArtiklerSlugRoute
   '/butikk/checkout': typeof ButikkCheckoutRoute
   '/en/about': typeof EnAboutRoute
+  '/en/compliance': typeof EnComplianceRoute
   '/en/drone-fleet-management': typeof EnDroneFleetManagementRoute
   '/en/drone-safety-management-system': typeof EnDroneSafetyManagementSystemRoute
   '/en/live-airspace-awareness': typeof EnLiveAirspaceAwarenessRoute
@@ -191,6 +205,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/compliance': typeof ComplianceRoute
   '/galleri': typeof GalleriRoute
   '/logg': typeof LoggRoute
   '/om-oss': typeof OmOssRoute
@@ -205,6 +220,7 @@ export interface FileRoutesByTo {
   '/artikler/$slug': typeof ArtiklerSlugRoute
   '/butikk/checkout': typeof ButikkCheckoutRoute
   '/en/about': typeof EnAboutRoute
+  '/en/compliance': typeof EnComplianceRoute
   '/en/drone-fleet-management': typeof EnDroneFleetManagementRoute
   '/en/drone-safety-management-system': typeof EnDroneSafetyManagementSystemRoute
   '/en/live-airspace-awareness': typeof EnLiveAirspaceAwarenessRoute
@@ -219,6 +235,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/compliance': typeof ComplianceRoute
   '/galleri': typeof GalleriRoute
   '/logg': typeof LoggRoute
   '/om-oss': typeof OmOssRoute
@@ -233,6 +250,7 @@ export interface FileRoutesById {
   '/artikler/$slug': typeof ArtiklerSlugRoute
   '/butikk/checkout': typeof ButikkCheckoutRoute
   '/en/about': typeof EnAboutRoute
+  '/en/compliance': typeof EnComplianceRoute
   '/en/drone-fleet-management': typeof EnDroneFleetManagementRoute
   '/en/drone-safety-management-system': typeof EnDroneSafetyManagementSystemRoute
   '/en/live-airspace-awareness': typeof EnLiveAirspaceAwarenessRoute
@@ -248,6 +266,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/compliance'
     | '/galleri'
     | '/logg'
     | '/om-oss'
@@ -262,6 +281,7 @@ export interface FileRouteTypes {
     | '/artikler/$slug'
     | '/butikk/checkout'
     | '/en/about'
+    | '/en/compliance'
     | '/en/drone-fleet-management'
     | '/en/drone-safety-management-system'
     | '/en/live-airspace-awareness'
@@ -275,6 +295,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/compliance'
     | '/galleri'
     | '/logg'
     | '/om-oss'
@@ -289,6 +310,7 @@ export interface FileRouteTypes {
     | '/artikler/$slug'
     | '/butikk/checkout'
     | '/en/about'
+    | '/en/compliance'
     | '/en/drone-fleet-management'
     | '/en/drone-safety-management-system'
     | '/en/live-airspace-awareness'
@@ -302,6 +324,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/compliance'
     | '/galleri'
     | '/logg'
     | '/om-oss'
@@ -316,6 +339,7 @@ export interface FileRouteTypes {
     | '/artikler/$slug'
     | '/butikk/checkout'
     | '/en/about'
+    | '/en/compliance'
     | '/en/drone-fleet-management'
     | '/en/drone-safety-management-system'
     | '/en/live-airspace-awareness'
@@ -330,6 +354,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ComplianceRoute: typeof ComplianceRoute
   GalleriRoute: typeof GalleriRoute
   LoggRoute: typeof LoggRoute
   OmOssRoute: typeof OmOssRoute
@@ -344,6 +369,7 @@ export interface RootRouteChildren {
   ArtiklerSlugRoute: typeof ArtiklerSlugRoute
   ButikkCheckoutRoute: typeof ButikkCheckoutRoute
   EnAboutRoute: typeof EnAboutRoute
+  EnComplianceRoute: typeof EnComplianceRoute
   EnDroneFleetManagementRoute: typeof EnDroneFleetManagementRoute
   EnDroneSafetyManagementSystemRoute: typeof EnDroneSafetyManagementSystemRoute
   EnLiveAirspaceAwarenessRoute: typeof EnLiveAirspaceAwarenessRoute
@@ -363,6 +389,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/compliance': {
+      id: '/compliance'
+      path: '/compliance'
+      fullPath: '/compliance'
+      preLoaderRoute: typeof ComplianceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/galleri': {
@@ -484,6 +517,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnAboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/en/compliance': {
+      id: '/en/compliance'
+      path: '/en/compliance'
+      fullPath: '/en/compliance'
+      preLoaderRoute: typeof EnComplianceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/en/drone-fleet-management': {
       id: '/en/drone-fleet-management'
       path: '/en/drone-fleet-management'
@@ -538,6 +578,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ComplianceRoute: ComplianceRoute,
   GalleriRoute: GalleriRoute,
   LoggRoute: LoggRoute,
   OmOssRoute: OmOssRoute,
@@ -552,6 +593,7 @@ const rootRouteChildren: RootRouteChildren = {
   ArtiklerSlugRoute: ArtiklerSlugRoute,
   ButikkCheckoutRoute: ButikkCheckoutRoute,
   EnAboutRoute: EnAboutRoute,
+  EnComplianceRoute: EnComplianceRoute,
   EnDroneFleetManagementRoute: EnDroneFleetManagementRoute,
   EnDroneSafetyManagementSystemRoute: EnDroneSafetyManagementSystemRoute,
   EnLiveAirspaceAwarenessRoute: EnLiveAirspaceAwarenessRoute,

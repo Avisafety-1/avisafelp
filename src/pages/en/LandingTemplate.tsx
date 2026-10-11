@@ -4,6 +4,7 @@ import { DEMO_MAILTO, LANDING_PAGES, type LandingPage } from "@/content/en/landi
 
 export const EN_RELATED_LINKS = [
   ...LANDING_PAGES.map((p) => ({ to: p.path, label: p.navLabel })),
+  { to: "/en/compliance", label: "Compliance" },
   { to: "/en/about", label: "About AviSafe" },
   { to: "/en/partners", label: "Partners and integrations" },
 ];
