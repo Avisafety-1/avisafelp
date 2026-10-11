@@ -72,7 +72,7 @@ const HoverDropdown = ({ label, items, scrolled }: HoverDropdownProps) => {
       onMouseLeave={handleLeave}
     >
       <button
-        className={`px-4 py-2 text-sm font-medium uppercase tracking-wider transition-colors duration-300 inline-flex items-center gap-1 outline-hidden rounded-md ${buttonBg}`}
+        className={`px-2.5 2xl:px-4 py-2 text-sm font-medium uppercase tracking-wide 2xl:tracking-wider whitespace-nowrap transition-colors duration-300 inline-flex items-center gap-1 outline-hidden rounded-md ${buttonBg}`}
       >
         {label}
         <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
@@ -143,7 +143,7 @@ const SiteHeader = () => {
   };
 
   const navButtonBase =
-    "px-4 py-2 text-sm font-medium uppercase tracking-wider transition-colors duration-300 inline-flex items-center gap-1 outline-hidden rounded-md";
+    "px-2.5 2xl:px-4 py-2 text-sm font-medium uppercase tracking-wide 2xl:tracking-wider whitespace-nowrap transition-colors duration-300 inline-flex items-center gap-1 outline-hidden rounded-md";
   const navButtonTheme = scrolled
     ? "bg-white text-[hsl(210,45%,12%)] hover:bg-gray-100 border border-black/10"
     : "bg-black text-white hover:bg-black/80 border border-white/15";
@@ -202,8 +202,12 @@ const SiteHeader = () => {
             </Link>
 
             {/* Desktop nav */}
-            <nav className="hidden lg:flex items-center gap-2">
+            <nav className="hidden xl:flex items-center gap-1.5 2xl:gap-2">
               <HoverDropdown label={t("nav.sms")} items={smsItems} scrolled={scrolled} />
+
+              <button onClick={() => goTo("/operasjonsdashbord")} className={`${navButtonBase} ${navButtonTheme}`}>
+                {t("nav.opsDashboard")}
+              </button>
 
               <button onClick={() => goTo("/operations")} className={`${navButtonBase} ${navButtonTheme}`}>
                 {t("nav.operations")}
@@ -263,7 +267,7 @@ const SiteHeader = () => {
               <Sheet open={open} onOpenChange={setOpen}>
                 <SheetTrigger asChild>
                   <button
-                    className={`lg:hidden p-2 rounded-md transition-colors duration-500 ${
+                    className={`xl:hidden p-2 rounded-md transition-colors duration-500 ${
                       scrolled ? "text-[hsl(210,45%,12%)] hover:bg-black/10" : "text-white hover:bg-white/10"
                     }`}
                     aria-label={t("common.openMenu")}
@@ -312,6 +316,12 @@ const SiteHeader = () => {
                       </AccordionItem>
                     </Accordion>
 
+                    <button
+                      onClick={() => goTo("/operasjonsdashbord")}
+                      className="text-left px-3 py-3 text-base font-medium uppercase tracking-wide hover:bg-white/10 rounded-md"
+                    >
+                      {t("nav.opsDashboard")}
+                    </button>
                     <button
                       onClick={() => goTo("/operations")}
                       className="text-left px-3 py-3 text-base font-medium uppercase tracking-wide hover:bg-white/10 rounded-md"

@@ -18,6 +18,7 @@ AviSafe was founded in Norway in 2025 by Gard Haug-Hansen (CEO and co-founder; p
 ## Norwegian pages
 
 - [Home](https://avisafe.no/): Overview of the AviSafe operations platform, security approach and team.
+- [Ops dashboard](https://avisafe.no/operasjonsdashbord): AviSafe Ops, a real-time operations dashboard with live video (RTMPS), drone positions, MET weather, tasks, an event log and messaging to pilots by SMS and e-mail.
 - [SORA](https://avisafe.no/sora): AviSafe provides support for risk assessment under SORA 2.5 for drone missions.
 - [SORA process](https://avisafe.no/sora-prosess): Interactive overview of the SORA workflow in AviSafe.
 - [Operations](https://avisafe.no/operasjoner): Drone services and operational support offered by AviSafe.

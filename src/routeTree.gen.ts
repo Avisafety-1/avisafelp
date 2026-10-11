@@ -16,6 +16,7 @@ import { Route as IntegrasjonerRouteImport } from './routes/integrasjoner'
 import { Route as LoggRouteImport } from './routes/logg'
 import { Route as OmOssRouteImport } from './routes/om-oss'
 import { Route as OperasjonerRouteImport } from './routes/operasjoner'
+import { Route as OperasjonsdashbordRouteImport } from './routes/operasjonsdashbord'
 import { Route as OperationsRouteImport } from './routes/operations'
 import { Route as PartnereRouteImport } from './routes/partnere'
 import { Route as PersonvernRouteImport } from './routes/personvern'
@@ -71,6 +72,11 @@ const OmOssRoute = OmOssRouteImport.update({
 const OperasjonerRoute = OperasjonerRouteImport.update({
   id: '/operasjoner',
   path: '/operasjoner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OperasjonsdashbordRoute = OperasjonsdashbordRouteImport.update({
+  id: '/operasjonsdashbord',
+  path: '/operasjonsdashbord',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OperationsRoute = OperationsRouteImport.update({
@@ -188,6 +194,7 @@ export interface FileRoutesByFullPath {
   '/logg': typeof LoggRoute
   '/om-oss': typeof OmOssRoute
   '/operasjoner': typeof OperasjonerRoute
+  '/operasjonsdashbord': typeof OperasjonsdashbordRoute
   '/operations': typeof OperationsRoute
   '/partnere': typeof PartnereRoute
   '/personvern': typeof PersonvernRoute
@@ -218,6 +225,7 @@ export interface FileRoutesByTo {
   '/logg': typeof LoggRoute
   '/om-oss': typeof OmOssRoute
   '/operasjoner': typeof OperasjonerRoute
+  '/operasjonsdashbord': typeof OperasjonsdashbordRoute
   '/operations': typeof OperationsRoute
   '/partnere': typeof PartnereRoute
   '/personvern': typeof PersonvernRoute
@@ -249,6 +257,7 @@ export interface FileRoutesById {
   '/logg': typeof LoggRoute
   '/om-oss': typeof OmOssRoute
   '/operasjoner': typeof OperasjonerRoute
+  '/operasjonsdashbord': typeof OperasjonsdashbordRoute
   '/operations': typeof OperationsRoute
   '/partnere': typeof PartnereRoute
   '/personvern': typeof PersonvernRoute
@@ -281,6 +290,7 @@ export interface FileRouteTypes {
     | '/logg'
     | '/om-oss'
     | '/operasjoner'
+    | '/operasjonsdashbord'
     | '/operations'
     | '/partnere'
     | '/personvern'
@@ -311,6 +321,7 @@ export interface FileRouteTypes {
     | '/logg'
     | '/om-oss'
     | '/operasjoner'
+    | '/operasjonsdashbord'
     | '/operations'
     | '/partnere'
     | '/personvern'
@@ -341,6 +352,7 @@ export interface FileRouteTypes {
     | '/logg'
     | '/om-oss'
     | '/operasjoner'
+    | '/operasjonsdashbord'
     | '/operations'
     | '/partnere'
     | '/personvern'
@@ -372,6 +384,7 @@ export interface RootRouteChildren {
   LoggRoute: typeof LoggRoute
   OmOssRoute: typeof OmOssRoute
   OperasjonerRoute: typeof OperasjonerRoute
+  OperasjonsdashbordRoute: typeof OperasjonsdashbordRoute
   OperationsRoute: typeof OperationsRoute
   PartnereRoute: typeof PartnereRoute
   PersonvernRoute: typeof PersonvernRoute
@@ -444,6 +457,13 @@ declare module '@tanstack/react-router' {
       path: '/operasjoner'
       fullPath: '/operasjoner'
       preLoaderRoute: typeof OperasjonerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/operasjonsdashbord': {
+      id: '/operasjonsdashbord'
+      path: '/operasjonsdashbord'
+      fullPath: '/operasjonsdashbord'
+      preLoaderRoute: typeof OperasjonsdashbordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/operations': {
@@ -604,6 +624,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoggRoute: LoggRoute,
   OmOssRoute: OmOssRoute,
   OperasjonerRoute: OperasjonerRoute,
+  OperasjonsdashbordRoute: OperasjonsdashbordRoute,
   OperationsRoute: OperationsRoute,
   PartnereRoute: PartnereRoute,
   PersonvernRoute: PersonvernRoute,

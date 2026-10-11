@@ -16,6 +16,7 @@ export default function SiteFooter() {
         { to: "/om-oss", label: "Om oss" },
         { to: "/partnere", label: "Partnere" },
         { to: "/compliance", label: "Compliance" },
+        { to: "/operasjonsdashbord", label: "Operasjonsdashbord" },
         { to: "/integrasjoner", label: "Integrasjoner" },
         { to: "/sora", label: "SORA" },
         { to: "/artikler", label: "Artikler" },
