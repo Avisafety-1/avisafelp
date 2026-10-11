@@ -152,7 +152,10 @@ const SiteHeader = () => {
   const compliancePath = onEnglish ? "/en/compliance" : "/compliance";
   const smsItems = [
     { label: onEnglish ? "Overview" : "Oversikt", action: () => scrollToId("hero-section") },
-    { label: t("nav.smsIntegrations"), action: () => scrollToId("integrations-section") },
+    {
+      label: t("nav.smsIntegrations"),
+      action: () => (onEnglish ? scrollToId("integrations-section") : goTo("/integrasjoner")),
+    },
     { label: t("nav.smsSecurity"), action: () => scrollToId("security-section") },
     { label: onEnglish ? "Risk assessment" : "Risikovurdering", action: () => scrollToId("sora-section") },
     { label: t("nav.compliance"), action: () => goTo(compliancePath) },
