@@ -1,408 +1,758 @@
+import type { ReactNode } from "react";
 import {
-  Database,
-  Globe,
-  Shield,
-  User,
-  Brain,
-  MessageSquare,
-  Zap,
-  ChevronDown,
-  Cpu,
-  CheckCircle2,
+  AlertTriangle,
+  ArrowDown,
   ArrowRight,
-  Clock,
-  Activity,
+  Check,
+  CheckCircle2,
+  ChevronRight,
+  Info,
+  Mail,
+  ShieldCheck,
 } from "lucide-react";
-import { Helmet } from "@/lib/page-head";
-import { useTranslation } from "react-i18next";
-import avisafeLogoText from "@/assets/avisafe-logo-text.png";
+import { Link } from "@/lib/router-compat";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import SectionReveal from "@/components/SectionReveal";
+import { SORA_PAGE as c, type Actor, type Tone } from "@/content/sora";
+import { DEMO_MAILTO } from "@/content/en/landing-pages";
+import { scrollToSection } from "@/lib/scroll-to-section";
+import { cn } from "@/lib/utils";
 
-const C = {
-  bg: "hsl(210 30% 6%)",
-  bgCard: "hsl(210 30% 10%)",
-  bgCardAlt: "hsl(210 30% 13%)",
-  primary: "hsl(210 80% 28%)",
-  primaryLight: "hsl(210 80% 50%)",
-  primaryDim: "hsl(210 50% 15%)",
-  green: "hsl(142 71% 45%)",
-  greenDim: "hsl(142 50% 10%)",
-  greenMid: "hsl(142 60% 18%)",
-  yellow: "hsl(38 92% 50%)",
-  yellowDim: "hsl(38 60% 10%)",
-  yellowMid: "hsl(38 70% 18%)",
-  red: "hsl(0 84% 60%)",
-  redDim: "hsl(0 60% 10%)",
-  redMid: "hsl(0 70% 18%)",
-  purple: "hsl(258 80% 65%)",
-  purpleDim: "hsl(258 50% 10%)",
-  purpleMid: "hsl(258 60% 18%)",
-  text: "hsl(210 20% 96%)",
-  textMuted: "hsl(215 20% 60%)",
-  textDim: "hsl(215 15% 40%)",
-  border: "hsl(210 30% 18%)",
-  borderPrimary: "hsl(210 50% 25%)",
+const DARK = "bg-[hsl(210,45%,8%)] text-white";
+const LIGHT = "bg-[hsl(210,30%,96%)]";
+const WHITE = "bg-background";
+const H2 = "text-3xl font-bold tracking-tight md:text-4xl";
+const H2_DARK_BLUE = `${H2} text-[hsl(var(--text-dark-blue))]`;
+const CARD = "rounded-2xl border border-border bg-card";
+
+const TONE: Record<
+  Tone,
+  { chip: string; card: string; title: string; icon: typeof CheckCircle2 }
+> = {
+  go: {
+    chip: "bg-emerald-50 text-emerald-700 border-emerald-200",
+    card: "border-emerald-200 bg-emerald-50",
+    title: "text-emerald-800",
+    icon: CheckCircle2,
+  },
+  caution: {
+    chip: "bg-amber-50 text-amber-700 border-amber-200",
+    card: "border-amber-200 bg-amber-50",
+    title: "text-amber-800",
+    icon: AlertTriangle,
+  },
+  nogo: {
+    chip: "bg-red-50 text-red-700 border-red-200",
+    card: "border-red-200 bg-red-50",
+    title: "text-red-800",
+    icon: AlertTriangle,
+  },
+  info: {
+    chip: "bg-sky-50 text-sky-700 border-sky-200",
+    card: "border-sky-200 bg-sky-50",
+    title: "text-sky-800",
+    icon: Info,
+  },
 };
 
-const FlowConnector = ({ label }: { label: string }) => (
-  <div className="flex flex-col items-center py-1" style={{ gap: 0 }}>
-    <div className="w-px h-7" style={{ background: `linear-gradient(to bottom, ${C.border}, ${C.primaryLight}60)` }} />
-    <div
-      className="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border"
-      style={{ background: C.primaryDim, borderColor: C.borderPrimary, color: C.primaryLight }}
-    >
-      <ChevronDown size={10} />
-      {label}
-    </div>
-    <div className="w-px h-7" style={{ background: `linear-gradient(to bottom, ${C.primaryLight}60, ${C.border})` }} />
-  </div>
-);
+const ACTOR: Record<Actor, string> = {
+  pilot: "bg-slate-100 text-slate-700",
+  system: "bg-[#123b87]/10 text-[#123b87]",
+  ai: "bg-amber-100 text-amber-800",
+};
 
-interface ProsePhaseCardProps {
-  phase: number;
-  icon: React.ReactNode;
-  title: string;
-  subtitle: string;
-  phaseLabel: string;
-  accentColor: string;
-  dimColor: string;
-  midColor: string;
-  prose: string;
-  glow?: boolean | undefined;
+function DemoButton({ label }: { label: string }) {
+  return (
+    <a
+      href={DEMO_MAILTO}
+      className="inline-flex items-center gap-2 rounded-full bg-[#123b87] px-7 py-3 text-base font-semibold text-white transition-colors hover:bg-[#0e2f6b] md:text-lg"
+    >
+      <Mail className="h-5 w-5" aria-hidden="true" />
+      {label}
+    </a>
+  );
 }
 
-const ProsePhaseCard = ({
-  phase,
-  icon,
-  title,
-  subtitle,
-  phaseLabel,
-  accentColor,
-  dimColor,
-  midColor,
-  prose,
-  glow,
-}: ProsePhaseCardProps) => (
-  <div
-    className="relative rounded-2xl border w-full overflow-hidden"
-    style={{
-      background: `linear-gradient(145deg, ${C.bgCard} 0%, ${dimColor} 100%)`,
-      borderColor: `${accentColor}40`,
-      boxShadow: glow
-        ? `0 0 50px ${accentColor}25, 0 0 100px ${accentColor}10, inset 0 1px 0 ${accentColor}20`
-        : `0 2px 20px rgba(0,0,0,0.5), inset 0 1px 0 ${accentColor}10`,
-    }}
-  >
-    {glow && (
-      <div
-        className="absolute inset-0 pointer-events-none animate-pulse"
-        style={{
-          background: `radial-gradient(ellipse at 50% -10%, ${accentColor}20, transparent 60%)`,
-          opacity: 0.6,
-        }}
-      />
-    )}
-    <div className="relative p-6">
-      <div className="flex items-start gap-4 mb-5">
-        <div
-          className="flex items-center justify-center w-11 h-11 rounded-xl shrink-0"
-          style={{ background: midColor, border: `1px solid ${accentColor}50` }}
-        >
-          <div style={{ color: accentColor }}>{icon}</div>
+function Chip({ tone, children }: { tone: Tone; children: ReactNode }) {
+  return (
+    <span
+      className={cn(
+        "inline-flex rounded-full border px-2.5 py-0.5 text-xs font-semibold",
+        TONE[tone].chip,
+      )}
+    >
+      {children}
+    </span>
+  );
+}
+
+/** Plain data table that scrolls inside its card on narrow screens. */
+function Table({
+  head,
+  rows,
+  firstBold = true,
+}: {
+  head: readonly string[];
+  rows: readonly (readonly ReactNode[])[];
+  firstBold?: boolean;
+}) {
+  return (
+    <div className={cn(CARD, "overflow-x-auto")}>
+      <table className="w-full min-w-[520px] text-left text-sm">
+        <thead className="bg-muted/60">
+          <tr>
+            {head.map((h) => (
+              <th
+                key={h}
+                scope="col"
+                className="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground"
+              >
+                {h}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-border">
+          {rows.map((r, i) => (
+            <tr key={i}>
+              {r.map((cell, j) => (
+                <td
+                  key={j}
+                  className={cn(
+                    "px-4 py-3 align-top",
+                    j === 0 && firstBold
+                      ? "font-semibold text-foreground"
+                      : "text-muted-foreground",
+                  )}
+                >
+                  {cell}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/** Stylised result card from the risk assessment in the app (demo data). */
+function ResultMock() {
+  const r = c.result;
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-white p-5 text-slate-800 shadow-xl shadow-black/20 sm:p-6">
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+            {r.title}
+          </p>
+          <p className="mt-1 font-semibold text-slate-900">{r.mission}</p>
+          <p className="text-xs text-slate-500">{r.missionMeta}</p>
         </div>
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 mb-1">
-            <span
-              className="text-xs font-bold tracking-widest uppercase px-2 py-0.5 rounded-sm"
-              style={{ background: midColor, color: accentColor }}
-            >
-              {phaseLabel} {phase}
-            </span>
-          </div>
-          <h2 className="font-bold text-lg leading-tight" style={{ color: C.text }}>
-            {title}
-          </h2>
-          <p className="text-xs mt-0.5" style={{ color: C.textMuted }}>
-            {subtitle}
+        <div className="text-right">
+          <p className="text-[11px] text-slate-500">{r.recommendationLabel}</p>
+          <p className="text-2xl font-bold text-emerald-600">
+            {r.recommendation}
           </p>
         </div>
       </div>
-      <div
-        className="rounded-xl p-4 border"
-        style={{ background: `${accentColor}08`, borderColor: `${accentColor}18` }}
-      >
-        <p className="text-sm leading-relaxed" style={{ color: C.textMuted }}>
-          {prose}
+
+      <div className="mt-4 grid grid-cols-4 gap-2">
+        {r.numbers.map((n) => (
+          <div
+            key={n.label}
+            className="rounded-lg border border-slate-200 bg-slate-50 px-2 py-2 text-center"
+          >
+            <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-500">
+              {n.label}
+            </p>
+            <p className="text-lg font-bold text-[#123b87]">{n.value}</p>
+          </div>
+        ))}
+      </div>
+      <p className="mt-1.5 text-right text-[11px] text-slate-400">
+        {r.systemNote}
+      </p>
+
+      <ul className="mt-3 space-y-1.5">
+        {r.categories.map((cat) => (
+          <li
+            key={cat.label}
+            className="flex items-center justify-between text-sm"
+          >
+            <span className="text-slate-700">{cat.label}</span>
+            <span className="flex items-center gap-2">
+              <span className="h-1.5 w-20 overflow-hidden rounded-full bg-slate-100">
+                <span
+                  className={cn(
+                    "block h-full rounded-full",
+                    cat.tone === "go" ? "bg-emerald-500" : "bg-amber-500",
+                  )}
+                  style={{
+                    width: `${Number(cat.score.replace(",", ".")) * 10}%`,
+                  }}
+                />
+              </span>
+              <span className="w-8 text-right font-medium tabular-nums text-slate-900">
+                {cat.score}
+              </span>
+            </span>
+          </li>
+        ))}
+      </ul>
+      <div className="mt-3 flex items-center justify-between border-t border-slate-100 pt-3 text-sm">
+        <span className="text-slate-500">{r.scoreLabel}</span>
+        <span className="font-bold text-slate-900">{r.score} / 10</span>
+      </div>
+
+      <div className="mt-4 rounded-xl border border-sky-200 bg-sky-50 p-3">
+        <p className="flex items-center gap-1.5 text-sm font-semibold text-sky-900">
+          <ShieldCheck className="h-4 w-4" aria-hidden="true" />
+          {r.profileTitle}
         </p>
+        <p className="mt-1 text-xs text-sky-900/80">{r.profileBody}</p>
       </div>
     </div>
-  </div>
-);
+  );
+}
+
+function NumberedSteps({
+  title,
+  steps,
+  offset,
+}: {
+  title: string;
+  steps: readonly { title: string; body: string }[];
+  offset: number;
+}) {
+  return (
+    <div>
+      <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-sky-300">
+        {title}
+      </h3>
+      <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {steps.map((s, i) => (
+          <li
+            key={s.title}
+            className="rounded-2xl border border-white/10 bg-white/5 p-5"
+          >
+            <span className="mb-3 flex h-7 w-7 items-center justify-center rounded-full bg-white text-sm font-bold text-[hsl(210,45%,8%)]">
+              {offset + i + 1}
+            </span>
+            <p className="font-semibold">{s.title}</p>
+            <p className="mt-1 text-sm leading-relaxed text-white/70">
+              {s.body}
+            </p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+}
 
 export default function Sora() {
-  const { t, i18n } = useTranslation();
-  const isNo = i18n.language?.startsWith("no");
-
-  const phaseStyles = [
-    { icon: <Database size={20} />, accent: C.primaryLight, dim: C.primaryDim, mid: "hsl(210 50% 20%)" },
-    { icon: <Globe size={20} />, accent: C.green, dim: C.greenDim, mid: C.greenMid },
-    { icon: <Shield size={20} />, accent: C.red, dim: C.redDim, mid: C.redMid },
-    { icon: <User size={20} />, accent: C.yellow, dim: C.yellowDim, mid: C.yellowMid },
-    { icon: <Brain size={20} />, accent: C.purple, dim: C.purpleDim, mid: C.purpleMid, glow: true },
-    { icon: <MessageSquare size={20} />, accent: C.yellow, dim: C.yellowDim, mid: C.yellowMid },
-    { icon: <Zap size={20} />, accent: C.purple, dim: C.purpleDim, mid: C.purpleMid, glow: true },
-  ];
-  const connectorKeys = ["missionData", "situation", "policies", "params", "risk", "mitigations", "analysis"] as const;
-  const phaseKeys = ["p1", "p2", "p3", "p4", "p5", "p6", "p7"] as const;
-
-  const stats = [
-    { value: t("sora.stats.phases.value"), label: t("sora.stats.phases.label") },
-    { value: t("sora.stats.analysis.value"), label: t("sora.stats.analysis.label") },
-    { value: t("sora.stats.sail.value"), label: t("sora.stats.sail.label") },
-    { value: t("sora.stats.time.value"), label: t("sora.stats.time.label") },
-  ];
-
+  const p = c.profiles;
   return (
-    <div
-      className="min-h-screen w-full"
-      style={{ background: C.bg, color: C.text, fontFamily: "ui-sans-serif, system-ui, sans-serif" }}
-    >
-      <Helmet>
-        <title>{t("sora.pageTitle")}</title>
-        <meta name="description" content={t("sora.metaDescription")} />
-        <link rel="canonical" href="https://avisafe.no/sora" />
-      </Helmet>
-      <div
-        className="fixed inset-0 pointer-events-none opacity-[0.025]"
-        style={{
-          backgroundImage: `linear-gradient(${C.primaryLight} 1px, transparent 1px), linear-gradient(90deg, ${C.primaryLight} 1px, transparent 1px)`,
-          backgroundSize: "64px 64px",
-        }}
-      />
-      <div
-        className="fixed inset-x-0 top-0 h-64 pointer-events-none opacity-20"
-        style={{ background: `radial-gradient(ellipse at 50% 0%, ${C.primary}, transparent 70%)` }}
-      />
-
-      <div className="relative max-w-4xl mx-auto px-4 py-16">
-        {/* HERO */}
-        <div className="text-center mb-20">
-          <img
-            src={avisafeLogoText}
-            alt={t("sora.logoAlt")}
-            className="h-12 mx-auto mb-8"
-            style={{ filter: "brightness(0) invert(1)", opacity: 0.9 }}
-          />
-
-          <div
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase mb-6 border"
-            style={{ background: C.primaryDim, borderColor: C.borderPrimary, color: C.primaryLight }}
-          >
-            <Activity size={12} />
-            {t("sora.badge")}
-          </div>
-
-          <h1
-            className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-4"
-            style={{ color: C.text }}
-          >
-            {t("sora.h1Top")}
-            <br />
-            <span className="text-3xl sm:text-4xl" style={{ color: C.primaryLight }}>
-              {t("sora.h1Sub")}
-            </span>
-          </h1>
-
-          <p className="text-lg mb-2" style={{ color: C.textMuted }}>
-            {t("sora.intro")}
-          </p>
-          <p className="text-sm font-semibold tracking-wide" style={{ color: C.primaryLight }}>
-            {t("sora.introSub")}
-          </p>
-
-          <div
-            className="flex flex-wrap justify-center gap-px mt-12 rounded-2xl overflow-hidden border"
-            style={{ borderColor: C.border }}
-          >
-            {stats.map((s, i) => (
-              <div
-                key={s.label}
-                className="flex-1 min-w-[100px] py-4 px-6 text-center"
-                style={{ background: i % 2 === 0 ? C.bgCard : C.bgCardAlt }}
+    <main className="min-h-screen overflow-x-hidden">
+      {/* Hero */}
+      <section className={`${DARK} pb-16 pt-28 md:pb-24 md:pt-36`}>
+        <div className="container mx-auto grid items-center gap-12 px-4 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="space-y-6">
+            <p className="inline-flex rounded-full border border-white/15 bg-white/5 px-3 py-1 text-sm font-semibold tracking-wide text-sky-300">
+              {c.hero.tag}
+            </p>
+            <h1 className="text-4xl font-bold leading-tight tracking-tight md:text-6xl">
+              {c.hero.h1}
+            </h1>
+            <p className="max-w-xl text-lg leading-relaxed text-white/75 md:text-xl">
+              {c.hero.lead}
+            </p>
+            <div className="flex flex-wrap items-center gap-3">
+              <DemoButton label={c.hero.ctaPrimary} />
+              <button
+                type="button"
+                onClick={() => scrollToSection("slik-fungerer-det")}
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-semibold text-white transition-colors hover:bg-white/10"
               >
-                <div className="text-2xl font-black" style={{ color: C.primaryLight }}>{s.value}</div>
-                <div className="text-xs mt-1" style={{ color: C.textDim }}>{s.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* FLOW DIAGRAM */}
-        <div className="space-y-0">
-          {phaseKeys.map((pk, i) => (
-            <div key={pk}>
-              <ProsePhaseCard
-                phase={i + 1}
-                icon={phaseStyles[i]!.icon}
-                title={t(`sora.phases.${pk}.title`)}
-                subtitle={t(`sora.phases.${pk}.subtitle`)}
-                phaseLabel={t("sora.phase")}
-                accentColor={phaseStyles[i]!.accent}
-                dimColor={phaseStyles[i]!.dim}
-                midColor={phaseStyles[i]!.mid}
-                prose={t(`sora.phases.${pk}.prose`)}
-                glow={phaseStyles[i]!.glow}
-              />
-              <FlowConnector label={t(`sora.connectors.${connectorKeys[i]}`)} />
-            </div>
-          ))}
-
-          {/* SORA OUTPUT */}
-          <div
-            className="relative rounded-2xl border overflow-hidden"
-            style={{
-              background: `linear-gradient(145deg, ${C.bgCard} 0%, ${C.greenDim} 100%)`,
-              borderColor: `${C.green}50`,
-              boxShadow: `0 0 60px ${C.green}20, 0 0 120px ${C.green}08`,
-            }}
-          >
-            <div
-              className="absolute inset-0 pointer-events-none animate-pulse"
-              style={{
-                background: `radial-gradient(ellipse at 50% 100%, ${C.green}18, transparent 60%)`,
-                opacity: 0.7,
-              }}
-            />
-            <div className="relative p-6">
-              <div className="text-center mb-8">
-                <div
-                  className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-bold mb-3 border"
-                  style={{ background: C.greenMid, borderColor: `${C.green}50`, color: C.green }}
-                >
-                  <CheckCircle2 size={14} />
-                  {t("sora.output.badge")}
-                </div>
-                <h2 className="text-2xl font-black" style={{ color: C.text }}>
-                  {t("sora.output.title")}
-                </h2>
-                <p className="text-sm mt-1" style={{ color: C.textMuted }}>
-                  {t("sora.output.subtitle")}
-                </p>
-              </div>
-
-              {/* GRC */}
-              <div className="mb-5">
-                <p className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color: C.textDim }}>
-                  {t("sora.output.grc")}
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="flex-1 rounded-xl p-4 text-center border" style={{ background: `linear-gradient(135deg, ${C.bgCard}, ${C.yellowDim})`, borderColor: `${C.yellow}40` }}>
-                    <div className="text-xs font-bold tracking-wider uppercase mb-1" style={{ color: C.textMuted }}>{t("sora.output.iGRC")}</div>
-                    <div className="text-3xl font-black" style={{ color: C.yellow }}>3</div>
-                    <div className="text-xs" style={{ color: C.textMuted }}>{t("sora.output.initial")}</div>
-                  </div>
-                  <div className="flex flex-col items-center gap-1">
-                    <ArrowRight size={18} style={{ color: C.textDim }} />
-                    <span className="text-xs text-center" style={{ color: C.textDim, maxWidth: 56 }}>{t("sora.output.groundMit")}</span>
-                  </div>
-                  <div className="flex-1 rounded-xl p-4 text-center border" style={{ background: `linear-gradient(135deg, ${C.bgCard}, ${C.greenDim})`, borderColor: `${C.green}40` }}>
-                    <div className="text-xs font-bold tracking-wider uppercase mb-1" style={{ color: C.textMuted }}>{t("sora.output.fGRC")}</div>
-                    <div className="text-3xl font-black" style={{ color: C.green }}>2</div>
-                    <div className="text-xs" style={{ color: C.textMuted }}>{t("sora.output.final")}</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* ARC */}
-              <div className="mb-5">
-                <p className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color: C.textDim }}>
-                  {t("sora.output.arc")}
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="flex-1 rounded-xl p-4 text-center border" style={{ background: `linear-gradient(135deg, ${C.bgCard}, ${C.yellowDim})`, borderColor: `${C.yellow}40` }}>
-                    <div className="text-xs font-bold tracking-wider uppercase mb-1" style={{ color: C.textMuted }}>{t("sora.output.initialARC")}</div>
-                    <div className="text-3xl font-black" style={{ color: C.yellow }}>B</div>
-                    <div className="text-xs" style={{ color: C.textMuted }}>{t("sora.output.uncontrolled")}</div>
-                  </div>
-                  <div className="flex flex-col items-center gap-1">
-                    <ArrowRight size={18} style={{ color: C.textDim }} />
-                    <span className="text-xs text-center" style={{ color: C.textDim, maxWidth: 56 }}>{t("sora.output.airMit")}</span>
-                  </div>
-                  <div className="flex-1 rounded-xl p-4 text-center border" style={{ background: `linear-gradient(135deg, ${C.bgCard}, ${C.greenDim})`, borderColor: `${C.green}40` }}>
-                    <div className="text-xs font-bold tracking-wider uppercase mb-1" style={{ color: C.textMuted }}>{t("sora.output.residualARC")}</div>
-                    <div className="text-3xl font-black" style={{ color: C.green }}>A</div>
-                    <div className="text-xs" style={{ color: C.textMuted }}>{t("sora.output.afterMit")}</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* SAIL + Residual + OSO */}
-              <div className="grid grid-cols-3 gap-3 mb-5">
-                {[
-                  { label: t("sora.output.sail"), value: "II", sub: t("sora.output.sailSub"), color: C.primaryLight, dim: C.primaryDim },
-                  { label: t("sora.output.residual"), value: t("sora.output.low"), sub: t("sora.output.residualSub"), color: C.green, dim: C.greenDim },
-                  { label: t("sora.output.oso"), value: "M", sub: t("sora.output.osoSub"), color: C.purple, dim: C.purpleDim },
-                ].map((m) => (
-                  <div key={m.label} className="rounded-xl p-4 text-center border" style={{ background: `linear-gradient(135deg, ${C.bgCard}, ${m.dim})`, borderColor: `${m.color}35` }}>
-                    <div className="text-xs font-bold tracking-wider uppercase mb-2" style={{ color: C.textMuted }}>{m.label}</div>
-                    <div className="text-2xl sm:text-3xl font-black" style={{ color: m.color }}>{m.value}</div>
-                    <div className="text-xs mt-1" style={{ color: C.textMuted }}>{m.sub}</div>
-                  </div>
-                ))}
-              </div>
-
-              {/* GO badge */}
-              <div className="rounded-xl p-5 text-center border" style={{ background: `linear-gradient(135deg, ${C.greenMid}, ${C.greenDim})`, borderColor: `${C.green}60`, boxShadow: `0 0 30px ${C.green}25` }}>
-                <div className="text-xs font-bold tracking-widest uppercase mb-1" style={{ color: C.textMuted }}>{t("sora.output.aiRec")}</div>
-                <div className="text-5xl font-black tracking-widest mb-2" style={{ color: C.green }}>{t("sora.output.go")}</div>
-                <p className="text-sm" style={{ color: C.textMuted }}>{t("sora.output.goNoteSora")}</p>
-              </div>
-              <p className="mt-3 text-xs leading-relaxed text-center" style={{ color: C.textMuted }}>{t("sora.output.disclaimer")}</p>
+                {c.hero.ctaSecondary}
+                <ArrowDown className="h-4 w-4" aria-hidden="true" />
+              </button>
             </div>
           </div>
+          <ResultMock />
         </div>
+      </section>
 
-        {/* FEATURE HIGHLIGHTS */}
-        <div className="mt-24 mb-16">
-          <h2 className="text-3xl font-black text-center mb-12" style={{ color: C.text }}>
-            {t("sora.highlights.title")}
+      {/* In short */}
+      <section className={`${LIGHT} py-16 md:py-20`} aria-labelledby="kort-h2">
+        <div className="container mx-auto px-4">
+          <h2 id="kort-h2" className={`${H2_DARK_BLUE} mb-8`}>
+            {c.facts.h2}
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-            {[
-              { key: "automated", color: C.primaryLight, dimColor: C.primaryDim, icon: <Cpu size={26} /> },
-              { key: "traceable", color: C.yellow, dimColor: C.yellowDim, icon: <Clock size={26} /> },
-              { key: "regulatory", color: C.green, dimColor: C.greenDim, icon: <Shield size={26} /> },
-            ].map((col) => (
-              <div key={col.key} className="rounded-2xl p-6 border" style={{ background: `linear-gradient(145deg, ${C.bgCard}, ${col.dimColor})`, borderColor: `${col.color}30` }}>
-                <div className="flex items-center justify-center w-12 h-12 rounded-xl mx-auto mb-4 border" style={{ background: `${col.color}15`, borderColor: `${col.color}40` }}>
-                  <div style={{ color: col.color }}>{col.icon}</div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {c.facts.items.map((f, i) => (
+              <SectionReveal key={f.title} delay={i * 60}>
+                <div className={cn(CARD, "h-full p-6")}>
+                  <h3 className="text-lg font-semibold text-foreground">
+                    {f.title}
+                  </h3>
+                  <p className="mt-2 text-muted-foreground">{f.body}</p>
                 </div>
-                <h3 className="text-base font-bold text-center mb-3" style={{ color: C.text }}>
-                  {t(`sora.highlights.${col.key}.title`)}
-                </h3>
-                <p className="text-sm leading-relaxed text-center" style={{ color: C.textMuted }}>
-                  {t(`sora.highlights.${col.key}.prose`)}
-                </p>
+              </SectionReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Flow */}
+      <section
+        id="slik-fungerer-det"
+        className={`${WHITE} scroll-mt-24 py-16 md:py-24`}
+        aria-labelledby="flyt-h2"
+      >
+        <div className="container mx-auto grid gap-12 px-4 lg:grid-cols-[0.8fr_1.2fr]">
+          <SectionReveal>
+            <h2 id="flyt-h2" className={H2_DARK_BLUE}>
+              {c.flow.h2}
+            </h2>
+            <p className="mt-4 text-lg text-muted-foreground">{c.flow.lead}</p>
+            <div className="mt-6 flex flex-wrap gap-2 text-xs font-semibold uppercase tracking-wide">
+              {(Object.keys(c.flow.actors) as Actor[]).map((a) => (
+                <span
+                  key={a}
+                  className={cn("rounded-full px-2.5 py-1", ACTOR[a])}
+                >
+                  {c.flow.actors[a]}
+                </span>
+              ))}
+            </div>
+          </SectionReveal>
+          <ol className="relative space-y-6 border-l-2 border-border pl-8">
+            {c.flow.steps.map((s, i) => (
+              <SectionReveal key={s.title} delay={i * 60}>
+                <li className="relative">
+                  <span className="absolute -left-[45px] flex h-7 w-7 items-center justify-center rounded-full bg-[#123b87] text-xs font-bold text-white">
+                    {i + 1}
+                  </span>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h3 className="text-lg font-semibold text-foreground">
+                      {s.title}
+                    </h3>
+                    <span
+                      className={cn(
+                        "rounded-full px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide",
+                        ACTOR[s.actor],
+                      )}
+                    >
+                      {c.flow.actors[s.actor]}
+                    </span>
+                  </div>
+                  <p className="mt-1 text-muted-foreground">{s.body}</p>
+                </li>
+              </SectionReveal>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* System vs AI */}
+      <section className={`${LIGHT} py-16 md:py-24`} aria-labelledby="split-h2">
+        <div className="container mx-auto px-4">
+          <h2 id="split-h2" className={`${H2_DARK_BLUE} mb-8 max-w-3xl`}>
+            {c.split.h2}
+          </h2>
+          <div className="grid gap-4 md:grid-cols-2">
+            {[
+              {
+                key: "system",
+                data: c.split.system,
+                actor: "system" as Actor,
+                note: undefined,
+              },
+              {
+                key: "ai",
+                data: c.split.ai,
+                actor: "ai" as Actor,
+                note: c.split.ai.note,
+              },
+            ].map(({ key, data, actor, note }) => (
+              <div key={key} className={cn(CARD, "p-6")}>
+                <div className="flex items-center gap-2">
+                  <span
+                    className={cn(
+                      "rounded-full px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide",
+                      ACTOR[actor],
+                    )}
+                  >
+                    {c.flow.actors[actor]}
+                  </span>
+                  <h3 className="text-xl font-semibold text-foreground">
+                    {data.title}
+                  </h3>
+                </div>
+                <p className="mt-1 text-sm text-muted-foreground">{data.sub}</p>
+                <ul className="mt-4 space-y-2">
+                  {data.items.map((it) => (
+                    <li key={it} className="flex gap-2 text-foreground">
+                      <Check
+                        className="mt-0.5 h-4 w-4 shrink-0 text-[#123b87]"
+                        aria-hidden="true"
+                      />
+                      {it}
+                    </li>
+                  ))}
+                </ul>
+                {note && (
+                  <p className="mt-4 rounded-xl bg-muted p-4 text-sm text-muted-foreground">
+                    {note}
+                  </p>
+                )}
               </div>
             ))}
           </div>
         </div>
+      </section>
 
-        {/* FOOTER */}
-        <div className="text-center pt-10 border-t" style={{ borderColor: C.border }}>
-          <img
-            src={avisafeLogoText}
-            alt={t("sora.logoAlt")}
-            className="h-8 mx-auto mb-3"
-            style={{ filter: "brightness(0) invert(1)", opacity: 0.5 }}
+      {/* SORA profiles */}
+      <section
+        id="sora-profiler"
+        className={`${DARK} scroll-mt-24 py-16 md:py-24`}
+        aria-labelledby="profil-h2"
+      >
+        <div className="container mx-auto space-y-12 px-4">
+          <SectionReveal className="max-w-3xl">
+            <span className="inline-flex rounded-full bg-emerald-400/15 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-emerald-300">
+              {p.tag}
+            </span>
+            <h2 id="profil-h2" className={`${H2} mt-4`}>
+              {p.h2}
+            </h2>
+            <p className="mt-4 text-lg leading-relaxed text-white/75">
+              {p.lead}
+            </p>
+            <ol className="mt-6 flex flex-wrap items-center gap-1.5 text-sm">
+              {p.chain.map((step, i) => (
+                <li key={step} className="flex items-center gap-1.5">
+                  <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1 font-medium">
+                    {step}
+                  </span>
+                  {i < p.chain.length - 1 && (
+                    <ChevronRight
+                      className="h-4 w-4 text-white/40"
+                      aria-hidden="true"
+                    />
+                  )}
+                </li>
+              ))}
+            </ol>
+          </SectionReveal>
+
+          <NumberedSteps
+            title={p.setup.title}
+            steps={p.setup.steps}
+            offset={0}
           />
-          <p className="text-sm" style={{ color: C.textDim }}>
-            {t("sora.footerNote")}
+          <NumberedSteps
+            title={p.use.title}
+            steps={p.use.steps}
+            offset={p.setup.steps.length}
+          />
+
+          <div className="grid gap-4 lg:grid-cols-3">
+            {p.outcomes.map((o) => {
+              const t = TONE[o.tone];
+              const Icon = t.icon;
+              return (
+                <div
+                  key={o.title}
+                  className={cn(
+                    "rounded-2xl border p-5 text-slate-800",
+                    t.card,
+                  )}
+                >
+                  <p
+                    className={cn(
+                      "flex items-center gap-2 font-semibold",
+                      t.title,
+                    )}
+                  >
+                    <Icon className="h-4 w-4" aria-hidden="true" />
+                    {o.title}
+                  </p>
+                  <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm text-slate-700">
+                    {o.items.map((it) => (
+                      <li key={it}>{it}</li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="grid gap-4 lg:grid-cols-2">
+            <div className="rounded-2xl bg-white p-5 text-slate-800">
+              <p className="mb-3 font-semibold text-slate-900">
+                {p.example.title}
+              </p>
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-slate-200 text-left">
+                    <th
+                      scope="col"
+                      className="py-2 pr-4 font-medium text-slate-500"
+                    >
+                      {p.example.head[0]}
+                    </th>
+                    <th
+                      scope="col"
+                      className="py-2 text-right font-semibold text-slate-900"
+                    >
+                      {p.example.head[1]}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {p.example.rows.map(([k, v]) => (
+                    <tr key={k}>
+                      <td className="py-2 pr-4 text-slate-600">{k}</td>
+                      <td className="py-2 text-right font-semibold tabular-nums text-slate-900">
+                        {v}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+              <p className="mb-3 font-semibold">{p.notes.title}</p>
+              <ul className="space-y-2 text-sm text-white/80">
+                {p.notes.items.map((n) => (
+                  <li key={n} className="flex gap-2">
+                    <Info
+                      className="mt-0.5 h-4 w-4 shrink-0 text-sky-300"
+                      aria-hidden="true"
+                    />
+                    {n}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Scoring */}
+      <section
+        className={`${WHITE} py-16 md:py-24`}
+        aria-labelledby="resultat-h2"
+      >
+        <div className="container mx-auto max-w-4xl px-4">
+          <h2 id="resultat-h2" className={H2_DARK_BLUE}>
+            {c.scoring.h2}
+          </h2>
+          <p className="mb-8 mt-4 text-lg text-muted-foreground">
+            {c.scoring.lead}
           </p>
-          <p className="text-xs mt-1" style={{ color: C.textDim }}>
-            © {new Date().getFullYear()} AviSafe AS
+          <Table
+            head={c.scoring.head}
+            rows={c.scoring.rows.map((r) => [
+              r.range,
+              <Chip key={r.range} tone={r.tone}>
+                {r.label}
+              </Chip>,
+              r.body,
+            ])}
+          />
+          <p className="mt-4 text-muted-foreground">{c.scoring.categories}</p>
+        </div>
+      </section>
+
+      {/* Hard stops */}
+      <section
+        className={`${LIGHT} py-16 md:py-24`}
+        aria-labelledby="hardstop-h2"
+      >
+        <div className="container mx-auto max-w-4xl px-4">
+          <h2 id="hardstop-h2" className={H2_DARK_BLUE}>
+            {c.hardStops.h2}
+          </h2>
+          <p className="mb-8 mt-4 text-lg text-muted-foreground">
+            {c.hardStops.lead}
+          </p>
+          <Table head={c.hardStops.head} rows={c.hardStops.rows} />
+          <p className="mt-4 rounded-xl bg-muted p-4 text-sm text-muted-foreground">
+            {c.hardStops.note}
           </p>
         </div>
-      </div>
-    </div>
+      </section>
+
+      {/* Automatic approval */}
+      <section
+        className={`${WHITE} py-16 md:py-24`}
+        aria-labelledby="godkjenning-h2"
+      >
+        <div className="container mx-auto grid max-w-5xl gap-10 px-4 lg:grid-cols-2">
+          <div>
+            <h2 id="godkjenning-h2" className={H2_DARK_BLUE}>
+              {c.approval.h2}
+            </h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              {c.approval.lead}
+            </p>
+            <p className="mt-4 rounded-xl bg-muted p-4 text-sm text-muted-foreground">
+              {c.approval.note}
+            </p>
+          </div>
+          <div className={cn(CARD, "p-6")}>
+            <p className="font-semibold text-foreground">
+              {c.approval.allOkTitle}
+            </p>
+            <ul className="mt-4 space-y-3">
+              {c.approval.allOk.map((it) => (
+                <li key={it} className="flex gap-2 text-foreground">
+                  <CheckCircle2
+                    className="mt-0.5 h-5 w-5 shrink-0 text-emerald-600"
+                    aria-hidden="true"
+                  />
+                  {it}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Data sources */}
+      <section className={`${LIGHT} py-16 md:py-24`} aria-labelledby="data-h2">
+        <div className="container mx-auto max-w-5xl px-4">
+          <h2 id="data-h2" className={`${H2_DARK_BLUE} mb-8`}>
+            {c.sources.h2}
+          </h2>
+          <Table head={c.sources.head} rows={c.sources.rows} />
+        </div>
+      </section>
+
+      {/* Method */}
+      <section
+        className={`${WHITE} py-16 md:py-24`}
+        aria-labelledby="metode-h2"
+      >
+        <div className="container mx-auto max-w-4xl px-4">
+          <h2 id="metode-h2" className={H2_DARK_BLUE}>
+            {c.method.h2}
+          </h2>
+          <p className="mb-8 mt-4 text-lg text-muted-foreground">
+            {c.method.lead}
+          </p>
+          <Accordion type="multiple" className={cn(CARD, "px-6")}>
+            <AccordionItem value="specific">
+              <AccordionTrigger className="text-left text-base font-semibold">
+                {c.method.specificTitle}
+              </AccordionTrigger>
+              <AccordionContent>
+                <ul className="list-disc space-y-1 pl-5 text-muted-foreground">
+                  {c.method.specific.map((s) => (
+                    <li key={s}>{s}</li>
+                  ))}
+                </ul>
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="grc">
+              <AccordionTrigger className="text-left text-base font-semibold">
+                {c.method.grc.title}
+              </AccordionTrigger>
+              <AccordionContent className="space-y-4">
+                <p className="text-muted-foreground">{c.method.grc.body}</p>
+                <Table head={c.method.grc.head} rows={c.method.grc.rows} />
+                <Table
+                  head={c.method.grc.mitigationHead}
+                  rows={c.method.grc.mitigations}
+                />
+                <p className="text-muted-foreground">{c.method.grc.footnote}</p>
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="sail">
+              <AccordionTrigger className="text-left text-base font-semibold">
+                {c.method.sail.title}
+              </AccordionTrigger>
+              <AccordionContent className="space-y-4">
+                <p className="text-muted-foreground">{c.method.sail.body}</p>
+                <Table head={c.method.sail.head} rows={c.method.sail.rows} />
+                <p className="text-muted-foreground">{c.method.sail.alos}</p>
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="containment">
+              <AccordionTrigger className="text-left text-base font-semibold">
+                {c.method.containment.title}
+              </AccordionTrigger>
+              <AccordionContent>
+                <p className="text-muted-foreground">
+                  {c.method.containment.body}
+                </p>
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="revision" className="border-b-0">
+              <AccordionTrigger className="text-left text-base font-semibold">
+                {c.method.revision.title}
+              </AccordionTrigger>
+              <AccordionContent>
+                <p className="text-muted-foreground">
+                  {c.method.revision.body}
+                </p>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
+      </section>
+
+      {/* Limits */}
+      <section
+        className={`${LIGHT} py-16 md:py-20`}
+        aria-labelledby="ansvar-h2"
+      >
+        <div className="container mx-auto max-w-4xl px-4">
+          <h2 id="ansvar-h2" className={`${H2_DARK_BLUE} mb-6`}>
+            {c.limits.h2}
+          </h2>
+          <ul className="space-y-3">
+            {c.limits.items.map((it) => (
+              <li key={it} className="flex gap-2 text-foreground">
+                <Info
+                  className="mt-0.5 h-5 w-5 shrink-0 text-[#123b87]"
+                  aria-hidden="true"
+                />
+                {it}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-6 text-sm text-muted-foreground">
+            {c.limits.sources}
+          </p>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className={`${DARK} py-16 text-center md:py-24`}>
+        <div className="container mx-auto max-w-2xl space-y-5 px-4">
+          <h2 className={H2}>{c.cta.h2}</h2>
+          <p className="text-lg text-white/75">{c.cta.body}</p>
+          <DemoButton label={c.cta.button} />
+          <p>
+            <Link
+              to="/compliance"
+              className="inline-flex items-center gap-1 text-sky-300 hover:underline"
+            >
+              {c.cta.related}{" "}
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </p>
+        </div>
+      </section>
+    </main>
   );
 }
