@@ -5,7 +5,7 @@ import {
 } from "@/content/ops-dashboard";
 import { SOFTWARE_APP_LD, breadcrumbLd, ldScript, pageHead } from "@/lib/seo";
 
-/** Server-rendered head for /operasjonsdashbord and /en/ops-dashboard. */
+/** Server-rendered head for /aviops and /en/aviops. */
 export function opsDashboardHead(lang: OpsLang) {
   const c = OPS_DASHBOARD[lang];
   const path = OPS_PATHS[lang];

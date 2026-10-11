@@ -150,7 +150,7 @@ const SiteHeader = () => {
 
   const onEnglish = location.pathname === "/en" || location.pathname.startsWith("/en/");
   const compliancePath = onEnglish ? "/en/compliance" : "/compliance";
-  const opsDashboardPath = onEnglish ? "/en/ops-dashboard" : "/operasjonsdashbord";
+  const opsDashboardPath = onEnglish ? "/en/aviops" : "/aviops";
   const smsItems = [
     { label: onEnglish ? "Overview" : "Oversikt", action: () => scrollToId("hero-section") },
     {

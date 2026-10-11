@@ -13,8 +13,8 @@ import videokilder from "@/assets/ops-videokilder.webp";
 export type OpsLang = "nb" | "en";
 
 export const OPS_PATHS: Record<OpsLang, string> = {
-  nb: "/operasjonsdashbord",
-  en: "/en/ops-dashboard",
+  nb: "/aviops",
+  en: "/en/aviops",
 };
 
 export type OpsFeatureId =

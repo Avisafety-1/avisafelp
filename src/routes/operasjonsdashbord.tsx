@@ -1,9 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { opsDashboardHead } from "@/lib/ops-dashboard-head";
-import OpsDashboard from "@/pages/OpsDashboard";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 
+// The page moved to /aviops; keep old links working.
 export const Route = createFileRoute("/operasjonsdashbord")({
-  staticData: { sitemap: true },
-  head: () => opsDashboardHead("nb"),
-  component: () => <OpsDashboard lang="nb" />,
+  staticData: { sitemap: false },
+  beforeLoad: () => {
+    throw redirect({ to: "/aviops", statusCode: 301 });
+  },
 });
