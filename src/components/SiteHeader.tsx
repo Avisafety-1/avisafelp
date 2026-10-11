@@ -157,7 +157,10 @@ const SiteHeader = () => {
       action: () => (onEnglish ? scrollToId("integrations-section") : goTo("/integrasjoner")),
     },
     { label: t("nav.smsSecurity"), action: () => scrollToId("security-section") },
-    { label: onEnglish ? "Risk assessment" : "Risikovurdering", action: () => scrollToId("sora-section") },
+    {
+      label: onEnglish ? "Risk assessment" : "Risikovurdering",
+      action: () => goTo(onEnglish ? "/en/sora-risk-assessment" : "/sora"),
+    },
     { label: t("nav.compliance"), action: () => goTo(compliancePath) },
   ];
 
