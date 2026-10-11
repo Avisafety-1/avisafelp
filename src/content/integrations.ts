@@ -9,10 +9,12 @@ import arduLogo from "@/assets/ardu-logo.png";
 import eccairs2Logo from "@/assets/eccairs2-logo.jpeg";
 import dronetagMini from "@/assets/dronetag-mini.jpeg";
 import logfilesDashboard from "@/assets/logfiles-dashboard.png.asset.json";
+import atlasAisDetection from "@/assets/atlas-ais-detection.jpg";
 
 export type IntegrationId =
   | "dji"
   | "flighthub2"
+  | "atlas"
   | "safesky"
   | "ardupilot"
   | "dronetag"
@@ -40,7 +42,7 @@ export const INTEGRATIONS_PAGE = {
     title:
       "Integrasjoner – DJI, SafeSky, ECCAIRS 2, Dronetag og ArduPilot | AviSafe",
     description:
-      "AviSafe integrerer med DJI og FlightHub 2, SafeSky, ArduPilot, Dronetag og ECCAIRS 2, og importerer loggfiler automatisk – så data flyter mellom planlegging, flyging og rapportering.",
+      "AviSafe integrerer med DJI og FlightHub 2, Atlas UAS, SafeSky, ArduPilot, Dronetag og ECCAIRS 2, og importerer loggfiler automatisk – så data flyter mellom planlegging, flyging og rapportering.",
   },
   tag: "SMS · Integrasjoner",
   h1: "Integrasjoner",
@@ -65,13 +67,15 @@ export const INTEGRATIONS: Integration[] = [
   {
     id: "dji",
     title: "DJI",
-    card: "Kart, dashboard og flydata integrert",
+    card: "Live posisjon, kart og flydata integrert",
     image: djiMap,
-    heading: "Full støtte for DJI",
-    body: "AviSafe integrerer med DJI-kontrollere og DJI Cloud API. Flylogger importeres automatisk, og posisjon og telemetri vises live mens dronen flyr.",
+    heading: "Full støtte for DJI – også live posisjon",
+    body: "AviSafe integrerer med DJI-kontrollere og DJI Cloud API. Dronens posisjon vises live i AviSafe og kan deles med SafeSky eller kun internt. Flylogger importeres automatisk.",
     points: [
+      "Live posisjon direkte fra DJI Pilot 2 på kontrolleren – logg inn med AviSafe-kontoen via Open Platform, uten FlightHub 2-abonnement",
+      "Eller live posisjon fra alle organisasjonens droner via DJI FlightHub 2",
+      "Velg dronen og del posisjonen med SafeSky eller kun internt når du starter flyturen",
       "Opplasting av flylogger fra over 40 DJI-modeller, med støtte for DJI RC PRO/PLUS",
-      "Live posisjon og telemetri fra DJI Pilot 2 og DJI FlightHub 2 (Sync) via DJI Cloud API",
       "Avansert analyse: app-varsler, kontrollinput, batteri, vind, hastighet og mer",
     ],
     url: "https://www.dji.com",
@@ -79,16 +83,30 @@ export const INTEGRATIONS: Integration[] = [
   {
     id: "flighthub2",
     title: "FlightHub 2",
-    card: "Eksporter ruter og SORA-buffere direkte",
+    card: "Live posisjon fra hele flåten og eksport av ruter",
     image: djiFlighthub2,
-    heading: "Fra AviSafe til DJI FlightHub 2",
-    body: "Ruter som planlegges i AviSafe kan eksporteres direkte til DJI FlightHub 2 – sammen med SORA-bufferne som er beregnet for oppdraget.",
+    heading: "DJI FlightHub 2 og AviSafe",
+    body: "Bruker dere DJI FlightHub 2 med organisasjonskonto, videresender FlightHub Sync posisjonen fra organisasjonens droner til AviSafe. Ruter planlagt i AviSafe kan eksporteres til FlightHub 2 sammen med SORA-bufferne.",
     points: [
-      "Eksport av ruter planlagt i AviSafe",
-      "SORA-buffere følger med ruten",
-      "Live posisjon fra FlightHub 2 (Sync) tilbake i AviSafe-kartet",
+      "Live posisjon fra organisasjonens droner via FlightHub Sync (MQTT Bridge)",
+      "Settes opp én gang i FlightHub 2 – krever betalt FlightHub 2-abonnement",
+      "Eksport av ruter planlagt i AviSafe, med SORA-buffere",
     ],
     url: "https://www.dji.com/flighthub-2",
+  },
+  {
+    id: "atlas",
+    title: "Atlas UAS",
+    card: "Live video og AI-deteksjon koblet mot AIS",
+    image: atlasAisDetection,
+    heading: "Oppdaget. Identifisert. Automatisk.",
+    body: "AviSafe er integrert med Atlas UAS. Live video og posisjon fra dronen vises i AviSafe, og AI-deteksjon i videostrømmen kobles automatisk mot AIS – i sanntid, fra luften.",
+    points: [
+      "Live video fra dronen i AviSafe",
+      "Live posisjon på kartet",
+      "AI-sporing av objekter i videoen, med justerbar følsomhet",
+      "Fartøy matches automatisk mot AIS – med navn, fart og avstand",
+    ],
   },
   {
     id: "safesky",
