@@ -12,7 +12,7 @@ const no = {
     smsSecurity: "Sikkerhet",
     compliance: "Compliance",
     operations: "Operasjoner",
-    opsDashboard: "Ops-dashbord",
+    opsDashboard: "AviOps",
     shop: "Butikk",
     articlesMedia: "Artikler/Media",
     newsletter: "Nyhetsbrev",
@@ -56,7 +56,7 @@ const no = {
     subtitle: "Erfarne eksperter dedikert til å gjøre luftfarten tryggere",
     cta: "Er du klar for mer effektiv drift og sikkerhetsstyring?",
     rikard: {
-      title: "Medgründer, salg og markedsføring",
+      title: "Medgründer – Chief Commercial Officer (CCO)",
       cv: [
         "Bakgrunn fra shipping og maritim redningstjeneste",
         "2 års erfaring som Quality Assurance",
@@ -67,7 +67,7 @@ const no = {
       ],
     },
     gard: {
-      title: "CEO og medgründer – produktutvikling",
+      title: "CEO og medgründer – Product Manager (PM)",
       cv: [
         "13 års erfaring som pilot",
         "Erfaring med planlegging, ledelse og supervisjon av større luftoperasjoner",

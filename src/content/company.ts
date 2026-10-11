@@ -17,7 +17,7 @@ export const ABOUT = {
       {
         name: "Gard Haug-Hansen",
         jobTitle: "CEO og medgründer",
-        role: "CEO og medgründer – produktutvikling",
+        role: "CEO og medgründer – Product Manager (PM)",
         cv: [
           "13 års erfaring som pilot",
           "Erfaring med planlegging, ledelse og supervisjon av større luftoperasjoner",
@@ -29,8 +29,8 @@ export const ABOUT = {
       },
       {
         name: "Rikard Bjørklund",
-        jobTitle: "Medgründer, salg og markedsføring",
-        role: "Medgründer, salg og markedsføring",
+        jobTitle: "Medgründer – Chief Commercial Officer (CCO)",
+        role: "Medgründer – Chief Commercial Officer (CCO)",
         cv: [
           "Bakgrunn fra shipping og maritim redningstjeneste",
           "2 års erfaring som Quality Assurance",
@@ -56,7 +56,7 @@ export const ABOUT = {
       {
         name: "Gard Haug-Hansen",
         jobTitle: "CEO and Co-founder",
-        role: "CEO and Co-founder – Product Development",
+        role: "CEO and Co-founder – Product Manager (PM)",
         cv: [
           "13 years of experience as a pilot",
           "Experience with planning, management and supervision of major air operations",
@@ -68,8 +68,8 @@ export const ABOUT = {
       },
       {
         name: "Rikard Bjørklund",
-        jobTitle: "Co-founder, Sales and Marketing",
-        role: "Co-founder, Sales and Marketing",
+        jobTitle: "Co-founder – Chief Commercial Officer (CCO)",
+        role: "Co-founder – Chief Commercial Officer (CCO)",
         cv: [
           "Background from shipping and maritime rescue services",
           "2 years of experience in Quality Assurance",

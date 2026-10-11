@@ -14,7 +14,7 @@ const en: Translations = {
     smsSecurity: "Security",
     compliance: "Compliance",
     operations: "Operations",
-    opsDashboard: "Ops dashboard",
+    opsDashboard: "AviOps",
     shop: "Shop",
     articlesMedia: "Articles & Media",
     newsletter: "Newsletter",
@@ -58,7 +58,7 @@ const en: Translations = {
     subtitle: "Experienced experts dedicated to making aviation safer",
     cta: "Ready for more efficient operations and safety management?",
     rikard: {
-      title: "Co-founder, Sales & Marketing",
+      title: "Co-founder – Chief Commercial Officer (CCO)",
       cv: [
         "Background from shipping and maritime rescue services",
         "2 years of experience in Quality Assurance",
@@ -69,7 +69,7 @@ const en: Translations = {
       ],
     },
     gard: {
-      title: "CEO & Co-founder – Product Development",
+      title: "CEO & Co-founder – Product Manager (PM)",
       cv: [
         "13 years of experience as a pilot",
         "Experience with planning, management and supervision of major air operations",

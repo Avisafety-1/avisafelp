@@ -1,5 +1,5 @@
 /**
- * Copy for the AviSafe Ops dashboard page, one object per language.
+ * Copy for the AviOps operations dashboard page, one object per language.
  * The page layout lives in src/pages/OpsDashboard.tsx.
  * Names, positions and video in the screenshots are demo data; the video
  * panel shows a still photo in place of a live feed.
@@ -13,8 +13,8 @@ import videokilder from "@/assets/ops-videokilder.webp";
 export type OpsLang = "nb" | "en";
 
 export const OPS_PATHS: Record<OpsLang, string> = {
-  nb: "/operasjonsdashbord",
-  en: "/en/ops-dashboard",
+  nb: "/aviops",
+  en: "/en/aviops",
 };
 
 export type OpsFeatureId =
@@ -64,21 +64,21 @@ export type OpsContent = {
 export const OPS_DASHBOARD: Record<OpsLang, OpsContent> = {
   nb: {
     meta: {
-      title: "Operasjonsdashbord for droneoperasjoner – AviSafe Ops",
+      title: "AviOps – operasjonsdashbord for droneoperasjoner",
       description:
-        "AviSafe Ops samler live video, kart med luftrom og trafikk, vær, oppgaver og SMS med svar fra pilotene i ett skjermbilde for operasjonslederen.",
+        "AviOps samler live video, kart med luftrom og trafikk, vær, oppgaver og SMS med svar fra pilotene i ett skjermbilde for operasjonslederen.",
     },
     home: { name: "Forside", path: "/" },
-    navLabel: "Operasjonsdashbord",
+    navLabel: "AviOps",
     hero: {
       tag: "Operasjonsdashbord",
-      h1: "AviSafe Ops – full oversikt over droneoperasjonen i sanntid",
-      lead: "Ops-dashbordet samler alt operasjonslederen trenger i ett skjermbilde: live video, dronenes posisjon, vær, oppgaver og kommunikasjon med pilotene. Det viser bare det som er aktivt akkurat nå.",
+      h1: "AviOps – full oversikt over droneoperasjonen i sanntid",
+      lead: "AviOps samler alt operasjonslederen trenger i ett skjermbilde: live video, dronenes posisjon, vær, oppgaver og kommunikasjon med pilotene. Det viser bare det som er aktivt akkurat nå.",
       ctaPrimary: "Be om demo",
       ctaSecondary: "Se funksjonene",
       image: {
         ...IMG.kommandosentral,
-        alt: "AviSafe Ops kommandosentral med aktiv videokilde, kart med luftromssoner, flytrafikk og søkeområde, oppgaveliste, hendelseslogg og vær fra MET",
+        alt: "AviOps kommandosentral med aktiv videokilde, kart med luftromssoner, flytrafikk og søkeområde, oppgaveliste, hendelseslogg og vær fra MET",
       },
     },
     features: {
@@ -178,7 +178,7 @@ export const OPS_DASHBOARD: Record<OpsLang, OpsContent> = {
         {
           ...IMG.oversiktNorge,
           wide: true,
-          alt: "AviSafe Ops med kart over Norge med luftromssoner, startpunkter for to team, oppgave, hendelseslogg, live video og vær med varsel om lav temperatur",
+          alt: "AviOps med kart over Norge med luftromssoner, startpunkter for to team, oppgave, hendelseslogg, live video og vær med varsel om lav temperatur",
           caption:
             "Hele operasjonen i ett bilde: luftromssoner, startpunkter, oppgaver, hendelseslogg, live video og vær med varsler.",
         },
@@ -211,21 +211,21 @@ export const OPS_DASHBOARD: Record<OpsLang, OpsContent> = {
   },
   en: {
     meta: {
-      title: "Drone operations dashboard – AviSafe Ops",
+      title: "AviOps – drone operations dashboard",
       description:
-        "AviSafe Ops brings live video, a map with airspace and traffic, weather, tasks and SMS replies from pilots together on one screen for the operations lead.",
+        "AviOps brings live video, a map with airspace and traffic, weather, tasks and SMS replies from pilots together on one screen for the operations lead.",
     },
     home: { name: "Home", path: "/en" },
-    navLabel: "Ops dashboard",
+    navLabel: "AviOps",
     hero: {
       tag: "Operations dashboard",
-      h1: "AviSafe Ops – the full picture of your drone operation in real time",
-      lead: "The Ops dashboard gives the operations lead everything they need on one screen: live video, drone positions, weather, tasks and communication with the pilots. It only shows what is active right now.",
+      h1: "AviOps – the full picture of your drone operation in real time",
+      lead: "AviOps gives the operations lead everything they need on one screen: live video, drone positions, weather, tasks and communication with the pilots. It only shows what is active right now.",
       ctaPrimary: "Request a demo",
       ctaSecondary: "See the features",
       image: {
         ...IMG.kommandosentral,
-        alt: "AviSafe Ops command centre with an active video source, a map with airspace zones, air traffic and a search area, a task list, an event log and MET Norway weather",
+        alt: "AviOps command centre with an active video source, a map with airspace zones, air traffic and a search area, a task list, an event log and MET Norway weather",
       },
     },
     features: {
@@ -325,7 +325,7 @@ export const OPS_DASHBOARD: Record<OpsLang, OpsContent> = {
         {
           ...IMG.oversiktNorge,
           wide: true,
-          alt: "AviSafe Ops with a map of Norway showing airspace zones, take-off points for two teams, a task, the event log, live video and weather with a low-temperature warning",
+          alt: "AviOps with a map of Norway showing airspace zones, take-off points for two teams, a task, the event log, live video and weather with a low-temperature warning",
           caption:
             "The whole operation in one view: airspace zones, take-off points, tasks, event log, live video and weather with warnings.",
         },
