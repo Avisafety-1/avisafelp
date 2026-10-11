@@ -16,6 +16,7 @@ export default function SiteFooter() {
         { to: "/om-oss", label: "Om oss" },
         { to: "/partnere", label: "Partnere" },
         { to: "/compliance", label: "Compliance" },
+        { to: "/operasjonsdashbord", label: "Operasjonsdashbord" },
         { to: "/integrasjoner", label: "Integrasjoner" },
         { to: "/sora", label: "SORA" },
         { to: "/artikler", label: "Artikler" },
@@ -48,6 +49,7 @@ export default function SiteFooter() {
           <ul className="space-y-2 text-sm">
             <li><Link to="/en" className="text-muted-foreground hover:text-foreground">AviSafe (English)</Link></li>
             <li><Link to="/en/compliance" className="text-muted-foreground hover:text-foreground">Compliance</Link></li>
+            <li><Link to="/en/ops-dashboard" className="text-muted-foreground hover:text-foreground">Ops dashboard</Link></li>
             {LANDING_PAGES.map((p) => (
               <li key={p.path}><Link to={p.path} className="text-muted-foreground hover:text-foreground">{p.navLabel}</Link></li>
             ))}

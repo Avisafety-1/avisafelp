@@ -7,6 +7,7 @@ export const LANGUAGE_PAIRS: { nb: string; en: string }[] = [
   { nb: "/om-oss", en: "/en/about" },
   { nb: "/partnere", en: "/en/partners" },
   { nb: "/compliance", en: "/en/compliance" },
+  { nb: "/operasjonsdashbord", en: "/en/ops-dashboard" },
 ];
 
 export type PageLang = "nb" | "en";
