@@ -12,6 +12,7 @@ const en: Translations = {
     smsOverview: "Overview",
     smsIntegrations: "Integrations",
     smsSecurity: "Security",
+    compliance: "Compliance",
     operations: "Operations",
     shop: "Shop",
     articlesMedia: "Articles & Media",

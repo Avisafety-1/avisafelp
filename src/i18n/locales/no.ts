@@ -10,6 +10,7 @@ const no = {
     smsOverview: "Oversikt",
     smsIntegrations: "Integrasjoner",
     smsSecurity: "Sikkerhet",
+    compliance: "Compliance",
     operations: "Operasjoner",
     shop: "Butikk",
     articlesMedia: "Artikler/Media",

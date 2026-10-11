@@ -149,6 +149,7 @@ const SiteHeader = () => {
     : "bg-black text-white hover:bg-black/80 border border-white/15";
 
   const onEnglish = location.pathname === "/en" || location.pathname.startsWith("/en/");
+  const compliancePath = onEnglish ? "/en/compliance" : "/compliance";
   const smsItems = [
     { label: onEnglish ? "Overview" : "Oversikt", action: () => scrollToId("hero-section") },
     { label: t("nav.smsIntegrations"), action: () => scrollToId("integrations-section") },
@@ -199,6 +200,10 @@ const SiteHeader = () => {
             {/* Desktop nav */}
             <nav className="hidden lg:flex items-center gap-2">
               <HoverDropdown label={t("nav.sms")} items={smsItems} scrolled={scrolled} />
+
+              <button onClick={() => goTo(compliancePath)} className={`${navButtonBase} ${navButtonTheme}`}>
+                {t("nav.compliance")}
+              </button>
 
               <button onClick={() => goTo("/operations")} className={`${navButtonBase} ${navButtonTheme}`}>
                 {t("nav.operations")}
@@ -307,6 +312,12 @@ const SiteHeader = () => {
                       </AccordionItem>
                     </Accordion>
 
+                    <button
+                      onClick={() => goTo(compliancePath)}
+                      className="text-left px-3 py-3 text-base font-medium uppercase tracking-wide hover:bg-white/10 rounded-md"
+                    >
+                      {t("nav.compliance")}
+                    </button>
                     <button
                       onClick={() => goTo("/operations")}
                       className="text-left px-3 py-3 text-base font-medium uppercase tracking-wide hover:bg-white/10 rounded-md"
