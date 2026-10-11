@@ -2,12 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Link } from "@/lib/router-compat";
 import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  type CarouselApi,
-} from "@/components/ui/carousel";
-import {
   INTEGRATIONS,
   INTEGRATIONS_PAGE,
   INTEGRATIONS_PATH,
@@ -19,11 +13,13 @@ import { cn } from "@/lib/utils";
  * Full-width integration cards, after shadcnblocks "Gallery 6" on 21st.dev:
  * the row starts at the container edge and runs off the right side of the
  * screen, and every card shows its title and text below the image.
+ * Native horizontal scrolling with snap, so touch swipes, trackpads and
+ * shift+wheel all work; the arrows just scroll the same element.
  */
 const IntegrationsCarousel = () => {
   const c = INTEGRATIONS_PAGE.carousel;
-  const [api, setApi] = useState<CarouselApi>();
   const containerRef = useRef<HTMLDivElement>(null);
+  const scrollerRef = useRef<HTMLDivElement>(null);
   const [inset, setInset] = useState<number | null>(null);
   const [canPrev, setCanPrev] = useState(false);
   const [canNext, setCanNext] = useState(true);
@@ -45,19 +41,29 @@ const IntegrationsCarousel = () => {
   }, []);
 
   useEffect(() => {
-    if (!api) return;
+    const el = scrollerRef.current;
+    if (!el) return;
     const update = () => {
-      setCanPrev(api.canScrollPrev());
-      setCanNext(api.canScrollNext());
+      setCanPrev(el.scrollLeft > 4);
+      setCanNext(el.scrollLeft + el.clientWidth < el.scrollWidth - 4);
     };
     update();
-    api.on("select", update);
-    api.on("reInit", update);
+    el.addEventListener("scroll", update, { passive: true });
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
     return () => {
-      api.off("select", update);
-      api.off("reInit", update);
+      el.removeEventListener("scroll", update);
+      ro.disconnect();
     };
-  }, [api]);
+  }, []);
+
+  const scrollByCard = (dir: 1 | -1) => {
+    const el = scrollerRef.current;
+    const card = el?.firstElementChild as HTMLElement | null;
+    if (!el || !card) return;
+    const step = card.getBoundingClientRect().width + 20;
+    el.scrollBy({ left: dir * step, behavior: "smooth" });
+  };
 
   const arrow =
     "flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card text-foreground transition-colors hover:bg-muted disabled:pointer-events-none disabled:opacity-40";
@@ -88,7 +94,7 @@ const IntegrationsCarousel = () => {
             <button
               type="button"
               className={arrow}
-              onClick={() => api?.scrollPrev()}
+              onClick={() => scrollByCard(-1)}
               disabled={!canPrev}
               aria-label={c.prev}
             >
@@ -97,7 +103,7 @@ const IntegrationsCarousel = () => {
             <button
               type="button"
               className={arrow}
-              onClick={() => api?.scrollNext()}
+              onClick={() => scrollByCard(1)}
               disabled={!canNext}
               aria-label={c.next}
             >
@@ -107,63 +113,62 @@ const IntegrationsCarousel = () => {
         </div>
       </div>
 
-      <Carousel
-        setApi={setApi}
-        opts={{
-          align: "start",
-          breakpoints: { "(max-width: 768px)": { dragFree: true } },
-        }}
+      {/* The row bleeds off the right edge of the screen. */}
+      <div
+        ref={scrollerRef}
+        className="flex snap-x snap-mandatory gap-5 overflow-x-auto overscroll-x-contain px-4 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        style={
+          inset === null
+            ? undefined
+            : {
+                paddingLeft: inset,
+                paddingRight: inset,
+                scrollPaddingLeft: inset,
+              }
+        }
       >
-        {/* The row bleeds off the right edge of the screen. */}
-        <CarouselContent
-          className="ml-0 pl-4"
-          style={inset === null ? undefined : { paddingLeft: inset }}
-        >
-          {INTEGRATIONS.map((it) => {
-            const Icon = INTEGRATION_ICONS[it.id];
-            return (
-              <CarouselItem
-                key={it.id}
-                className="basis-[280px] pl-0 pr-5 sm:basis-[320px] lg:basis-[360px]"
+        {INTEGRATIONS.map((it) => {
+          const Icon = INTEGRATION_ICONS[it.id];
+          return (
+            <div
+              key={it.id}
+              className="w-[280px] shrink-0 snap-start sm:w-[320px] lg:w-[360px]"
+            >
+              <Link
+                to={`${INTEGRATIONS_PATH}#${it.id}`}
+                className="group flex h-full flex-col rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
-                <Link
-                  to={`${INTEGRATIONS_PATH}#${it.id}`}
-                  className="group flex h-full flex-col rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                >
-                  <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-[hsl(210,45%,10%)]">
-                    <img
-                      src={it.image}
-                      alt=""
-                      loading="lazy"
-                      className={cn(
-                        "h-full w-full transition-transform duration-500 group-hover:scale-105",
-                        it.contain ? "object-contain p-10" : "object-cover",
-                      )}
+                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-[hsl(210,45%,10%)]">
+                  <img
+                    src={it.image}
+                    alt=""
+                    loading="lazy"
+                    draggable={false}
+                    className={cn(
+                      "h-full w-full transition-transform duration-500 group-hover:scale-105",
+                      it.contain ? "object-contain p-10" : "object-cover",
+                    )}
+                  />
+                </div>
+                <div className="flex flex-1 flex-col pt-4">
+                  <p className="flex items-center gap-2 text-lg font-semibold text-foreground">
+                    <Icon className="h-5 w-5 text-primary" aria-hidden="true" />
+                    {it.title}
+                  </p>
+                  <p className="mt-1 text-muted-foreground">{it.card}</p>
+                  <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-primary">
+                    {c.readMore}
+                    <ArrowRight
+                      className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                      aria-hidden="true"
                     />
-                  </div>
-                  <div className="flex flex-1 flex-col pt-4">
-                    <p className="flex items-center gap-2 text-lg font-semibold text-foreground">
-                      <Icon
-                        className="h-5 w-5 text-primary"
-                        aria-hidden="true"
-                      />
-                      {it.title}
-                    </p>
-                    <p className="mt-1 text-muted-foreground">{it.card}</p>
-                    <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-primary">
-                      {c.readMore}
-                      <ArrowRight
-                        className="h-4 w-4 transition-transform group-hover:translate-x-1"
-                        aria-hidden="true"
-                      />
-                    </span>
-                  </div>
-                </Link>
-              </CarouselItem>
-            );
-          })}
-        </CarouselContent>
-      </Carousel>
+                  </span>
+                </div>
+              </Link>
+            </div>
+          );
+        })}
+      </div>
     </section>
   );
 };
