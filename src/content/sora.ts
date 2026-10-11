@@ -19,6 +19,11 @@ export const SORA_PAGE = {
     lead: "Risikovurderingen samler oppdragets data, vær, luftrom, befolkning, mannskap og utstyr, og gir en anbefaling: GO, forsiktighet eller NO-GO. Faste regler bestemmer tallene og stoppene. AI-en skriver vurderingen.",
     ctaPrimary: "Book en demo",
     ctaSecondary: "Slik fungerer det",
+    stats: [
+      { value: "17", label: "datakilder" },
+      { value: "ca. 30 s", label: "per vurdering" },
+      { value: "SAIL I–VI", label: "SORA 2.5" },
+    ],
   },
   result: {
     title: "Risikovurdering",

@@ -283,6 +283,15 @@ export default function Sora() {
                 <ArrowDown className="h-4 w-4" aria-hidden="true" />
               </button>
             </div>
+            <dl className="flex flex-wrap gap-x-8 gap-y-3 border-t border-white/10 pt-6">
+              {c.hero.stats.map((st) => (
+                <div key={st.label}>
+                  <dt className="sr-only">{st.label}</dt>
+                  <dd className="text-2xl font-bold text-white">{st.value}</dd>
+                  <dd className="text-sm text-white/60">{st.label}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
           <ResultMock />
         </div>
