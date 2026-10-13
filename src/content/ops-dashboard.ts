@@ -372,5 +372,10 @@ export const OPS_DASHBOARD: Record<OpsLang, OpsContent> = {
       requirement: "Requires AviSafe with administrator access.",
       cta: "Request a demo",
     },
+    film: {
+      h2: "Watch the film – AviSafe Ops in 51 seconds",
+      body: "A short product film showing how AviSafe Ops brings every drone, every live feed and every team into one operational picture.",
+      videoLabel: "AviSafe Ops – product film (51 s)",
+    },
   },
 };
