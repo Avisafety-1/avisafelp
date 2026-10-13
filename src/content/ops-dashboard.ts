@@ -9,6 +9,8 @@ import oversiktNorge from "@/assets/ops-oversikt-norge.webp";
 import melding from "@/assets/ops-melding.webp";
 import flighthub2 from "@/assets/ops-flighthub2.webp";
 import videokilder from "@/assets/ops-videokilder.webp";
+import aviopsFilm from "@/assets/aviops-film-1080p.mp4.asset.json";
+import aviopsPoster from "@/assets/aviops-poster.jpg.asset.json";
 
 export type OpsLang = "nb" | "en";
 
@@ -59,6 +61,16 @@ export type OpsContent = {
     items: (Image & { caption: string; wide?: boolean })[];
   };
   closing: { h2: string; body: string; requirement: string; cta: string };
+  film: { h2: string; body: string; videoLabel: string };
+};
+
+/** Product film hosted on the CDN, plus schema.org metadata. */
+export const OPS_FILM = {
+  video: aviopsFilm.url,
+  poster: aviopsPoster.url,
+  name: "AviSafe Ops – One operational picture",
+  duration: "PT51S",
+  uploadDate: "2026-10-13",
 };
 
 export const OPS_DASHBOARD: Record<OpsLang, OpsContent> = {
@@ -207,6 +219,11 @@ export const OPS_DASHBOARD: Record<OpsLang, OpsContent> = {
       body: "Laget for nødetater, leteaksjoner, inspeksjon og andre operasjoner der flere ressurser må koordineres samtidig.",
       requirement: "Krever AviSafe med administratortilgang.",
       cta: "Be om demo",
+    },
+    film: {
+      h2: "Se filmen – AviSafe Ops i 51 sekunder",
+      body: "Kort produktfilm som viser hvordan AviSafe Ops samler droner, live video og hele teamet i ett operasjonsbilde.",
+      videoLabel: "AviSafe Ops – produktfilm (51 s)",
     },
   },
   en: {
