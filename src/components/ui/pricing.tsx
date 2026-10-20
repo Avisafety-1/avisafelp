@@ -39,8 +39,7 @@ export function Pricing({ plans, title, description }: PricingProps) {
           <motion.div
             key={plan.id}
             initial={{ y: 50, opacity: 0 }}
-            whileInView={{ y: index === 1 ? -12 : 0, opacity: 1 }}
-            viewport={{ once: true }}
+            animate={{ y: index === 1 ? -12 : 0, opacity: 1 }}
             transition={{ type: "spring", stiffness: 100, damping: 30, delay: 0.15 * index }}
             className={cn(
               "rounded-2xl p-6 bg-card text-center flex flex-col relative shadow-sm",
