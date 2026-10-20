@@ -15,7 +15,6 @@ import type { LucideIcon } from "lucide-react";
 import SectionReveal from "@/components/SectionReveal";
 import {
   OPS_DASHBOARD,
-  OPS_FILM,
   type OpsFeatureId,
   type OpsLang,
 } from "@/content/ops-dashboard";
@@ -199,33 +198,6 @@ export default function OpsDashboard({ lang }: { lang: OpsLang }) {
               </SectionReveal>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Film */}
-      <section className={`${DARK} pb-16 md:pb-24`} aria-labelledby="film-h2">
-        <div className="container mx-auto px-4">
-          <SectionReveal className="mx-auto mb-10 max-w-2xl text-center">
-            <h2 id="film-h2" className={H2}>
-              {c.film.h2}
-            </h2>
-            <p className="mt-4 text-lg leading-relaxed text-white/75">
-              {c.film.body}
-            </p>
-          </SectionReveal>
-          <SectionReveal className="mx-auto max-w-5xl">
-            <div className="overflow-hidden rounded-xl border border-white/10 bg-[#0b1620] shadow-2xl shadow-black/40">
-              <video
-                controls
-                playsInline
-                preload="metadata"
-                poster={OPS_FILM.poster}
-                src={OPS_FILM.video}
-                aria-label={c.film.videoLabel}
-                className="block aspect-video w-full"
-              />
-            </div>
-          </SectionReveal>
         </div>
       </section>
 
