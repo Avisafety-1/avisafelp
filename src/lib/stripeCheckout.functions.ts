@@ -103,3 +103,35 @@ export const confirmStripeOrder = createServerFn({ method: "POST" })
     if (error) console.error("apply_shop_order", error.message);
     return { paid: true };
   });
+
+// Subscriptions: price per user per month; quantity = number of users, bounded per tier.
+const SUBSCRIPTION_TIERS: Record<string, { price: string; min: number; max: number }> = {
+  team: { price: "price_1USWwkRrLM8xOFbkdDEX41KN", min: 1, max: 5 },
+  business: { price: "price_1USWwwRrLM8xOFbk2nhRxDb7", min: 6, max: 15 },
+};
+
+export const createSubscriptionCheckout = createServerFn({ method: "POST" })
+  .inputValidator((data: { tier: string; quantity: number }) => {
+    const tier = SUBSCRIPTION_TIERS[data?.tier];
+    const quantity = Math.floor(Number(data?.quantity));
+    if (!tier) throw new Error("Ukjent abonnement");
+    if (!(quantity >= tier.min && quantity <= tier.max)) throw new Error("Ugyldig antall brukere");
+    return { tier: data.tier, quantity };
+  })
+  .handler(async ({ data }) => {
+    const key = process.env["STRIPE_SECRET_KEY"];
+    if (!key) throw new Error("Betaling er ikke konfigurert");
+    const tier = SUBSCRIPTION_TIERS[data.tier]!;
+    const origin = getRequestHeader("origin") || "https://avisafe.no";
+    const body = new URLSearchParams();
+    body.set("mode", "subscription");
+    body.set("success_url", `${origin}/butikk/takk?abonnement=1`);
+    body.set("cancel_url", `${origin}/butikk/avisafe-abonnement`);
+    body.set("locale", "nb");
+    body.set("billing_address_collection", "required");
+    body.set("phone_number_collection[enabled]", "true");
+    body.set("line_items[0][price]", tier.price);
+    body.set("line_items[0][quantity]", String(data.quantity));
+    const session = await stripe("checkout/sessions", key, { method: "POST", body });
+    return { url: session["url"] as string };
+  });

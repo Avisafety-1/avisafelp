@@ -42,7 +42,11 @@ const Butikk = () => {
                   <p className="mt-2 text-sm text-[hsl(210,45%,30%)] leading-relaxed line-clamp-2">{p.shortDescription}</p>
                   <div className="mt-auto pt-5 flex items-end justify-between gap-3">
                     <div>
-                      <p className="text-2xl font-bold text-[hsl(210,45%,12%)]">{formatNok(p.priceNok)}</p>
+                      <p className="text-2xl font-bold text-[hsl(210,45%,12%)]">
+                        {p.subscription && <span className="text-base font-semibold">fra </span>}
+                        {formatNok(p.priceNok)}
+                        {p.subscription && <span className="text-sm font-medium text-muted-foreground"> / bruker / mnd</span>}
+                      </p>
                       <p className="text-xs text-muted-foreground">inkl. 25 % mva</p>
                       {qty !== undefined && (
                         <p className={`mt-1 text-xs font-medium ${soldOut ? "text-destructive" : "text-emerald-700"}`}>

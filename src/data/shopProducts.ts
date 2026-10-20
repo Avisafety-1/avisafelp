@@ -1,3 +1,4 @@
+import subAsset from "@/assets/shop/abonnement.png.asset.json";
 import patchAsset from "@/assets/shop/patch.jpg.asset.json";
 import heroAsset from "@/assets/shop/hero.webp.asset.json";
 import p1 from "@/assets/shop/p1.jpg.asset.json";
@@ -20,6 +21,8 @@ export type ShopProduct = {
   highlights: string[];
   brand: string;
   imageFit: "cover" | "contain";
+  /** Subscriptions are sold per user per month and have their own product page. */
+  subscription?: boolean;
 };
 
 export const DRONETAG_MINI: ShopProduct = {
@@ -62,6 +65,50 @@ export const AVISAFE_PATCH: ShopProduct = {
   imageFit: "contain",
 };
 
-export const SHOP_PRODUCTS: ShopProduct[] = [DRONETAG_MINI, AVISAFE_PATCH];
+export const AVISAFE_ABONNEMENT: ShopProduct = {
+  id: "avisafe-abonnement",
+  slug: "avisafe-abonnement",
+  title: "AviSafe abonnement",
+  kicker: "Programvare · AviSafe",
+  tagline: "Operativ sikkerhetsstyring for droneoperatører.",
+  shortDescription:
+    "AviSafe-plattformen for operativ sikkerhetsstyring. Pris per bruker per måned.",
+  longDescription:
+    "Velg antall brukere. Antall abonnement du kjøper tilsvarer antall brukere.",
+  priceNok: 329,
+  image: subAsset.url,
+  gallery: [subAsset.url],
+  highlights: [],
+  brand: "AviSafe",
+  imageFit: "contain",
+  subscription: true,
+};
+
+export type SubscriptionPlan = {
+  id: "team" | "business" | "enterprise";
+  name: string;
+  users: string;
+  minQty: number;
+  maxQty: number;
+  priceNok: number | null; // per bruker per måned inkl. mva; null = ta kontakt
+};
+
+export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
+  { id: "team", name: "1–5 brukere", users: "1–5 brukere", minQty: 1, maxQty: 5, priceNok: 399 },
+  { id: "business", name: "6–15 brukere", users: "6–15 brukere", minQty: 6, maxQty: 15, priceNok: 329 },
+  { id: "enterprise", name: "Enterprise", users: "16+ brukere", minQty: 16, maxQty: 16, priceNok: null },
+];
+
+export const SUBSCRIPTION_FEATURES = [
+  "AviSafe-plattform for operativ sikkerhetsstyring",
+  "SafeSky-publisering",
+  "DJI-integrasjoner og logganalyse",
+  "Ubegrenset antall droner og utstyr",
+  "AI-risikovurdering",
+];
+
+export const SUBSCRIPTION_ADDONS = ["AviOPS med live videooverføring", "Compliance-modul"];
+
+export const SHOP_PRODUCTS: ShopProduct[] = [AVISAFE_ABONNEMENT, DRONETAG_MINI, AVISAFE_PATCH];
 
 export const productBySlug = (slug: string) => SHOP_PRODUCTS.find((p) => p.slug === slug);

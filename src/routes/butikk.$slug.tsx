@@ -2,6 +2,7 @@ import { createFileRoute, notFound } from "@tanstack/react-router";
 import { pageHead } from "@/lib/seo";
 import { productBySlug } from "@/data/shopProducts";
 import ButikkProdukt from "@/pages/ButikkProdukt";
+import ButikkAbonnement from "@/pages/ButikkAbonnement";
 
 export const Route = createFileRoute("/butikk/$slug")({
   staticData: { sitemap: false },
@@ -26,5 +27,6 @@ export const Route = createFileRoute("/butikk/$slug")({
 function ProductRoute() {
   const { slug } = Route.useLoaderData();
   const product = productBySlug(slug)!;
+  if (product.subscription) return <ButikkAbonnement />;
   return <ButikkProdukt key={product.id} product={product} />;
 }
