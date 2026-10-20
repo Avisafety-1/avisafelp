@@ -1,3 +1,4 @@
+import patchAsset from "@/assets/shop/patch.jpg.asset.json";
 import heroAsset from "@/assets/shop/hero.webp.asset.json";
 import p1 from "@/assets/shop/p1.jpg.asset.json";
 import p2 from "@/assets/shop/p2.jpg.asset.json";
@@ -27,3 +28,15 @@ export const DRONETAG_MINI: ShopProduct = {
 };
 
 export const SHOP_PRODUCTS: ShopProduct[] = [DRONETAG_MINI];
+
+export const AVISAFE_PATCH: ShopProduct = {
+  id: "avisafe-patch",
+  slug: "avisafe-patch",
+  title: "AviSafe Patch",
+  shortDescription: "AviSafe-merke i PVC med borrelås (velcro) på baksiden.",
+  priceNok: 100,
+  image: patchAsset.url,
+  gallery: [patchAsset.url],
+};
+
+SHOP_PRODUCTS.push(AVISAFE_PATCH);
