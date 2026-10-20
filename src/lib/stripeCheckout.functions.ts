@@ -5,6 +5,7 @@ import { getRequestHeader } from "@tanstack/react-start/server";
 const STRIPE_PRICES: Record<string, string> = {
   "dronetag-mini": "price_1USWWzRrLM8xOFbkICmMi5Df",
   "avisafe-patch": "price_1USWbURrLM8xOFbkBWyJjDwD",
+  testvare: "price_1USX19RrLM8xOFbkppgamgPo",
 };
 const PRODUCT_BY_PRICE: Record<string, string> = Object.fromEntries(
   Object.entries(STRIPE_PRICES).map(([id, price]) => [price, id]),

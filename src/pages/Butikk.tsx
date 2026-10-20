@@ -17,7 +17,7 @@ const Butikk = () => {
         </p>
 
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {SHOP_PRODUCTS.map((p) => {
+          {SHOP_PRODUCTS.filter((p) => !p.hidden).map((p) => {
             const qty = stock?.[p.id];
             const soldOut = qty !== undefined && qty <= 0;
             return (
