@@ -21,7 +21,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { toast } from "sonner";
-import { DRONETAG_MINI } from "@/data/shopProducts";
+import { DRONETAG_MINI, AVISAFE_PATCH } from "@/data/shopProducts";
 import { useShopCart, formatNok } from "@/stores/shopCart";
 
 const features = [
@@ -331,6 +331,50 @@ const Butikk = () => {
                   </AccordionItem>
                 ))}
               </Accordion>
+            </div>
+          </section>
+
+          {/* AviSafe Patch */}
+          <section id="patch" className="mt-24 grid grid-cols-1 md:grid-cols-2 gap-10 items-center rounded-3xl bg-white border border-black/5 p-6 md:p-10">
+            <img
+              src={AVISAFE_PATCH.image}
+              alt="AviSafe Patch – Operations and Safety Management System"
+              className="w-full max-w-sm mx-auto aspect-square object-contain"
+              loading="lazy"
+            />
+            <div>
+              <p className="text-xs uppercase tracking-widest text-[#123b87] font-semibold">Merch</p>
+              <h2 className="mt-2 text-3xl md:text-4xl font-bold text-[hsl(210,45%,12%)]">AviSafe Patch</h2>
+              <p className="mt-4 text-[hsl(210,45%,30%)] leading-relaxed">
+                Patch i PVC med borrelås (velcro) på baksiden – perfekt for flight-jakken, vesten eller dronebagen.
+              </p>
+              <div className="mt-5 flex items-baseline gap-3">
+                <span className="text-3xl font-bold text-[hsl(210,45%,12%)]">{formatNok(AVISAFE_PATCH.priceNok)}</span>
+                <span className="text-sm text-muted-foreground">inkl. 25 % mva</span>
+              </div>
+              <div className="mt-6 flex flex-col sm:flex-row gap-3">
+                <Button
+                  size="lg"
+                  onClick={() => { addItem(AVISAFE_PATCH, 1); setCartOpen(true); toast.success("Lagt til i handlevognen"); }}
+                  className="flex-1 bg-[#123b87] hover:bg-[#0e2f6b] text-white h-12"
+                >
+                  <ShoppingCart className="w-5 h-5 mr-2" />
+                  Legg i handlevogn
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  onClick={() => { addItem(AVISAFE_PATCH, 1); navigate("/butikk/checkout"); }}
+                  className="flex-1 h-12 border-[#123b87] text-[#123b87] hover:bg-[#123b87]/5"
+                >
+                  Kjøp nå
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+              </div>
+              <div className="mt-3 flex items-center gap-2 text-sm font-medium text-emerald-700">
+                <span className="inline-block w-2 h-2 rounded-full bg-emerald-500" />
+                45 stk på lager
+              </div>
             </div>
           </section>
 
