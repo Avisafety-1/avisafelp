@@ -23,7 +23,7 @@ export const createStripeCheckout = createServerFn({ method: "POST" })
     return { items };
   })
   .handler(async ({ data }) => {
-    const key = process.env.STRIPE_SECRET_KEY;
+    const key = process.env["STRIPE_SECRET_KEY"];
     if (!key) throw new Error("Betaling er ikke konfigurert");
     const origin = getRequestHeader("origin") || "https://avisafe.no";
 
@@ -35,7 +35,7 @@ export const createStripeCheckout = createServerFn({ method: "POST" })
     body.set("shipping_address_collection[allowed_countries][0]", "NO");
     body.set("phone_number_collection[enabled]", "true");
     data.items.forEach((item, i) => {
-      body.set(`line_items[${i}][price]`, STRIPE_PRICES[item.id]);
+      body.set(`line_items[${i}][price]`, STRIPE_PRICES[item.id] as string);
       body.set(`line_items[${i}][quantity]`, String(item.quantity));
     });
 
