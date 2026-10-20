@@ -23,10 +23,15 @@ const ButikkCheckout = () => {
   const pay = async () => {
     setPaying(true);
     try {
-      const { url } = await createStripeCheckout({
+      const res = await createStripeCheckout({
         data: { items: items.map((i) => ({ id: i.product.id, quantity: i.quantity })) },
       });
-      window.location.href = url;
+      if ("error" in res && res.error) {
+        toast.error(res.error);
+        setPaying(false);
+        return;
+      }
+      if ("url" in res && res.url) window.location.href = res.url;
     } catch (e) {
       console.error(e);
       toast.error("Kunne ikke starte betalingen", { description: "Prøv igjen om litt." });

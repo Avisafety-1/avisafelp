@@ -23,6 +23,24 @@ import {
 import { toast } from "sonner";
 import { DRONETAG_MINI, AVISAFE_PATCH } from "@/data/shopProducts";
 import { useShopCart, formatNok } from "@/stores/shopCart";
+import { useShopStock } from "@/hooks/use-shop-stock";
+
+const StockLabel = ({ qty }: { qty: number | undefined }) => {
+  if (qty === undefined) return <div className="mt-3 h-5" />;
+  if (qty <= 0)
+    return (
+      <div className="mt-3 flex items-center gap-2 text-sm font-medium text-destructive">
+        <span className="inline-block w-2 h-2 rounded-full bg-destructive" />
+        Utsolgt
+      </div>
+    );
+  return (
+    <div className="mt-3 flex items-center gap-2 text-sm font-medium text-emerald-700">
+      <span className="inline-block w-2 h-2 rounded-full bg-emerald-500" />
+      {qty} stk på lager
+    </div>
+  );
+};
 
 const features = [
   { icon: Shield, title: "Dual Remote ID", desc: "Sender både Network RID og Direct (Broadcast) RID — i samsvar med EU, FAA, CAA og CAAS." },
@@ -46,6 +64,11 @@ const Butikk = () => {
   const [activeImg, setActiveImg] = useState(product.gallery[0]);
   const addItem = useShopCart((s) => s.addItem);
   const setCartOpen = useShopCart((s) => s.setOpen);
+  const stock = useShopStock();
+  const miniQty = stock?.[product.id];
+  const patchQty = stock?.[AVISAFE_PATCH.id];
+  const miniSoldOut = miniQty !== undefined && miniQty <= 0;
+  const patchSoldOut = patchQty !== undefined && patchQty <= 0;
 
   const handleAddToCart = () => {
     addItem(product, 1);
@@ -145,6 +168,7 @@ const Butikk = () => {
               <div className="mt-6 flex flex-col sm:flex-row gap-3">
                 <Button
                   size="lg"
+                  disabled={miniSoldOut}
                   onClick={handleAddToCart}
                   className="flex-1 bg-[#123b87] hover:bg-[#0e2f6b] text-white h-14 text-base"
                 >
@@ -154,6 +178,7 @@ const Butikk = () => {
                 <Button
                   size="lg"
                   variant="outline"
+                  disabled={miniSoldOut}
                   onClick={handleBuyNow}
                   className="flex-1 h-14 text-base border-[#123b87] text-[#123b87] hover:bg-[#123b87]/5"
                 >
@@ -162,10 +187,7 @@ const Butikk = () => {
                 </Button>
               </div>
 
-              <div className="mt-3 flex items-center gap-2 text-sm font-medium text-emerald-700">
-                <span className="inline-block w-2 h-2 rounded-full bg-emerald-500" />
-                9 stk på lager
-              </div>
+              <StockLabel qty={miniQty} />
 
               <ul className="mt-6 space-y-2 text-sm text-[hsl(210,45%,25%)]">
                 {[
@@ -355,6 +377,7 @@ const Butikk = () => {
               <div className="mt-6 flex flex-col sm:flex-row gap-3">
                 <Button
                   size="lg"
+                  disabled={patchSoldOut}
                   onClick={() => { addItem(AVISAFE_PATCH, 1); setCartOpen(true); toast.success("Lagt til i handlevognen"); }}
                   className="flex-1 bg-[#123b87] hover:bg-[#0e2f6b] text-white h-12"
                 >
@@ -364,6 +387,7 @@ const Butikk = () => {
                 <Button
                   size="lg"
                   variant="outline"
+                  disabled={patchSoldOut}
                   onClick={() => { addItem(AVISAFE_PATCH, 1); navigate("/butikk/checkout"); }}
                   className="flex-1 h-12 border-[#123b87] text-[#123b87] hover:bg-[#123b87]/5"
                 >
@@ -371,10 +395,7 @@ const Butikk = () => {
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
               </div>
-              <div className="mt-3 flex items-center gap-2 text-sm font-medium text-emerald-700">
-                <span className="inline-block w-2 h-2 rounded-full bg-emerald-500" />
-                45 stk på lager
-              </div>
+              <StockLabel qty={patchQty} />
             </div>
           </section>
 
@@ -388,7 +409,8 @@ const Butikk = () => {
             </p>
             <Button
               size="lg"
-              onClick={handleAddToCart}
+              disabled={miniSoldOut}
+                  onClick={handleAddToCart}
               className="mt-8 bg-white text-[#123b87] hover:bg-white/90 h-14 px-8 text-base font-semibold"
             >
               <ShoppingCart className="w-5 h-5 mr-2" />
