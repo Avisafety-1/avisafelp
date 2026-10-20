@@ -28,6 +28,7 @@ import { Route as StatistikkRouteImport } from './routes/statistikk'
 import { Route as ArtiklerIndexRouteImport } from './routes/artikler.index'
 import { Route as ArtiklerSlugRouteImport } from './routes/artikler.$slug'
 import { Route as ButikkIndexRouteImport } from './routes/butikk.index'
+import { Route as ButikkSlugRouteImport } from './routes/butikk.$slug'
 import { Route as ButikkCheckoutRouteImport } from './routes/butikk.checkout'
 import { Route as ButikkTakkRouteImport } from './routes/butikk.takk'
 import { Route as EnIndexRouteImport } from './routes/en.index'
@@ -138,6 +139,11 @@ const ButikkIndexRoute = ButikkIndexRouteImport.update({
   path: '/butikk/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ButikkSlugRoute = ButikkSlugRouteImport.update({
+  id: '/butikk/$slug',
+  path: '/butikk/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ButikkCheckoutRoute = ButikkCheckoutRouteImport.update({
   id: '/butikk/checkout',
   path: '/butikk/checkout',
@@ -228,6 +234,7 @@ export interface FileRoutesByFullPath {
   '/sora-prosess': typeof SoraProsessRoute
   '/statistikk': typeof StatistikkRoute
   '/artikler/$slug': typeof ArtiklerSlugRoute
+  '/butikk/$slug': typeof ButikkSlugRoute
   '/butikk/checkout': typeof ButikkCheckoutRoute
   '/butikk/takk': typeof ButikkTakkRoute
   '/en/about': typeof EnAboutRoute
@@ -263,6 +270,7 @@ export interface FileRoutesByTo {
   '/sora-prosess': typeof SoraProsessRoute
   '/statistikk': typeof StatistikkRoute
   '/artikler/$slug': typeof ArtiklerSlugRoute
+  '/butikk/$slug': typeof ButikkSlugRoute
   '/butikk/checkout': typeof ButikkCheckoutRoute
   '/butikk/takk': typeof ButikkTakkRoute
   '/en/about': typeof EnAboutRoute
@@ -299,6 +307,7 @@ export interface FileRoutesById {
   '/sora-prosess': typeof SoraProsessRoute
   '/statistikk': typeof StatistikkRoute
   '/artikler/$slug': typeof ArtiklerSlugRoute
+  '/butikk/$slug': typeof ButikkSlugRoute
   '/butikk/checkout': typeof ButikkCheckoutRoute
   '/butikk/takk': typeof ButikkTakkRoute
   '/en/about': typeof EnAboutRoute
@@ -336,6 +345,7 @@ export interface FileRouteTypes {
     | '/sora-prosess'
     | '/statistikk'
     | '/artikler/$slug'
+    | '/butikk/$slug'
     | '/butikk/checkout'
     | '/butikk/takk'
     | '/en/about'
@@ -371,6 +381,7 @@ export interface FileRouteTypes {
     | '/sora-prosess'
     | '/statistikk'
     | '/artikler/$slug'
+    | '/butikk/$slug'
     | '/butikk/checkout'
     | '/butikk/takk'
     | '/en/about'
@@ -406,6 +417,7 @@ export interface FileRouteTypes {
     | '/sora-prosess'
     | '/statistikk'
     | '/artikler/$slug'
+    | '/butikk/$slug'
     | '/butikk/checkout'
     | '/butikk/takk'
     | '/en/about'
@@ -442,6 +454,7 @@ export interface RootRouteChildren {
   SoraProsessRoute: typeof SoraProsessRoute
   StatistikkRoute: typeof StatistikkRoute
   ArtiklerSlugRoute: typeof ArtiklerSlugRoute
+  ButikkSlugRoute: typeof ButikkSlugRoute
   ButikkCheckoutRoute: typeof ButikkCheckoutRoute
   ButikkTakkRoute: typeof ButikkTakkRoute
   EnAboutRoute: typeof EnAboutRoute
@@ -595,6 +608,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ButikkIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/butikk/$slug': {
+      id: '/butikk/$slug'
+      path: '/butikk/$slug'
+      fullPath: '/butikk/$slug'
+      preLoaderRoute: typeof ButikkSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/butikk/checkout': {
       id: '/butikk/checkout'
       path: '/butikk/checkout'
@@ -714,6 +734,7 @@ const rootRouteChildren: RootRouteChildren = {
   SoraProsessRoute: SoraProsessRoute,
   StatistikkRoute: StatistikkRoute,
   ArtiklerSlugRoute: ArtiklerSlugRoute,
+  ButikkSlugRoute: ButikkSlugRoute,
   ButikkCheckoutRoute: ButikkCheckoutRoute,
   ButikkTakkRoute: ButikkTakkRoute,
   EnAboutRoute: EnAboutRoute,

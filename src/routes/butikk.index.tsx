@@ -4,6 +4,6 @@ import Butikk from "@/pages/Butikk";
 
 export const Route = createFileRoute("/butikk/")({
   staticData: { sitemap: true },
-  head: () => pageHead({ path: '/butikk', title: 'Dronetag Mini – Kjøp Remote ID-sender | AviSafe', description: 'Kjøp Dronetag Mini Remote ID-sender hos AviSafe, med levering i Norge.', type: "product" }),
+  head: () => pageHead({ path: '/butikk', title: 'Butikk – Remote ID og utstyr for droneoperatører | AviSafe', description: 'Kjøp Dronetag Mini Remote ID-sender og AviSafe-merch med levering i Norge.', type: "website" }),
   component: Butikk,
 });
