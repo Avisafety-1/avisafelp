@@ -170,6 +170,48 @@ export type Database = {
         }
         Relationships: []
       }
+      shop_orders: {
+        Row: {
+          amount_total: number | null
+          created_at: string
+          customer_email: string | null
+          items: Json
+          session_id: string
+        }
+        Insert: {
+          amount_total?: number | null
+          created_at?: string
+          customer_email?: string | null
+          items: Json
+          session_id: string
+        }
+        Update: {
+          amount_total?: number | null
+          created_at?: string
+          customer_email?: string | null
+          items?: Json
+          session_id?: string
+        }
+        Relationships: []
+      }
+      shop_stock: {
+        Row: {
+          product_id: string
+          quantity: number
+          updated_at: string
+        }
+        Insert: {
+          product_id: string
+          quantity: number
+          updated_at?: string
+        }
+        Update: {
+          product_id?: string
+          quantity?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
@@ -196,6 +238,15 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      apply_shop_order: {
+        Args: {
+          _amount: number
+          _email: string
+          _items: Json
+          _session_id: string
+        }
+        Returns: boolean
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]

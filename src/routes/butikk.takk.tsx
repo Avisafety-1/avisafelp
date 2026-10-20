@@ -2,10 +2,15 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { CheckCircle2 } from "lucide-react";
 import { useShopCart } from "@/stores/shopCart";
+import { confirmStripeOrder } from "@/lib/stripeCheckout.functions";
 
 const Takk = () => {
   const clear = useShopCart((s) => s.clear);
-  useEffect(() => clear(), [clear]);
+  useEffect(() => {
+    clear();
+    const sessionId = new URLSearchParams(window.location.search).get("session_id");
+    if (sessionId) confirmStripeOrder({ data: { sessionId } }).catch(console.error);
+  }, [clear]);
   return (
     <main className="min-h-screen bg-background pt-32 pb-20">
       <div className="max-w-xl mx-auto px-4 text-center">
