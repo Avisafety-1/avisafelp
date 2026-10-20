@@ -19,6 +19,7 @@ export const Route = createFileRoute("/butikk/$slug")({
       title: `${p.title} – Kjøp hos AviSafe`,
       description: p.shortDescription,
       type: "product",
+      ...(p.hidden ? { noindex: true } : {}),
     });
   },
   component: ProductRoute,

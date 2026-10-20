@@ -23,6 +23,8 @@ export type ShopProduct = {
   imageFit: "cover" | "contain";
   /** Subscriptions are sold per user per month and have their own product page. */
   subscription?: boolean;
+  /** Hidden from the shop overview (reachable by direct link only). */
+  hidden?: boolean;
 };
 
 export const DRONETAG_MINI: ShopProduct = {
@@ -109,6 +111,23 @@ export const SUBSCRIPTION_FEATURES = [
 
 export const SUBSCRIPTION_ADDONS = ["AviOPS med live videooverføring", "Compliance-modul"];
 
-export const SHOP_PRODUCTS: ShopProduct[] = [AVISAFE_ABONNEMENT, DRONETAG_MINI, AVISAFE_PATCH];
+export const TESTVARE: ShopProduct = {
+  id: "testvare",
+  slug: "testvare",
+  title: "Testvare",
+  kicker: "Intern test",
+  tagline: "Kun for å teste kasse og betaling.",
+  shortDescription: "Intern testvare for å teste kassen og betalingen. Sendes ikke.",
+  longDescription: "Denne varen brukes bare til å teste kjøpsflyten.",
+  priceNok: 3,
+  image: patchAsset.url,
+  gallery: [patchAsset.url],
+  highlights: ["Kun for testing"],
+  brand: "AviSafe",
+  imageFit: "contain",
+  hidden: true,
+};
+
+export const SHOP_PRODUCTS: ShopProduct[] = [AVISAFE_ABONNEMENT, DRONETAG_MINI, AVISAFE_PATCH, TESTVARE];
 
 export const productBySlug = (slug: string) => SHOP_PRODUCTS.find((p) => p.slug === slug);
