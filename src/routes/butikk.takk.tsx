@@ -5,6 +5,7 @@ import { useShopCart } from "@/stores/shopCart";
 import { confirmStripeOrder } from "@/lib/stripeCheckout.functions";
 
 const Takk = () => {
+  const isSub = typeof window !== "undefined" && new URLSearchParams(window.location.search).has("abonnement");
   const clear = useShopCart((s) => s.clear);
   useEffect(() => {
     clear();
@@ -17,7 +18,7 @@ const Takk = () => {
         <CheckCircle2 className="w-14 h-14 text-primary mx-auto" />
         <h1 className="mt-6 text-3xl font-bold text-foreground">Takk for bestillingen!</h1>
         <p className="mt-4 text-muted-foreground">
-          Betalingen er mottatt. Du får kvittering på e-post, og vi sender varen så snart som mulig.
+          Betalingen er mottatt. Du får kvittering på e-post, {isSub ? "og vi tar kontakt for å sette opp brukerne deres." : "og vi sender varen så snart som mulig."}
           Spørsmål? Kontakt oss på{" "}
           <a href="mailto:kontakt@avisafe.no" className="underline">kontakt@avisafe.no</a>.
         </p>
