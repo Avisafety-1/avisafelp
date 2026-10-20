@@ -1,12 +1,15 @@
+import { useState } from "react";
 import { Link, useNavigate } from "@/lib/router-compat";
 import { Helmet } from "@/lib/page-head";
-import { ArrowLeft, Lock, Minus, Plus, Trash2 } from "lucide-react";
+import { ArrowLeft, Loader2, Lock, Minus, Plus, Trash2 } from "lucide-react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import {
   useShopCart,
   selectTotalNok,
   formatNok,
 } from "@/stores/shopCart";
+import { createStripeCheckout } from "@/lib/stripeCheckout.functions";
 
 const ButikkCheckout = () => {
   const navigate = useNavigate();
@@ -15,6 +18,21 @@ const ButikkCheckout = () => {
   const removeItem = useShopCart((s) => s.removeItem);
   const total = selectTotalNok({ items });
   const vat = Math.round((total / 1.25) * 0.25);
+  const [paying, setPaying] = useState(false);
+
+  const pay = async () => {
+    setPaying(true);
+    try {
+      const { url } = await createStripeCheckout({
+        data: { items: items.map((i) => ({ id: i.product.id, quantity: i.quantity })) },
+      });
+      window.location.href = url;
+    } catch (e) {
+      console.error(e);
+      toast.error("Kunne ikke starte betalingen", { description: "Prøv igjen om litt." });
+      setPaying(false);
+    }
+  };
 
   return (
     <>
@@ -123,18 +141,23 @@ const ButikkCheckout = () => {
 
               <div className="mt-6 rounded-2xl bg-[hsl(210,45%,12%)] text-white p-6">
                 <Button
-                  disabled
+                  disabled={paying}
+                  onClick={pay}
                   className="w-full h-14 bg-white text-[#123b87] hover:bg-white/90 disabled:opacity-70 disabled:cursor-not-allowed text-base font-semibold"
                 >
-                  <Lock className="w-5 h-5 mr-2" />
-                  Betal med Stripe (kommer snart)
+                  {paying ? (
+                    <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                  ) : (
+                    <Lock className="w-5 h-5 mr-2" />
+                  )}
+                  Gå til sikker betaling
                 </Button>
                 <p className="mt-3 text-xs text-white/70 text-center">
-                  Betalingsløsningen aktiveres snart. Ta gjerne kontakt på{" "}
+                  Sikker betaling med kort via Stripe. Levering i Norge. Spørsmål? Kontakt{" "}
                   <a href="mailto:kontakt@avisafe.no" className="underline">
                     kontakt@avisafe.no
-                  </a>{" "}
-                  hvis du vil bestille manuelt.
+                  </a>
+                  .
                 </p>
               </div>
             </>

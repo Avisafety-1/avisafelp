@@ -29,6 +29,7 @@ import { Route as ArtiklerIndexRouteImport } from './routes/artikler.index'
 import { Route as ArtiklerSlugRouteImport } from './routes/artikler.$slug'
 import { Route as ButikkIndexRouteImport } from './routes/butikk.index'
 import { Route as ButikkCheckoutRouteImport } from './routes/butikk.checkout'
+import { Route as ButikkTakkRouteImport } from './routes/butikk.takk'
 import { Route as EnIndexRouteImport } from './routes/en.index'
 import { Route as EnAboutRouteImport } from './routes/en.about'
 import { Route as EnAviopsRouteImport } from './routes/en.aviops'
@@ -142,6 +143,11 @@ const ButikkCheckoutRoute = ButikkCheckoutRouteImport.update({
   path: '/butikk/checkout',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ButikkTakkRoute = ButikkTakkRouteImport.update({
+  id: '/butikk/takk',
+  path: '/butikk/takk',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EnIndexRoute = EnIndexRouteImport.update({
   id: '/en/',
   path: '/en/',
@@ -223,6 +229,7 @@ export interface FileRoutesByFullPath {
   '/statistikk': typeof StatistikkRoute
   '/artikler/$slug': typeof ArtiklerSlugRoute
   '/butikk/checkout': typeof ButikkCheckoutRoute
+  '/butikk/takk': typeof ButikkTakkRoute
   '/en/about': typeof EnAboutRoute
   '/en/aviops': typeof EnAviopsRoute
   '/en/compliance': typeof EnComplianceRoute
@@ -257,6 +264,7 @@ export interface FileRoutesByTo {
   '/statistikk': typeof StatistikkRoute
   '/artikler/$slug': typeof ArtiklerSlugRoute
   '/butikk/checkout': typeof ButikkCheckoutRoute
+  '/butikk/takk': typeof ButikkTakkRoute
   '/en/about': typeof EnAboutRoute
   '/en/aviops': typeof EnAviopsRoute
   '/en/compliance': typeof EnComplianceRoute
@@ -292,6 +300,7 @@ export interface FileRoutesById {
   '/statistikk': typeof StatistikkRoute
   '/artikler/$slug': typeof ArtiklerSlugRoute
   '/butikk/checkout': typeof ButikkCheckoutRoute
+  '/butikk/takk': typeof ButikkTakkRoute
   '/en/about': typeof EnAboutRoute
   '/en/aviops': typeof EnAviopsRoute
   '/en/compliance': typeof EnComplianceRoute
@@ -328,6 +337,7 @@ export interface FileRouteTypes {
     | '/statistikk'
     | '/artikler/$slug'
     | '/butikk/checkout'
+    | '/butikk/takk'
     | '/en/about'
     | '/en/aviops'
     | '/en/compliance'
@@ -362,6 +372,7 @@ export interface FileRouteTypes {
     | '/statistikk'
     | '/artikler/$slug'
     | '/butikk/checkout'
+    | '/butikk/takk'
     | '/en/about'
     | '/en/aviops'
     | '/en/compliance'
@@ -396,6 +407,7 @@ export interface FileRouteTypes {
     | '/statistikk'
     | '/artikler/$slug'
     | '/butikk/checkout'
+    | '/butikk/takk'
     | '/en/about'
     | '/en/aviops'
     | '/en/compliance'
@@ -431,6 +443,7 @@ export interface RootRouteChildren {
   StatistikkRoute: typeof StatistikkRoute
   ArtiklerSlugRoute: typeof ArtiklerSlugRoute
   ButikkCheckoutRoute: typeof ButikkCheckoutRoute
+  ButikkTakkRoute: typeof ButikkTakkRoute
   EnAboutRoute: typeof EnAboutRoute
   EnAviopsRoute: typeof EnAviopsRoute
   EnComplianceRoute: typeof EnComplianceRoute
@@ -589,6 +602,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ButikkCheckoutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/butikk/takk': {
+      id: '/butikk/takk'
+      path: '/butikk/takk'
+      fullPath: '/butikk/takk'
+      preLoaderRoute: typeof ButikkTakkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/en/': {
       id: '/en/'
       path: '/en'
@@ -695,6 +715,7 @@ const rootRouteChildren: RootRouteChildren = {
   StatistikkRoute: StatistikkRoute,
   ArtiklerSlugRoute: ArtiklerSlugRoute,
   ButikkCheckoutRoute: ButikkCheckoutRoute,
+  ButikkTakkRoute: ButikkTakkRoute,
   EnAboutRoute: EnAboutRoute,
   EnAviopsRoute: EnAviopsRoute,
   EnComplianceRoute: EnComplianceRoute,
