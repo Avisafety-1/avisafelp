@@ -51,7 +51,7 @@ const ButikkAbonnement = () => {
       period: "/ bruker / mnd",
       subtitle: "inkl. 25 % mva · faktureres månedlig",
       features: SUBSCRIPTION_FEATURES,
-      description: "Antall abonnement tilsvarer antall brukere. Ingen bindingstid oppgitt her – kontakt oss ved spørsmål.",
+      description: "Antall abonnement tilsvarer antall brukere.",
       buttonText: "Kjøp abonnement",
       qty: { value: n, min: p.minQty, max: p.maxQty, onChange: (v) => setQty((q) => ({ ...q, [tier]: v })) },
       totalLabel: `${formatNok(p.priceNok * n)} / mnd`,
