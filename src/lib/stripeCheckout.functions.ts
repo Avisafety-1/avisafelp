@@ -22,7 +22,7 @@ async function stripe(path: string, key: string, init?: RequestInit) {
   });
   const json = (await res.json()) as Record<string, any>;
   if (!res.ok) {
-    console.error("Stripe error", json?.error?.message);
+    console.error("Stripe error", json?.["error"]?.message);
     throw new Error("Stripe-feil");
   }
   return json;
