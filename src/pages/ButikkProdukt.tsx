@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "@/lib/router-compat";
+import { Link, useNavigate } from "@/lib/router-compat";
 import {
   ShoppingCart,
   Zap,
@@ -21,7 +21,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { toast } from "sonner";
-import { Link } from "@/lib/router-compat";
 import type { ShopProduct } from "@/data/shopProducts";
 import { useShopCart, formatNok } from "@/stores/shopCart";
 import { useShopStock } from "@/hooks/use-shop-stock";
