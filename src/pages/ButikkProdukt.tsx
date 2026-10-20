@@ -11,6 +11,7 @@ import {
   Activity,
   Check,
   ArrowRight,
+  ArrowLeft,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -85,22 +86,26 @@ const ButikkProdukt = ({ product }: { product: ShopProduct }) => {
     name: product.title,
     image: product.gallery,
     description: product.shortDescription,
-    brand: { "@type": "Brand", name: "Dronetag" },
+    brand: { "@type": "Brand", name: product.brand },
     offers: {
       "@type": "Offer",
-      url: "https://avisafe.no/butikk",
+      url: `https://avisafe.no/butikk/${product.slug}`,
       priceCurrency: "NOK",
       price: product.priceNok,
-      availability: "https://schema.org/InStock",
+      availability: miniSoldOut ? "https://schema.org/OutOfStock" : "https://schema.org/InStock",
       seller: { "@type": "Organization", name: "AviSafe" },
     },
   };
 
   return (
     <>
-
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <main className="min-h-screen bg-[hsl(210,30%,96%)] pt-24 md:pt-32 pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+          <Link to="/butikk" className="inline-flex items-center gap-2 text-sm text-[hsl(210,45%,30%)] hover:text-[#123b87] mb-6">
+            <ArrowLeft className="w-4 h-4" />
+            Alle produkter
+          </Link>
           {/* Hero */}
           <section className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
             {/* Gallery */}
@@ -109,10 +114,10 @@ const ButikkProdukt = ({ product }: { product: ShopProduct }) => {
                 <img
                   src={activeImg}
                   alt={product.title}
-                  className="w-full h-full object-cover"
+                  className={`w-full h-full ${product.imageFit === "contain" ? "object-contain p-8" : "object-cover"}`}
                 />
               </div>
-              <div className="grid grid-cols-6 gap-2">
+              {product.gallery.length > 1 && <div className="grid grid-cols-6 gap-2">
                 {product.gallery.map((src, i) => (
                   <button
                     key={i}
@@ -124,24 +129,22 @@ const ButikkProdukt = ({ product }: { product: ShopProduct }) => {
                     <img src={src} alt="" className="w-full h-full object-cover" />
                   </button>
                 ))}
-              </div>
+              </div>}
             </div>
 
             {/* Info */}
             <div className="lg:sticky lg:top-28">
               <p className="text-xs uppercase tracking-widest text-[#123b87] font-semibold">
-                Remote ID · Dronetag
+                {product.kicker}
               </p>
               <h1 className="mt-3 text-4xl md:text-5xl lg:text-6xl font-bold text-[hsl(210,45%,12%)] leading-tight">
-                Dronetag Mini
+                {product.title}
               </h1>
               <p className="mt-2 text-lg text-[hsl(210,45%,25%)]">
-                Remote ID som bare funker.
+                {product.tagline}
               </p>
               <p className="mt-5 text-base md:text-lg text-[hsl(210,45%,30%)] leading-relaxed">
-                {product.shortDescription} Mini sender posisjon og identifikasjon
-                sikkert gjennom Dronetag-appen, og åpner for avanserte oppdrag
-                som BVLOS, flåtekoordinering og integrasjon med bemannet luftfart.
+                {product.shortDescription} {product.longDescription}
               </p>
 
               <div className="mt-6 flex items-baseline gap-3">
@@ -176,12 +179,7 @@ const ButikkProdukt = ({ product }: { product: ShopProduct }) => {
               <StockLabel qty={miniQty} />
 
               <ul className="mt-6 space-y-2 text-sm text-[hsl(210,45%,25%)]">
-                {[
-                  "Fri frakt i Norge",
-                  "Sendes innen 1–3 virkedager",
-                  "2 års garanti",
-                  "Compliant med EU, FAA, CAA og CAAS Remote ID",
-                ].map((line) => (
+                {product.highlights.map((line) => (
                   <li key={line} className="flex items-center gap-2">
                     <Check className="w-4 h-4 text-[#123b87]" />
                     {line}
@@ -191,6 +189,7 @@ const ButikkProdukt = ({ product }: { product: ShopProduct }) => {
             </div>
           </section>
 
+          {isMini && (<>
           {/* Features */}
           <section className="mt-24">
             <h2 className="text-3xl md:text-4xl font-bold text-[hsl(210,45%,12%)]">
@@ -360,6 +359,7 @@ const ButikkProdukt = ({ product }: { product: ShopProduct }) => {
               Legg i handlevogn — {formatNok(product.priceNok)}
             </Button>
           </section>
+          </>)}
         </div>
       </main>
     </>
