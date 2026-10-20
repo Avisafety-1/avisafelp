@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "@/lib/router-compat";
-import { Helmet } from "@/lib/page-head";
 import {
   ShoppingCart,
   Zap,
@@ -21,7 +20,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { toast } from "sonner";
-import { DRONETAG_MINI, AVISAFE_PATCH } from "@/data/shopProducts";
+import { Link } from "@/lib/router-compat";
+import type { ShopProduct } from "@/data/shopProducts";
 import { useShopCart, formatNok } from "@/stores/shopCart";
 import { useShopStock } from "@/hooks/use-shop-stock";
 
@@ -58,17 +58,15 @@ const steps = [
   { n: "04", title: "Fly & overvåk", desc: "Følg flyvningen live i Dronetag-appen på iOS, Android eller web." },
 ];
 
-const Butikk = () => {
+const ButikkProdukt = ({ product }: { product: ShopProduct }) => {
   const navigate = useNavigate();
-  const product = DRONETAG_MINI;
+  const isMini = product.id === "dronetag-mini";
   const [activeImg, setActiveImg] = useState(product.gallery[0]);
   const addItem = useShopCart((s) => s.addItem);
   const setCartOpen = useShopCart((s) => s.setOpen);
   const stock = useShopStock();
   const miniQty = stock?.[product.id];
-  const patchQty = stock?.[AVISAFE_PATCH.id];
   const miniSoldOut = miniQty !== undefined && miniQty <= 0;
-  const patchSoldOut = patchQty !== undefined && patchQty <= 0;
 
   const handleAddToCart = () => {
     addItem(product, 1);
@@ -100,18 +98,6 @@ const Butikk = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Dronetag Mini – Kjøp Remote ID-sender | AviSafe</title>
-        <meta
-          name="description"
-          content="Dronetag Mini — kompakt Remote ID-sender med Network + Direct RID, 14 t batteritid, kun 32 g. Kjøp hos AviSafe."
-        />
-        <link rel="canonical" href="https://avisafe.no/butikk" />
-        <meta property="og:title" content="Dronetag Mini – Kjøp hos AviSafe" />
-        <meta property="og:description" content={product.shortDescription} />
-        <meta property="og:image" content={product.image} />
-        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-      </Helmet>
 
       <main className="min-h-screen bg-[hsl(210,30%,96%)] pt-24 md:pt-32 pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
@@ -356,49 +342,6 @@ const Butikk = () => {
             </div>
           </section>
 
-          {/* AviSafe Patch */}
-          <section id="patch" className="mt-24 grid grid-cols-1 md:grid-cols-2 gap-10 items-center rounded-3xl bg-white border border-black/5 p-6 md:p-10">
-            <img
-              src={AVISAFE_PATCH.image}
-              alt="AviSafe Patch – Operations and Safety Management System"
-              className="w-full max-w-sm mx-auto aspect-square object-contain"
-              loading="lazy"
-            />
-            <div>
-              <p className="text-xs uppercase tracking-widest text-[#123b87] font-semibold">Merch</p>
-              <h2 className="mt-2 text-3xl md:text-4xl font-bold text-[hsl(210,45%,12%)]">AviSafe Patch</h2>
-              <p className="mt-4 text-[hsl(210,45%,30%)] leading-relaxed">
-                Patch i PVC med borrelås (velcro) på baksiden – perfekt for flight-jakken, vesten eller dronebagen.
-              </p>
-              <div className="mt-5 flex items-baseline gap-3">
-                <span className="text-3xl font-bold text-[hsl(210,45%,12%)]">{formatNok(AVISAFE_PATCH.priceNok)}</span>
-                <span className="text-sm text-muted-foreground">inkl. 25 % mva</span>
-              </div>
-              <div className="mt-6 flex flex-col sm:flex-row gap-3">
-                <Button
-                  size="lg"
-                  disabled={patchSoldOut}
-                  onClick={() => { addItem(AVISAFE_PATCH, 1); setCartOpen(true); toast.success("Lagt til i handlevognen"); }}
-                  className="flex-1 bg-[#123b87] hover:bg-[#0e2f6b] text-white h-12"
-                >
-                  <ShoppingCart className="w-5 h-5 mr-2" />
-                  Legg i handlevogn
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  disabled={patchSoldOut}
-                  onClick={() => { addItem(AVISAFE_PATCH, 1); navigate("/butikk/checkout"); }}
-                  className="flex-1 h-12 border-[#123b87] text-[#123b87] hover:bg-[#123b87]/5"
-                >
-                  Kjøp nå
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
-              </div>
-              <StockLabel qty={patchQty} />
-            </div>
-          </section>
-
           {/* Final CTA */}
           <section className="mt-24 rounded-3xl bg-gradient-to-br from-[#123b87] to-[#0e2f6b] text-white p-8 md:p-14 text-center">
             <h2 className="text-3xl md:text-4xl font-bold">
@@ -423,4 +366,4 @@ const Butikk = () => {
   );
 };
 
-export default Butikk;
+export default ButikkProdukt;
