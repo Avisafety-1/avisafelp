@@ -4,8 +4,9 @@ import { getRequestHeader } from "@tanstack/react-start/server";
 // Server-side price map: the browser only sends product ids and quantities.
 const STRIPE_PRICES: Record<string, string> = {
   "dronetag-mini": "price_1USWWzRrLM8xOFbkICmMi5Df",
+  "avisafe-patch": "price_1USWbURrLM8xOFbkBWyJjDwD",
 };
-const MAX_QTY = 9;
+const MAX_QTY: Record<string, number> = { "dronetag-mini": 9, "avisafe-patch": 45 };
 
 type Input = { items: { id: string; quantity: number }[] };
 
@@ -17,7 +18,7 @@ export const createStripeCheckout = createServerFn({ method: "POST" })
     const items = data.items.map((i) => {
       const quantity = Math.floor(Number(i.quantity));
       if (!STRIPE_PRICES[i.id]) throw new Error("Ukjent produkt");
-      if (!(quantity >= 1 && quantity <= MAX_QTY)) throw new Error("Ugyldig antall");
+      if (!(quantity >= 1 && quantity <= (MAX_QTY[i.id] ?? 1))) throw new Error("Ugyldig antall");
       return { id: i.id, quantity };
     });
     return { items };
