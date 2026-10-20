@@ -6,9 +6,27 @@ const STRIPE_PRICES: Record<string, string> = {
   "dronetag-mini": "price_1USWWzRrLM8xOFbkICmMi5Df",
   "avisafe-patch": "price_1USWbURrLM8xOFbkBWyJjDwD",
 };
-const MAX_QTY: Record<string, number> = { "dronetag-mini": 9, "avisafe-patch": 45 };
+const PRODUCT_BY_PRICE: Record<string, string> = Object.fromEntries(
+  Object.entries(STRIPE_PRICES).map(([id, price]) => [price, id]),
+);
 
 type Input = { items: { id: string; quantity: number }[] };
+
+async function stripe(path: string, key: string, init?: RequestInit) {
+  const res = await fetch(`https://api.stripe.com/v1/${path}`, {
+    ...init,
+    headers: {
+      Authorization: `Bearer ${key}`,
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+  });
+  const json = (await res.json()) as Record<string, any>;
+  if (!res.ok) {
+    console.error("Stripe error", json?.error?.message);
+    throw new Error("Stripe-feil");
+  }
+  return json;
+}
 
 export const createStripeCheckout = createServerFn({ method: "POST" })
   .inputValidator((data: Input) => {
@@ -18,7 +36,7 @@ export const createStripeCheckout = createServerFn({ method: "POST" })
     const items = data.items.map((i) => {
       const quantity = Math.floor(Number(i.quantity));
       if (!STRIPE_PRICES[i.id]) throw new Error("Ukjent produkt");
-      if (!(quantity >= 1 && quantity <= (MAX_QTY[i.id] ?? 1))) throw new Error("Ugyldig antall");
+      if (!(quantity >= 1 && quantity <= 100)) throw new Error("Ugyldig antall");
       return { id: i.id, quantity };
     });
     return { items };
@@ -26,8 +44,18 @@ export const createStripeCheckout = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     const key = process.env["STRIPE_SECRET_KEY"];
     if (!key) throw new Error("Betaling er ikke konfigurert");
-    const origin = getRequestHeader("origin") || "https://avisafe.no";
 
+    // Stock check
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { data: stock } = await supabaseAdmin.from("shop_stock").select("product_id, quantity");
+    for (const item of data.items) {
+      const left = stock?.find((s) => s.product_id === item.id)?.quantity ?? 0;
+      if (item.quantity > left) {
+        return { error: left === 0 ? "Et av produktene er utsolgt." : `Bare ${left} stk igjen av et av produktene.` };
+      }
+    }
+
+    const origin = getRequestHeader("origin") || "https://avisafe.no";
     const body = new URLSearchParams();
     body.set("mode", "payment");
     body.set("success_url", `${origin}/butikk/takk?session_id={CHECKOUT_SESSION_ID}`);
@@ -40,18 +68,38 @@ export const createStripeCheckout = createServerFn({ method: "POST" })
       body.set(`line_items[${i}][quantity]`, String(item.quantity));
     });
 
-    const res = await fetch("https://api.stripe.com/v1/checkout/sessions", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${key}`,
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body,
-    });
-    const json = (await res.json()) as { url?: string; error?: { message?: string } };
-    if (!res.ok || !json.url) {
-      console.error("Stripe checkout error", json.error?.message);
-      throw new Error("Kunne ikke starte betaling");
+    const session = await stripe("checkout/sessions", key, { method: "POST", body });
+    return { url: session["url"] as string };
+  });
+
+// Called from the thank-you page: verifies payment with Stripe and decrements stock once per session.
+export const confirmStripeOrder = createServerFn({ method: "POST" })
+  .inputValidator((data: { sessionId: string }) => {
+    if (!data?.sessionId || !/^cs_(live|test)_[A-Za-z0-9]+$/.test(data.sessionId)) {
+      throw new Error("Ugyldig ordre");
     }
-    return { url: json.url };
+    return data;
+  })
+  .handler(async ({ data }) => {
+    const key = process.env["STRIPE_SECRET_KEY"];
+    if (!key) throw new Error("Betaling er ikke konfigurert");
+    const session = await stripe(
+      `checkout/sessions/${data.sessionId}?expand[]=line_items`,
+      key,
+    );
+    if (session["payment_status"] !== "paid") return { paid: false };
+
+    const items = ((session["line_items"]?.data ?? []) as any[])
+      .map((li) => ({ id: PRODUCT_BY_PRICE[li.price?.id], quantity: li.quantity as number }))
+      .filter((i) => i.id);
+
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { error } = await supabaseAdmin.rpc("apply_shop_order", {
+      _session_id: data.sessionId,
+      _items: items,
+      _amount: session["amount_total"] ?? null,
+      _email: session["customer_details"]?.email ?? null,
+    });
+    if (error) console.error("apply_shop_order", error.message);
+    return { paid: true };
   });
