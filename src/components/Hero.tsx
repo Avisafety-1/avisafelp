@@ -32,12 +32,12 @@ const Hero = () => {
         titleBottom={t("hero.expandLine2")}
       >
         {/* Trusted By Banner */}
-        <div className="relative w-full animate-fade-in mt-8 sm:mt-12 md:mt-16 lg:mt-20">
+        <div className="relative w-full animate-fade-in mt-6 sm:mt-10">
           {/* AirWatch LUC badge */}
           <img
             src={airwatchBadge.url}
             alt="AirWatch – Operator NO.LUC.008"
-            className="hidden sm:block absolute -top-[110px] md:-top-[142px] lg:-top-[166px] left-4 md:left-10 lg:left-20 h-20 md:h-24 lg:h-28 w-auto"
+            className="hidden sm:block absolute -top-[102px] md:-top-[118px] lg:-top-[126px] left-4 md:left-10 lg:left-20 h-20 md:h-24 lg:h-28 w-auto"
           />
           <div className="flex items-center justify-center mb-1">
             <span className="text-xs sm:text-sm text-foreground/70 font-semibold tracking-widest uppercase">
