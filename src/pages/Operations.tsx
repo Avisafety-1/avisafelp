@@ -6,6 +6,8 @@ import airwatchBadge from "@/assets/airwatch-badge.png.asset.json";
 const Operations = () => {
   const { t, i18n } = useTranslation();
   const isNo = i18n.language?.startsWith("no");
+  const heading = t("operations.h1").trim();
+  const intro = t("operations.body").trim();
 
   return (
     <div className="min-h-screen bg-[hsl(210,30%,96%)] pb-24">
@@ -24,17 +26,23 @@ const Operations = () => {
         />
       </div>
 
-      <main className="container mx-auto px-4 sm:px-6 pt-16 md:pt-24">
-        <div className="max-w-2xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-[hsl(var(--text-dark-blue))] mb-6">
-            {t("operations.h1")}
-          </h1>
-          <p className="text-lg md:text-xl text-foreground/80 leading-relaxed whitespace-pre-wrap">
-            {t("operations.body")}
-          </p>
-        </div>
+      <main className="container mx-auto px-4 sm:px-6 pt-10 md:pt-14">
+        {(heading || intro) && (
+          <div className="max-w-2xl mx-auto text-center">
+            {heading && (
+              <h1 className="text-4xl md:text-5xl font-bold text-[hsl(var(--text-dark-blue))] mb-6">
+                {heading}
+              </h1>
+            )}
+            {intro && (
+              <p className="text-lg md:text-xl text-foreground/80 leading-relaxed whitespace-pre-wrap">
+                {intro}
+              </p>
+            )}
+          </div>
+        )}
 
-        <section className="max-w-4xl mx-auto mt-20 rounded-3xl bg-card/70 backdrop-blur border border-border p-8 md:p-12 shadow-sm">
+        <section className="max-w-4xl mx-auto mt-12 rounded-3xl bg-card/70 backdrop-blur border border-border p-8 md:p-12 shadow-sm">
           <div className="flex flex-col md:flex-row items-center gap-8">
             <img src={airwatchBadge.url} alt="AirWatch NO.LUC.008" className="h-28 w-28 md:h-36 md:w-36 object-contain shrink-0" />
             <div className="text-center md:text-left">
