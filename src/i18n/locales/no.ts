@@ -229,8 +229,8 @@ const no = {
   operations: {
     pageTitle: "Operasjoner – AviSafe",
     metaDescription: "AviSafe er i ferd med å utvide sitt operative dronetilbud og vil kunne påta seg et bredt spekter av oppdrag.",
-    h1: "Operasjoner",
-    body: "AviSafe er i ferd med å utvide sitt operative dronetilbud og vil kunne påta seg et bredt spekter av oppdrag i tiden som kommer. Samtidig ønsker vi å hjelpe virksomheter med å komme i gang med droneoperasjoner – enten gjennom etablering av egen organisasjon og nødvendige godkjenninger, eller som en del av AviSafe-økosystemet. Vårt mål er å gjøre det enklere å ta i bruk droneteknologi på en trygg, effektiv og skalerbar måte.\n\n\n",
+    h1: "",
+    body: "",
     cta: "Kontakt oss",
     airwatch: {
       heading: "Operatøransvar via AirWatch",
