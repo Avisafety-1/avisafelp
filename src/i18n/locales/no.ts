@@ -232,6 +232,17 @@ const no = {
     h1: "Operasjoner",
     body: "AviSafe er i ferd med å utvide sitt operative dronetilbud og vil kunne påta seg et bredt spekter av oppdrag i tiden som kommer. Samtidig ønsker vi å hjelpe virksomheter med å komme i gang med droneoperasjoner – enten gjennom etablering av egen organisasjon og nødvendige godkjenninger, eller som en del av AviSafe-økosystemet. Vårt mål er å gjøre det enklere å ta i bruk droneteknologi på en trygg, effektiv og skalerbar måte.\n\n\n",
     cta: "Kontakt oss",
+    airwatch: {
+      heading: "Operatøransvar via AirWatch",
+      body: "Gjennom samarbeidet med AirWatch AS, som har en Light UAS Operator Certificate (LUC, NO.LUC.008), kan dere fly under AirWatch sitt operatøransvar og få operativ oppfølging. Det frigjør kapasitet, så dere kan konsentrere dere om flygingen.",
+      k1: "Operativ støtte",
+      k2: "Hjelp med operasjonsmanual",
+      k3: "Hjelp med søknad til Luftfartstilsynet",
+      k4: "Dialog med Luftfartstilsynet",
+      k5: "Ekspertkompetanse på droneregelverket",
+      k6: "Mer tid til flygingen",
+      link: "Les mer om AirWatch",
+    },
   },
   cookies: {
     title: "Vi bruker informasjonskapsler",
