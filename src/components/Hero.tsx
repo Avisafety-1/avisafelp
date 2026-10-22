@@ -6,6 +6,7 @@ import heroDroneMobile from "@/assets/hero-drone-mobile.jpg.asset.json";
 import heroVideo from "@/assets/hero-video.mp4.asset.json";
 import heroVideoWebm from "@/assets/hero-video.webm.asset.json";
 import trustedLogo1 from "@/assets/trusted-logo-1.png";
+import airwatchBadge from "@/assets/airwatch-badge.png.asset.json";
 import norconsultLogoWhite from "@/assets/norconsult-logo-white.png";
 import dronenordLogoWhite from "@/assets/dronenord-logo-white.png.asset.json";
 import elverumVgsLogo from "@/assets/elverum-vgs-white.svg";
@@ -31,7 +32,13 @@ const Hero = () => {
         titleBottom={t("hero.expandLine2")}
       >
         {/* Trusted By Banner */}
-        <div className="w-full animate-fade-in mt-8 sm:mt-12 md:mt-16 lg:mt-20">
+        <div className="relative w-full animate-fade-in mt-8 sm:mt-12 md:mt-16 lg:mt-20">
+          {/* AirWatch LUC badge */}
+          <img
+            src={airwatchBadge.url}
+            alt="AirWatch – Operator NO.LUC.008"
+            className="hidden sm:block absolute -top-14 lg:-top-24 left-4 md:left-10 lg:left-20 h-20 md:h-24 lg:h-28 w-auto"
+          />
           <div className="flex items-center justify-center mb-1">
             <span className="text-xs sm:text-sm text-foreground/70 font-semibold tracking-widest uppercase">
               {t("hero.trustedBy")}
