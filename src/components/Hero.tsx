@@ -37,7 +37,7 @@ const Hero = () => {
           <img
             src={airwatchBadge.url}
             alt="AirWatch – Operator NO.LUC.008"
-            className="hidden sm:block absolute -top-14 lg:-top-24 left-4 md:left-10 lg:left-20 h-20 md:h-24 lg:h-28 w-auto"
+            className="hidden sm:block absolute -top-[110px] md:-top-[142px] lg:-top-[166px] left-4 md:left-10 lg:left-20 h-20 md:h-24 lg:h-28 w-auto"
           />
           <div className="flex items-center justify-center mb-1">
             <span className="text-xs sm:text-sm text-foreground/70 font-semibold tracking-widest uppercase">
