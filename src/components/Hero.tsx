@@ -6,6 +6,7 @@ import heroDroneMobile from "@/assets/hero-drone-mobile.jpg.asset.json";
 import heroVideo from "@/assets/hero-video.mp4.asset.json";
 import heroVideoWebm from "@/assets/hero-video.webm.asset.json";
 import trustedLogo1 from "@/assets/trusted-logo-1.png";
+import airwatchBadge from "@/assets/airwatch-badge.png.asset.json";
 import norconsultLogoWhite from "@/assets/norconsult-logo-white.png";
 import dronenordLogoWhite from "@/assets/dronenord-logo-white.png.asset.json";
 import elverumVgsLogo from "@/assets/elverum-vgs-white.svg";
