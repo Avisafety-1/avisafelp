@@ -323,7 +323,7 @@ const ScrollExpandMedia = ({
         {/* titleTop — placed right under the video */}
         <motion.h2
           className="relative z-20 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold px-4 text-center pointer-events-none"
-          style={{ marginTop: "80px" }}
+          style={{ marginTop: "40px" }}
           animate={{
             color: scrollProgress > 0.1 ? "hsl(210, 45%, 12%)" : "#ffffff",
           }}
