@@ -29,16 +29,21 @@ const ButikkAbonnement = () => {
 
   const plans: PricingPlan[] = SUBSCRIPTION_PLANS.map((p) => {
     if (p.priceNok === null) {
+      const enterprise = p.id === "enterprise";
       return {
         id: p.id,
         name: p.name,
         priceLabel: "Ta kontakt",
         subtitle: p.users,
-        features: [...SUBSCRIPTION_FEATURES, ...SUBSCRIPTION_ADDONS],
-        description: "Vi setter opp et tilbud tilpasset organisasjonen deres.",
-        buttonText: "Be om demo / tilbud",
+        features: enterprise ? [...SUBSCRIPTION_FEATURES, ...SUBSCRIPTION_ADDONS] : SUBSCRIPTION_FEATURES,
+        description: enterprise
+          ? "Tilleggsmoduler og personlige tilpasninger"
+          : "Vi setter opp et tilbud tilpasset organisasjonen deres.",
+        buttonText: "Ta kontakt",
         onSelect: () => {
-          window.location.href = "mailto:kontakt@avisafe.no?subject=AviSafe%20Enterprise%20(16%2B%20brukere)";
+          window.location.href = `mailto:kontakt@avisafe.no?subject=${encodeURIComponent(
+            `AviSafe abonnement – ${p.users}`,
+          )}`;
         },
       };
     }

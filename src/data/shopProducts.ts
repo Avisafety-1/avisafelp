@@ -77,7 +77,7 @@ export const AVISAFE_ABONNEMENT: ShopProduct = {
     "AviSafe-plattformen for operativ sikkerhetsstyring. Pris per bruker per måned.",
   longDescription:
     "Velg antall brukere. Antall abonnement du kjøper tilsvarer antall brukere.",
-  priceNok: 329,
+  priceNok: 399,
   image: subAsset.url,
   gallery: [subAsset.url],
   highlights: [],
@@ -97,7 +97,7 @@ export type SubscriptionPlan = {
 
 export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
   { id: "team", name: "1–5 brukere", users: "1–5 brukere", minQty: 1, maxQty: 5, priceNok: 399 },
-  { id: "business", name: "6–15 brukere", users: "6–15 brukere", minQty: 6, maxQty: 15, priceNok: 329 },
+  { id: "business", name: "6–15 brukere", users: "6–15 brukere", minQty: 6, maxQty: 15, priceNok: null },
   { id: "enterprise", name: "Enterprise", users: "16+ brukere", minQty: 16, maxQty: 16, priceNok: null },
 ];
 
