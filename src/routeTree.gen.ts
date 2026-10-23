@@ -21,6 +21,7 @@ import { Route as OperasjonsdashbordRouteImport } from './routes/operasjonsdashb
 import { Route as OperationsRouteImport } from './routes/operations'
 import { Route as PartnereRouteImport } from './routes/partnere'
 import { Route as PersonvernRouteImport } from './routes/personvern'
+import { Route as SikkerhetRouteImport } from './routes/sikkerhet'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SoraRouteImport } from './routes/sora'
 import { Route as SoraProsessRouteImport } from './routes/sora-prosess'
@@ -41,6 +42,7 @@ import { Route as EnLiveAirspaceAwarenessRouteImport } from './routes/en.live-ai
 import { Route as EnOccurrenceReportingRouteImport } from './routes/en.occurrence-reporting'
 import { Route as EnOpsDashboardRouteImport } from './routes/en.ops-dashboard'
 import { Route as EnPartnersRouteImport } from './routes/en.partners'
+import { Route as EnSecurityRouteImport } from './routes/en.security'
 import { Route as EnSoraRiskAssessmentRouteImport } from './routes/en.sora-risk-assessment'
 import { Route as ProductHandleRouteImport } from './routes/product.$handle'
 
@@ -102,6 +104,11 @@ const PartnereRoute = PartnereRouteImport.update({
 const PersonvernRoute = PersonvernRouteImport.update({
   id: '/personvern',
   path: '/personvern',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SikkerhetRoute = SikkerhetRouteImport.update({
+  id: '/sikkerhet',
+  path: '/sikkerhet',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -205,6 +212,11 @@ const EnPartnersRoute = EnPartnersRouteImport.update({
   path: '/en/partners',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EnSecurityRoute = EnSecurityRouteImport.update({
+  id: '/en/security',
+  path: '/en/security',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EnSoraRiskAssessmentRoute = EnSoraRiskAssessmentRouteImport.update({
   id: '/en/sora-risk-assessment',
   path: '/en/sora-risk-assessment',
@@ -229,6 +241,7 @@ export interface FileRoutesByFullPath {
   '/operations': typeof OperationsRoute
   '/partnere': typeof PartnereRoute
   '/personvern': typeof PersonvernRoute
+  '/sikkerhet': typeof SikkerhetRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sora': typeof SoraRoute
   '/sora-prosess': typeof SoraProsessRoute
@@ -246,6 +259,7 @@ export interface FileRoutesByFullPath {
   '/en/occurrence-reporting': typeof EnOccurrenceReportingRoute
   '/en/ops-dashboard': typeof EnOpsDashboardRoute
   '/en/partners': typeof EnPartnersRoute
+  '/en/security': typeof EnSecurityRoute
   '/en/sora-risk-assessment': typeof EnSoraRiskAssessmentRoute
   '/product/$handle': typeof ProductHandleRoute
   '/artikler/': typeof ArtiklerIndexRoute
@@ -265,6 +279,7 @@ export interface FileRoutesByTo {
   '/operations': typeof OperationsRoute
   '/partnere': typeof PartnereRoute
   '/personvern': typeof PersonvernRoute
+  '/sikkerhet': typeof SikkerhetRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sora': typeof SoraRoute
   '/sora-prosess': typeof SoraProsessRoute
@@ -282,6 +297,7 @@ export interface FileRoutesByTo {
   '/en/occurrence-reporting': typeof EnOccurrenceReportingRoute
   '/en/ops-dashboard': typeof EnOpsDashboardRoute
   '/en/partners': typeof EnPartnersRoute
+  '/en/security': typeof EnSecurityRoute
   '/en/sora-risk-assessment': typeof EnSoraRiskAssessmentRoute
   '/product/$handle': typeof ProductHandleRoute
   '/artikler': typeof ArtiklerIndexRoute
@@ -302,6 +318,7 @@ export interface FileRoutesById {
   '/operations': typeof OperationsRoute
   '/partnere': typeof PartnereRoute
   '/personvern': typeof PersonvernRoute
+  '/sikkerhet': typeof SikkerhetRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sora': typeof SoraRoute
   '/sora-prosess': typeof SoraProsessRoute
@@ -319,6 +336,7 @@ export interface FileRoutesById {
   '/en/occurrence-reporting': typeof EnOccurrenceReportingRoute
   '/en/ops-dashboard': typeof EnOpsDashboardRoute
   '/en/partners': typeof EnPartnersRoute
+  '/en/security': typeof EnSecurityRoute
   '/en/sora-risk-assessment': typeof EnSoraRiskAssessmentRoute
   '/product/$handle': typeof ProductHandleRoute
   '/artikler/': typeof ArtiklerIndexRoute
@@ -340,6 +358,7 @@ export interface FileRouteTypes {
     | '/operations'
     | '/partnere'
     | '/personvern'
+    | '/sikkerhet'
     | '/sitemap.xml'
     | '/sora'
     | '/sora-prosess'
@@ -357,6 +376,7 @@ export interface FileRouteTypes {
     | '/en/occurrence-reporting'
     | '/en/ops-dashboard'
     | '/en/partners'
+    | '/en/security'
     | '/en/sora-risk-assessment'
     | '/product/$handle'
     | '/artikler/'
@@ -376,6 +396,7 @@ export interface FileRouteTypes {
     | '/operations'
     | '/partnere'
     | '/personvern'
+    | '/sikkerhet'
     | '/sitemap.xml'
     | '/sora'
     | '/sora-prosess'
@@ -393,6 +414,7 @@ export interface FileRouteTypes {
     | '/en/occurrence-reporting'
     | '/en/ops-dashboard'
     | '/en/partners'
+    | '/en/security'
     | '/en/sora-risk-assessment'
     | '/product/$handle'
     | '/artikler'
@@ -412,6 +434,7 @@ export interface FileRouteTypes {
     | '/operations'
     | '/partnere'
     | '/personvern'
+    | '/sikkerhet'
     | '/sitemap.xml'
     | '/sora'
     | '/sora-prosess'
@@ -429,6 +452,7 @@ export interface FileRouteTypes {
     | '/en/occurrence-reporting'
     | '/en/ops-dashboard'
     | '/en/partners'
+    | '/en/security'
     | '/en/sora-risk-assessment'
     | '/product/$handle'
     | '/artikler/'
@@ -449,6 +473,7 @@ export interface RootRouteChildren {
   OperationsRoute: typeof OperationsRoute
   PartnereRoute: typeof PartnereRoute
   PersonvernRoute: typeof PersonvernRoute
+  SikkerhetRoute: typeof SikkerhetRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SoraRoute: typeof SoraRoute
   SoraProsessRoute: typeof SoraProsessRoute
@@ -466,6 +491,7 @@ export interface RootRouteChildren {
   EnOccurrenceReportingRoute: typeof EnOccurrenceReportingRoute
   EnOpsDashboardRoute: typeof EnOpsDashboardRoute
   EnPartnersRoute: typeof EnPartnersRoute
+  EnSecurityRoute: typeof EnSecurityRoute
   EnSoraRiskAssessmentRoute: typeof EnSoraRiskAssessmentRoute
   ProductHandleRoute: typeof ProductHandleRoute
   ArtiklerIndexRoute: typeof ArtiklerIndexRoute
@@ -557,6 +583,13 @@ declare module '@tanstack/react-router' {
       path: '/personvern'
       fullPath: '/personvern'
       preLoaderRoute: typeof PersonvernRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sikkerhet': {
+      id: '/sikkerhet'
+      path: '/sikkerhet'
+      fullPath: '/sikkerhet'
+      preLoaderRoute: typeof SikkerhetRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sitemap.xml': {
@@ -699,6 +732,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnPartnersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/en/security': {
+      id: '/en/security'
+      path: '/en/security'
+      fullPath: '/en/security'
+      preLoaderRoute: typeof EnSecurityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/en/sora-risk-assessment': {
       id: '/en/sora-risk-assessment'
       path: '/en/sora-risk-assessment'
@@ -729,6 +769,7 @@ const rootRouteChildren: RootRouteChildren = {
   OperationsRoute: OperationsRoute,
   PartnereRoute: PartnereRoute,
   PersonvernRoute: PersonvernRoute,
+  SikkerhetRoute: SikkerhetRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SoraRoute: SoraRoute,
   SoraProsessRoute: SoraProsessRoute,
@@ -746,6 +787,7 @@ const rootRouteChildren: RootRouteChildren = {
   EnOccurrenceReportingRoute: EnOccurrenceReportingRoute,
   EnOpsDashboardRoute: EnOpsDashboardRoute,
   EnPartnersRoute: EnPartnersRoute,
+  EnSecurityRoute: EnSecurityRoute,
   EnSoraRiskAssessmentRoute: EnSoraRiskAssessmentRoute,
   ProductHandleRoute: ProductHandleRoute,
   ArtiklerIndexRoute: ArtiklerIndexRoute,
