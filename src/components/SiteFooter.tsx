@@ -10,12 +10,14 @@ export default function SiteFooter() {
     ? [
         { to: "/en/about", label: "About" },
         { to: "/en/partners", label: "Partners" },
+        { to: "/en/security", label: "Security" },
         { to: "/personvern", label: "Privacy (Norwegian)" },
       ]
     : [
         { to: "/om-oss", label: "Om oss" },
         { to: "/partnere", label: "Partnere" },
         { to: "/compliance", label: "Compliance" },
+        { to: "/sikkerhet", label: "Sikkerhet" },
         { to: "/aviops", label: "AviOps" },
         { to: "/integrasjoner", label: "Integrasjoner" },
         { to: "/sora", label: "SORA" },

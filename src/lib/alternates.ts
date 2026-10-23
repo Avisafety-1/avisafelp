@@ -8,6 +8,7 @@ export const LANGUAGE_PAIRS: { nb: string; en: string }[] = [
   { nb: "/partnere", en: "/en/partners" },
   { nb: "/compliance", en: "/en/compliance" },
   { nb: "/aviops", en: "/en/aviops" },
+  { nb: "/sikkerhet", en: "/en/security" },
 ];
 
 export type PageLang = "nb" | "en";
