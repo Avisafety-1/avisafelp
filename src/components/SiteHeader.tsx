@@ -151,6 +151,7 @@ const SiteHeader = () => {
   const onEnglish = location.pathname === "/en" || location.pathname.startsWith("/en/");
   const compliancePath = onEnglish ? "/en/compliance" : "/compliance";
   const opsDashboardPath = onEnglish ? "/en/aviops" : "/aviops";
+  const securityPath = onEnglish ? "/en/security" : "/sikkerhet";
   const smsItems = [
     { label: onEnglish ? "Overview" : "Oversikt", action: () => scrollToId("hero-section") },
     {
@@ -237,6 +238,14 @@ const SiteHeader = () => {
               >
                 {t("nav.contact")}
               </button>
+
+              <Link
+                to={securityPath}
+                onClick={() => setOpen(false)}
+                className={`${navButtonBase} ${navButtonTheme}`}
+              >
+                {t("nav.security")}
+              </Link>
             </nav>
 
             {/* Right cluster */}
@@ -350,6 +359,14 @@ const SiteHeader = () => {
                     >
                       {t("nav.shop")}
                     </button>
+
+                    <Link
+                      to={securityPath}
+                      onClick={() => setOpen(false)}
+                      className="text-left px-3 py-3 text-base font-medium uppercase tracking-wide hover:bg-white/10 rounded-md"
+                    >
+                      {t("nav.security")}
+                    </Link>
 
                     <button
                       onClick={() => { setOpen(false); setContactOpen(true); }}

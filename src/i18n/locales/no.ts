@@ -18,6 +18,7 @@ const no = {
     newsletter: "Nyhetsbrev",
     whoWeAre: "Hvem er vi",
     contactTitle: "Kontaktinformasjon",
+    security: "Sikkerhet",
   },
   common: {
     contact: "Kontakt oss",
