@@ -20,6 +20,7 @@ const en: Translations = {
     newsletter: "Newsletter",
     whoWeAre: "Who we are",
     contactTitle: "Contact information",
+    security: "Security",
   },
   common: {
     contact: "Contact us",
