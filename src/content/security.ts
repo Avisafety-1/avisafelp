@@ -1,94 +1,398 @@
+/**
+ * Copy for the security page (/sikkerhet and /en/security), one object per
+ * language. Written for customers, not engineers: each card says what we do
+ * in plain words, and `tech` gives the short technical term for IT staff.
+ * The page layout lives in src/pages/SecurityPage.tsx.
+ */
+
 export type SecLang = "nb" | "en";
-type Item = { icon: string; title: string; body: string };
-type Section = { id: string; eyebrow: string; title: string; items: Item[]; timeline?: boolean };
+
+export const SECURITY_PATHS: Record<SecLang, string> = {
+  nb: "/sikkerhet",
+  en: "/en/security",
+};
 
 export const SECURITY_EMAIL = "support@avisafe.no";
+const DPA_MAILTO_SUBJECT: Record<SecLang, string> = {
+  nb: "Databehandleravtale",
+  en: "Data processing agreement",
+};
+export const dpaMailto = (lang: SecLang) =>
+  `mailto:kontakt@avisafe.no?subject=${encodeURIComponent(DPA_MAILTO_SUBJECT[lang])}`;
 
-export const SECURITY: Record<SecLang, {
-  title: string; description: string; h1: string; lead: string; badges: string[];
-  sections: Section[];
-  disclosure: { title: string; body: string; pgp: string; cta: string };
-}> = {
+export type SecIcon =
+  | "lock"
+  | "building"
+  | "fingerprint"
+  | "key"
+  | "file"
+  | "shieldCheck"
+  | "database"
+  | "radar"
+  | "globe"
+  | "fileText"
+  | "eraser"
+  | "siren"
+  | "timer";
+
+type Card = { icon: SecIcon; title: string; body: string; tech?: string };
+
+export type SecurityContent = {
+  meta: { title: string; description: string };
+  home: { name: string; path: string };
+  navLabel: string;
+  hero: {
+    tag: string;
+    h1: string;
+    lead: string;
+    ctaPrimary: string;
+    ctaSecondary: string;
+    facts: { value: string; label: string }[];
+  };
+  protect: { eyebrow: string; h2: string; lead: string; items: Card[] };
+  audits: {
+    eyebrow: string;
+    h2: string;
+    lead: string;
+    items: (Card & { marker: string })[];
+  };
+  privacy: { eyebrow: string; h2: string; lead: string; items: Card[] };
+  incident: { eyebrow: string; h2: string; lead: string; items: Card[] };
+  faq: { h2: string; items: { q: string; a: string }[] };
+  disclosure: {
+    h2: string;
+    body: string;
+    pgp: string;
+    cta: string;
+    dpa: string;
+  };
+};
+
+export const SECURITY: Record<SecLang, SecurityContent> = {
   nb: {
-    title: "IT-sikkerhet og databeskyttelse | AviSafe",
-    description: "Slik beskytter AviSafe operativ luftfartsdata, organisasjonsdata og flylogger: kryptering, tenant-isolasjon, revisjoner, beredskap og GDPR.",
-    h1: "IT-sikkerhet og databeskyttelse i AviSafe",
-    lead: "Slik beskytter AviSafe operativ luftfartsdata, organisasjonsdata og flylogger i henhold til strenge europeiske luftfarts- og personvernstandarder.",
-    badges: ["AES-256 kryptering i hvile", "TLS 1.3 i transitt", "100 % Row Level Security (RLS)", "Datasenter i EU/EØS (Frankfurt/Irland)", "0 kritiske sårbarheter i ekstern penetrasjonstest"],
-    sections: [
-      { id: "kryptering", eyebrow: "01", title: "Kryptering og dataarkitektur", items: [
-        { icon: "HardDrive", title: "Data i hvile", body: "All database- og fillagring er kryptert på disknivå med AES-256 via AWS KMS / Supabase." },
-        { icon: "KeyRound", title: "Feltkryptering av hemmeligheter", body: "Tredjepartstokener (DJI FlightHub 2 OpenAPI, ECCAIRS 2) lagres aldri i klartekst, men feltkrypteres i databasen med pgp_sym_encrypt og nøkler fra Supabase Vault." },
-        { icon: "Lock", title: "Data i transitt", body: "All trafikk, API-kall og sanntidsstrømmer (WebSockets / MQTT / RTMP) tvinges over TLS 1.3 / HTTPS / WSS / RTMPS med HSTS." },
-        { icon: "FileLock", title: "Fil- og dokumentsikkerhet", body: "Loggbilder og flyvedlegg hentes utelukkende via tidsbegrensede, signerte URL-er (maks 1 time levetid). Selskapsavtaler og kontrakter ligger i en isolert, privat bucket tilgjengelig kun for superadministratorer." },
-      ]},
-      { id: "tilgang", eyebrow: "02", title: "Tenant-isolasjon og tilgangskontroll (RBAC)", items: [
-        { icon: "Database", title: "PostgreSQL Row Level Security", body: "All data er isolert på selskapsnivå på databasenivå. En bruker eller administrator i ett selskap kan aldri hente eller manipulere data tilhørende et annet selskap via API-et." },
-        { icon: "Network", title: "Hierarkisk selskapstilgang", body: "Morselskaper og avdelinger styres med eksplisitte tilgangsfunksjoner (ingen rekursiv RLS)." },
-        { icon: "Fingerprint", title: "Autentisering og passkeys", body: "Støtte for FIDO2/WebAuthn-passkeys og TOTP-tofaktorautentisering (MFA). Automatisk inaktivitetsutlogging etter 60 minutter med 5 minutters forhåndsvarsel." },
-      ]},
-      { id: "revisjoner", eyebrow: "03", title: "Gjennomførte revisjoner og penetrasjonstesting", timeline: true, items: [
-        { icon: "ShieldCheck", title: "Ekstern penetrasjonstest – mai 2026", body: "Ekstern DAST-penetrasjonstest av hele stacken via Aikido Security. Rapporten konkluderte med 0 kritiske sårbarheter. Samtlige 7 høye og 8 medium funn (primært knyttet til Edge Function JWT-validering) ble lukket og kildekodeverifisert." },
-        { icon: "SearchCheck", title: "Database- og SECURITY DEFINER-audit – oktober 2026", body: "Full revisjon av alle 39 interne databasefunksjoner (A/B1-revisjon). Fastlåst søkesti (search_path = public), eksplisitt tilbakekalling av kjøretillatelser fra offentlig/anonym tilgang, og garantert tenant-isolasjon." },
-        { icon: "Radar", title: "Kontinuerlig overvåking", body: "Automatisert sårbarhetsskanning av kodebase, Docker-containere og avhengigheter (npm/bun CVE-database)." },
-      ]},
-      { id: "beredskap", eyebrow: "04", title: "Beredskapsplan og hendelseshåndtering", items: [
-        { icon: "Users", title: "Beredskapsteam", body: "Etablert beredskapsprosedyre for sikkerhetshendelser med definerte roller." },
-        { icon: "Timer", title: "72-timers varsling", body: "Ved brudd på personopplysningssikkerheten varsles berørte selskaper og Datatilsynet innen 72 timer, i tråd med GDPR artikkel 33." },
-        { icon: "Plane", title: "Flysikkerhetshendelser", body: "Integrert flyt for rapportering av operative hendelser til Luftfartstilsynet via ECCAIRS 2 / NF-2007." },
-      ]},
-      { id: "gdpr", eyebrow: "05", title: "Geografi, hosting og GDPR", items: [
-        { icon: "Globe", title: "Hosting", body: "Datasentre innenfor EU/EØS (Tyskland / Irland) hos leverandører med ISO 27001-, SOC 2 Type II- og ISO 27018-sertifiseringer." },
-        { icon: "FileText", title: "Databehandleravtale (DPA)", body: "Standardisert DPA tilgjengelig for alle bedriftskunder." },
-        { icon: "Eraser", title: "Rett til sletting og databevaring", body: "Ved brukersletting benyttes anonymisering/SET NULL for å ivareta lovpålagt flyoperativ historikk uten å lagre personopplysninger lenger enn nødvendig." },
-      ]},
-    ],
+    meta: {
+      title: "Sikkerhet og personvern i AviSafe",
+      description:
+        "Slik beskytter AviSafe flylogger, hendelsesrapporter og personopplysninger: kryptering, adskilte kundedata, sikker innlogging, ekstern testing og lagring i EU/EØS.",
+    },
+    home: { name: "Forside", path: "/" },
+    navLabel: "Sikkerhet",
+    hero: {
+      tag: "Sikkerhet og personvern",
+      h1: "Dataene deres er trygge hos oss",
+      lead: "AviSafe tar vare på flylogger, hendelsesrapporter, dokumenter og opplysninger om pilotene deres. Her forklarer vi hvordan vi beskytter dem, og hva vi har gjort for å sjekke at det virker.",
+      ctaPrimary: "Be om databehandleravtale",
+      ctaSecondary: "Meld fra om sårbarhet",
+      facts: [
+        { value: "Kryptert", label: "både lagret og under overføring" },
+        { value: "EU/EØS", label: "datasentre i Tyskland og Irland" },
+        { value: "0", label: "kritiske funn i ekstern penetrasjonstest" },
+        { value: "72 t", label: "lengste tid før vi varsler ved brudd" },
+      ],
+    },
+    protect: {
+      eyebrow: "Beskyttelse",
+      h2: "Slik beskytter vi dataene",
+      lead: "Sikkerheten er bygget inn i selve plattformen, ikke lagt på i etterkant.",
+      items: [
+        {
+          icon: "lock",
+          title: "Kryptert hele veien",
+          body: "Alt dere lagrer i AviSafe er kryptert, både i databasen og i fillageret. Trafikken mellom dere, appen, dronene og videostrømmene går over krypterte forbindelser.",
+          tech: "AES-256 · TLS 1.3 · HTTPS, WSS og RTMPS · HSTS",
+        },
+        {
+          icon: "fingerprint",
+          title: "Sikker innlogging",
+          body: "Logg inn med passkey (fingeravtrykk, ansikt eller sikkerhetsnøkkel), eller bruk tofaktor med en kodeapp. Økter som står ubrukt, logges ut etter 60 minutter, med varsel fem minutter før.",
+          tech: "FIDO2/WebAuthn · TOTP",
+        },
+        {
+          icon: "building",
+          title: "Hvert selskap har sine egne data",
+          body: "Dataene til hvert selskap er skilt fra alle andre i selve databasen. Ingen i et annet selskap, heller ikke en administrator, kan se eller endre dataene deres. Brukerroller styrer hva hver person har tilgang til, og morselskap og avdelinger ser bare det dere har gitt dem tilgang til.",
+          tech: "Row Level Security på alle tabeller · rollebasert tilgang",
+        },
+        {
+          icon: "key",
+          title: "Koblinger til DJI og ECCAIRS",
+          body: "Når dere kobler AviSafe til DJI FlightHub 2 eller ECCAIRS, lagres tilgangsnøklene kryptert i et eget hvelv. De ligger aldri i klartekst.",
+          tech: "Feltkryptering med nøkler i et hvelv",
+        },
+        {
+          icon: "file",
+          title: "Filer deles med utløpsdato",
+          body: "Bilder, loggfiler og vedlegg åpnes bare via midlertidige lenker som slutter å virke etter høyst én time. Avtaler og kontrakter ligger i et eget, lukket lagringsområde.",
+          tech: "Signerte lenker, maks én time",
+        },
+      ],
+    },
+    audits: {
+      eyebrow: "Testet og kontrollert",
+      h2: "Vi stoler ikke bare på oss selv",
+      lead: "Sikkerheten testes utenfra og gjennomgås jevnlig, og funn blir rettet.",
+      items: [
+        {
+          marker: "Mai 2026",
+          icon: "shieldCheck",
+          title: "Ekstern penetrasjonstest",
+          body: "Hele løsningen ble testet utenfra med Aikido Security, slik en angriper ville gått frem. Testen fant ingen kritiske sårbarheter. Alle de 15 funnene med høy eller middels alvorlighetsgrad er rettet, og rettingene er kontrollert i koden.",
+        },
+        {
+          marker: "Okt 2026",
+          icon: "database",
+          title: "Gjennomgang av databasesikkerheten",
+          body: "Vi gikk gjennom alle funksjonene i databasen som har utvidede rettigheter, strammet inn hvem som kan bruke dem, og bekreftet at ingen av dem kan brukes til å nå et annet selskaps data.",
+        },
+        {
+          marker: "Løpende",
+          icon: "radar",
+          title: "Automatisk sårbarhetsskanning",
+          body: "Koden, serverne og alle tredjepartsbiblioteker skannes automatisk for kjente sårbarheter, slik at vi kan rette dem raskt.",
+        },
+      ],
+    },
+    privacy: {
+      eyebrow: "Personvern",
+      h2: "Lagring og personvern",
+      lead: "Dataene blir i Europa, og dere har kontroll på personopplysningene.",
+      items: [
+        {
+          icon: "globe",
+          title: "Lagret i EU/EØS",
+          body: "Dataene ligger i datasentre i Tyskland og Irland, hos leverandører som er sertifisert etter anerkjente sikkerhetsstandarder.",
+          tech: "ISO 27001 · ISO 27018 · SOC 2 Type II",
+        },
+        {
+          icon: "fileText",
+          title: "Databehandleravtale",
+          body: "Alle bedriftskunder får en standard databehandleravtale som beskriver hvordan vi behandler personopplysninger på deres vegne.",
+          tech: "GDPR artikkel 28",
+        },
+        {
+          icon: "eraser",
+          title: "Sletting som tar hensyn til flyhistorikken",
+          body: "Når en bruker slettes, fjerner vi personopplysningene. Flyhistorikk som dere er pålagt å ta vare på, blir liggende, men uten navnet til personen.",
+          tech: "Anonymisering ved sletting",
+        },
+      ],
+    },
+    incident: {
+      eyebrow: "Beredskap",
+      h2: "Hvis noe skulle skje",
+      lead: "Vi har en plan, og dere får beskjed.",
+      items: [
+        {
+          icon: "siren",
+          title: "Fast beredskapsrutine",
+          body: "Vi har en egen prosedyre for sikkerhetshendelser, med tydelige roller for hvem som gjør hva.",
+        },
+        {
+          icon: "timer",
+          title: "Varsling innen 72 timer",
+          body: "Ved brudd på personopplysningssikkerheten varsler vi berørte kunder og Datatilsynet innen 72 timer, slik GDPR krever.",
+          tech: "GDPR artikkel 33",
+        },
+      ],
+    },
+    faq: {
+      h2: "Spørsmål og svar",
+      items: [
+        {
+          q: "Hvor lagres dataene våre?",
+          a: "I datasentre i Tyskland og Irland, innenfor EU/EØS. Leverandørene er sertifisert etter ISO 27001, ISO 27018 og SOC 2 Type II.",
+        },
+        {
+          q: "Kan andre kunder se dataene våre?",
+          a: "Nei. Hvert selskaps data er skilt fra alle andre i selve databasen, så en bruker i et annet selskap kan ikke se eller endre dem, heller ikke en administrator.",
+        },
+        {
+          q: "Hvordan logger vi inn sikkert?",
+          a: "Med passkey (fingeravtrykk, ansikt eller sikkerhetsnøkkel) eller med tofaktor via en kodeapp. Økter som står ubrukt, logges ut automatisk etter 60 minutter.",
+        },
+        {
+          q: "Har AviSafe blitt testet av andre enn dere selv?",
+          a: "Ja. En ekstern penetrasjonstest i mai 2026 fant ingen kritiske sårbarheter, og alle funn med høy eller middels alvorlighetsgrad er rettet. I tillegg skannes koden og tredjepartsbibliotekene automatisk.",
+        },
+        {
+          q: "Får vi en databehandleravtale?",
+          a: "Ja. Alle bedriftskunder får en standard databehandleravtale. Send en e-post til kontakt@avisafe.no, så sender vi den.",
+        },
+        {
+          q: "Hva skjer hvis det oppstår et sikkerhetsbrudd?",
+          a: "Vi følger en fast beredskapsrutine. Ved brudd på personopplysningssikkerheten varsler vi berørte kunder og Datatilsynet innen 72 timer.",
+        },
+      ],
+    },
     disclosure: {
-      title: "Ansvarlig offentliggjøring",
-      body: "Er du sikkerhetsforsker eller kunde og har funnet en mulig sårbarhet? Meld fra til oss. Vi bekrefter mottak raskt, følger opp funnet og tar ikke rettslige skritt mot etiske testere som handler i god tro.",
+      h2: "Har du funnet en sårbarhet?",
+      body: "Vi setter pris på at sikkerhetsforskere og kunder sier fra. Send oss en beskrivelse, så bekrefter vi at vi har mottatt den, følger opp og holder deg orientert. Vi går ikke rettslig til verks mot noen som tester i god tro og melder fra til oss.",
       pgp: "PGP-nøkkel sendes på forespørsel.",
       cta: "Meld fra om sårbarhet",
+      dpa: "Be om databehandleravtale",
     },
   },
   en: {
-    title: "IT security and data protection | AviSafe",
-    description: "How AviSafe protects operational aviation data, organisation data and flight logs: encryption, tenant isolation, audits, incident response and GDPR.",
-    h1: "IT security and data protection in AviSafe",
-    lead: "How AviSafe protects operational aviation data, organisation data and flight logs in line with strict European aviation and privacy standards.",
-    badges: ["AES-256 encryption at rest", "TLS 1.3 in transit", "100% Row Level Security (RLS)", "EU/EEA data centres (Frankfurt/Ireland)", "0 critical vulnerabilities in external pentest"],
-    sections: [
-      { id: "encryption", eyebrow: "01", title: "Encryption and data architecture", items: [
-        { icon: "HardDrive", title: "Data at rest", body: "All database and file storage is encrypted at disk level with AES-256 via AWS KMS / Supabase." },
-        { icon: "KeyRound", title: "Field encryption of secrets", body: "Third-party tokens (DJI FlightHub 2 OpenAPI, ECCAIRS 2) are never stored in plain text; they are field-encrypted in the database with pgp_sym_encrypt and keys from Supabase Vault." },
-        { icon: "Lock", title: "Data in transit", body: "All traffic, API calls and real-time streams (WebSockets / MQTT / RTMP) are forced over TLS 1.3 / HTTPS / WSS / RTMPS with HSTS." },
-        { icon: "FileLock", title: "File and document security", body: "Log images and flight attachments are only served via time-limited signed URLs (max 1 hour lifetime). Company agreements and contracts are kept in an isolated private bucket accessible only to super administrators." },
-      ]},
-      { id: "access", eyebrow: "02", title: "Tenant isolation and access control (RBAC)", items: [
-        { icon: "Database", title: "PostgreSQL Row Level Security", body: "All data is isolated per company at database level. A user or administrator in one company can never read or modify another company's data through the API." },
-        { icon: "Network", title: "Hierarchical company access", body: "Parent companies and departments are governed by explicit access functions (no recursive RLS)." },
-        { icon: "Fingerprint", title: "Authentication and passkeys", body: "Support for FIDO2/WebAuthn passkeys and TOTP two-factor authentication (MFA). Automatic sign-out after 60 minutes of inactivity with a 5-minute warning." },
-      ]},
-      { id: "audits", eyebrow: "03", title: "Completed audits and penetration testing", timeline: true, items: [
-        { icon: "ShieldCheck", title: "External penetration test – May 2026", body: "External DAST penetration test of the full stack via Aikido Security. The report found 0 critical vulnerabilities. All 7 high and 8 medium findings (mainly related to Edge Function JWT validation) were closed and verified in source code." },
-        { icon: "SearchCheck", title: "Database and SECURITY DEFINER audit – October 2026", body: "Full review of all 39 internal database functions (A/B1 audit). Pinned search path (search_path = public), explicit revocation of execute rights from public/anonymous access, and guaranteed tenant isolation." },
-        { icon: "Radar", title: "Continuous monitoring", body: "Automated vulnerability scanning of the codebase, Docker containers and dependencies (npm/bun CVE database)." },
-      ]},
-      { id: "incident", eyebrow: "04", title: "Incident response", items: [
-        { icon: "Users", title: "Response team", body: "Established incident procedure for security events with defined roles." },
-        { icon: "Timer", title: "72-hour notification", body: "In case of a personal data breach, affected companies and the Norwegian Data Protection Authority are notified within 72 hours, in line with GDPR Article 33." },
-        { icon: "Plane", title: "Flight safety occurrences", body: "Integrated flow for reporting operational occurrences to the Norwegian CAA via ECCAIRS 2 / NF-2007." },
-      ]},
-      { id: "gdpr", eyebrow: "05", title: "Geography, hosting and GDPR", items: [
-        { icon: "Globe", title: "Hosting", body: "Data centres within the EU/EEA (Germany / Ireland) with providers holding ISO 27001, SOC 2 Type II and ISO 27018 certifications." },
-        { icon: "FileText", title: "Data processing agreement (DPA)", body: "Standard DPA available to all business customers." },
-        { icon: "Eraser", title: "Right to erasure and retention", body: "When a user is deleted, anonymisation/SET NULL preserves legally required flight operations history without keeping personal data longer than necessary." },
-      ]},
-    ],
+    meta: {
+      title: "Security and privacy in AviSafe",
+      description:
+        "How AviSafe protects flight logs, occurrence reports and personal data: encryption, separated customer data, secure sign-in, external testing and storage in the EU/EEA.",
+    },
+    home: { name: "Home", path: "/en" },
+    navLabel: "Security",
+    hero: {
+      tag: "Security and privacy",
+      h1: "Your data is safe with us",
+      lead: "AviSafe stores your flight logs, occurrence reports, documents and information about your pilots. This page explains how we protect it, and what we have done to check that the protection works.",
+      ctaPrimary: "Request a data processing agreement",
+      ctaSecondary: "Report a vulnerability",
+      facts: [
+        { value: "Encrypted", label: "at rest and in transit" },
+        { value: "EU/EEA", label: "data centres in Germany and Ireland" },
+        { value: "0", label: "critical findings in external penetration test" },
+        { value: "72 h", label: "longest time before we notify of a breach" },
+      ],
+    },
+    protect: {
+      eyebrow: "Protection",
+      h2: "How we protect your data",
+      lead: "Security is built into the platform itself, not added afterwards.",
+      items: [
+        {
+          icon: "lock",
+          title: "Encrypted all the way",
+          body: "Everything you store in AviSafe is encrypted, in the database and in file storage. Traffic between you, the app, the drones and the video streams runs over encrypted connections.",
+          tech: "AES-256 · TLS 1.3 · HTTPS, WSS and RTMPS · HSTS",
+        },
+        {
+          icon: "fingerprint",
+          title: "Secure sign-in",
+          body: "Sign in with a passkey (fingerprint, face or security key), or use two-factor authentication with an authenticator app. Idle sessions are signed out after 60 minutes, with a warning five minutes before.",
+          tech: "FIDO2/WebAuthn · TOTP",
+        },
+        {
+          icon: "building",
+          title: "Every company's data is kept separate",
+          body: "Each company's data is separated from everyone else's in the database itself. Nobody in another company, not even an administrator, can see or change your data. User roles control what each person can access, and parent companies and departments only see what you have given them access to.",
+          tech: "Row Level Security on every table · role-based access",
+        },
+        {
+          icon: "key",
+          title: "Connections to DJI and ECCAIRS",
+          body: "When you connect AviSafe to DJI FlightHub 2 or ECCAIRS, the access keys are stored encrypted in a dedicated vault. They are never stored in plain text.",
+          tech: "Field encryption with keys in a vault",
+        },
+        {
+          icon: "file",
+          title: "Files are shared with an expiry",
+          body: "Images, log files and attachments are only opened through temporary links that stop working after one hour at most. Agreements and contracts are kept in a separate, closed storage area.",
+          tech: "Signed links, max one hour",
+        },
+      ],
+    },
+    audits: {
+      eyebrow: "Tested and checked",
+      h2: "We don't just take our own word for it",
+      lead: "Security is tested from the outside and reviewed regularly, and findings get fixed.",
+      items: [
+        {
+          marker: "May 2026",
+          icon: "shieldCheck",
+          title: "External penetration test",
+          body: "The whole solution was tested from the outside with Aikido Security, the way an attacker would approach it. The test found no critical vulnerabilities. All 15 high and medium findings have been fixed, and the fixes have been verified in the code.",
+        },
+        {
+          marker: "Oct 2026",
+          icon: "database",
+          title: "Database security review",
+          body: "We went through every database function that runs with elevated rights, tightened who can use them, and confirmed that none of them can be used to reach another company's data.",
+        },
+        {
+          marker: "Ongoing",
+          icon: "radar",
+          title: "Automated vulnerability scanning",
+          body: "The code, the servers and all third-party libraries are scanned automatically for known vulnerabilities, so we can fix them quickly.",
+        },
+      ],
+    },
+    privacy: {
+      eyebrow: "Privacy",
+      h2: "Storage and privacy",
+      lead: "Your data stays in Europe, and you stay in control of personal data.",
+      items: [
+        {
+          icon: "globe",
+          title: "Stored in the EU/EEA",
+          body: "Your data is kept in data centres in Germany and Ireland, with providers certified to recognised security standards.",
+          tech: "ISO 27001 · ISO 27018 · SOC 2 Type II",
+        },
+        {
+          icon: "fileText",
+          title: "Data processing agreement",
+          body: "Every business customer gets a standard data processing agreement that describes how we process personal data on your behalf.",
+          tech: "GDPR Article 28",
+        },
+        {
+          icon: "eraser",
+          title: "Deletion that respects flight history",
+          body: "When a user is deleted, we remove their personal data. Flight history you are required to keep stays in place, but without the person's name.",
+          tech: "Anonymisation on deletion",
+        },
+      ],
+    },
+    incident: {
+      eyebrow: "Incident response",
+      h2: "If something should happen",
+      lead: "We have a plan, and you will be told.",
+      items: [
+        {
+          icon: "siren",
+          title: "Set incident procedure",
+          body: "We have a dedicated procedure for security incidents, with clear roles for who does what.",
+        },
+        {
+          icon: "timer",
+          title: "Notification within 72 hours",
+          body: "If there is a personal data breach, we notify affected customers and the Norwegian Data Protection Authority within 72 hours, as GDPR requires.",
+          tech: "GDPR Article 33",
+        },
+      ],
+    },
+    faq: {
+      h2: "Questions and answers",
+      items: [
+        {
+          q: "Where is our data stored?",
+          a: "In data centres in Germany and Ireland, within the EU/EEA. The providers are certified to ISO 27001, ISO 27018 and SOC 2 Type II.",
+        },
+        {
+          q: "Can other customers see our data?",
+          a: "No. Each company's data is separated from everyone else's in the database itself, so a user in another company cannot see or change it, not even an administrator.",
+        },
+        {
+          q: "How do we sign in securely?",
+          a: "With a passkey (fingerprint, face or security key) or with two-factor authentication through an authenticator app. Idle sessions are signed out automatically after 60 minutes.",
+        },
+        {
+          q: "Has AviSafe been tested by anyone other than you?",
+          a: "Yes. An external penetration test in May 2026 found no critical vulnerabilities, and all high and medium findings have been fixed. The code and third-party libraries are also scanned automatically.",
+        },
+        {
+          q: "Do we get a data processing agreement?",
+          a: "Yes. Every business customer gets a standard data processing agreement. Email kontakt@avisafe.no and we will send it to you.",
+        },
+        {
+          q: "What happens if there is a security breach?",
+          a: "We follow a set incident procedure. If there is a personal data breach, we notify affected customers and the Norwegian Data Protection Authority within 72 hours.",
+        },
+      ],
+    },
     disclosure: {
-      title: "Responsible disclosure",
-      body: "Are you a security researcher or customer who has found a possible vulnerability? Let us know. We acknowledge reports quickly, follow up on every finding and take no legal action against ethical testers acting in good faith.",
+      h2: "Found a vulnerability?",
+      body: "We appreciate it when security researchers and customers tell us. Send us a description and we will confirm that we have received it, follow up and keep you informed. We take no legal action against anyone who tests in good faith and reports to us.",
       pgp: "PGP key available on request.",
       cta: "Report a vulnerability",
+      dpa: "Request a data processing agreement",
     },
   },
 };
