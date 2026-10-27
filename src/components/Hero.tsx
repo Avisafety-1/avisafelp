@@ -54,6 +54,7 @@ const Hero = () => {
               <img src={johanBojerLogo.url} alt="Johan Bojer videregående skole" className="h-9 w-auto" />
               <img src={dronenordLogoWhite.url} alt="Dronenord" className="h-11 w-auto" />
               <img src={breiliDriftLogo} alt="Breili Drift" className="h-9 w-auto" />
+              <img src={trondheimLogo.url} alt="Trondheim kommune" className="h-9 w-auto" />
             </div>
             <div className="sm:hidden flex animate-marquee w-max">
               {[...Array(2)].map((_, i) => (
