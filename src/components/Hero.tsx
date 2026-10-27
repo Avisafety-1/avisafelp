@@ -46,7 +46,7 @@ const Hero = () => {
             </span>
           </div>
           <div className="w-screen relative left-1/2 -translate-x-1/2 bg-black/90 py-2 sm:py-2.5 mb-4 overflow-hidden">
-            <div className="hidden sm:flex items-center justify-center gap-8 flex-wrap">
+            <div className="hidden sm:flex items-center justify-center gap-7 flex-wrap">
               <img src={trustedLogo1} alt="UAS Voss" className="h-9 w-auto" />
               <img src={tensioLogo} alt="Tensio" className="h-9 w-auto" />
               <img src={norconsultLogoWhite} alt="Norconsult" className="h-7 w-auto" />
