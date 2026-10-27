@@ -13,6 +13,7 @@ import elverumVgsLogo from "@/assets/elverum-vgs-white.svg";
 import johanBojerLogo from "@/assets/johan-bojer-v5.png.asset.json";
 import tensioLogo from "@/assets/tensio-logo.png";
 import breiliDriftLogo from "@/assets/breili-drift-logo.png";
+import trondheimLogo from "@/assets/trondheim-kommune-logo-white.png.asset.json";
 import ScrollExpandMedia from "@/components/ui/scroll-expand-media";
 import AppPreviewPhone from "@/components/AppPreviewPhone";
 
