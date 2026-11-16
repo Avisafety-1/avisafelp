@@ -14,6 +14,7 @@ import johanBojerLogo from "@/assets/johan-bojer-v5.png.asset.json";
 import tensioLogo from "@/assets/tensio-logo.png";
 import breiliDriftLogo from "@/assets/breili-drift-logo.png";
 import trondheimLogo from "@/assets/trondheim-kommune-logo.png.asset.json";
+import grenlandLogo from "@/assets/grenland-brann-og-redning-logo.png.asset.json";
 import ScrollExpandMedia from "@/components/ui/scroll-expand-media";
 import AppPreviewPhone from "@/components/AppPreviewPhone";
 
@@ -46,15 +47,16 @@ const Hero = () => {
             </span>
           </div>
           <div className="w-screen relative left-1/2 -translate-x-1/2 bg-black/90 py-2 sm:py-2.5 mb-4 overflow-hidden">
-            <div className="hidden sm:flex items-center justify-center gap-7 flex-wrap">
+            <div className="hidden sm:flex items-center justify-center gap-4 flex-wrap">
               <img src={trustedLogo1} alt="UAS Voss" className="h-9 w-auto" />
               <img src={tensioLogo} alt="Tensio" className="h-9 w-auto" />
-              <img src={norconsultLogoWhite} alt="Norconsult" className="h-7 w-auto" />
+              <img src={norconsultLogoWhite} alt="Norconsult" className="h-6 w-auto" />
               <img src={elverumVgsLogo} alt="Elverum videregående skole" className="h-9 w-auto" />
               <img src={johanBojerLogo.url} alt="Johan Bojer videregående skole" className="h-9 w-auto" />
-              <img src={dronenordLogoWhite.url} alt="Dronenord" className="h-11 w-auto" />
+              <img src={dronenordLogoWhite.url} alt="Dronenord" className="h-9 w-auto" />
               <img src={breiliDriftLogo} alt="Breili Drift" className="h-9 w-auto" />
-              <img src={trondheimLogo.url} alt="Trondheim kommune" className="h-9 w-auto" />
+              <img src={trondheimLogo.url} alt="Trondheim kommune" className="h-8 w-auto" />
+              <img src={grenlandLogo.url} alt="Grenland brann og redning IKS" className="h-8 w-auto" />
             </div>
             <div className="sm:hidden flex animate-marquee w-max">
               {[...Array(2)].map((_, i) => (
@@ -67,6 +69,7 @@ const Hero = () => {
                   <img src={dronenordLogoWhite.url} alt="Dronenord" className="h-9 w-auto" />
                   <img src={breiliDriftLogo} alt="Breili Drift" className="h-7 w-auto" />
                   <img src={trondheimLogo.url} alt="Trondheim kommune" className="h-7 w-auto" />
+                  <img src={grenlandLogo.url} alt="Grenland brann og redning IKS" className="h-7 w-auto" />
                 </div>
               ))}
             </div>
