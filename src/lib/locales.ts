@@ -27,7 +27,7 @@ export function pathForLocale(path: string, target: Locale): string {
 }
 export function localeForCountry(country: string | null | undefined): Locale {
   const groups: Record<string, Locale> = { NO: "no", NL: "nl", BE: "nl", DE: "de", AT: "de", CH: "de", DK: "da", SE: "sv", FI: "fi" };
-  return country ? groups[country.toUpperCase()] ?? "en" : "no";
+  return country ? groups[country.toUpperCase()] ?? "en" : "en";
 }
 export function hasLocalePath(path: string): boolean {
   return LOCALE_ROUTE_PATHS.some((route) => route === path || (route.includes('$') && new RegExp('^' + route.replace(/\$[^/]+/g, '[^/]+') + '$').test(path)));
