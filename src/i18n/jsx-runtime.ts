@@ -3,10 +3,13 @@ import { jsx as reactJsx, jsxs as reactJsxs, Fragment } from "react/jsx-runtime"
 import { I18nContext } from "react-i18next";
 import { translateDisplay } from "./display-translation";
 export { Fragment };
-function LocalizedElement({ elementType, elementProps }: { elementType: ElementType; elementProps: Record<string, unknown> }) {
+function LocalizedElement({ elementType, elementProps, ...forwardedProps }: { elementType: ElementType; elementProps: Record<string, unknown>; [key: string]: unknown }) {
   const context = useContext(I18nContext);
   const language = context?.i18n?.language ?? "no";
-  const props = { ...elementProps };
+  // Slot-based controls inject handlers, ARIA attributes and refs into this
+  // wrapper. Forward those additions to the actual element, not just the
+  // original JSX props, so composed controls remain interactive.
+  const props = { ...elementProps, ...forwardedProps };
   if (!elementProps['data-no-translate'] && !['script', 'style', 'code', 'pre', 'textarea'].includes(String(elementType))) {
     const translateChild = (child: unknown): unknown => typeof child === "string" ? translateDisplay(child, language) : Array.isArray(child) ? child.map(translateChild) : child;
     props['children'] = translateChild(props['children']);

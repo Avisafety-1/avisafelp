@@ -5,6 +5,7 @@
 - Browser-only libraries (react-pdf/pdfjs, etc.) are loaded via `ClientOnly` + `lazy` wrappers; why: their module init crashes server rendering.
 - Render language is derived from URL prefixes with isolated i18n instances; first HTML visits redirect using edge country metadata unless a manual language cookie or explicit prefix wins; why: region-based defaults must not override deliberate choices or create shared-state SSR mismatches.
 - Shared JSX localization translates display strings at host-element boundaries using checked-in dictionaries, never business data or identifiers; why: legacy and data-driven pages need consistent translations without changing their behavior.
+- JSX localization wrappers must forward injected props and refs to the rendered element; why: slot-based menu controls need their event handlers and ARIA attributes to reach the actual control.
 - Localized route files mirror existing pages and share head localization; maintain the locale route inventory when adding or removing pages so hreflang never advertises absent counterparts.
 - Old react-router call sites go through `@/lib/router-compat`; why: keeps react-router calling conventions working on TanStack Router.
 - Server-side logic that the app calls lives in `src/lib/*.functions.ts` (createServerFn); the AI search remains a backend function; why: one runtime for app logic, streaming AI left as-is.
