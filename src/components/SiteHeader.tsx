@@ -207,7 +207,7 @@ const SiteHeader = () => {
             </Link>
 
             {/* Desktop nav */}
-            <nav className="hidden xl:flex items-center gap-1.5 2xl:gap-2">
+            <nav className="hidden min-[1800px]:flex items-center gap-1.5 2xl:gap-2">
               <HoverDropdown label={t("nav.sms")} items={smsItems} scrolled={scrolled} />
 
               <button onClick={() => goTo(opsDashboardPath)} className={`${navButtonBase} ${navButtonTheme}`}>
@@ -280,7 +280,7 @@ const SiteHeader = () => {
               <Sheet open={open} onOpenChange={setOpen}>
                 <SheetTrigger asChild>
                   <button
-                    className={`xl:hidden p-2 rounded-md transition-colors duration-500 ${
+                    className={`min-[1800px]:hidden p-2 rounded-md transition-colors duration-500 ${
                       scrolled ? "text-[hsl(210,45%,12%)] hover:bg-black/10" : "text-white hover:bg-white/10"
                     }`}
                     aria-label={t("common.openMenu")}
