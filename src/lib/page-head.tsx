@@ -1,4 +1,6 @@
 import { Children, isValidElement, useEffect, type ReactElement, type ReactNode } from "react";
+import { useTranslation } from "react-i18next";
+import { translateDisplay } from "@/i18n/display-translation";
 
 /**
  * Client-side page head manager with the same call shape as react-helmet-async's
@@ -31,6 +33,7 @@ function collect(children: ReactNode): HeadEl[] {
 }
 
 export function Helmet({ children }: { children?: ReactNode }) {
+  const { i18n } = useTranslation();
   const elements = collect(children);
   const signature = JSON.stringify(
     elements.map((el) => [el.type, { ...el.props, children: textOf(el.props["children"]) }]),
@@ -46,7 +49,7 @@ export function Helmet({ children }: { children?: ReactNode }) {
 
       if (type === "title") {
         const prev = document.title;
-        document.title = textOf(kids);
+        document.title = translateDisplay(textOf(kids), i18n.language);
         cleanups.push(() => {
           document.title = prev;
         });

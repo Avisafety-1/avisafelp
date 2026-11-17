@@ -14,6 +14,7 @@ import {
   Outlet as TSOutlet,
 } from "@tanstack/react-router";
 import { useMemo, useCallback, forwardRef, type ComponentProps, type ReactNode } from "react";
+import { localeForPath, pathForLocale } from "./locales";
 
 // ---------- shared URL parsing ----------
 
@@ -50,7 +51,7 @@ export function useNavigate(): NavigateFn {
       router.history.go(to);
       return;
     }
-    const { pathname, search, hash } = parseTo(to);
+    const { pathname, search, hash } = parseTo(pathForLocale(to, localeForPath(router.state.location.pathname)));
     tsNav({
       to: pathname,
       search: search as never,
@@ -123,6 +124,7 @@ export function useSearchParams(): [URLSearchParams, (init: URLSearchParams | Re
 // ---------- Link ----------
 
 type LinkProps = Omit<ComponentProps<typeof TSLink>, "to"> & {
+  preserveLanguage?: boolean;
   to: string;
   replace?: boolean;
   state?: unknown;
@@ -130,10 +132,12 @@ type LinkProps = Omit<ComponentProps<typeof TSLink>, "to"> & {
 };
 
 export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
-  { to, replace, state, children, ...rest },
+  { to, replace, state, children, preserveLanguage, ...rest },
   ref,
 ) {
-  const { pathname, search, hash } = parseTo(to);
+  const location = tsLocation();
+  const target = preserveLanguage ? to : pathForLocale(to, localeForPath(location.pathname));
+  const { pathname, search, hash } = parseTo(target);
   return (
     <TSLink
       ref={ref as never}

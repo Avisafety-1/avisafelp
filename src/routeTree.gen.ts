@@ -32,19 +32,181 @@ import { Route as ButikkIndexRouteImport } from './routes/butikk.index'
 import { Route as ButikkSlugRouteImport } from './routes/butikk.$slug'
 import { Route as ButikkCheckoutRouteImport } from './routes/butikk.checkout'
 import { Route as ButikkTakkRouteImport } from './routes/butikk.takk'
+import { Route as DaIndexRouteImport } from './routes/da.index'
+import { Route as DaAboutRouteImport } from './routes/da.about'
+import { Route as DaAviopsRouteImport } from './routes/da.aviops'
+import { Route as DaComplianceRouteImport } from './routes/da.compliance'
+import { Route as DaDroneFleetManagementRouteImport } from './routes/da.drone-fleet-management'
+import { Route as DaDroneSafetyManagementSystemRouteImport } from './routes/da.drone-safety-management-system'
+import { Route as DaGalleriRouteImport } from './routes/da.galleri'
+import { Route as DaIntegrasjonerRouteImport } from './routes/da.integrasjoner'
+import { Route as DaLiveAirspaceAwarenessRouteImport } from './routes/da.live-airspace-awareness'
+import { Route as DaLoggRouteImport } from './routes/da.logg'
+import { Route as DaOccurrenceReportingRouteImport } from './routes/da.occurrence-reporting'
+import { Route as DaOperasjonerRouteImport } from './routes/da.operasjoner'
+import { Route as DaOperasjonsdashbordRouteImport } from './routes/da.operasjonsdashbord'
+import { Route as DaOperationsRouteImport } from './routes/da.operations'
+import { Route as DaOpsDashboardRouteImport } from './routes/da.ops-dashboard'
+import { Route as DaPartnersRouteImport } from './routes/da.partners'
+import { Route as DaPersonvernRouteImport } from './routes/da.personvern'
+import { Route as DaSecurityRouteImport } from './routes/da.security'
+import { Route as DaSoraRouteImport } from './routes/da.sora'
+import { Route as DaSoraProsessRouteImport } from './routes/da.sora-prosess'
+import { Route as DaSoraRiskAssessmentRouteImport } from './routes/da.sora-risk-assessment'
+import { Route as DaStatistikkRouteImport } from './routes/da.statistikk'
+import { Route as DeIndexRouteImport } from './routes/de.index'
+import { Route as DeAboutRouteImport } from './routes/de.about'
+import { Route as DeAviopsRouteImport } from './routes/de.aviops'
+import { Route as DeComplianceRouteImport } from './routes/de.compliance'
+import { Route as DeDroneFleetManagementRouteImport } from './routes/de.drone-fleet-management'
+import { Route as DeDroneSafetyManagementSystemRouteImport } from './routes/de.drone-safety-management-system'
+import { Route as DeGalleriRouteImport } from './routes/de.galleri'
+import { Route as DeIntegrasjonerRouteImport } from './routes/de.integrasjoner'
+import { Route as DeLiveAirspaceAwarenessRouteImport } from './routes/de.live-airspace-awareness'
+import { Route as DeLoggRouteImport } from './routes/de.logg'
+import { Route as DeOccurrenceReportingRouteImport } from './routes/de.occurrence-reporting'
+import { Route as DeOperasjonerRouteImport } from './routes/de.operasjoner'
+import { Route as DeOperasjonsdashbordRouteImport } from './routes/de.operasjonsdashbord'
+import { Route as DeOperationsRouteImport } from './routes/de.operations'
+import { Route as DeOpsDashboardRouteImport } from './routes/de.ops-dashboard'
+import { Route as DePartnersRouteImport } from './routes/de.partners'
+import { Route as DePersonvernRouteImport } from './routes/de.personvern'
+import { Route as DeSecurityRouteImport } from './routes/de.security'
+import { Route as DeSoraRouteImport } from './routes/de.sora'
+import { Route as DeSoraProsessRouteImport } from './routes/de.sora-prosess'
+import { Route as DeSoraRiskAssessmentRouteImport } from './routes/de.sora-risk-assessment'
+import { Route as DeStatistikkRouteImport } from './routes/de.statistikk'
 import { Route as EnIndexRouteImport } from './routes/en.index'
 import { Route as EnAboutRouteImport } from './routes/en.about'
 import { Route as EnAviopsRouteImport } from './routes/en.aviops'
 import { Route as EnComplianceRouteImport } from './routes/en.compliance'
 import { Route as EnDroneFleetManagementRouteImport } from './routes/en.drone-fleet-management'
 import { Route as EnDroneSafetyManagementSystemRouteImport } from './routes/en.drone-safety-management-system'
+import { Route as EnGalleriRouteImport } from './routes/en.galleri'
+import { Route as EnIntegrasjonerRouteImport } from './routes/en.integrasjoner'
 import { Route as EnLiveAirspaceAwarenessRouteImport } from './routes/en.live-airspace-awareness'
+import { Route as EnLoggRouteImport } from './routes/en.logg'
 import { Route as EnOccurrenceReportingRouteImport } from './routes/en.occurrence-reporting'
+import { Route as EnOperasjonerRouteImport } from './routes/en.operasjoner'
+import { Route as EnOperasjonsdashbordRouteImport } from './routes/en.operasjonsdashbord'
+import { Route as EnOperationsRouteImport } from './routes/en.operations'
 import { Route as EnOpsDashboardRouteImport } from './routes/en.ops-dashboard'
 import { Route as EnPartnersRouteImport } from './routes/en.partners'
+import { Route as EnPersonvernRouteImport } from './routes/en.personvern'
 import { Route as EnSecurityRouteImport } from './routes/en.security'
+import { Route as EnSoraRouteImport } from './routes/en.sora'
+import { Route as EnSoraProsessRouteImport } from './routes/en.sora-prosess'
 import { Route as EnSoraRiskAssessmentRouteImport } from './routes/en.sora-risk-assessment'
+import { Route as EnStatistikkRouteImport } from './routes/en.statistikk'
+import { Route as FiIndexRouteImport } from './routes/fi.index'
+import { Route as FiAboutRouteImport } from './routes/fi.about'
+import { Route as FiAviopsRouteImport } from './routes/fi.aviops'
+import { Route as FiComplianceRouteImport } from './routes/fi.compliance'
+import { Route as FiDroneFleetManagementRouteImport } from './routes/fi.drone-fleet-management'
+import { Route as FiDroneSafetyManagementSystemRouteImport } from './routes/fi.drone-safety-management-system'
+import { Route as FiGalleriRouteImport } from './routes/fi.galleri'
+import { Route as FiIntegrasjonerRouteImport } from './routes/fi.integrasjoner'
+import { Route as FiLiveAirspaceAwarenessRouteImport } from './routes/fi.live-airspace-awareness'
+import { Route as FiLoggRouteImport } from './routes/fi.logg'
+import { Route as FiOccurrenceReportingRouteImport } from './routes/fi.occurrence-reporting'
+import { Route as FiOperasjonerRouteImport } from './routes/fi.operasjoner'
+import { Route as FiOperasjonsdashbordRouteImport } from './routes/fi.operasjonsdashbord'
+import { Route as FiOperationsRouteImport } from './routes/fi.operations'
+import { Route as FiOpsDashboardRouteImport } from './routes/fi.ops-dashboard'
+import { Route as FiPartnersRouteImport } from './routes/fi.partners'
+import { Route as FiPersonvernRouteImport } from './routes/fi.personvern'
+import { Route as FiSecurityRouteImport } from './routes/fi.security'
+import { Route as FiSoraRouteImport } from './routes/fi.sora'
+import { Route as FiSoraProsessRouteImport } from './routes/fi.sora-prosess'
+import { Route as FiSoraRiskAssessmentRouteImport } from './routes/fi.sora-risk-assessment'
+import { Route as FiStatistikkRouteImport } from './routes/fi.statistikk'
+import { Route as NlIndexRouteImport } from './routes/nl.index'
+import { Route as NlAboutRouteImport } from './routes/nl.about'
+import { Route as NlAviopsRouteImport } from './routes/nl.aviops'
+import { Route as NlComplianceRouteImport } from './routes/nl.compliance'
+import { Route as NlDroneFleetManagementRouteImport } from './routes/nl.drone-fleet-management'
+import { Route as NlDroneSafetyManagementSystemRouteImport } from './routes/nl.drone-safety-management-system'
+import { Route as NlGalleriRouteImport } from './routes/nl.galleri'
+import { Route as NlIntegrasjonerRouteImport } from './routes/nl.integrasjoner'
+import { Route as NlLiveAirspaceAwarenessRouteImport } from './routes/nl.live-airspace-awareness'
+import { Route as NlLoggRouteImport } from './routes/nl.logg'
+import { Route as NlOccurrenceReportingRouteImport } from './routes/nl.occurrence-reporting'
+import { Route as NlOperasjonerRouteImport } from './routes/nl.operasjoner'
+import { Route as NlOperasjonsdashbordRouteImport } from './routes/nl.operasjonsdashbord'
+import { Route as NlOperationsRouteImport } from './routes/nl.operations'
+import { Route as NlOpsDashboardRouteImport } from './routes/nl.ops-dashboard'
+import { Route as NlPartnersRouteImport } from './routes/nl.partners'
+import { Route as NlPersonvernRouteImport } from './routes/nl.personvern'
+import { Route as NlSecurityRouteImport } from './routes/nl.security'
+import { Route as NlSoraRouteImport } from './routes/nl.sora'
+import { Route as NlSoraProsessRouteImport } from './routes/nl.sora-prosess'
+import { Route as NlSoraRiskAssessmentRouteImport } from './routes/nl.sora-risk-assessment'
+import { Route as NlStatistikkRouteImport } from './routes/nl.statistikk'
 import { Route as ProductHandleRouteImport } from './routes/product.$handle'
+import { Route as SvIndexRouteImport } from './routes/sv.index'
+import { Route as SvAboutRouteImport } from './routes/sv.about'
+import { Route as SvAviopsRouteImport } from './routes/sv.aviops'
+import { Route as SvComplianceRouteImport } from './routes/sv.compliance'
+import { Route as SvDroneFleetManagementRouteImport } from './routes/sv.drone-fleet-management'
+import { Route as SvDroneSafetyManagementSystemRouteImport } from './routes/sv.drone-safety-management-system'
+import { Route as SvGalleriRouteImport } from './routes/sv.galleri'
+import { Route as SvIntegrasjonerRouteImport } from './routes/sv.integrasjoner'
+import { Route as SvLiveAirspaceAwarenessRouteImport } from './routes/sv.live-airspace-awareness'
+import { Route as SvLoggRouteImport } from './routes/sv.logg'
+import { Route as SvOccurrenceReportingRouteImport } from './routes/sv.occurrence-reporting'
+import { Route as SvOperasjonerRouteImport } from './routes/sv.operasjoner'
+import { Route as SvOperasjonsdashbordRouteImport } from './routes/sv.operasjonsdashbord'
+import { Route as SvOperationsRouteImport } from './routes/sv.operations'
+import { Route as SvOpsDashboardRouteImport } from './routes/sv.ops-dashboard'
+import { Route as SvPartnersRouteImport } from './routes/sv.partners'
+import { Route as SvPersonvernRouteImport } from './routes/sv.personvern'
+import { Route as SvSecurityRouteImport } from './routes/sv.security'
+import { Route as SvSoraRouteImport } from './routes/sv.sora'
+import { Route as SvSoraProsessRouteImport } from './routes/sv.sora-prosess'
+import { Route as SvSoraRiskAssessmentRouteImport } from './routes/sv.sora-risk-assessment'
+import { Route as SvStatistikkRouteImport } from './routes/sv.statistikk'
+import { Route as DaArtiklerIndexRouteImport } from './routes/da.artikler.index'
+import { Route as DaArtiklerSlugRouteImport } from './routes/da.artikler.$slug'
+import { Route as DaButikkIndexRouteImport } from './routes/da.butikk.index'
+import { Route as DaButikkSlugRouteImport } from './routes/da.butikk.$slug'
+import { Route as DaButikkCheckoutRouteImport } from './routes/da.butikk.checkout'
+import { Route as DaButikkTakkRouteImport } from './routes/da.butikk.takk'
+import { Route as DaProductHandleRouteImport } from './routes/da.product.$handle'
+import { Route as DeArtiklerIndexRouteImport } from './routes/de.artikler.index'
+import { Route as DeArtiklerSlugRouteImport } from './routes/de.artikler.$slug'
+import { Route as DeButikkIndexRouteImport } from './routes/de.butikk.index'
+import { Route as DeButikkSlugRouteImport } from './routes/de.butikk.$slug'
+import { Route as DeButikkCheckoutRouteImport } from './routes/de.butikk.checkout'
+import { Route as DeButikkTakkRouteImport } from './routes/de.butikk.takk'
+import { Route as DeProductHandleRouteImport } from './routes/de.product.$handle'
+import { Route as EnArtiklerIndexRouteImport } from './routes/en.artikler.index'
+import { Route as EnArtiklerSlugRouteImport } from './routes/en.artikler.$slug'
+import { Route as EnButikkIndexRouteImport } from './routes/en.butikk.index'
+import { Route as EnButikkSlugRouteImport } from './routes/en.butikk.$slug'
+import { Route as EnButikkCheckoutRouteImport } from './routes/en.butikk.checkout'
+import { Route as EnButikkTakkRouteImport } from './routes/en.butikk.takk'
+import { Route as EnProductHandleRouteImport } from './routes/en.product.$handle'
+import { Route as FiArtiklerIndexRouteImport } from './routes/fi.artikler.index'
+import { Route as FiArtiklerSlugRouteImport } from './routes/fi.artikler.$slug'
+import { Route as FiButikkIndexRouteImport } from './routes/fi.butikk.index'
+import { Route as FiButikkSlugRouteImport } from './routes/fi.butikk.$slug'
+import { Route as FiButikkCheckoutRouteImport } from './routes/fi.butikk.checkout'
+import { Route as FiButikkTakkRouteImport } from './routes/fi.butikk.takk'
+import { Route as FiProductHandleRouteImport } from './routes/fi.product.$handle'
+import { Route as NlArtiklerIndexRouteImport } from './routes/nl.artikler.index'
+import { Route as NlArtiklerSlugRouteImport } from './routes/nl.artikler.$slug'
+import { Route as NlButikkIndexRouteImport } from './routes/nl.butikk.index'
+import { Route as NlButikkSlugRouteImport } from './routes/nl.butikk.$slug'
+import { Route as NlButikkCheckoutRouteImport } from './routes/nl.butikk.checkout'
+import { Route as NlButikkTakkRouteImport } from './routes/nl.butikk.takk'
+import { Route as NlProductHandleRouteImport } from './routes/nl.product.$handle'
+import { Route as SvArtiklerIndexRouteImport } from './routes/sv.artikler.index'
+import { Route as SvArtiklerSlugRouteImport } from './routes/sv.artikler.$slug'
+import { Route as SvButikkIndexRouteImport } from './routes/sv.butikk.index'
+import { Route as SvButikkSlugRouteImport } from './routes/sv.butikk.$slug'
+import { Route as SvButikkCheckoutRouteImport } from './routes/sv.butikk.checkout'
+import { Route as SvButikkTakkRouteImport } from './routes/sv.butikk.takk'
+import { Route as SvProductHandleRouteImport } from './routes/sv.product.$handle'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -161,6 +323,228 @@ const ButikkTakkRoute = ButikkTakkRouteImport.update({
   path: '/butikk/takk',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DaIndexRoute = DaIndexRouteImport.update({
+  id: '/da/',
+  path: '/da/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DaAboutRoute = DaAboutRouteImport.update({
+  id: '/da/about',
+  path: '/da/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DaAviopsRoute = DaAviopsRouteImport.update({
+  id: '/da/aviops',
+  path: '/da/aviops',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DaComplianceRoute = DaComplianceRouteImport.update({
+  id: '/da/compliance',
+  path: '/da/compliance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DaDroneFleetManagementRoute = DaDroneFleetManagementRouteImport.update({
+  id: '/da/drone-fleet-management',
+  path: '/da/drone-fleet-management',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DaDroneSafetyManagementSystemRoute =
+  DaDroneSafetyManagementSystemRouteImport.update({
+    id: '/da/drone-safety-management-system',
+    path: '/da/drone-safety-management-system',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const DaGalleriRoute = DaGalleriRouteImport.update({
+  id: '/da/galleri',
+  path: '/da/galleri',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DaIntegrasjonerRoute = DaIntegrasjonerRouteImport.update({
+  id: '/da/integrasjoner',
+  path: '/da/integrasjoner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DaLiveAirspaceAwarenessRoute = DaLiveAirspaceAwarenessRouteImport.update({
+  id: '/da/live-airspace-awareness',
+  path: '/da/live-airspace-awareness',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DaLoggRoute = DaLoggRouteImport.update({
+  id: '/da/logg',
+  path: '/da/logg',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DaOccurrenceReportingRoute = DaOccurrenceReportingRouteImport.update({
+  id: '/da/occurrence-reporting',
+  path: '/da/occurrence-reporting',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DaOperasjonerRoute = DaOperasjonerRouteImport.update({
+  id: '/da/operasjoner',
+  path: '/da/operasjoner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DaOperasjonsdashbordRoute = DaOperasjonsdashbordRouteImport.update({
+  id: '/da/operasjonsdashbord',
+  path: '/da/operasjonsdashbord',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DaOperationsRoute = DaOperationsRouteImport.update({
+  id: '/da/operations',
+  path: '/da/operations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DaOpsDashboardRoute = DaOpsDashboardRouteImport.update({
+  id: '/da/ops-dashboard',
+  path: '/da/ops-dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DaPartnersRoute = DaPartnersRouteImport.update({
+  id: '/da/partners',
+  path: '/da/partners',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DaPersonvernRoute = DaPersonvernRouteImport.update({
+  id: '/da/personvern',
+  path: '/da/personvern',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DaSecurityRoute = DaSecurityRouteImport.update({
+  id: '/da/security',
+  path: '/da/security',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DaSoraRoute = DaSoraRouteImport.update({
+  id: '/da/sora',
+  path: '/da/sora',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DaSoraProsessRoute = DaSoraProsessRouteImport.update({
+  id: '/da/sora-prosess',
+  path: '/da/sora-prosess',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DaSoraRiskAssessmentRoute = DaSoraRiskAssessmentRouteImport.update({
+  id: '/da/sora-risk-assessment',
+  path: '/da/sora-risk-assessment',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DaStatistikkRoute = DaStatistikkRouteImport.update({
+  id: '/da/statistikk',
+  path: '/da/statistikk',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeIndexRoute = DeIndexRouteImport.update({
+  id: '/de/',
+  path: '/de/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeAboutRoute = DeAboutRouteImport.update({
+  id: '/de/about',
+  path: '/de/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeAviopsRoute = DeAviopsRouteImport.update({
+  id: '/de/aviops',
+  path: '/de/aviops',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeComplianceRoute = DeComplianceRouteImport.update({
+  id: '/de/compliance',
+  path: '/de/compliance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeDroneFleetManagementRoute = DeDroneFleetManagementRouteImport.update({
+  id: '/de/drone-fleet-management',
+  path: '/de/drone-fleet-management',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeDroneSafetyManagementSystemRoute =
+  DeDroneSafetyManagementSystemRouteImport.update({
+    id: '/de/drone-safety-management-system',
+    path: '/de/drone-safety-management-system',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const DeGalleriRoute = DeGalleriRouteImport.update({
+  id: '/de/galleri',
+  path: '/de/galleri',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeIntegrasjonerRoute = DeIntegrasjonerRouteImport.update({
+  id: '/de/integrasjoner',
+  path: '/de/integrasjoner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeLiveAirspaceAwarenessRoute = DeLiveAirspaceAwarenessRouteImport.update({
+  id: '/de/live-airspace-awareness',
+  path: '/de/live-airspace-awareness',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeLoggRoute = DeLoggRouteImport.update({
+  id: '/de/logg',
+  path: '/de/logg',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeOccurrenceReportingRoute = DeOccurrenceReportingRouteImport.update({
+  id: '/de/occurrence-reporting',
+  path: '/de/occurrence-reporting',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeOperasjonerRoute = DeOperasjonerRouteImport.update({
+  id: '/de/operasjoner',
+  path: '/de/operasjoner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeOperasjonsdashbordRoute = DeOperasjonsdashbordRouteImport.update({
+  id: '/de/operasjonsdashbord',
+  path: '/de/operasjonsdashbord',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeOperationsRoute = DeOperationsRouteImport.update({
+  id: '/de/operations',
+  path: '/de/operations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeOpsDashboardRoute = DeOpsDashboardRouteImport.update({
+  id: '/de/ops-dashboard',
+  path: '/de/ops-dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DePartnersRoute = DePartnersRouteImport.update({
+  id: '/de/partners',
+  path: '/de/partners',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DePersonvernRoute = DePersonvernRouteImport.update({
+  id: '/de/personvern',
+  path: '/de/personvern',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeSecurityRoute = DeSecurityRouteImport.update({
+  id: '/de/security',
+  path: '/de/security',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeSoraRoute = DeSoraRouteImport.update({
+  id: '/de/sora',
+  path: '/de/sora',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeSoraProsessRoute = DeSoraProsessRouteImport.update({
+  id: '/de/sora-prosess',
+  path: '/de/sora-prosess',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeSoraRiskAssessmentRoute = DeSoraRiskAssessmentRouteImport.update({
+  id: '/de/sora-risk-assessment',
+  path: '/de/sora-risk-assessment',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeStatistikkRoute = DeStatistikkRouteImport.update({
+  id: '/de/statistikk',
+  path: '/de/statistikk',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EnIndexRoute = EnIndexRouteImport.update({
   id: '/en/',
   path: '/en/',
@@ -192,14 +576,44 @@ const EnDroneSafetyManagementSystemRoute =
     path: '/en/drone-safety-management-system',
     getParentRoute: () => rootRouteImport,
   } as any)
+const EnGalleriRoute = EnGalleriRouteImport.update({
+  id: '/en/galleri',
+  path: '/en/galleri',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnIntegrasjonerRoute = EnIntegrasjonerRouteImport.update({
+  id: '/en/integrasjoner',
+  path: '/en/integrasjoner',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EnLiveAirspaceAwarenessRoute = EnLiveAirspaceAwarenessRouteImport.update({
   id: '/en/live-airspace-awareness',
   path: '/en/live-airspace-awareness',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EnLoggRoute = EnLoggRouteImport.update({
+  id: '/en/logg',
+  path: '/en/logg',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EnOccurrenceReportingRoute = EnOccurrenceReportingRouteImport.update({
   id: '/en/occurrence-reporting',
   path: '/en/occurrence-reporting',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnOperasjonerRoute = EnOperasjonerRouteImport.update({
+  id: '/en/operasjoner',
+  path: '/en/operasjoner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnOperasjonsdashbordRoute = EnOperasjonsdashbordRouteImport.update({
+  id: '/en/operasjonsdashbord',
+  path: '/en/operasjonsdashbord',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnOperationsRoute = EnOperationsRouteImport.update({
+  id: '/en/operations',
+  path: '/en/operations',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EnOpsDashboardRoute = EnOpsDashboardRouteImport.update({
@@ -212,9 +626,24 @@ const EnPartnersRoute = EnPartnersRouteImport.update({
   path: '/en/partners',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EnPersonvernRoute = EnPersonvernRouteImport.update({
+  id: '/en/personvern',
+  path: '/en/personvern',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EnSecurityRoute = EnSecurityRouteImport.update({
   id: '/en/security',
   path: '/en/security',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnSoraRoute = EnSoraRouteImport.update({
+  id: '/en/sora',
+  path: '/en/sora',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnSoraProsessRoute = EnSoraProsessRouteImport.update({
+  id: '/en/sora-prosess',
+  path: '/en/sora-prosess',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EnSoraRiskAssessmentRoute = EnSoraRiskAssessmentRouteImport.update({
@@ -222,9 +651,557 @@ const EnSoraRiskAssessmentRoute = EnSoraRiskAssessmentRouteImport.update({
   path: '/en/sora-risk-assessment',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EnStatistikkRoute = EnStatistikkRouteImport.update({
+  id: '/en/statistikk',
+  path: '/en/statistikk',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FiIndexRoute = FiIndexRouteImport.update({
+  id: '/fi/',
+  path: '/fi/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FiAboutRoute = FiAboutRouteImport.update({
+  id: '/fi/about',
+  path: '/fi/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FiAviopsRoute = FiAviopsRouteImport.update({
+  id: '/fi/aviops',
+  path: '/fi/aviops',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FiComplianceRoute = FiComplianceRouteImport.update({
+  id: '/fi/compliance',
+  path: '/fi/compliance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FiDroneFleetManagementRoute = FiDroneFleetManagementRouteImport.update({
+  id: '/fi/drone-fleet-management',
+  path: '/fi/drone-fleet-management',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FiDroneSafetyManagementSystemRoute =
+  FiDroneSafetyManagementSystemRouteImport.update({
+    id: '/fi/drone-safety-management-system',
+    path: '/fi/drone-safety-management-system',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const FiGalleriRoute = FiGalleriRouteImport.update({
+  id: '/fi/galleri',
+  path: '/fi/galleri',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FiIntegrasjonerRoute = FiIntegrasjonerRouteImport.update({
+  id: '/fi/integrasjoner',
+  path: '/fi/integrasjoner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FiLiveAirspaceAwarenessRoute = FiLiveAirspaceAwarenessRouteImport.update({
+  id: '/fi/live-airspace-awareness',
+  path: '/fi/live-airspace-awareness',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FiLoggRoute = FiLoggRouteImport.update({
+  id: '/fi/logg',
+  path: '/fi/logg',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FiOccurrenceReportingRoute = FiOccurrenceReportingRouteImport.update({
+  id: '/fi/occurrence-reporting',
+  path: '/fi/occurrence-reporting',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FiOperasjonerRoute = FiOperasjonerRouteImport.update({
+  id: '/fi/operasjoner',
+  path: '/fi/operasjoner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FiOperasjonsdashbordRoute = FiOperasjonsdashbordRouteImport.update({
+  id: '/fi/operasjonsdashbord',
+  path: '/fi/operasjonsdashbord',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FiOperationsRoute = FiOperationsRouteImport.update({
+  id: '/fi/operations',
+  path: '/fi/operations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FiOpsDashboardRoute = FiOpsDashboardRouteImport.update({
+  id: '/fi/ops-dashboard',
+  path: '/fi/ops-dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FiPartnersRoute = FiPartnersRouteImport.update({
+  id: '/fi/partners',
+  path: '/fi/partners',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FiPersonvernRoute = FiPersonvernRouteImport.update({
+  id: '/fi/personvern',
+  path: '/fi/personvern',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FiSecurityRoute = FiSecurityRouteImport.update({
+  id: '/fi/security',
+  path: '/fi/security',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FiSoraRoute = FiSoraRouteImport.update({
+  id: '/fi/sora',
+  path: '/fi/sora',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FiSoraProsessRoute = FiSoraProsessRouteImport.update({
+  id: '/fi/sora-prosess',
+  path: '/fi/sora-prosess',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FiSoraRiskAssessmentRoute = FiSoraRiskAssessmentRouteImport.update({
+  id: '/fi/sora-risk-assessment',
+  path: '/fi/sora-risk-assessment',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FiStatistikkRoute = FiStatistikkRouteImport.update({
+  id: '/fi/statistikk',
+  path: '/fi/statistikk',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NlIndexRoute = NlIndexRouteImport.update({
+  id: '/nl/',
+  path: '/nl/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NlAboutRoute = NlAboutRouteImport.update({
+  id: '/nl/about',
+  path: '/nl/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NlAviopsRoute = NlAviopsRouteImport.update({
+  id: '/nl/aviops',
+  path: '/nl/aviops',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NlComplianceRoute = NlComplianceRouteImport.update({
+  id: '/nl/compliance',
+  path: '/nl/compliance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NlDroneFleetManagementRoute = NlDroneFleetManagementRouteImport.update({
+  id: '/nl/drone-fleet-management',
+  path: '/nl/drone-fleet-management',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NlDroneSafetyManagementSystemRoute =
+  NlDroneSafetyManagementSystemRouteImport.update({
+    id: '/nl/drone-safety-management-system',
+    path: '/nl/drone-safety-management-system',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const NlGalleriRoute = NlGalleriRouteImport.update({
+  id: '/nl/galleri',
+  path: '/nl/galleri',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NlIntegrasjonerRoute = NlIntegrasjonerRouteImport.update({
+  id: '/nl/integrasjoner',
+  path: '/nl/integrasjoner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NlLiveAirspaceAwarenessRoute = NlLiveAirspaceAwarenessRouteImport.update({
+  id: '/nl/live-airspace-awareness',
+  path: '/nl/live-airspace-awareness',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NlLoggRoute = NlLoggRouteImport.update({
+  id: '/nl/logg',
+  path: '/nl/logg',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NlOccurrenceReportingRoute = NlOccurrenceReportingRouteImport.update({
+  id: '/nl/occurrence-reporting',
+  path: '/nl/occurrence-reporting',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NlOperasjonerRoute = NlOperasjonerRouteImport.update({
+  id: '/nl/operasjoner',
+  path: '/nl/operasjoner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NlOperasjonsdashbordRoute = NlOperasjonsdashbordRouteImport.update({
+  id: '/nl/operasjonsdashbord',
+  path: '/nl/operasjonsdashbord',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NlOperationsRoute = NlOperationsRouteImport.update({
+  id: '/nl/operations',
+  path: '/nl/operations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NlOpsDashboardRoute = NlOpsDashboardRouteImport.update({
+  id: '/nl/ops-dashboard',
+  path: '/nl/ops-dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NlPartnersRoute = NlPartnersRouteImport.update({
+  id: '/nl/partners',
+  path: '/nl/partners',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NlPersonvernRoute = NlPersonvernRouteImport.update({
+  id: '/nl/personvern',
+  path: '/nl/personvern',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NlSecurityRoute = NlSecurityRouteImport.update({
+  id: '/nl/security',
+  path: '/nl/security',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NlSoraRoute = NlSoraRouteImport.update({
+  id: '/nl/sora',
+  path: '/nl/sora',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NlSoraProsessRoute = NlSoraProsessRouteImport.update({
+  id: '/nl/sora-prosess',
+  path: '/nl/sora-prosess',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NlSoraRiskAssessmentRoute = NlSoraRiskAssessmentRouteImport.update({
+  id: '/nl/sora-risk-assessment',
+  path: '/nl/sora-risk-assessment',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NlStatistikkRoute = NlStatistikkRouteImport.update({
+  id: '/nl/statistikk',
+  path: '/nl/statistikk',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductHandleRoute = ProductHandleRouteImport.update({
   id: '/product/$handle',
   path: '/product/$handle',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SvIndexRoute = SvIndexRouteImport.update({
+  id: '/sv/',
+  path: '/sv/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SvAboutRoute = SvAboutRouteImport.update({
+  id: '/sv/about',
+  path: '/sv/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SvAviopsRoute = SvAviopsRouteImport.update({
+  id: '/sv/aviops',
+  path: '/sv/aviops',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SvComplianceRoute = SvComplianceRouteImport.update({
+  id: '/sv/compliance',
+  path: '/sv/compliance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SvDroneFleetManagementRoute = SvDroneFleetManagementRouteImport.update({
+  id: '/sv/drone-fleet-management',
+  path: '/sv/drone-fleet-management',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SvDroneSafetyManagementSystemRoute =
+  SvDroneSafetyManagementSystemRouteImport.update({
+    id: '/sv/drone-safety-management-system',
+    path: '/sv/drone-safety-management-system',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SvGalleriRoute = SvGalleriRouteImport.update({
+  id: '/sv/galleri',
+  path: '/sv/galleri',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SvIntegrasjonerRoute = SvIntegrasjonerRouteImport.update({
+  id: '/sv/integrasjoner',
+  path: '/sv/integrasjoner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SvLiveAirspaceAwarenessRoute = SvLiveAirspaceAwarenessRouteImport.update({
+  id: '/sv/live-airspace-awareness',
+  path: '/sv/live-airspace-awareness',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SvLoggRoute = SvLoggRouteImport.update({
+  id: '/sv/logg',
+  path: '/sv/logg',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SvOccurrenceReportingRoute = SvOccurrenceReportingRouteImport.update({
+  id: '/sv/occurrence-reporting',
+  path: '/sv/occurrence-reporting',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SvOperasjonerRoute = SvOperasjonerRouteImport.update({
+  id: '/sv/operasjoner',
+  path: '/sv/operasjoner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SvOperasjonsdashbordRoute = SvOperasjonsdashbordRouteImport.update({
+  id: '/sv/operasjonsdashbord',
+  path: '/sv/operasjonsdashbord',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SvOperationsRoute = SvOperationsRouteImport.update({
+  id: '/sv/operations',
+  path: '/sv/operations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SvOpsDashboardRoute = SvOpsDashboardRouteImport.update({
+  id: '/sv/ops-dashboard',
+  path: '/sv/ops-dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SvPartnersRoute = SvPartnersRouteImport.update({
+  id: '/sv/partners',
+  path: '/sv/partners',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SvPersonvernRoute = SvPersonvernRouteImport.update({
+  id: '/sv/personvern',
+  path: '/sv/personvern',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SvSecurityRoute = SvSecurityRouteImport.update({
+  id: '/sv/security',
+  path: '/sv/security',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SvSoraRoute = SvSoraRouteImport.update({
+  id: '/sv/sora',
+  path: '/sv/sora',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SvSoraProsessRoute = SvSoraProsessRouteImport.update({
+  id: '/sv/sora-prosess',
+  path: '/sv/sora-prosess',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SvSoraRiskAssessmentRoute = SvSoraRiskAssessmentRouteImport.update({
+  id: '/sv/sora-risk-assessment',
+  path: '/sv/sora-risk-assessment',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SvStatistikkRoute = SvStatistikkRouteImport.update({
+  id: '/sv/statistikk',
+  path: '/sv/statistikk',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DaArtiklerIndexRoute = DaArtiklerIndexRouteImport.update({
+  id: '/da/artikler/',
+  path: '/da/artikler/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DaArtiklerSlugRoute = DaArtiklerSlugRouteImport.update({
+  id: '/da/artikler/$slug',
+  path: '/da/artikler/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DaButikkIndexRoute = DaButikkIndexRouteImport.update({
+  id: '/da/butikk/',
+  path: '/da/butikk/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DaButikkSlugRoute = DaButikkSlugRouteImport.update({
+  id: '/da/butikk/$slug',
+  path: '/da/butikk/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DaButikkCheckoutRoute = DaButikkCheckoutRouteImport.update({
+  id: '/da/butikk/checkout',
+  path: '/da/butikk/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DaButikkTakkRoute = DaButikkTakkRouteImport.update({
+  id: '/da/butikk/takk',
+  path: '/da/butikk/takk',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DaProductHandleRoute = DaProductHandleRouteImport.update({
+  id: '/da/product/$handle',
+  path: '/da/product/$handle',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeArtiklerIndexRoute = DeArtiklerIndexRouteImport.update({
+  id: '/de/artikler/',
+  path: '/de/artikler/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeArtiklerSlugRoute = DeArtiklerSlugRouteImport.update({
+  id: '/de/artikler/$slug',
+  path: '/de/artikler/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeButikkIndexRoute = DeButikkIndexRouteImport.update({
+  id: '/de/butikk/',
+  path: '/de/butikk/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeButikkSlugRoute = DeButikkSlugRouteImport.update({
+  id: '/de/butikk/$slug',
+  path: '/de/butikk/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeButikkCheckoutRoute = DeButikkCheckoutRouteImport.update({
+  id: '/de/butikk/checkout',
+  path: '/de/butikk/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeButikkTakkRoute = DeButikkTakkRouteImport.update({
+  id: '/de/butikk/takk',
+  path: '/de/butikk/takk',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeProductHandleRoute = DeProductHandleRouteImport.update({
+  id: '/de/product/$handle',
+  path: '/de/product/$handle',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnArtiklerIndexRoute = EnArtiklerIndexRouteImport.update({
+  id: '/en/artikler/',
+  path: '/en/artikler/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnArtiklerSlugRoute = EnArtiklerSlugRouteImport.update({
+  id: '/en/artikler/$slug',
+  path: '/en/artikler/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnButikkIndexRoute = EnButikkIndexRouteImport.update({
+  id: '/en/butikk/',
+  path: '/en/butikk/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnButikkSlugRoute = EnButikkSlugRouteImport.update({
+  id: '/en/butikk/$slug',
+  path: '/en/butikk/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnButikkCheckoutRoute = EnButikkCheckoutRouteImport.update({
+  id: '/en/butikk/checkout',
+  path: '/en/butikk/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnButikkTakkRoute = EnButikkTakkRouteImport.update({
+  id: '/en/butikk/takk',
+  path: '/en/butikk/takk',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnProductHandleRoute = EnProductHandleRouteImport.update({
+  id: '/en/product/$handle',
+  path: '/en/product/$handle',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FiArtiklerIndexRoute = FiArtiklerIndexRouteImport.update({
+  id: '/fi/artikler/',
+  path: '/fi/artikler/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FiArtiklerSlugRoute = FiArtiklerSlugRouteImport.update({
+  id: '/fi/artikler/$slug',
+  path: '/fi/artikler/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FiButikkIndexRoute = FiButikkIndexRouteImport.update({
+  id: '/fi/butikk/',
+  path: '/fi/butikk/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FiButikkSlugRoute = FiButikkSlugRouteImport.update({
+  id: '/fi/butikk/$slug',
+  path: '/fi/butikk/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FiButikkCheckoutRoute = FiButikkCheckoutRouteImport.update({
+  id: '/fi/butikk/checkout',
+  path: '/fi/butikk/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FiButikkTakkRoute = FiButikkTakkRouteImport.update({
+  id: '/fi/butikk/takk',
+  path: '/fi/butikk/takk',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FiProductHandleRoute = FiProductHandleRouteImport.update({
+  id: '/fi/product/$handle',
+  path: '/fi/product/$handle',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NlArtiklerIndexRoute = NlArtiklerIndexRouteImport.update({
+  id: '/nl/artikler/',
+  path: '/nl/artikler/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NlArtiklerSlugRoute = NlArtiklerSlugRouteImport.update({
+  id: '/nl/artikler/$slug',
+  path: '/nl/artikler/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NlButikkIndexRoute = NlButikkIndexRouteImport.update({
+  id: '/nl/butikk/',
+  path: '/nl/butikk/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NlButikkSlugRoute = NlButikkSlugRouteImport.update({
+  id: '/nl/butikk/$slug',
+  path: '/nl/butikk/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NlButikkCheckoutRoute = NlButikkCheckoutRouteImport.update({
+  id: '/nl/butikk/checkout',
+  path: '/nl/butikk/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NlButikkTakkRoute = NlButikkTakkRouteImport.update({
+  id: '/nl/butikk/takk',
+  path: '/nl/butikk/takk',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NlProductHandleRoute = NlProductHandleRouteImport.update({
+  id: '/nl/product/$handle',
+  path: '/nl/product/$handle',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SvArtiklerIndexRoute = SvArtiklerIndexRouteImport.update({
+  id: '/sv/artikler/',
+  path: '/sv/artikler/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SvArtiklerSlugRoute = SvArtiklerSlugRouteImport.update({
+  id: '/sv/artikler/$slug',
+  path: '/sv/artikler/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SvButikkIndexRoute = SvButikkIndexRouteImport.update({
+  id: '/sv/butikk/',
+  path: '/sv/butikk/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SvButikkSlugRoute = SvButikkSlugRouteImport.update({
+  id: '/sv/butikk/$slug',
+  path: '/sv/butikk/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SvButikkCheckoutRoute = SvButikkCheckoutRouteImport.update({
+  id: '/sv/butikk/checkout',
+  path: '/sv/butikk/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SvButikkTakkRoute = SvButikkTakkRouteImport.update({
+  id: '/sv/butikk/takk',
+  path: '/sv/butikk/takk',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SvProductHandleRoute = SvProductHandleRouteImport.update({
+  id: '/sv/product/$handle',
+  path: '/sv/product/$handle',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -250,21 +1227,183 @@ export interface FileRoutesByFullPath {
   '/butikk/$slug': typeof ButikkSlugRoute
   '/butikk/checkout': typeof ButikkCheckoutRoute
   '/butikk/takk': typeof ButikkTakkRoute
+  '/da/about': typeof DaAboutRoute
+  '/da/aviops': typeof DaAviopsRoute
+  '/da/compliance': typeof DaComplianceRoute
+  '/da/drone-fleet-management': typeof DaDroneFleetManagementRoute
+  '/da/drone-safety-management-system': typeof DaDroneSafetyManagementSystemRoute
+  '/da/galleri': typeof DaGalleriRoute
+  '/da/integrasjoner': typeof DaIntegrasjonerRoute
+  '/da/live-airspace-awareness': typeof DaLiveAirspaceAwarenessRoute
+  '/da/logg': typeof DaLoggRoute
+  '/da/occurrence-reporting': typeof DaOccurrenceReportingRoute
+  '/da/operasjoner': typeof DaOperasjonerRoute
+  '/da/operasjonsdashbord': typeof DaOperasjonsdashbordRoute
+  '/da/operations': typeof DaOperationsRoute
+  '/da/ops-dashboard': typeof DaOpsDashboardRoute
+  '/da/partners': typeof DaPartnersRoute
+  '/da/personvern': typeof DaPersonvernRoute
+  '/da/security': typeof DaSecurityRoute
+  '/da/sora': typeof DaSoraRoute
+  '/da/sora-prosess': typeof DaSoraProsessRoute
+  '/da/sora-risk-assessment': typeof DaSoraRiskAssessmentRoute
+  '/da/statistikk': typeof DaStatistikkRoute
+  '/de/about': typeof DeAboutRoute
+  '/de/aviops': typeof DeAviopsRoute
+  '/de/compliance': typeof DeComplianceRoute
+  '/de/drone-fleet-management': typeof DeDroneFleetManagementRoute
+  '/de/drone-safety-management-system': typeof DeDroneSafetyManagementSystemRoute
+  '/de/galleri': typeof DeGalleriRoute
+  '/de/integrasjoner': typeof DeIntegrasjonerRoute
+  '/de/live-airspace-awareness': typeof DeLiveAirspaceAwarenessRoute
+  '/de/logg': typeof DeLoggRoute
+  '/de/occurrence-reporting': typeof DeOccurrenceReportingRoute
+  '/de/operasjoner': typeof DeOperasjonerRoute
+  '/de/operasjonsdashbord': typeof DeOperasjonsdashbordRoute
+  '/de/operations': typeof DeOperationsRoute
+  '/de/ops-dashboard': typeof DeOpsDashboardRoute
+  '/de/partners': typeof DePartnersRoute
+  '/de/personvern': typeof DePersonvernRoute
+  '/de/security': typeof DeSecurityRoute
+  '/de/sora': typeof DeSoraRoute
+  '/de/sora-prosess': typeof DeSoraProsessRoute
+  '/de/sora-risk-assessment': typeof DeSoraRiskAssessmentRoute
+  '/de/statistikk': typeof DeStatistikkRoute
   '/en/about': typeof EnAboutRoute
   '/en/aviops': typeof EnAviopsRoute
   '/en/compliance': typeof EnComplianceRoute
   '/en/drone-fleet-management': typeof EnDroneFleetManagementRoute
   '/en/drone-safety-management-system': typeof EnDroneSafetyManagementSystemRoute
+  '/en/galleri': typeof EnGalleriRoute
+  '/en/integrasjoner': typeof EnIntegrasjonerRoute
   '/en/live-airspace-awareness': typeof EnLiveAirspaceAwarenessRoute
+  '/en/logg': typeof EnLoggRoute
   '/en/occurrence-reporting': typeof EnOccurrenceReportingRoute
+  '/en/operasjoner': typeof EnOperasjonerRoute
+  '/en/operasjonsdashbord': typeof EnOperasjonsdashbordRoute
+  '/en/operations': typeof EnOperationsRoute
   '/en/ops-dashboard': typeof EnOpsDashboardRoute
   '/en/partners': typeof EnPartnersRoute
+  '/en/personvern': typeof EnPersonvernRoute
   '/en/security': typeof EnSecurityRoute
+  '/en/sora': typeof EnSoraRoute
+  '/en/sora-prosess': typeof EnSoraProsessRoute
   '/en/sora-risk-assessment': typeof EnSoraRiskAssessmentRoute
+  '/en/statistikk': typeof EnStatistikkRoute
+  '/fi/about': typeof FiAboutRoute
+  '/fi/aviops': typeof FiAviopsRoute
+  '/fi/compliance': typeof FiComplianceRoute
+  '/fi/drone-fleet-management': typeof FiDroneFleetManagementRoute
+  '/fi/drone-safety-management-system': typeof FiDroneSafetyManagementSystemRoute
+  '/fi/galleri': typeof FiGalleriRoute
+  '/fi/integrasjoner': typeof FiIntegrasjonerRoute
+  '/fi/live-airspace-awareness': typeof FiLiveAirspaceAwarenessRoute
+  '/fi/logg': typeof FiLoggRoute
+  '/fi/occurrence-reporting': typeof FiOccurrenceReportingRoute
+  '/fi/operasjoner': typeof FiOperasjonerRoute
+  '/fi/operasjonsdashbord': typeof FiOperasjonsdashbordRoute
+  '/fi/operations': typeof FiOperationsRoute
+  '/fi/ops-dashboard': typeof FiOpsDashboardRoute
+  '/fi/partners': typeof FiPartnersRoute
+  '/fi/personvern': typeof FiPersonvernRoute
+  '/fi/security': typeof FiSecurityRoute
+  '/fi/sora': typeof FiSoraRoute
+  '/fi/sora-prosess': typeof FiSoraProsessRoute
+  '/fi/sora-risk-assessment': typeof FiSoraRiskAssessmentRoute
+  '/fi/statistikk': typeof FiStatistikkRoute
+  '/nl/about': typeof NlAboutRoute
+  '/nl/aviops': typeof NlAviopsRoute
+  '/nl/compliance': typeof NlComplianceRoute
+  '/nl/drone-fleet-management': typeof NlDroneFleetManagementRoute
+  '/nl/drone-safety-management-system': typeof NlDroneSafetyManagementSystemRoute
+  '/nl/galleri': typeof NlGalleriRoute
+  '/nl/integrasjoner': typeof NlIntegrasjonerRoute
+  '/nl/live-airspace-awareness': typeof NlLiveAirspaceAwarenessRoute
+  '/nl/logg': typeof NlLoggRoute
+  '/nl/occurrence-reporting': typeof NlOccurrenceReportingRoute
+  '/nl/operasjoner': typeof NlOperasjonerRoute
+  '/nl/operasjonsdashbord': typeof NlOperasjonsdashbordRoute
+  '/nl/operations': typeof NlOperationsRoute
+  '/nl/ops-dashboard': typeof NlOpsDashboardRoute
+  '/nl/partners': typeof NlPartnersRoute
+  '/nl/personvern': typeof NlPersonvernRoute
+  '/nl/security': typeof NlSecurityRoute
+  '/nl/sora': typeof NlSoraRoute
+  '/nl/sora-prosess': typeof NlSoraProsessRoute
+  '/nl/sora-risk-assessment': typeof NlSoraRiskAssessmentRoute
+  '/nl/statistikk': typeof NlStatistikkRoute
   '/product/$handle': typeof ProductHandleRoute
+  '/sv/about': typeof SvAboutRoute
+  '/sv/aviops': typeof SvAviopsRoute
+  '/sv/compliance': typeof SvComplianceRoute
+  '/sv/drone-fleet-management': typeof SvDroneFleetManagementRoute
+  '/sv/drone-safety-management-system': typeof SvDroneSafetyManagementSystemRoute
+  '/sv/galleri': typeof SvGalleriRoute
+  '/sv/integrasjoner': typeof SvIntegrasjonerRoute
+  '/sv/live-airspace-awareness': typeof SvLiveAirspaceAwarenessRoute
+  '/sv/logg': typeof SvLoggRoute
+  '/sv/occurrence-reporting': typeof SvOccurrenceReportingRoute
+  '/sv/operasjoner': typeof SvOperasjonerRoute
+  '/sv/operasjonsdashbord': typeof SvOperasjonsdashbordRoute
+  '/sv/operations': typeof SvOperationsRoute
+  '/sv/ops-dashboard': typeof SvOpsDashboardRoute
+  '/sv/partners': typeof SvPartnersRoute
+  '/sv/personvern': typeof SvPersonvernRoute
+  '/sv/security': typeof SvSecurityRoute
+  '/sv/sora': typeof SvSoraRoute
+  '/sv/sora-prosess': typeof SvSoraProsessRoute
+  '/sv/sora-risk-assessment': typeof SvSoraRiskAssessmentRoute
+  '/sv/statistikk': typeof SvStatistikkRoute
   '/artikler/': typeof ArtiklerIndexRoute
   '/butikk/': typeof ButikkIndexRoute
+  '/da/': typeof DaIndexRoute
+  '/de/': typeof DeIndexRoute
   '/en/': typeof EnIndexRoute
+  '/fi/': typeof FiIndexRoute
+  '/nl/': typeof NlIndexRoute
+  '/sv/': typeof SvIndexRoute
+  '/da/artikler/$slug': typeof DaArtiklerSlugRoute
+  '/da/butikk/$slug': typeof DaButikkSlugRoute
+  '/da/butikk/checkout': typeof DaButikkCheckoutRoute
+  '/da/butikk/takk': typeof DaButikkTakkRoute
+  '/da/product/$handle': typeof DaProductHandleRoute
+  '/de/artikler/$slug': typeof DeArtiklerSlugRoute
+  '/de/butikk/$slug': typeof DeButikkSlugRoute
+  '/de/butikk/checkout': typeof DeButikkCheckoutRoute
+  '/de/butikk/takk': typeof DeButikkTakkRoute
+  '/de/product/$handle': typeof DeProductHandleRoute
+  '/en/artikler/$slug': typeof EnArtiklerSlugRoute
+  '/en/butikk/$slug': typeof EnButikkSlugRoute
+  '/en/butikk/checkout': typeof EnButikkCheckoutRoute
+  '/en/butikk/takk': typeof EnButikkTakkRoute
+  '/en/product/$handle': typeof EnProductHandleRoute
+  '/fi/artikler/$slug': typeof FiArtiklerSlugRoute
+  '/fi/butikk/$slug': typeof FiButikkSlugRoute
+  '/fi/butikk/checkout': typeof FiButikkCheckoutRoute
+  '/fi/butikk/takk': typeof FiButikkTakkRoute
+  '/fi/product/$handle': typeof FiProductHandleRoute
+  '/nl/artikler/$slug': typeof NlArtiklerSlugRoute
+  '/nl/butikk/$slug': typeof NlButikkSlugRoute
+  '/nl/butikk/checkout': typeof NlButikkCheckoutRoute
+  '/nl/butikk/takk': typeof NlButikkTakkRoute
+  '/nl/product/$handle': typeof NlProductHandleRoute
+  '/sv/artikler/$slug': typeof SvArtiklerSlugRoute
+  '/sv/butikk/$slug': typeof SvButikkSlugRoute
+  '/sv/butikk/checkout': typeof SvButikkCheckoutRoute
+  '/sv/butikk/takk': typeof SvButikkTakkRoute
+  '/sv/product/$handle': typeof SvProductHandleRoute
+  '/da/artikler/': typeof DaArtiklerIndexRoute
+  '/da/butikk/': typeof DaButikkIndexRoute
+  '/de/artikler/': typeof DeArtiklerIndexRoute
+  '/de/butikk/': typeof DeButikkIndexRoute
+  '/en/artikler/': typeof EnArtiklerIndexRoute
+  '/en/butikk/': typeof EnButikkIndexRoute
+  '/fi/artikler/': typeof FiArtiklerIndexRoute
+  '/fi/butikk/': typeof FiButikkIndexRoute
+  '/nl/artikler/': typeof NlArtiklerIndexRoute
+  '/nl/butikk/': typeof NlButikkIndexRoute
+  '/sv/artikler/': typeof SvArtiklerIndexRoute
+  '/sv/butikk/': typeof SvButikkIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -288,21 +1427,183 @@ export interface FileRoutesByTo {
   '/butikk/$slug': typeof ButikkSlugRoute
   '/butikk/checkout': typeof ButikkCheckoutRoute
   '/butikk/takk': typeof ButikkTakkRoute
+  '/da/about': typeof DaAboutRoute
+  '/da/aviops': typeof DaAviopsRoute
+  '/da/compliance': typeof DaComplianceRoute
+  '/da/drone-fleet-management': typeof DaDroneFleetManagementRoute
+  '/da/drone-safety-management-system': typeof DaDroneSafetyManagementSystemRoute
+  '/da/galleri': typeof DaGalleriRoute
+  '/da/integrasjoner': typeof DaIntegrasjonerRoute
+  '/da/live-airspace-awareness': typeof DaLiveAirspaceAwarenessRoute
+  '/da/logg': typeof DaLoggRoute
+  '/da/occurrence-reporting': typeof DaOccurrenceReportingRoute
+  '/da/operasjoner': typeof DaOperasjonerRoute
+  '/da/operasjonsdashbord': typeof DaOperasjonsdashbordRoute
+  '/da/operations': typeof DaOperationsRoute
+  '/da/ops-dashboard': typeof DaOpsDashboardRoute
+  '/da/partners': typeof DaPartnersRoute
+  '/da/personvern': typeof DaPersonvernRoute
+  '/da/security': typeof DaSecurityRoute
+  '/da/sora': typeof DaSoraRoute
+  '/da/sora-prosess': typeof DaSoraProsessRoute
+  '/da/sora-risk-assessment': typeof DaSoraRiskAssessmentRoute
+  '/da/statistikk': typeof DaStatistikkRoute
+  '/de/about': typeof DeAboutRoute
+  '/de/aviops': typeof DeAviopsRoute
+  '/de/compliance': typeof DeComplianceRoute
+  '/de/drone-fleet-management': typeof DeDroneFleetManagementRoute
+  '/de/drone-safety-management-system': typeof DeDroneSafetyManagementSystemRoute
+  '/de/galleri': typeof DeGalleriRoute
+  '/de/integrasjoner': typeof DeIntegrasjonerRoute
+  '/de/live-airspace-awareness': typeof DeLiveAirspaceAwarenessRoute
+  '/de/logg': typeof DeLoggRoute
+  '/de/occurrence-reporting': typeof DeOccurrenceReportingRoute
+  '/de/operasjoner': typeof DeOperasjonerRoute
+  '/de/operasjonsdashbord': typeof DeOperasjonsdashbordRoute
+  '/de/operations': typeof DeOperationsRoute
+  '/de/ops-dashboard': typeof DeOpsDashboardRoute
+  '/de/partners': typeof DePartnersRoute
+  '/de/personvern': typeof DePersonvernRoute
+  '/de/security': typeof DeSecurityRoute
+  '/de/sora': typeof DeSoraRoute
+  '/de/sora-prosess': typeof DeSoraProsessRoute
+  '/de/sora-risk-assessment': typeof DeSoraRiskAssessmentRoute
+  '/de/statistikk': typeof DeStatistikkRoute
   '/en/about': typeof EnAboutRoute
   '/en/aviops': typeof EnAviopsRoute
   '/en/compliance': typeof EnComplianceRoute
   '/en/drone-fleet-management': typeof EnDroneFleetManagementRoute
   '/en/drone-safety-management-system': typeof EnDroneSafetyManagementSystemRoute
+  '/en/galleri': typeof EnGalleriRoute
+  '/en/integrasjoner': typeof EnIntegrasjonerRoute
   '/en/live-airspace-awareness': typeof EnLiveAirspaceAwarenessRoute
+  '/en/logg': typeof EnLoggRoute
   '/en/occurrence-reporting': typeof EnOccurrenceReportingRoute
+  '/en/operasjoner': typeof EnOperasjonerRoute
+  '/en/operasjonsdashbord': typeof EnOperasjonsdashbordRoute
+  '/en/operations': typeof EnOperationsRoute
   '/en/ops-dashboard': typeof EnOpsDashboardRoute
   '/en/partners': typeof EnPartnersRoute
+  '/en/personvern': typeof EnPersonvernRoute
   '/en/security': typeof EnSecurityRoute
+  '/en/sora': typeof EnSoraRoute
+  '/en/sora-prosess': typeof EnSoraProsessRoute
   '/en/sora-risk-assessment': typeof EnSoraRiskAssessmentRoute
+  '/en/statistikk': typeof EnStatistikkRoute
+  '/fi/about': typeof FiAboutRoute
+  '/fi/aviops': typeof FiAviopsRoute
+  '/fi/compliance': typeof FiComplianceRoute
+  '/fi/drone-fleet-management': typeof FiDroneFleetManagementRoute
+  '/fi/drone-safety-management-system': typeof FiDroneSafetyManagementSystemRoute
+  '/fi/galleri': typeof FiGalleriRoute
+  '/fi/integrasjoner': typeof FiIntegrasjonerRoute
+  '/fi/live-airspace-awareness': typeof FiLiveAirspaceAwarenessRoute
+  '/fi/logg': typeof FiLoggRoute
+  '/fi/occurrence-reporting': typeof FiOccurrenceReportingRoute
+  '/fi/operasjoner': typeof FiOperasjonerRoute
+  '/fi/operasjonsdashbord': typeof FiOperasjonsdashbordRoute
+  '/fi/operations': typeof FiOperationsRoute
+  '/fi/ops-dashboard': typeof FiOpsDashboardRoute
+  '/fi/partners': typeof FiPartnersRoute
+  '/fi/personvern': typeof FiPersonvernRoute
+  '/fi/security': typeof FiSecurityRoute
+  '/fi/sora': typeof FiSoraRoute
+  '/fi/sora-prosess': typeof FiSoraProsessRoute
+  '/fi/sora-risk-assessment': typeof FiSoraRiskAssessmentRoute
+  '/fi/statistikk': typeof FiStatistikkRoute
+  '/nl/about': typeof NlAboutRoute
+  '/nl/aviops': typeof NlAviopsRoute
+  '/nl/compliance': typeof NlComplianceRoute
+  '/nl/drone-fleet-management': typeof NlDroneFleetManagementRoute
+  '/nl/drone-safety-management-system': typeof NlDroneSafetyManagementSystemRoute
+  '/nl/galleri': typeof NlGalleriRoute
+  '/nl/integrasjoner': typeof NlIntegrasjonerRoute
+  '/nl/live-airspace-awareness': typeof NlLiveAirspaceAwarenessRoute
+  '/nl/logg': typeof NlLoggRoute
+  '/nl/occurrence-reporting': typeof NlOccurrenceReportingRoute
+  '/nl/operasjoner': typeof NlOperasjonerRoute
+  '/nl/operasjonsdashbord': typeof NlOperasjonsdashbordRoute
+  '/nl/operations': typeof NlOperationsRoute
+  '/nl/ops-dashboard': typeof NlOpsDashboardRoute
+  '/nl/partners': typeof NlPartnersRoute
+  '/nl/personvern': typeof NlPersonvernRoute
+  '/nl/security': typeof NlSecurityRoute
+  '/nl/sora': typeof NlSoraRoute
+  '/nl/sora-prosess': typeof NlSoraProsessRoute
+  '/nl/sora-risk-assessment': typeof NlSoraRiskAssessmentRoute
+  '/nl/statistikk': typeof NlStatistikkRoute
   '/product/$handle': typeof ProductHandleRoute
+  '/sv/about': typeof SvAboutRoute
+  '/sv/aviops': typeof SvAviopsRoute
+  '/sv/compliance': typeof SvComplianceRoute
+  '/sv/drone-fleet-management': typeof SvDroneFleetManagementRoute
+  '/sv/drone-safety-management-system': typeof SvDroneSafetyManagementSystemRoute
+  '/sv/galleri': typeof SvGalleriRoute
+  '/sv/integrasjoner': typeof SvIntegrasjonerRoute
+  '/sv/live-airspace-awareness': typeof SvLiveAirspaceAwarenessRoute
+  '/sv/logg': typeof SvLoggRoute
+  '/sv/occurrence-reporting': typeof SvOccurrenceReportingRoute
+  '/sv/operasjoner': typeof SvOperasjonerRoute
+  '/sv/operasjonsdashbord': typeof SvOperasjonsdashbordRoute
+  '/sv/operations': typeof SvOperationsRoute
+  '/sv/ops-dashboard': typeof SvOpsDashboardRoute
+  '/sv/partners': typeof SvPartnersRoute
+  '/sv/personvern': typeof SvPersonvernRoute
+  '/sv/security': typeof SvSecurityRoute
+  '/sv/sora': typeof SvSoraRoute
+  '/sv/sora-prosess': typeof SvSoraProsessRoute
+  '/sv/sora-risk-assessment': typeof SvSoraRiskAssessmentRoute
+  '/sv/statistikk': typeof SvStatistikkRoute
   '/artikler': typeof ArtiklerIndexRoute
   '/butikk': typeof ButikkIndexRoute
+  '/da': typeof DaIndexRoute
+  '/de': typeof DeIndexRoute
   '/en': typeof EnIndexRoute
+  '/fi': typeof FiIndexRoute
+  '/nl': typeof NlIndexRoute
+  '/sv': typeof SvIndexRoute
+  '/da/artikler/$slug': typeof DaArtiklerSlugRoute
+  '/da/butikk/$slug': typeof DaButikkSlugRoute
+  '/da/butikk/checkout': typeof DaButikkCheckoutRoute
+  '/da/butikk/takk': typeof DaButikkTakkRoute
+  '/da/product/$handle': typeof DaProductHandleRoute
+  '/de/artikler/$slug': typeof DeArtiklerSlugRoute
+  '/de/butikk/$slug': typeof DeButikkSlugRoute
+  '/de/butikk/checkout': typeof DeButikkCheckoutRoute
+  '/de/butikk/takk': typeof DeButikkTakkRoute
+  '/de/product/$handle': typeof DeProductHandleRoute
+  '/en/artikler/$slug': typeof EnArtiklerSlugRoute
+  '/en/butikk/$slug': typeof EnButikkSlugRoute
+  '/en/butikk/checkout': typeof EnButikkCheckoutRoute
+  '/en/butikk/takk': typeof EnButikkTakkRoute
+  '/en/product/$handle': typeof EnProductHandleRoute
+  '/fi/artikler/$slug': typeof FiArtiklerSlugRoute
+  '/fi/butikk/$slug': typeof FiButikkSlugRoute
+  '/fi/butikk/checkout': typeof FiButikkCheckoutRoute
+  '/fi/butikk/takk': typeof FiButikkTakkRoute
+  '/fi/product/$handle': typeof FiProductHandleRoute
+  '/nl/artikler/$slug': typeof NlArtiklerSlugRoute
+  '/nl/butikk/$slug': typeof NlButikkSlugRoute
+  '/nl/butikk/checkout': typeof NlButikkCheckoutRoute
+  '/nl/butikk/takk': typeof NlButikkTakkRoute
+  '/nl/product/$handle': typeof NlProductHandleRoute
+  '/sv/artikler/$slug': typeof SvArtiklerSlugRoute
+  '/sv/butikk/$slug': typeof SvButikkSlugRoute
+  '/sv/butikk/checkout': typeof SvButikkCheckoutRoute
+  '/sv/butikk/takk': typeof SvButikkTakkRoute
+  '/sv/product/$handle': typeof SvProductHandleRoute
+  '/da/artikler': typeof DaArtiklerIndexRoute
+  '/da/butikk': typeof DaButikkIndexRoute
+  '/de/artikler': typeof DeArtiklerIndexRoute
+  '/de/butikk': typeof DeButikkIndexRoute
+  '/en/artikler': typeof EnArtiklerIndexRoute
+  '/en/butikk': typeof EnButikkIndexRoute
+  '/fi/artikler': typeof FiArtiklerIndexRoute
+  '/fi/butikk': typeof FiButikkIndexRoute
+  '/nl/artikler': typeof NlArtiklerIndexRoute
+  '/nl/butikk': typeof NlButikkIndexRoute
+  '/sv/artikler': typeof SvArtiklerIndexRoute
+  '/sv/butikk': typeof SvButikkIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -327,21 +1628,183 @@ export interface FileRoutesById {
   '/butikk/$slug': typeof ButikkSlugRoute
   '/butikk/checkout': typeof ButikkCheckoutRoute
   '/butikk/takk': typeof ButikkTakkRoute
+  '/da/about': typeof DaAboutRoute
+  '/da/aviops': typeof DaAviopsRoute
+  '/da/compliance': typeof DaComplianceRoute
+  '/da/drone-fleet-management': typeof DaDroneFleetManagementRoute
+  '/da/drone-safety-management-system': typeof DaDroneSafetyManagementSystemRoute
+  '/da/galleri': typeof DaGalleriRoute
+  '/da/integrasjoner': typeof DaIntegrasjonerRoute
+  '/da/live-airspace-awareness': typeof DaLiveAirspaceAwarenessRoute
+  '/da/logg': typeof DaLoggRoute
+  '/da/occurrence-reporting': typeof DaOccurrenceReportingRoute
+  '/da/operasjoner': typeof DaOperasjonerRoute
+  '/da/operasjonsdashbord': typeof DaOperasjonsdashbordRoute
+  '/da/operations': typeof DaOperationsRoute
+  '/da/ops-dashboard': typeof DaOpsDashboardRoute
+  '/da/partners': typeof DaPartnersRoute
+  '/da/personvern': typeof DaPersonvernRoute
+  '/da/security': typeof DaSecurityRoute
+  '/da/sora': typeof DaSoraRoute
+  '/da/sora-prosess': typeof DaSoraProsessRoute
+  '/da/sora-risk-assessment': typeof DaSoraRiskAssessmentRoute
+  '/da/statistikk': typeof DaStatistikkRoute
+  '/de/about': typeof DeAboutRoute
+  '/de/aviops': typeof DeAviopsRoute
+  '/de/compliance': typeof DeComplianceRoute
+  '/de/drone-fleet-management': typeof DeDroneFleetManagementRoute
+  '/de/drone-safety-management-system': typeof DeDroneSafetyManagementSystemRoute
+  '/de/galleri': typeof DeGalleriRoute
+  '/de/integrasjoner': typeof DeIntegrasjonerRoute
+  '/de/live-airspace-awareness': typeof DeLiveAirspaceAwarenessRoute
+  '/de/logg': typeof DeLoggRoute
+  '/de/occurrence-reporting': typeof DeOccurrenceReportingRoute
+  '/de/operasjoner': typeof DeOperasjonerRoute
+  '/de/operasjonsdashbord': typeof DeOperasjonsdashbordRoute
+  '/de/operations': typeof DeOperationsRoute
+  '/de/ops-dashboard': typeof DeOpsDashboardRoute
+  '/de/partners': typeof DePartnersRoute
+  '/de/personvern': typeof DePersonvernRoute
+  '/de/security': typeof DeSecurityRoute
+  '/de/sora': typeof DeSoraRoute
+  '/de/sora-prosess': typeof DeSoraProsessRoute
+  '/de/sora-risk-assessment': typeof DeSoraRiskAssessmentRoute
+  '/de/statistikk': typeof DeStatistikkRoute
   '/en/about': typeof EnAboutRoute
   '/en/aviops': typeof EnAviopsRoute
   '/en/compliance': typeof EnComplianceRoute
   '/en/drone-fleet-management': typeof EnDroneFleetManagementRoute
   '/en/drone-safety-management-system': typeof EnDroneSafetyManagementSystemRoute
+  '/en/galleri': typeof EnGalleriRoute
+  '/en/integrasjoner': typeof EnIntegrasjonerRoute
   '/en/live-airspace-awareness': typeof EnLiveAirspaceAwarenessRoute
+  '/en/logg': typeof EnLoggRoute
   '/en/occurrence-reporting': typeof EnOccurrenceReportingRoute
+  '/en/operasjoner': typeof EnOperasjonerRoute
+  '/en/operasjonsdashbord': typeof EnOperasjonsdashbordRoute
+  '/en/operations': typeof EnOperationsRoute
   '/en/ops-dashboard': typeof EnOpsDashboardRoute
   '/en/partners': typeof EnPartnersRoute
+  '/en/personvern': typeof EnPersonvernRoute
   '/en/security': typeof EnSecurityRoute
+  '/en/sora': typeof EnSoraRoute
+  '/en/sora-prosess': typeof EnSoraProsessRoute
   '/en/sora-risk-assessment': typeof EnSoraRiskAssessmentRoute
+  '/en/statistikk': typeof EnStatistikkRoute
+  '/fi/about': typeof FiAboutRoute
+  '/fi/aviops': typeof FiAviopsRoute
+  '/fi/compliance': typeof FiComplianceRoute
+  '/fi/drone-fleet-management': typeof FiDroneFleetManagementRoute
+  '/fi/drone-safety-management-system': typeof FiDroneSafetyManagementSystemRoute
+  '/fi/galleri': typeof FiGalleriRoute
+  '/fi/integrasjoner': typeof FiIntegrasjonerRoute
+  '/fi/live-airspace-awareness': typeof FiLiveAirspaceAwarenessRoute
+  '/fi/logg': typeof FiLoggRoute
+  '/fi/occurrence-reporting': typeof FiOccurrenceReportingRoute
+  '/fi/operasjoner': typeof FiOperasjonerRoute
+  '/fi/operasjonsdashbord': typeof FiOperasjonsdashbordRoute
+  '/fi/operations': typeof FiOperationsRoute
+  '/fi/ops-dashboard': typeof FiOpsDashboardRoute
+  '/fi/partners': typeof FiPartnersRoute
+  '/fi/personvern': typeof FiPersonvernRoute
+  '/fi/security': typeof FiSecurityRoute
+  '/fi/sora': typeof FiSoraRoute
+  '/fi/sora-prosess': typeof FiSoraProsessRoute
+  '/fi/sora-risk-assessment': typeof FiSoraRiskAssessmentRoute
+  '/fi/statistikk': typeof FiStatistikkRoute
+  '/nl/about': typeof NlAboutRoute
+  '/nl/aviops': typeof NlAviopsRoute
+  '/nl/compliance': typeof NlComplianceRoute
+  '/nl/drone-fleet-management': typeof NlDroneFleetManagementRoute
+  '/nl/drone-safety-management-system': typeof NlDroneSafetyManagementSystemRoute
+  '/nl/galleri': typeof NlGalleriRoute
+  '/nl/integrasjoner': typeof NlIntegrasjonerRoute
+  '/nl/live-airspace-awareness': typeof NlLiveAirspaceAwarenessRoute
+  '/nl/logg': typeof NlLoggRoute
+  '/nl/occurrence-reporting': typeof NlOccurrenceReportingRoute
+  '/nl/operasjoner': typeof NlOperasjonerRoute
+  '/nl/operasjonsdashbord': typeof NlOperasjonsdashbordRoute
+  '/nl/operations': typeof NlOperationsRoute
+  '/nl/ops-dashboard': typeof NlOpsDashboardRoute
+  '/nl/partners': typeof NlPartnersRoute
+  '/nl/personvern': typeof NlPersonvernRoute
+  '/nl/security': typeof NlSecurityRoute
+  '/nl/sora': typeof NlSoraRoute
+  '/nl/sora-prosess': typeof NlSoraProsessRoute
+  '/nl/sora-risk-assessment': typeof NlSoraRiskAssessmentRoute
+  '/nl/statistikk': typeof NlStatistikkRoute
   '/product/$handle': typeof ProductHandleRoute
+  '/sv/about': typeof SvAboutRoute
+  '/sv/aviops': typeof SvAviopsRoute
+  '/sv/compliance': typeof SvComplianceRoute
+  '/sv/drone-fleet-management': typeof SvDroneFleetManagementRoute
+  '/sv/drone-safety-management-system': typeof SvDroneSafetyManagementSystemRoute
+  '/sv/galleri': typeof SvGalleriRoute
+  '/sv/integrasjoner': typeof SvIntegrasjonerRoute
+  '/sv/live-airspace-awareness': typeof SvLiveAirspaceAwarenessRoute
+  '/sv/logg': typeof SvLoggRoute
+  '/sv/occurrence-reporting': typeof SvOccurrenceReportingRoute
+  '/sv/operasjoner': typeof SvOperasjonerRoute
+  '/sv/operasjonsdashbord': typeof SvOperasjonsdashbordRoute
+  '/sv/operations': typeof SvOperationsRoute
+  '/sv/ops-dashboard': typeof SvOpsDashboardRoute
+  '/sv/partners': typeof SvPartnersRoute
+  '/sv/personvern': typeof SvPersonvernRoute
+  '/sv/security': typeof SvSecurityRoute
+  '/sv/sora': typeof SvSoraRoute
+  '/sv/sora-prosess': typeof SvSoraProsessRoute
+  '/sv/sora-risk-assessment': typeof SvSoraRiskAssessmentRoute
+  '/sv/statistikk': typeof SvStatistikkRoute
   '/artikler/': typeof ArtiklerIndexRoute
   '/butikk/': typeof ButikkIndexRoute
+  '/da/': typeof DaIndexRoute
+  '/de/': typeof DeIndexRoute
   '/en/': typeof EnIndexRoute
+  '/fi/': typeof FiIndexRoute
+  '/nl/': typeof NlIndexRoute
+  '/sv/': typeof SvIndexRoute
+  '/da/artikler/$slug': typeof DaArtiklerSlugRoute
+  '/da/butikk/$slug': typeof DaButikkSlugRoute
+  '/da/butikk/checkout': typeof DaButikkCheckoutRoute
+  '/da/butikk/takk': typeof DaButikkTakkRoute
+  '/da/product/$handle': typeof DaProductHandleRoute
+  '/de/artikler/$slug': typeof DeArtiklerSlugRoute
+  '/de/butikk/$slug': typeof DeButikkSlugRoute
+  '/de/butikk/checkout': typeof DeButikkCheckoutRoute
+  '/de/butikk/takk': typeof DeButikkTakkRoute
+  '/de/product/$handle': typeof DeProductHandleRoute
+  '/en/artikler/$slug': typeof EnArtiklerSlugRoute
+  '/en/butikk/$slug': typeof EnButikkSlugRoute
+  '/en/butikk/checkout': typeof EnButikkCheckoutRoute
+  '/en/butikk/takk': typeof EnButikkTakkRoute
+  '/en/product/$handle': typeof EnProductHandleRoute
+  '/fi/artikler/$slug': typeof FiArtiklerSlugRoute
+  '/fi/butikk/$slug': typeof FiButikkSlugRoute
+  '/fi/butikk/checkout': typeof FiButikkCheckoutRoute
+  '/fi/butikk/takk': typeof FiButikkTakkRoute
+  '/fi/product/$handle': typeof FiProductHandleRoute
+  '/nl/artikler/$slug': typeof NlArtiklerSlugRoute
+  '/nl/butikk/$slug': typeof NlButikkSlugRoute
+  '/nl/butikk/checkout': typeof NlButikkCheckoutRoute
+  '/nl/butikk/takk': typeof NlButikkTakkRoute
+  '/nl/product/$handle': typeof NlProductHandleRoute
+  '/sv/artikler/$slug': typeof SvArtiklerSlugRoute
+  '/sv/butikk/$slug': typeof SvButikkSlugRoute
+  '/sv/butikk/checkout': typeof SvButikkCheckoutRoute
+  '/sv/butikk/takk': typeof SvButikkTakkRoute
+  '/sv/product/$handle': typeof SvProductHandleRoute
+  '/da/artikler/': typeof DaArtiklerIndexRoute
+  '/da/butikk/': typeof DaButikkIndexRoute
+  '/de/artikler/': typeof DeArtiklerIndexRoute
+  '/de/butikk/': typeof DeButikkIndexRoute
+  '/en/artikler/': typeof EnArtiklerIndexRoute
+  '/en/butikk/': typeof EnButikkIndexRoute
+  '/fi/artikler/': typeof FiArtiklerIndexRoute
+  '/fi/butikk/': typeof FiButikkIndexRoute
+  '/nl/artikler/': typeof NlArtiklerIndexRoute
+  '/nl/butikk/': typeof NlButikkIndexRoute
+  '/sv/artikler/': typeof SvArtiklerIndexRoute
+  '/sv/butikk/': typeof SvButikkIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -367,21 +1830,183 @@ export interface FileRouteTypes {
     | '/butikk/$slug'
     | '/butikk/checkout'
     | '/butikk/takk'
+    | '/da/about'
+    | '/da/aviops'
+    | '/da/compliance'
+    | '/da/drone-fleet-management'
+    | '/da/drone-safety-management-system'
+    | '/da/galleri'
+    | '/da/integrasjoner'
+    | '/da/live-airspace-awareness'
+    | '/da/logg'
+    | '/da/occurrence-reporting'
+    | '/da/operasjoner'
+    | '/da/operasjonsdashbord'
+    | '/da/operations'
+    | '/da/ops-dashboard'
+    | '/da/partners'
+    | '/da/personvern'
+    | '/da/security'
+    | '/da/sora'
+    | '/da/sora-prosess'
+    | '/da/sora-risk-assessment'
+    | '/da/statistikk'
+    | '/de/about'
+    | '/de/aviops'
+    | '/de/compliance'
+    | '/de/drone-fleet-management'
+    | '/de/drone-safety-management-system'
+    | '/de/galleri'
+    | '/de/integrasjoner'
+    | '/de/live-airspace-awareness'
+    | '/de/logg'
+    | '/de/occurrence-reporting'
+    | '/de/operasjoner'
+    | '/de/operasjonsdashbord'
+    | '/de/operations'
+    | '/de/ops-dashboard'
+    | '/de/partners'
+    | '/de/personvern'
+    | '/de/security'
+    | '/de/sora'
+    | '/de/sora-prosess'
+    | '/de/sora-risk-assessment'
+    | '/de/statistikk'
     | '/en/about'
     | '/en/aviops'
     | '/en/compliance'
     | '/en/drone-fleet-management'
     | '/en/drone-safety-management-system'
+    | '/en/galleri'
+    | '/en/integrasjoner'
     | '/en/live-airspace-awareness'
+    | '/en/logg'
     | '/en/occurrence-reporting'
+    | '/en/operasjoner'
+    | '/en/operasjonsdashbord'
+    | '/en/operations'
     | '/en/ops-dashboard'
     | '/en/partners'
+    | '/en/personvern'
     | '/en/security'
+    | '/en/sora'
+    | '/en/sora-prosess'
     | '/en/sora-risk-assessment'
+    | '/en/statistikk'
+    | '/fi/about'
+    | '/fi/aviops'
+    | '/fi/compliance'
+    | '/fi/drone-fleet-management'
+    | '/fi/drone-safety-management-system'
+    | '/fi/galleri'
+    | '/fi/integrasjoner'
+    | '/fi/live-airspace-awareness'
+    | '/fi/logg'
+    | '/fi/occurrence-reporting'
+    | '/fi/operasjoner'
+    | '/fi/operasjonsdashbord'
+    | '/fi/operations'
+    | '/fi/ops-dashboard'
+    | '/fi/partners'
+    | '/fi/personvern'
+    | '/fi/security'
+    | '/fi/sora'
+    | '/fi/sora-prosess'
+    | '/fi/sora-risk-assessment'
+    | '/fi/statistikk'
+    | '/nl/about'
+    | '/nl/aviops'
+    | '/nl/compliance'
+    | '/nl/drone-fleet-management'
+    | '/nl/drone-safety-management-system'
+    | '/nl/galleri'
+    | '/nl/integrasjoner'
+    | '/nl/live-airspace-awareness'
+    | '/nl/logg'
+    | '/nl/occurrence-reporting'
+    | '/nl/operasjoner'
+    | '/nl/operasjonsdashbord'
+    | '/nl/operations'
+    | '/nl/ops-dashboard'
+    | '/nl/partners'
+    | '/nl/personvern'
+    | '/nl/security'
+    | '/nl/sora'
+    | '/nl/sora-prosess'
+    | '/nl/sora-risk-assessment'
+    | '/nl/statistikk'
     | '/product/$handle'
+    | '/sv/about'
+    | '/sv/aviops'
+    | '/sv/compliance'
+    | '/sv/drone-fleet-management'
+    | '/sv/drone-safety-management-system'
+    | '/sv/galleri'
+    | '/sv/integrasjoner'
+    | '/sv/live-airspace-awareness'
+    | '/sv/logg'
+    | '/sv/occurrence-reporting'
+    | '/sv/operasjoner'
+    | '/sv/operasjonsdashbord'
+    | '/sv/operations'
+    | '/sv/ops-dashboard'
+    | '/sv/partners'
+    | '/sv/personvern'
+    | '/sv/security'
+    | '/sv/sora'
+    | '/sv/sora-prosess'
+    | '/sv/sora-risk-assessment'
+    | '/sv/statistikk'
     | '/artikler/'
     | '/butikk/'
+    | '/da/'
+    | '/de/'
     | '/en/'
+    | '/fi/'
+    | '/nl/'
+    | '/sv/'
+    | '/da/artikler/$slug'
+    | '/da/butikk/$slug'
+    | '/da/butikk/checkout'
+    | '/da/butikk/takk'
+    | '/da/product/$handle'
+    | '/de/artikler/$slug'
+    | '/de/butikk/$slug'
+    | '/de/butikk/checkout'
+    | '/de/butikk/takk'
+    | '/de/product/$handle'
+    | '/en/artikler/$slug'
+    | '/en/butikk/$slug'
+    | '/en/butikk/checkout'
+    | '/en/butikk/takk'
+    | '/en/product/$handle'
+    | '/fi/artikler/$slug'
+    | '/fi/butikk/$slug'
+    | '/fi/butikk/checkout'
+    | '/fi/butikk/takk'
+    | '/fi/product/$handle'
+    | '/nl/artikler/$slug'
+    | '/nl/butikk/$slug'
+    | '/nl/butikk/checkout'
+    | '/nl/butikk/takk'
+    | '/nl/product/$handle'
+    | '/sv/artikler/$slug'
+    | '/sv/butikk/$slug'
+    | '/sv/butikk/checkout'
+    | '/sv/butikk/takk'
+    | '/sv/product/$handle'
+    | '/da/artikler/'
+    | '/da/butikk/'
+    | '/de/artikler/'
+    | '/de/butikk/'
+    | '/en/artikler/'
+    | '/en/butikk/'
+    | '/fi/artikler/'
+    | '/fi/butikk/'
+    | '/nl/artikler/'
+    | '/nl/butikk/'
+    | '/sv/artikler/'
+    | '/sv/butikk/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -405,21 +2030,183 @@ export interface FileRouteTypes {
     | '/butikk/$slug'
     | '/butikk/checkout'
     | '/butikk/takk'
+    | '/da/about'
+    | '/da/aviops'
+    | '/da/compliance'
+    | '/da/drone-fleet-management'
+    | '/da/drone-safety-management-system'
+    | '/da/galleri'
+    | '/da/integrasjoner'
+    | '/da/live-airspace-awareness'
+    | '/da/logg'
+    | '/da/occurrence-reporting'
+    | '/da/operasjoner'
+    | '/da/operasjonsdashbord'
+    | '/da/operations'
+    | '/da/ops-dashboard'
+    | '/da/partners'
+    | '/da/personvern'
+    | '/da/security'
+    | '/da/sora'
+    | '/da/sora-prosess'
+    | '/da/sora-risk-assessment'
+    | '/da/statistikk'
+    | '/de/about'
+    | '/de/aviops'
+    | '/de/compliance'
+    | '/de/drone-fleet-management'
+    | '/de/drone-safety-management-system'
+    | '/de/galleri'
+    | '/de/integrasjoner'
+    | '/de/live-airspace-awareness'
+    | '/de/logg'
+    | '/de/occurrence-reporting'
+    | '/de/operasjoner'
+    | '/de/operasjonsdashbord'
+    | '/de/operations'
+    | '/de/ops-dashboard'
+    | '/de/partners'
+    | '/de/personvern'
+    | '/de/security'
+    | '/de/sora'
+    | '/de/sora-prosess'
+    | '/de/sora-risk-assessment'
+    | '/de/statistikk'
     | '/en/about'
     | '/en/aviops'
     | '/en/compliance'
     | '/en/drone-fleet-management'
     | '/en/drone-safety-management-system'
+    | '/en/galleri'
+    | '/en/integrasjoner'
     | '/en/live-airspace-awareness'
+    | '/en/logg'
     | '/en/occurrence-reporting'
+    | '/en/operasjoner'
+    | '/en/operasjonsdashbord'
+    | '/en/operations'
     | '/en/ops-dashboard'
     | '/en/partners'
+    | '/en/personvern'
     | '/en/security'
+    | '/en/sora'
+    | '/en/sora-prosess'
     | '/en/sora-risk-assessment'
+    | '/en/statistikk'
+    | '/fi/about'
+    | '/fi/aviops'
+    | '/fi/compliance'
+    | '/fi/drone-fleet-management'
+    | '/fi/drone-safety-management-system'
+    | '/fi/galleri'
+    | '/fi/integrasjoner'
+    | '/fi/live-airspace-awareness'
+    | '/fi/logg'
+    | '/fi/occurrence-reporting'
+    | '/fi/operasjoner'
+    | '/fi/operasjonsdashbord'
+    | '/fi/operations'
+    | '/fi/ops-dashboard'
+    | '/fi/partners'
+    | '/fi/personvern'
+    | '/fi/security'
+    | '/fi/sora'
+    | '/fi/sora-prosess'
+    | '/fi/sora-risk-assessment'
+    | '/fi/statistikk'
+    | '/nl/about'
+    | '/nl/aviops'
+    | '/nl/compliance'
+    | '/nl/drone-fleet-management'
+    | '/nl/drone-safety-management-system'
+    | '/nl/galleri'
+    | '/nl/integrasjoner'
+    | '/nl/live-airspace-awareness'
+    | '/nl/logg'
+    | '/nl/occurrence-reporting'
+    | '/nl/operasjoner'
+    | '/nl/operasjonsdashbord'
+    | '/nl/operations'
+    | '/nl/ops-dashboard'
+    | '/nl/partners'
+    | '/nl/personvern'
+    | '/nl/security'
+    | '/nl/sora'
+    | '/nl/sora-prosess'
+    | '/nl/sora-risk-assessment'
+    | '/nl/statistikk'
     | '/product/$handle'
+    | '/sv/about'
+    | '/sv/aviops'
+    | '/sv/compliance'
+    | '/sv/drone-fleet-management'
+    | '/sv/drone-safety-management-system'
+    | '/sv/galleri'
+    | '/sv/integrasjoner'
+    | '/sv/live-airspace-awareness'
+    | '/sv/logg'
+    | '/sv/occurrence-reporting'
+    | '/sv/operasjoner'
+    | '/sv/operasjonsdashbord'
+    | '/sv/operations'
+    | '/sv/ops-dashboard'
+    | '/sv/partners'
+    | '/sv/personvern'
+    | '/sv/security'
+    | '/sv/sora'
+    | '/sv/sora-prosess'
+    | '/sv/sora-risk-assessment'
+    | '/sv/statistikk'
     | '/artikler'
     | '/butikk'
+    | '/da'
+    | '/de'
     | '/en'
+    | '/fi'
+    | '/nl'
+    | '/sv'
+    | '/da/artikler/$slug'
+    | '/da/butikk/$slug'
+    | '/da/butikk/checkout'
+    | '/da/butikk/takk'
+    | '/da/product/$handle'
+    | '/de/artikler/$slug'
+    | '/de/butikk/$slug'
+    | '/de/butikk/checkout'
+    | '/de/butikk/takk'
+    | '/de/product/$handle'
+    | '/en/artikler/$slug'
+    | '/en/butikk/$slug'
+    | '/en/butikk/checkout'
+    | '/en/butikk/takk'
+    | '/en/product/$handle'
+    | '/fi/artikler/$slug'
+    | '/fi/butikk/$slug'
+    | '/fi/butikk/checkout'
+    | '/fi/butikk/takk'
+    | '/fi/product/$handle'
+    | '/nl/artikler/$slug'
+    | '/nl/butikk/$slug'
+    | '/nl/butikk/checkout'
+    | '/nl/butikk/takk'
+    | '/nl/product/$handle'
+    | '/sv/artikler/$slug'
+    | '/sv/butikk/$slug'
+    | '/sv/butikk/checkout'
+    | '/sv/butikk/takk'
+    | '/sv/product/$handle'
+    | '/da/artikler'
+    | '/da/butikk'
+    | '/de/artikler'
+    | '/de/butikk'
+    | '/en/artikler'
+    | '/en/butikk'
+    | '/fi/artikler'
+    | '/fi/butikk'
+    | '/nl/artikler'
+    | '/nl/butikk'
+    | '/sv/artikler'
+    | '/sv/butikk'
   id:
     | '__root__'
     | '/'
@@ -443,21 +2230,183 @@ export interface FileRouteTypes {
     | '/butikk/$slug'
     | '/butikk/checkout'
     | '/butikk/takk'
+    | '/da/about'
+    | '/da/aviops'
+    | '/da/compliance'
+    | '/da/drone-fleet-management'
+    | '/da/drone-safety-management-system'
+    | '/da/galleri'
+    | '/da/integrasjoner'
+    | '/da/live-airspace-awareness'
+    | '/da/logg'
+    | '/da/occurrence-reporting'
+    | '/da/operasjoner'
+    | '/da/operasjonsdashbord'
+    | '/da/operations'
+    | '/da/ops-dashboard'
+    | '/da/partners'
+    | '/da/personvern'
+    | '/da/security'
+    | '/da/sora'
+    | '/da/sora-prosess'
+    | '/da/sora-risk-assessment'
+    | '/da/statistikk'
+    | '/de/about'
+    | '/de/aviops'
+    | '/de/compliance'
+    | '/de/drone-fleet-management'
+    | '/de/drone-safety-management-system'
+    | '/de/galleri'
+    | '/de/integrasjoner'
+    | '/de/live-airspace-awareness'
+    | '/de/logg'
+    | '/de/occurrence-reporting'
+    | '/de/operasjoner'
+    | '/de/operasjonsdashbord'
+    | '/de/operations'
+    | '/de/ops-dashboard'
+    | '/de/partners'
+    | '/de/personvern'
+    | '/de/security'
+    | '/de/sora'
+    | '/de/sora-prosess'
+    | '/de/sora-risk-assessment'
+    | '/de/statistikk'
     | '/en/about'
     | '/en/aviops'
     | '/en/compliance'
     | '/en/drone-fleet-management'
     | '/en/drone-safety-management-system'
+    | '/en/galleri'
+    | '/en/integrasjoner'
     | '/en/live-airspace-awareness'
+    | '/en/logg'
     | '/en/occurrence-reporting'
+    | '/en/operasjoner'
+    | '/en/operasjonsdashbord'
+    | '/en/operations'
     | '/en/ops-dashboard'
     | '/en/partners'
+    | '/en/personvern'
     | '/en/security'
+    | '/en/sora'
+    | '/en/sora-prosess'
     | '/en/sora-risk-assessment'
+    | '/en/statistikk'
+    | '/fi/about'
+    | '/fi/aviops'
+    | '/fi/compliance'
+    | '/fi/drone-fleet-management'
+    | '/fi/drone-safety-management-system'
+    | '/fi/galleri'
+    | '/fi/integrasjoner'
+    | '/fi/live-airspace-awareness'
+    | '/fi/logg'
+    | '/fi/occurrence-reporting'
+    | '/fi/operasjoner'
+    | '/fi/operasjonsdashbord'
+    | '/fi/operations'
+    | '/fi/ops-dashboard'
+    | '/fi/partners'
+    | '/fi/personvern'
+    | '/fi/security'
+    | '/fi/sora'
+    | '/fi/sora-prosess'
+    | '/fi/sora-risk-assessment'
+    | '/fi/statistikk'
+    | '/nl/about'
+    | '/nl/aviops'
+    | '/nl/compliance'
+    | '/nl/drone-fleet-management'
+    | '/nl/drone-safety-management-system'
+    | '/nl/galleri'
+    | '/nl/integrasjoner'
+    | '/nl/live-airspace-awareness'
+    | '/nl/logg'
+    | '/nl/occurrence-reporting'
+    | '/nl/operasjoner'
+    | '/nl/operasjonsdashbord'
+    | '/nl/operations'
+    | '/nl/ops-dashboard'
+    | '/nl/partners'
+    | '/nl/personvern'
+    | '/nl/security'
+    | '/nl/sora'
+    | '/nl/sora-prosess'
+    | '/nl/sora-risk-assessment'
+    | '/nl/statistikk'
     | '/product/$handle'
+    | '/sv/about'
+    | '/sv/aviops'
+    | '/sv/compliance'
+    | '/sv/drone-fleet-management'
+    | '/sv/drone-safety-management-system'
+    | '/sv/galleri'
+    | '/sv/integrasjoner'
+    | '/sv/live-airspace-awareness'
+    | '/sv/logg'
+    | '/sv/occurrence-reporting'
+    | '/sv/operasjoner'
+    | '/sv/operasjonsdashbord'
+    | '/sv/operations'
+    | '/sv/ops-dashboard'
+    | '/sv/partners'
+    | '/sv/personvern'
+    | '/sv/security'
+    | '/sv/sora'
+    | '/sv/sora-prosess'
+    | '/sv/sora-risk-assessment'
+    | '/sv/statistikk'
     | '/artikler/'
     | '/butikk/'
+    | '/da/'
+    | '/de/'
     | '/en/'
+    | '/fi/'
+    | '/nl/'
+    | '/sv/'
+    | '/da/artikler/$slug'
+    | '/da/butikk/$slug'
+    | '/da/butikk/checkout'
+    | '/da/butikk/takk'
+    | '/da/product/$handle'
+    | '/de/artikler/$slug'
+    | '/de/butikk/$slug'
+    | '/de/butikk/checkout'
+    | '/de/butikk/takk'
+    | '/de/product/$handle'
+    | '/en/artikler/$slug'
+    | '/en/butikk/$slug'
+    | '/en/butikk/checkout'
+    | '/en/butikk/takk'
+    | '/en/product/$handle'
+    | '/fi/artikler/$slug'
+    | '/fi/butikk/$slug'
+    | '/fi/butikk/checkout'
+    | '/fi/butikk/takk'
+    | '/fi/product/$handle'
+    | '/nl/artikler/$slug'
+    | '/nl/butikk/$slug'
+    | '/nl/butikk/checkout'
+    | '/nl/butikk/takk'
+    | '/nl/product/$handle'
+    | '/sv/artikler/$slug'
+    | '/sv/butikk/$slug'
+    | '/sv/butikk/checkout'
+    | '/sv/butikk/takk'
+    | '/sv/product/$handle'
+    | '/da/artikler/'
+    | '/da/butikk/'
+    | '/de/artikler/'
+    | '/de/butikk/'
+    | '/en/artikler/'
+    | '/en/butikk/'
+    | '/fi/artikler/'
+    | '/fi/butikk/'
+    | '/nl/artikler/'
+    | '/nl/butikk/'
+    | '/sv/artikler/'
+    | '/sv/butikk/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -482,21 +2431,183 @@ export interface RootRouteChildren {
   ButikkSlugRoute: typeof ButikkSlugRoute
   ButikkCheckoutRoute: typeof ButikkCheckoutRoute
   ButikkTakkRoute: typeof ButikkTakkRoute
+  DaAboutRoute: typeof DaAboutRoute
+  DaAviopsRoute: typeof DaAviopsRoute
+  DaComplianceRoute: typeof DaComplianceRoute
+  DaDroneFleetManagementRoute: typeof DaDroneFleetManagementRoute
+  DaDroneSafetyManagementSystemRoute: typeof DaDroneSafetyManagementSystemRoute
+  DaGalleriRoute: typeof DaGalleriRoute
+  DaIntegrasjonerRoute: typeof DaIntegrasjonerRoute
+  DaLiveAirspaceAwarenessRoute: typeof DaLiveAirspaceAwarenessRoute
+  DaLoggRoute: typeof DaLoggRoute
+  DaOccurrenceReportingRoute: typeof DaOccurrenceReportingRoute
+  DaOperasjonerRoute: typeof DaOperasjonerRoute
+  DaOperasjonsdashbordRoute: typeof DaOperasjonsdashbordRoute
+  DaOperationsRoute: typeof DaOperationsRoute
+  DaOpsDashboardRoute: typeof DaOpsDashboardRoute
+  DaPartnersRoute: typeof DaPartnersRoute
+  DaPersonvernRoute: typeof DaPersonvernRoute
+  DaSecurityRoute: typeof DaSecurityRoute
+  DaSoraRoute: typeof DaSoraRoute
+  DaSoraProsessRoute: typeof DaSoraProsessRoute
+  DaSoraRiskAssessmentRoute: typeof DaSoraRiskAssessmentRoute
+  DaStatistikkRoute: typeof DaStatistikkRoute
+  DeAboutRoute: typeof DeAboutRoute
+  DeAviopsRoute: typeof DeAviopsRoute
+  DeComplianceRoute: typeof DeComplianceRoute
+  DeDroneFleetManagementRoute: typeof DeDroneFleetManagementRoute
+  DeDroneSafetyManagementSystemRoute: typeof DeDroneSafetyManagementSystemRoute
+  DeGalleriRoute: typeof DeGalleriRoute
+  DeIntegrasjonerRoute: typeof DeIntegrasjonerRoute
+  DeLiveAirspaceAwarenessRoute: typeof DeLiveAirspaceAwarenessRoute
+  DeLoggRoute: typeof DeLoggRoute
+  DeOccurrenceReportingRoute: typeof DeOccurrenceReportingRoute
+  DeOperasjonerRoute: typeof DeOperasjonerRoute
+  DeOperasjonsdashbordRoute: typeof DeOperasjonsdashbordRoute
+  DeOperationsRoute: typeof DeOperationsRoute
+  DeOpsDashboardRoute: typeof DeOpsDashboardRoute
+  DePartnersRoute: typeof DePartnersRoute
+  DePersonvernRoute: typeof DePersonvernRoute
+  DeSecurityRoute: typeof DeSecurityRoute
+  DeSoraRoute: typeof DeSoraRoute
+  DeSoraProsessRoute: typeof DeSoraProsessRoute
+  DeSoraRiskAssessmentRoute: typeof DeSoraRiskAssessmentRoute
+  DeStatistikkRoute: typeof DeStatistikkRoute
   EnAboutRoute: typeof EnAboutRoute
   EnAviopsRoute: typeof EnAviopsRoute
   EnComplianceRoute: typeof EnComplianceRoute
   EnDroneFleetManagementRoute: typeof EnDroneFleetManagementRoute
   EnDroneSafetyManagementSystemRoute: typeof EnDroneSafetyManagementSystemRoute
+  EnGalleriRoute: typeof EnGalleriRoute
+  EnIntegrasjonerRoute: typeof EnIntegrasjonerRoute
   EnLiveAirspaceAwarenessRoute: typeof EnLiveAirspaceAwarenessRoute
+  EnLoggRoute: typeof EnLoggRoute
   EnOccurrenceReportingRoute: typeof EnOccurrenceReportingRoute
+  EnOperasjonerRoute: typeof EnOperasjonerRoute
+  EnOperasjonsdashbordRoute: typeof EnOperasjonsdashbordRoute
+  EnOperationsRoute: typeof EnOperationsRoute
   EnOpsDashboardRoute: typeof EnOpsDashboardRoute
   EnPartnersRoute: typeof EnPartnersRoute
+  EnPersonvernRoute: typeof EnPersonvernRoute
   EnSecurityRoute: typeof EnSecurityRoute
+  EnSoraRoute: typeof EnSoraRoute
+  EnSoraProsessRoute: typeof EnSoraProsessRoute
   EnSoraRiskAssessmentRoute: typeof EnSoraRiskAssessmentRoute
+  EnStatistikkRoute: typeof EnStatistikkRoute
+  FiAboutRoute: typeof FiAboutRoute
+  FiAviopsRoute: typeof FiAviopsRoute
+  FiComplianceRoute: typeof FiComplianceRoute
+  FiDroneFleetManagementRoute: typeof FiDroneFleetManagementRoute
+  FiDroneSafetyManagementSystemRoute: typeof FiDroneSafetyManagementSystemRoute
+  FiGalleriRoute: typeof FiGalleriRoute
+  FiIntegrasjonerRoute: typeof FiIntegrasjonerRoute
+  FiLiveAirspaceAwarenessRoute: typeof FiLiveAirspaceAwarenessRoute
+  FiLoggRoute: typeof FiLoggRoute
+  FiOccurrenceReportingRoute: typeof FiOccurrenceReportingRoute
+  FiOperasjonerRoute: typeof FiOperasjonerRoute
+  FiOperasjonsdashbordRoute: typeof FiOperasjonsdashbordRoute
+  FiOperationsRoute: typeof FiOperationsRoute
+  FiOpsDashboardRoute: typeof FiOpsDashboardRoute
+  FiPartnersRoute: typeof FiPartnersRoute
+  FiPersonvernRoute: typeof FiPersonvernRoute
+  FiSecurityRoute: typeof FiSecurityRoute
+  FiSoraRoute: typeof FiSoraRoute
+  FiSoraProsessRoute: typeof FiSoraProsessRoute
+  FiSoraRiskAssessmentRoute: typeof FiSoraRiskAssessmentRoute
+  FiStatistikkRoute: typeof FiStatistikkRoute
+  NlAboutRoute: typeof NlAboutRoute
+  NlAviopsRoute: typeof NlAviopsRoute
+  NlComplianceRoute: typeof NlComplianceRoute
+  NlDroneFleetManagementRoute: typeof NlDroneFleetManagementRoute
+  NlDroneSafetyManagementSystemRoute: typeof NlDroneSafetyManagementSystemRoute
+  NlGalleriRoute: typeof NlGalleriRoute
+  NlIntegrasjonerRoute: typeof NlIntegrasjonerRoute
+  NlLiveAirspaceAwarenessRoute: typeof NlLiveAirspaceAwarenessRoute
+  NlLoggRoute: typeof NlLoggRoute
+  NlOccurrenceReportingRoute: typeof NlOccurrenceReportingRoute
+  NlOperasjonerRoute: typeof NlOperasjonerRoute
+  NlOperasjonsdashbordRoute: typeof NlOperasjonsdashbordRoute
+  NlOperationsRoute: typeof NlOperationsRoute
+  NlOpsDashboardRoute: typeof NlOpsDashboardRoute
+  NlPartnersRoute: typeof NlPartnersRoute
+  NlPersonvernRoute: typeof NlPersonvernRoute
+  NlSecurityRoute: typeof NlSecurityRoute
+  NlSoraRoute: typeof NlSoraRoute
+  NlSoraProsessRoute: typeof NlSoraProsessRoute
+  NlSoraRiskAssessmentRoute: typeof NlSoraRiskAssessmentRoute
+  NlStatistikkRoute: typeof NlStatistikkRoute
   ProductHandleRoute: typeof ProductHandleRoute
+  SvAboutRoute: typeof SvAboutRoute
+  SvAviopsRoute: typeof SvAviopsRoute
+  SvComplianceRoute: typeof SvComplianceRoute
+  SvDroneFleetManagementRoute: typeof SvDroneFleetManagementRoute
+  SvDroneSafetyManagementSystemRoute: typeof SvDroneSafetyManagementSystemRoute
+  SvGalleriRoute: typeof SvGalleriRoute
+  SvIntegrasjonerRoute: typeof SvIntegrasjonerRoute
+  SvLiveAirspaceAwarenessRoute: typeof SvLiveAirspaceAwarenessRoute
+  SvLoggRoute: typeof SvLoggRoute
+  SvOccurrenceReportingRoute: typeof SvOccurrenceReportingRoute
+  SvOperasjonerRoute: typeof SvOperasjonerRoute
+  SvOperasjonsdashbordRoute: typeof SvOperasjonsdashbordRoute
+  SvOperationsRoute: typeof SvOperationsRoute
+  SvOpsDashboardRoute: typeof SvOpsDashboardRoute
+  SvPartnersRoute: typeof SvPartnersRoute
+  SvPersonvernRoute: typeof SvPersonvernRoute
+  SvSecurityRoute: typeof SvSecurityRoute
+  SvSoraRoute: typeof SvSoraRoute
+  SvSoraProsessRoute: typeof SvSoraProsessRoute
+  SvSoraRiskAssessmentRoute: typeof SvSoraRiskAssessmentRoute
+  SvStatistikkRoute: typeof SvStatistikkRoute
   ArtiklerIndexRoute: typeof ArtiklerIndexRoute
   ButikkIndexRoute: typeof ButikkIndexRoute
+  DaIndexRoute: typeof DaIndexRoute
+  DeIndexRoute: typeof DeIndexRoute
   EnIndexRoute: typeof EnIndexRoute
+  FiIndexRoute: typeof FiIndexRoute
+  NlIndexRoute: typeof NlIndexRoute
+  SvIndexRoute: typeof SvIndexRoute
+  DaArtiklerSlugRoute: typeof DaArtiklerSlugRoute
+  DaButikkSlugRoute: typeof DaButikkSlugRoute
+  DaButikkCheckoutRoute: typeof DaButikkCheckoutRoute
+  DaButikkTakkRoute: typeof DaButikkTakkRoute
+  DaProductHandleRoute: typeof DaProductHandleRoute
+  DeArtiklerSlugRoute: typeof DeArtiklerSlugRoute
+  DeButikkSlugRoute: typeof DeButikkSlugRoute
+  DeButikkCheckoutRoute: typeof DeButikkCheckoutRoute
+  DeButikkTakkRoute: typeof DeButikkTakkRoute
+  DeProductHandleRoute: typeof DeProductHandleRoute
+  EnArtiklerSlugRoute: typeof EnArtiklerSlugRoute
+  EnButikkSlugRoute: typeof EnButikkSlugRoute
+  EnButikkCheckoutRoute: typeof EnButikkCheckoutRoute
+  EnButikkTakkRoute: typeof EnButikkTakkRoute
+  EnProductHandleRoute: typeof EnProductHandleRoute
+  FiArtiklerSlugRoute: typeof FiArtiklerSlugRoute
+  FiButikkSlugRoute: typeof FiButikkSlugRoute
+  FiButikkCheckoutRoute: typeof FiButikkCheckoutRoute
+  FiButikkTakkRoute: typeof FiButikkTakkRoute
+  FiProductHandleRoute: typeof FiProductHandleRoute
+  NlArtiklerSlugRoute: typeof NlArtiklerSlugRoute
+  NlButikkSlugRoute: typeof NlButikkSlugRoute
+  NlButikkCheckoutRoute: typeof NlButikkCheckoutRoute
+  NlButikkTakkRoute: typeof NlButikkTakkRoute
+  NlProductHandleRoute: typeof NlProductHandleRoute
+  SvArtiklerSlugRoute: typeof SvArtiklerSlugRoute
+  SvButikkSlugRoute: typeof SvButikkSlugRoute
+  SvButikkCheckoutRoute: typeof SvButikkCheckoutRoute
+  SvButikkTakkRoute: typeof SvButikkTakkRoute
+  SvProductHandleRoute: typeof SvProductHandleRoute
+  DaArtiklerIndexRoute: typeof DaArtiklerIndexRoute
+  DaButikkIndexRoute: typeof DaButikkIndexRoute
+  DeArtiklerIndexRoute: typeof DeArtiklerIndexRoute
+  DeButikkIndexRoute: typeof DeButikkIndexRoute
+  EnArtiklerIndexRoute: typeof EnArtiklerIndexRoute
+  EnButikkIndexRoute: typeof EnButikkIndexRoute
+  FiArtiklerIndexRoute: typeof FiArtiklerIndexRoute
+  FiButikkIndexRoute: typeof FiButikkIndexRoute
+  NlArtiklerIndexRoute: typeof NlArtiklerIndexRoute
+  NlButikkIndexRoute: typeof NlButikkIndexRoute
+  SvArtiklerIndexRoute: typeof SvArtiklerIndexRoute
+  SvButikkIndexRoute: typeof SvButikkIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -662,6 +2773,314 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ButikkTakkRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/da/': {
+      id: '/da/'
+      path: '/da'
+      fullPath: '/da/'
+      preLoaderRoute: typeof DaIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/da/about': {
+      id: '/da/about'
+      path: '/da/about'
+      fullPath: '/da/about'
+      preLoaderRoute: typeof DaAboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/da/aviops': {
+      id: '/da/aviops'
+      path: '/da/aviops'
+      fullPath: '/da/aviops'
+      preLoaderRoute: typeof DaAviopsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/da/compliance': {
+      id: '/da/compliance'
+      path: '/da/compliance'
+      fullPath: '/da/compliance'
+      preLoaderRoute: typeof DaComplianceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/da/drone-fleet-management': {
+      id: '/da/drone-fleet-management'
+      path: '/da/drone-fleet-management'
+      fullPath: '/da/drone-fleet-management'
+      preLoaderRoute: typeof DaDroneFleetManagementRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/da/drone-safety-management-system': {
+      id: '/da/drone-safety-management-system'
+      path: '/da/drone-safety-management-system'
+      fullPath: '/da/drone-safety-management-system'
+      preLoaderRoute: typeof DaDroneSafetyManagementSystemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/da/galleri': {
+      id: '/da/galleri'
+      path: '/da/galleri'
+      fullPath: '/da/galleri'
+      preLoaderRoute: typeof DaGalleriRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/da/integrasjoner': {
+      id: '/da/integrasjoner'
+      path: '/da/integrasjoner'
+      fullPath: '/da/integrasjoner'
+      preLoaderRoute: typeof DaIntegrasjonerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/da/live-airspace-awareness': {
+      id: '/da/live-airspace-awareness'
+      path: '/da/live-airspace-awareness'
+      fullPath: '/da/live-airspace-awareness'
+      preLoaderRoute: typeof DaLiveAirspaceAwarenessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/da/logg': {
+      id: '/da/logg'
+      path: '/da/logg'
+      fullPath: '/da/logg'
+      preLoaderRoute: typeof DaLoggRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/da/occurrence-reporting': {
+      id: '/da/occurrence-reporting'
+      path: '/da/occurrence-reporting'
+      fullPath: '/da/occurrence-reporting'
+      preLoaderRoute: typeof DaOccurrenceReportingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/da/operasjoner': {
+      id: '/da/operasjoner'
+      path: '/da/operasjoner'
+      fullPath: '/da/operasjoner'
+      preLoaderRoute: typeof DaOperasjonerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/da/operasjonsdashbord': {
+      id: '/da/operasjonsdashbord'
+      path: '/da/operasjonsdashbord'
+      fullPath: '/da/operasjonsdashbord'
+      preLoaderRoute: typeof DaOperasjonsdashbordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/da/operations': {
+      id: '/da/operations'
+      path: '/da/operations'
+      fullPath: '/da/operations'
+      preLoaderRoute: typeof DaOperationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/da/ops-dashboard': {
+      id: '/da/ops-dashboard'
+      path: '/da/ops-dashboard'
+      fullPath: '/da/ops-dashboard'
+      preLoaderRoute: typeof DaOpsDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/da/partners': {
+      id: '/da/partners'
+      path: '/da/partners'
+      fullPath: '/da/partners'
+      preLoaderRoute: typeof DaPartnersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/da/personvern': {
+      id: '/da/personvern'
+      path: '/da/personvern'
+      fullPath: '/da/personvern'
+      preLoaderRoute: typeof DaPersonvernRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/da/security': {
+      id: '/da/security'
+      path: '/da/security'
+      fullPath: '/da/security'
+      preLoaderRoute: typeof DaSecurityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/da/sora': {
+      id: '/da/sora'
+      path: '/da/sora'
+      fullPath: '/da/sora'
+      preLoaderRoute: typeof DaSoraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/da/sora-prosess': {
+      id: '/da/sora-prosess'
+      path: '/da/sora-prosess'
+      fullPath: '/da/sora-prosess'
+      preLoaderRoute: typeof DaSoraProsessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/da/sora-risk-assessment': {
+      id: '/da/sora-risk-assessment'
+      path: '/da/sora-risk-assessment'
+      fullPath: '/da/sora-risk-assessment'
+      preLoaderRoute: typeof DaSoraRiskAssessmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/da/statistikk': {
+      id: '/da/statistikk'
+      path: '/da/statistikk'
+      fullPath: '/da/statistikk'
+      preLoaderRoute: typeof DaStatistikkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/de/': {
+      id: '/de/'
+      path: '/de'
+      fullPath: '/de/'
+      preLoaderRoute: typeof DeIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/de/about': {
+      id: '/de/about'
+      path: '/de/about'
+      fullPath: '/de/about'
+      preLoaderRoute: typeof DeAboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/de/aviops': {
+      id: '/de/aviops'
+      path: '/de/aviops'
+      fullPath: '/de/aviops'
+      preLoaderRoute: typeof DeAviopsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/de/compliance': {
+      id: '/de/compliance'
+      path: '/de/compliance'
+      fullPath: '/de/compliance'
+      preLoaderRoute: typeof DeComplianceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/de/drone-fleet-management': {
+      id: '/de/drone-fleet-management'
+      path: '/de/drone-fleet-management'
+      fullPath: '/de/drone-fleet-management'
+      preLoaderRoute: typeof DeDroneFleetManagementRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/de/drone-safety-management-system': {
+      id: '/de/drone-safety-management-system'
+      path: '/de/drone-safety-management-system'
+      fullPath: '/de/drone-safety-management-system'
+      preLoaderRoute: typeof DeDroneSafetyManagementSystemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/de/galleri': {
+      id: '/de/galleri'
+      path: '/de/galleri'
+      fullPath: '/de/galleri'
+      preLoaderRoute: typeof DeGalleriRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/de/integrasjoner': {
+      id: '/de/integrasjoner'
+      path: '/de/integrasjoner'
+      fullPath: '/de/integrasjoner'
+      preLoaderRoute: typeof DeIntegrasjonerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/de/live-airspace-awareness': {
+      id: '/de/live-airspace-awareness'
+      path: '/de/live-airspace-awareness'
+      fullPath: '/de/live-airspace-awareness'
+      preLoaderRoute: typeof DeLiveAirspaceAwarenessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/de/logg': {
+      id: '/de/logg'
+      path: '/de/logg'
+      fullPath: '/de/logg'
+      preLoaderRoute: typeof DeLoggRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/de/occurrence-reporting': {
+      id: '/de/occurrence-reporting'
+      path: '/de/occurrence-reporting'
+      fullPath: '/de/occurrence-reporting'
+      preLoaderRoute: typeof DeOccurrenceReportingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/de/operasjoner': {
+      id: '/de/operasjoner'
+      path: '/de/operasjoner'
+      fullPath: '/de/operasjoner'
+      preLoaderRoute: typeof DeOperasjonerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/de/operasjonsdashbord': {
+      id: '/de/operasjonsdashbord'
+      path: '/de/operasjonsdashbord'
+      fullPath: '/de/operasjonsdashbord'
+      preLoaderRoute: typeof DeOperasjonsdashbordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/de/operations': {
+      id: '/de/operations'
+      path: '/de/operations'
+      fullPath: '/de/operations'
+      preLoaderRoute: typeof DeOperationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/de/ops-dashboard': {
+      id: '/de/ops-dashboard'
+      path: '/de/ops-dashboard'
+      fullPath: '/de/ops-dashboard'
+      preLoaderRoute: typeof DeOpsDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/de/partners': {
+      id: '/de/partners'
+      path: '/de/partners'
+      fullPath: '/de/partners'
+      preLoaderRoute: typeof DePartnersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/de/personvern': {
+      id: '/de/personvern'
+      path: '/de/personvern'
+      fullPath: '/de/personvern'
+      preLoaderRoute: typeof DePersonvernRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/de/security': {
+      id: '/de/security'
+      path: '/de/security'
+      fullPath: '/de/security'
+      preLoaderRoute: typeof DeSecurityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/de/sora': {
+      id: '/de/sora'
+      path: '/de/sora'
+      fullPath: '/de/sora'
+      preLoaderRoute: typeof DeSoraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/de/sora-prosess': {
+      id: '/de/sora-prosess'
+      path: '/de/sora-prosess'
+      fullPath: '/de/sora-prosess'
+      preLoaderRoute: typeof DeSoraProsessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/de/sora-risk-assessment': {
+      id: '/de/sora-risk-assessment'
+      path: '/de/sora-risk-assessment'
+      fullPath: '/de/sora-risk-assessment'
+      preLoaderRoute: typeof DeSoraRiskAssessmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/de/statistikk': {
+      id: '/de/statistikk'
+      path: '/de/statistikk'
+      fullPath: '/de/statistikk'
+      preLoaderRoute: typeof DeStatistikkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/en/': {
       id: '/en/'
       path: '/en'
@@ -704,6 +3123,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnDroneSafetyManagementSystemRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/en/galleri': {
+      id: '/en/galleri'
+      path: '/en/galleri'
+      fullPath: '/en/galleri'
+      preLoaderRoute: typeof EnGalleriRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/integrasjoner': {
+      id: '/en/integrasjoner'
+      path: '/en/integrasjoner'
+      fullPath: '/en/integrasjoner'
+      preLoaderRoute: typeof EnIntegrasjonerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/en/live-airspace-awareness': {
       id: '/en/live-airspace-awareness'
       path: '/en/live-airspace-awareness'
@@ -711,11 +3144,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnLiveAirspaceAwarenessRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/en/logg': {
+      id: '/en/logg'
+      path: '/en/logg'
+      fullPath: '/en/logg'
+      preLoaderRoute: typeof EnLoggRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/en/occurrence-reporting': {
       id: '/en/occurrence-reporting'
       path: '/en/occurrence-reporting'
       fullPath: '/en/occurrence-reporting'
       preLoaderRoute: typeof EnOccurrenceReportingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/operasjoner': {
+      id: '/en/operasjoner'
+      path: '/en/operasjoner'
+      fullPath: '/en/operasjoner'
+      preLoaderRoute: typeof EnOperasjonerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/operasjonsdashbord': {
+      id: '/en/operasjonsdashbord'
+      path: '/en/operasjonsdashbord'
+      fullPath: '/en/operasjonsdashbord'
+      preLoaderRoute: typeof EnOperasjonsdashbordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/operations': {
+      id: '/en/operations'
+      path: '/en/operations'
+      fullPath: '/en/operations'
+      preLoaderRoute: typeof EnOperationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/en/ops-dashboard': {
@@ -732,11 +3193,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnPartnersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/en/personvern': {
+      id: '/en/personvern'
+      path: '/en/personvern'
+      fullPath: '/en/personvern'
+      preLoaderRoute: typeof EnPersonvernRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/en/security': {
       id: '/en/security'
       path: '/en/security'
       fullPath: '/en/security'
       preLoaderRoute: typeof EnSecurityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/sora': {
+      id: '/en/sora'
+      path: '/en/sora'
+      fullPath: '/en/sora'
+      preLoaderRoute: typeof EnSoraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/sora-prosess': {
+      id: '/en/sora-prosess'
+      path: '/en/sora-prosess'
+      fullPath: '/en/sora-prosess'
+      preLoaderRoute: typeof EnSoraProsessRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/en/sora-risk-assessment': {
@@ -746,11 +3228,774 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnSoraRiskAssessmentRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/en/statistikk': {
+      id: '/en/statistikk'
+      path: '/en/statistikk'
+      fullPath: '/en/statistikk'
+      preLoaderRoute: typeof EnStatistikkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fi/': {
+      id: '/fi/'
+      path: '/fi'
+      fullPath: '/fi/'
+      preLoaderRoute: typeof FiIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fi/about': {
+      id: '/fi/about'
+      path: '/fi/about'
+      fullPath: '/fi/about'
+      preLoaderRoute: typeof FiAboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fi/aviops': {
+      id: '/fi/aviops'
+      path: '/fi/aviops'
+      fullPath: '/fi/aviops'
+      preLoaderRoute: typeof FiAviopsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fi/compliance': {
+      id: '/fi/compliance'
+      path: '/fi/compliance'
+      fullPath: '/fi/compliance'
+      preLoaderRoute: typeof FiComplianceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fi/drone-fleet-management': {
+      id: '/fi/drone-fleet-management'
+      path: '/fi/drone-fleet-management'
+      fullPath: '/fi/drone-fleet-management'
+      preLoaderRoute: typeof FiDroneFleetManagementRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fi/drone-safety-management-system': {
+      id: '/fi/drone-safety-management-system'
+      path: '/fi/drone-safety-management-system'
+      fullPath: '/fi/drone-safety-management-system'
+      preLoaderRoute: typeof FiDroneSafetyManagementSystemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fi/galleri': {
+      id: '/fi/galleri'
+      path: '/fi/galleri'
+      fullPath: '/fi/galleri'
+      preLoaderRoute: typeof FiGalleriRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fi/integrasjoner': {
+      id: '/fi/integrasjoner'
+      path: '/fi/integrasjoner'
+      fullPath: '/fi/integrasjoner'
+      preLoaderRoute: typeof FiIntegrasjonerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fi/live-airspace-awareness': {
+      id: '/fi/live-airspace-awareness'
+      path: '/fi/live-airspace-awareness'
+      fullPath: '/fi/live-airspace-awareness'
+      preLoaderRoute: typeof FiLiveAirspaceAwarenessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fi/logg': {
+      id: '/fi/logg'
+      path: '/fi/logg'
+      fullPath: '/fi/logg'
+      preLoaderRoute: typeof FiLoggRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fi/occurrence-reporting': {
+      id: '/fi/occurrence-reporting'
+      path: '/fi/occurrence-reporting'
+      fullPath: '/fi/occurrence-reporting'
+      preLoaderRoute: typeof FiOccurrenceReportingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fi/operasjoner': {
+      id: '/fi/operasjoner'
+      path: '/fi/operasjoner'
+      fullPath: '/fi/operasjoner'
+      preLoaderRoute: typeof FiOperasjonerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fi/operasjonsdashbord': {
+      id: '/fi/operasjonsdashbord'
+      path: '/fi/operasjonsdashbord'
+      fullPath: '/fi/operasjonsdashbord'
+      preLoaderRoute: typeof FiOperasjonsdashbordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fi/operations': {
+      id: '/fi/operations'
+      path: '/fi/operations'
+      fullPath: '/fi/operations'
+      preLoaderRoute: typeof FiOperationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fi/ops-dashboard': {
+      id: '/fi/ops-dashboard'
+      path: '/fi/ops-dashboard'
+      fullPath: '/fi/ops-dashboard'
+      preLoaderRoute: typeof FiOpsDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fi/partners': {
+      id: '/fi/partners'
+      path: '/fi/partners'
+      fullPath: '/fi/partners'
+      preLoaderRoute: typeof FiPartnersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fi/personvern': {
+      id: '/fi/personvern'
+      path: '/fi/personvern'
+      fullPath: '/fi/personvern'
+      preLoaderRoute: typeof FiPersonvernRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fi/security': {
+      id: '/fi/security'
+      path: '/fi/security'
+      fullPath: '/fi/security'
+      preLoaderRoute: typeof FiSecurityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fi/sora': {
+      id: '/fi/sora'
+      path: '/fi/sora'
+      fullPath: '/fi/sora'
+      preLoaderRoute: typeof FiSoraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fi/sora-prosess': {
+      id: '/fi/sora-prosess'
+      path: '/fi/sora-prosess'
+      fullPath: '/fi/sora-prosess'
+      preLoaderRoute: typeof FiSoraProsessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fi/sora-risk-assessment': {
+      id: '/fi/sora-risk-assessment'
+      path: '/fi/sora-risk-assessment'
+      fullPath: '/fi/sora-risk-assessment'
+      preLoaderRoute: typeof FiSoraRiskAssessmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fi/statistikk': {
+      id: '/fi/statistikk'
+      path: '/fi/statistikk'
+      fullPath: '/fi/statistikk'
+      preLoaderRoute: typeof FiStatistikkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nl/': {
+      id: '/nl/'
+      path: '/nl'
+      fullPath: '/nl/'
+      preLoaderRoute: typeof NlIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nl/about': {
+      id: '/nl/about'
+      path: '/nl/about'
+      fullPath: '/nl/about'
+      preLoaderRoute: typeof NlAboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nl/aviops': {
+      id: '/nl/aviops'
+      path: '/nl/aviops'
+      fullPath: '/nl/aviops'
+      preLoaderRoute: typeof NlAviopsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nl/compliance': {
+      id: '/nl/compliance'
+      path: '/nl/compliance'
+      fullPath: '/nl/compliance'
+      preLoaderRoute: typeof NlComplianceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nl/drone-fleet-management': {
+      id: '/nl/drone-fleet-management'
+      path: '/nl/drone-fleet-management'
+      fullPath: '/nl/drone-fleet-management'
+      preLoaderRoute: typeof NlDroneFleetManagementRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nl/drone-safety-management-system': {
+      id: '/nl/drone-safety-management-system'
+      path: '/nl/drone-safety-management-system'
+      fullPath: '/nl/drone-safety-management-system'
+      preLoaderRoute: typeof NlDroneSafetyManagementSystemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nl/galleri': {
+      id: '/nl/galleri'
+      path: '/nl/galleri'
+      fullPath: '/nl/galleri'
+      preLoaderRoute: typeof NlGalleriRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nl/integrasjoner': {
+      id: '/nl/integrasjoner'
+      path: '/nl/integrasjoner'
+      fullPath: '/nl/integrasjoner'
+      preLoaderRoute: typeof NlIntegrasjonerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nl/live-airspace-awareness': {
+      id: '/nl/live-airspace-awareness'
+      path: '/nl/live-airspace-awareness'
+      fullPath: '/nl/live-airspace-awareness'
+      preLoaderRoute: typeof NlLiveAirspaceAwarenessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nl/logg': {
+      id: '/nl/logg'
+      path: '/nl/logg'
+      fullPath: '/nl/logg'
+      preLoaderRoute: typeof NlLoggRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nl/occurrence-reporting': {
+      id: '/nl/occurrence-reporting'
+      path: '/nl/occurrence-reporting'
+      fullPath: '/nl/occurrence-reporting'
+      preLoaderRoute: typeof NlOccurrenceReportingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nl/operasjoner': {
+      id: '/nl/operasjoner'
+      path: '/nl/operasjoner'
+      fullPath: '/nl/operasjoner'
+      preLoaderRoute: typeof NlOperasjonerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nl/operasjonsdashbord': {
+      id: '/nl/operasjonsdashbord'
+      path: '/nl/operasjonsdashbord'
+      fullPath: '/nl/operasjonsdashbord'
+      preLoaderRoute: typeof NlOperasjonsdashbordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nl/operations': {
+      id: '/nl/operations'
+      path: '/nl/operations'
+      fullPath: '/nl/operations'
+      preLoaderRoute: typeof NlOperationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nl/ops-dashboard': {
+      id: '/nl/ops-dashboard'
+      path: '/nl/ops-dashboard'
+      fullPath: '/nl/ops-dashboard'
+      preLoaderRoute: typeof NlOpsDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nl/partners': {
+      id: '/nl/partners'
+      path: '/nl/partners'
+      fullPath: '/nl/partners'
+      preLoaderRoute: typeof NlPartnersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nl/personvern': {
+      id: '/nl/personvern'
+      path: '/nl/personvern'
+      fullPath: '/nl/personvern'
+      preLoaderRoute: typeof NlPersonvernRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nl/security': {
+      id: '/nl/security'
+      path: '/nl/security'
+      fullPath: '/nl/security'
+      preLoaderRoute: typeof NlSecurityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nl/sora': {
+      id: '/nl/sora'
+      path: '/nl/sora'
+      fullPath: '/nl/sora'
+      preLoaderRoute: typeof NlSoraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nl/sora-prosess': {
+      id: '/nl/sora-prosess'
+      path: '/nl/sora-prosess'
+      fullPath: '/nl/sora-prosess'
+      preLoaderRoute: typeof NlSoraProsessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nl/sora-risk-assessment': {
+      id: '/nl/sora-risk-assessment'
+      path: '/nl/sora-risk-assessment'
+      fullPath: '/nl/sora-risk-assessment'
+      preLoaderRoute: typeof NlSoraRiskAssessmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nl/statistikk': {
+      id: '/nl/statistikk'
+      path: '/nl/statistikk'
+      fullPath: '/nl/statistikk'
+      preLoaderRoute: typeof NlStatistikkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/product/$handle': {
       id: '/product/$handle'
       path: '/product/$handle'
       fullPath: '/product/$handle'
       preLoaderRoute: typeof ProductHandleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sv/': {
+      id: '/sv/'
+      path: '/sv'
+      fullPath: '/sv/'
+      preLoaderRoute: typeof SvIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sv/about': {
+      id: '/sv/about'
+      path: '/sv/about'
+      fullPath: '/sv/about'
+      preLoaderRoute: typeof SvAboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sv/aviops': {
+      id: '/sv/aviops'
+      path: '/sv/aviops'
+      fullPath: '/sv/aviops'
+      preLoaderRoute: typeof SvAviopsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sv/compliance': {
+      id: '/sv/compliance'
+      path: '/sv/compliance'
+      fullPath: '/sv/compliance'
+      preLoaderRoute: typeof SvComplianceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sv/drone-fleet-management': {
+      id: '/sv/drone-fleet-management'
+      path: '/sv/drone-fleet-management'
+      fullPath: '/sv/drone-fleet-management'
+      preLoaderRoute: typeof SvDroneFleetManagementRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sv/drone-safety-management-system': {
+      id: '/sv/drone-safety-management-system'
+      path: '/sv/drone-safety-management-system'
+      fullPath: '/sv/drone-safety-management-system'
+      preLoaderRoute: typeof SvDroneSafetyManagementSystemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sv/galleri': {
+      id: '/sv/galleri'
+      path: '/sv/galleri'
+      fullPath: '/sv/galleri'
+      preLoaderRoute: typeof SvGalleriRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sv/integrasjoner': {
+      id: '/sv/integrasjoner'
+      path: '/sv/integrasjoner'
+      fullPath: '/sv/integrasjoner'
+      preLoaderRoute: typeof SvIntegrasjonerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sv/live-airspace-awareness': {
+      id: '/sv/live-airspace-awareness'
+      path: '/sv/live-airspace-awareness'
+      fullPath: '/sv/live-airspace-awareness'
+      preLoaderRoute: typeof SvLiveAirspaceAwarenessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sv/logg': {
+      id: '/sv/logg'
+      path: '/sv/logg'
+      fullPath: '/sv/logg'
+      preLoaderRoute: typeof SvLoggRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sv/occurrence-reporting': {
+      id: '/sv/occurrence-reporting'
+      path: '/sv/occurrence-reporting'
+      fullPath: '/sv/occurrence-reporting'
+      preLoaderRoute: typeof SvOccurrenceReportingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sv/operasjoner': {
+      id: '/sv/operasjoner'
+      path: '/sv/operasjoner'
+      fullPath: '/sv/operasjoner'
+      preLoaderRoute: typeof SvOperasjonerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sv/operasjonsdashbord': {
+      id: '/sv/operasjonsdashbord'
+      path: '/sv/operasjonsdashbord'
+      fullPath: '/sv/operasjonsdashbord'
+      preLoaderRoute: typeof SvOperasjonsdashbordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sv/operations': {
+      id: '/sv/operations'
+      path: '/sv/operations'
+      fullPath: '/sv/operations'
+      preLoaderRoute: typeof SvOperationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sv/ops-dashboard': {
+      id: '/sv/ops-dashboard'
+      path: '/sv/ops-dashboard'
+      fullPath: '/sv/ops-dashboard'
+      preLoaderRoute: typeof SvOpsDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sv/partners': {
+      id: '/sv/partners'
+      path: '/sv/partners'
+      fullPath: '/sv/partners'
+      preLoaderRoute: typeof SvPartnersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sv/personvern': {
+      id: '/sv/personvern'
+      path: '/sv/personvern'
+      fullPath: '/sv/personvern'
+      preLoaderRoute: typeof SvPersonvernRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sv/security': {
+      id: '/sv/security'
+      path: '/sv/security'
+      fullPath: '/sv/security'
+      preLoaderRoute: typeof SvSecurityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sv/sora': {
+      id: '/sv/sora'
+      path: '/sv/sora'
+      fullPath: '/sv/sora'
+      preLoaderRoute: typeof SvSoraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sv/sora-prosess': {
+      id: '/sv/sora-prosess'
+      path: '/sv/sora-prosess'
+      fullPath: '/sv/sora-prosess'
+      preLoaderRoute: typeof SvSoraProsessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sv/sora-risk-assessment': {
+      id: '/sv/sora-risk-assessment'
+      path: '/sv/sora-risk-assessment'
+      fullPath: '/sv/sora-risk-assessment'
+      preLoaderRoute: typeof SvSoraRiskAssessmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sv/statistikk': {
+      id: '/sv/statistikk'
+      path: '/sv/statistikk'
+      fullPath: '/sv/statistikk'
+      preLoaderRoute: typeof SvStatistikkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/da/artikler/': {
+      id: '/da/artikler/'
+      path: '/da/artikler'
+      fullPath: '/da/artikler/'
+      preLoaderRoute: typeof DaArtiklerIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/da/artikler/$slug': {
+      id: '/da/artikler/$slug'
+      path: '/da/artikler/$slug'
+      fullPath: '/da/artikler/$slug'
+      preLoaderRoute: typeof DaArtiklerSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/da/butikk/': {
+      id: '/da/butikk/'
+      path: '/da/butikk'
+      fullPath: '/da/butikk/'
+      preLoaderRoute: typeof DaButikkIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/da/butikk/$slug': {
+      id: '/da/butikk/$slug'
+      path: '/da/butikk/$slug'
+      fullPath: '/da/butikk/$slug'
+      preLoaderRoute: typeof DaButikkSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/da/butikk/checkout': {
+      id: '/da/butikk/checkout'
+      path: '/da/butikk/checkout'
+      fullPath: '/da/butikk/checkout'
+      preLoaderRoute: typeof DaButikkCheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/da/butikk/takk': {
+      id: '/da/butikk/takk'
+      path: '/da/butikk/takk'
+      fullPath: '/da/butikk/takk'
+      preLoaderRoute: typeof DaButikkTakkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/da/product/$handle': {
+      id: '/da/product/$handle'
+      path: '/da/product/$handle'
+      fullPath: '/da/product/$handle'
+      preLoaderRoute: typeof DaProductHandleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/de/artikler/': {
+      id: '/de/artikler/'
+      path: '/de/artikler'
+      fullPath: '/de/artikler/'
+      preLoaderRoute: typeof DeArtiklerIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/de/artikler/$slug': {
+      id: '/de/artikler/$slug'
+      path: '/de/artikler/$slug'
+      fullPath: '/de/artikler/$slug'
+      preLoaderRoute: typeof DeArtiklerSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/de/butikk/': {
+      id: '/de/butikk/'
+      path: '/de/butikk'
+      fullPath: '/de/butikk/'
+      preLoaderRoute: typeof DeButikkIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/de/butikk/$slug': {
+      id: '/de/butikk/$slug'
+      path: '/de/butikk/$slug'
+      fullPath: '/de/butikk/$slug'
+      preLoaderRoute: typeof DeButikkSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/de/butikk/checkout': {
+      id: '/de/butikk/checkout'
+      path: '/de/butikk/checkout'
+      fullPath: '/de/butikk/checkout'
+      preLoaderRoute: typeof DeButikkCheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/de/butikk/takk': {
+      id: '/de/butikk/takk'
+      path: '/de/butikk/takk'
+      fullPath: '/de/butikk/takk'
+      preLoaderRoute: typeof DeButikkTakkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/de/product/$handle': {
+      id: '/de/product/$handle'
+      path: '/de/product/$handle'
+      fullPath: '/de/product/$handle'
+      preLoaderRoute: typeof DeProductHandleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/artikler/': {
+      id: '/en/artikler/'
+      path: '/en/artikler'
+      fullPath: '/en/artikler/'
+      preLoaderRoute: typeof EnArtiklerIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/artikler/$slug': {
+      id: '/en/artikler/$slug'
+      path: '/en/artikler/$slug'
+      fullPath: '/en/artikler/$slug'
+      preLoaderRoute: typeof EnArtiklerSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/butikk/': {
+      id: '/en/butikk/'
+      path: '/en/butikk'
+      fullPath: '/en/butikk/'
+      preLoaderRoute: typeof EnButikkIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/butikk/$slug': {
+      id: '/en/butikk/$slug'
+      path: '/en/butikk/$slug'
+      fullPath: '/en/butikk/$slug'
+      preLoaderRoute: typeof EnButikkSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/butikk/checkout': {
+      id: '/en/butikk/checkout'
+      path: '/en/butikk/checkout'
+      fullPath: '/en/butikk/checkout'
+      preLoaderRoute: typeof EnButikkCheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/butikk/takk': {
+      id: '/en/butikk/takk'
+      path: '/en/butikk/takk'
+      fullPath: '/en/butikk/takk'
+      preLoaderRoute: typeof EnButikkTakkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/product/$handle': {
+      id: '/en/product/$handle'
+      path: '/en/product/$handle'
+      fullPath: '/en/product/$handle'
+      preLoaderRoute: typeof EnProductHandleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fi/artikler/': {
+      id: '/fi/artikler/'
+      path: '/fi/artikler'
+      fullPath: '/fi/artikler/'
+      preLoaderRoute: typeof FiArtiklerIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fi/artikler/$slug': {
+      id: '/fi/artikler/$slug'
+      path: '/fi/artikler/$slug'
+      fullPath: '/fi/artikler/$slug'
+      preLoaderRoute: typeof FiArtiklerSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fi/butikk/': {
+      id: '/fi/butikk/'
+      path: '/fi/butikk'
+      fullPath: '/fi/butikk/'
+      preLoaderRoute: typeof FiButikkIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fi/butikk/$slug': {
+      id: '/fi/butikk/$slug'
+      path: '/fi/butikk/$slug'
+      fullPath: '/fi/butikk/$slug'
+      preLoaderRoute: typeof FiButikkSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fi/butikk/checkout': {
+      id: '/fi/butikk/checkout'
+      path: '/fi/butikk/checkout'
+      fullPath: '/fi/butikk/checkout'
+      preLoaderRoute: typeof FiButikkCheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fi/butikk/takk': {
+      id: '/fi/butikk/takk'
+      path: '/fi/butikk/takk'
+      fullPath: '/fi/butikk/takk'
+      preLoaderRoute: typeof FiButikkTakkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fi/product/$handle': {
+      id: '/fi/product/$handle'
+      path: '/fi/product/$handle'
+      fullPath: '/fi/product/$handle'
+      preLoaderRoute: typeof FiProductHandleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nl/artikler/': {
+      id: '/nl/artikler/'
+      path: '/nl/artikler'
+      fullPath: '/nl/artikler/'
+      preLoaderRoute: typeof NlArtiklerIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nl/artikler/$slug': {
+      id: '/nl/artikler/$slug'
+      path: '/nl/artikler/$slug'
+      fullPath: '/nl/artikler/$slug'
+      preLoaderRoute: typeof NlArtiklerSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nl/butikk/': {
+      id: '/nl/butikk/'
+      path: '/nl/butikk'
+      fullPath: '/nl/butikk/'
+      preLoaderRoute: typeof NlButikkIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nl/butikk/$slug': {
+      id: '/nl/butikk/$slug'
+      path: '/nl/butikk/$slug'
+      fullPath: '/nl/butikk/$slug'
+      preLoaderRoute: typeof NlButikkSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nl/butikk/checkout': {
+      id: '/nl/butikk/checkout'
+      path: '/nl/butikk/checkout'
+      fullPath: '/nl/butikk/checkout'
+      preLoaderRoute: typeof NlButikkCheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nl/butikk/takk': {
+      id: '/nl/butikk/takk'
+      path: '/nl/butikk/takk'
+      fullPath: '/nl/butikk/takk'
+      preLoaderRoute: typeof NlButikkTakkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nl/product/$handle': {
+      id: '/nl/product/$handle'
+      path: '/nl/product/$handle'
+      fullPath: '/nl/product/$handle'
+      preLoaderRoute: typeof NlProductHandleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sv/artikler/': {
+      id: '/sv/artikler/'
+      path: '/sv/artikler'
+      fullPath: '/sv/artikler/'
+      preLoaderRoute: typeof SvArtiklerIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sv/artikler/$slug': {
+      id: '/sv/artikler/$slug'
+      path: '/sv/artikler/$slug'
+      fullPath: '/sv/artikler/$slug'
+      preLoaderRoute: typeof SvArtiklerSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sv/butikk/': {
+      id: '/sv/butikk/'
+      path: '/sv/butikk'
+      fullPath: '/sv/butikk/'
+      preLoaderRoute: typeof SvButikkIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sv/butikk/$slug': {
+      id: '/sv/butikk/$slug'
+      path: '/sv/butikk/$slug'
+      fullPath: '/sv/butikk/$slug'
+      preLoaderRoute: typeof SvButikkSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sv/butikk/checkout': {
+      id: '/sv/butikk/checkout'
+      path: '/sv/butikk/checkout'
+      fullPath: '/sv/butikk/checkout'
+      preLoaderRoute: typeof SvButikkCheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sv/butikk/takk': {
+      id: '/sv/butikk/takk'
+      path: '/sv/butikk/takk'
+      fullPath: '/sv/butikk/takk'
+      preLoaderRoute: typeof SvButikkTakkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sv/product/$handle': {
+      id: '/sv/product/$handle'
+      path: '/sv/product/$handle'
+      fullPath: '/sv/product/$handle'
+      preLoaderRoute: typeof SvProductHandleRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -778,21 +4023,183 @@ const rootRouteChildren: RootRouteChildren = {
   ButikkSlugRoute: ButikkSlugRoute,
   ButikkCheckoutRoute: ButikkCheckoutRoute,
   ButikkTakkRoute: ButikkTakkRoute,
+  DaAboutRoute: DaAboutRoute,
+  DaAviopsRoute: DaAviopsRoute,
+  DaComplianceRoute: DaComplianceRoute,
+  DaDroneFleetManagementRoute: DaDroneFleetManagementRoute,
+  DaDroneSafetyManagementSystemRoute: DaDroneSafetyManagementSystemRoute,
+  DaGalleriRoute: DaGalleriRoute,
+  DaIntegrasjonerRoute: DaIntegrasjonerRoute,
+  DaLiveAirspaceAwarenessRoute: DaLiveAirspaceAwarenessRoute,
+  DaLoggRoute: DaLoggRoute,
+  DaOccurrenceReportingRoute: DaOccurrenceReportingRoute,
+  DaOperasjonerRoute: DaOperasjonerRoute,
+  DaOperasjonsdashbordRoute: DaOperasjonsdashbordRoute,
+  DaOperationsRoute: DaOperationsRoute,
+  DaOpsDashboardRoute: DaOpsDashboardRoute,
+  DaPartnersRoute: DaPartnersRoute,
+  DaPersonvernRoute: DaPersonvernRoute,
+  DaSecurityRoute: DaSecurityRoute,
+  DaSoraRoute: DaSoraRoute,
+  DaSoraProsessRoute: DaSoraProsessRoute,
+  DaSoraRiskAssessmentRoute: DaSoraRiskAssessmentRoute,
+  DaStatistikkRoute: DaStatistikkRoute,
+  DeAboutRoute: DeAboutRoute,
+  DeAviopsRoute: DeAviopsRoute,
+  DeComplianceRoute: DeComplianceRoute,
+  DeDroneFleetManagementRoute: DeDroneFleetManagementRoute,
+  DeDroneSafetyManagementSystemRoute: DeDroneSafetyManagementSystemRoute,
+  DeGalleriRoute: DeGalleriRoute,
+  DeIntegrasjonerRoute: DeIntegrasjonerRoute,
+  DeLiveAirspaceAwarenessRoute: DeLiveAirspaceAwarenessRoute,
+  DeLoggRoute: DeLoggRoute,
+  DeOccurrenceReportingRoute: DeOccurrenceReportingRoute,
+  DeOperasjonerRoute: DeOperasjonerRoute,
+  DeOperasjonsdashbordRoute: DeOperasjonsdashbordRoute,
+  DeOperationsRoute: DeOperationsRoute,
+  DeOpsDashboardRoute: DeOpsDashboardRoute,
+  DePartnersRoute: DePartnersRoute,
+  DePersonvernRoute: DePersonvernRoute,
+  DeSecurityRoute: DeSecurityRoute,
+  DeSoraRoute: DeSoraRoute,
+  DeSoraProsessRoute: DeSoraProsessRoute,
+  DeSoraRiskAssessmentRoute: DeSoraRiskAssessmentRoute,
+  DeStatistikkRoute: DeStatistikkRoute,
   EnAboutRoute: EnAboutRoute,
   EnAviopsRoute: EnAviopsRoute,
   EnComplianceRoute: EnComplianceRoute,
   EnDroneFleetManagementRoute: EnDroneFleetManagementRoute,
   EnDroneSafetyManagementSystemRoute: EnDroneSafetyManagementSystemRoute,
+  EnGalleriRoute: EnGalleriRoute,
+  EnIntegrasjonerRoute: EnIntegrasjonerRoute,
   EnLiveAirspaceAwarenessRoute: EnLiveAirspaceAwarenessRoute,
+  EnLoggRoute: EnLoggRoute,
   EnOccurrenceReportingRoute: EnOccurrenceReportingRoute,
+  EnOperasjonerRoute: EnOperasjonerRoute,
+  EnOperasjonsdashbordRoute: EnOperasjonsdashbordRoute,
+  EnOperationsRoute: EnOperationsRoute,
   EnOpsDashboardRoute: EnOpsDashboardRoute,
   EnPartnersRoute: EnPartnersRoute,
+  EnPersonvernRoute: EnPersonvernRoute,
   EnSecurityRoute: EnSecurityRoute,
+  EnSoraRoute: EnSoraRoute,
+  EnSoraProsessRoute: EnSoraProsessRoute,
   EnSoraRiskAssessmentRoute: EnSoraRiskAssessmentRoute,
+  EnStatistikkRoute: EnStatistikkRoute,
+  FiAboutRoute: FiAboutRoute,
+  FiAviopsRoute: FiAviopsRoute,
+  FiComplianceRoute: FiComplianceRoute,
+  FiDroneFleetManagementRoute: FiDroneFleetManagementRoute,
+  FiDroneSafetyManagementSystemRoute: FiDroneSafetyManagementSystemRoute,
+  FiGalleriRoute: FiGalleriRoute,
+  FiIntegrasjonerRoute: FiIntegrasjonerRoute,
+  FiLiveAirspaceAwarenessRoute: FiLiveAirspaceAwarenessRoute,
+  FiLoggRoute: FiLoggRoute,
+  FiOccurrenceReportingRoute: FiOccurrenceReportingRoute,
+  FiOperasjonerRoute: FiOperasjonerRoute,
+  FiOperasjonsdashbordRoute: FiOperasjonsdashbordRoute,
+  FiOperationsRoute: FiOperationsRoute,
+  FiOpsDashboardRoute: FiOpsDashboardRoute,
+  FiPartnersRoute: FiPartnersRoute,
+  FiPersonvernRoute: FiPersonvernRoute,
+  FiSecurityRoute: FiSecurityRoute,
+  FiSoraRoute: FiSoraRoute,
+  FiSoraProsessRoute: FiSoraProsessRoute,
+  FiSoraRiskAssessmentRoute: FiSoraRiskAssessmentRoute,
+  FiStatistikkRoute: FiStatistikkRoute,
+  NlAboutRoute: NlAboutRoute,
+  NlAviopsRoute: NlAviopsRoute,
+  NlComplianceRoute: NlComplianceRoute,
+  NlDroneFleetManagementRoute: NlDroneFleetManagementRoute,
+  NlDroneSafetyManagementSystemRoute: NlDroneSafetyManagementSystemRoute,
+  NlGalleriRoute: NlGalleriRoute,
+  NlIntegrasjonerRoute: NlIntegrasjonerRoute,
+  NlLiveAirspaceAwarenessRoute: NlLiveAirspaceAwarenessRoute,
+  NlLoggRoute: NlLoggRoute,
+  NlOccurrenceReportingRoute: NlOccurrenceReportingRoute,
+  NlOperasjonerRoute: NlOperasjonerRoute,
+  NlOperasjonsdashbordRoute: NlOperasjonsdashbordRoute,
+  NlOperationsRoute: NlOperationsRoute,
+  NlOpsDashboardRoute: NlOpsDashboardRoute,
+  NlPartnersRoute: NlPartnersRoute,
+  NlPersonvernRoute: NlPersonvernRoute,
+  NlSecurityRoute: NlSecurityRoute,
+  NlSoraRoute: NlSoraRoute,
+  NlSoraProsessRoute: NlSoraProsessRoute,
+  NlSoraRiskAssessmentRoute: NlSoraRiskAssessmentRoute,
+  NlStatistikkRoute: NlStatistikkRoute,
   ProductHandleRoute: ProductHandleRoute,
+  SvAboutRoute: SvAboutRoute,
+  SvAviopsRoute: SvAviopsRoute,
+  SvComplianceRoute: SvComplianceRoute,
+  SvDroneFleetManagementRoute: SvDroneFleetManagementRoute,
+  SvDroneSafetyManagementSystemRoute: SvDroneSafetyManagementSystemRoute,
+  SvGalleriRoute: SvGalleriRoute,
+  SvIntegrasjonerRoute: SvIntegrasjonerRoute,
+  SvLiveAirspaceAwarenessRoute: SvLiveAirspaceAwarenessRoute,
+  SvLoggRoute: SvLoggRoute,
+  SvOccurrenceReportingRoute: SvOccurrenceReportingRoute,
+  SvOperasjonerRoute: SvOperasjonerRoute,
+  SvOperasjonsdashbordRoute: SvOperasjonsdashbordRoute,
+  SvOperationsRoute: SvOperationsRoute,
+  SvOpsDashboardRoute: SvOpsDashboardRoute,
+  SvPartnersRoute: SvPartnersRoute,
+  SvPersonvernRoute: SvPersonvernRoute,
+  SvSecurityRoute: SvSecurityRoute,
+  SvSoraRoute: SvSoraRoute,
+  SvSoraProsessRoute: SvSoraProsessRoute,
+  SvSoraRiskAssessmentRoute: SvSoraRiskAssessmentRoute,
+  SvStatistikkRoute: SvStatistikkRoute,
   ArtiklerIndexRoute: ArtiklerIndexRoute,
   ButikkIndexRoute: ButikkIndexRoute,
+  DaIndexRoute: DaIndexRoute,
+  DeIndexRoute: DeIndexRoute,
   EnIndexRoute: EnIndexRoute,
+  FiIndexRoute: FiIndexRoute,
+  NlIndexRoute: NlIndexRoute,
+  SvIndexRoute: SvIndexRoute,
+  DaArtiklerSlugRoute: DaArtiklerSlugRoute,
+  DaButikkSlugRoute: DaButikkSlugRoute,
+  DaButikkCheckoutRoute: DaButikkCheckoutRoute,
+  DaButikkTakkRoute: DaButikkTakkRoute,
+  DaProductHandleRoute: DaProductHandleRoute,
+  DeArtiklerSlugRoute: DeArtiklerSlugRoute,
+  DeButikkSlugRoute: DeButikkSlugRoute,
+  DeButikkCheckoutRoute: DeButikkCheckoutRoute,
+  DeButikkTakkRoute: DeButikkTakkRoute,
+  DeProductHandleRoute: DeProductHandleRoute,
+  EnArtiklerSlugRoute: EnArtiklerSlugRoute,
+  EnButikkSlugRoute: EnButikkSlugRoute,
+  EnButikkCheckoutRoute: EnButikkCheckoutRoute,
+  EnButikkTakkRoute: EnButikkTakkRoute,
+  EnProductHandleRoute: EnProductHandleRoute,
+  FiArtiklerSlugRoute: FiArtiklerSlugRoute,
+  FiButikkSlugRoute: FiButikkSlugRoute,
+  FiButikkCheckoutRoute: FiButikkCheckoutRoute,
+  FiButikkTakkRoute: FiButikkTakkRoute,
+  FiProductHandleRoute: FiProductHandleRoute,
+  NlArtiklerSlugRoute: NlArtiklerSlugRoute,
+  NlButikkSlugRoute: NlButikkSlugRoute,
+  NlButikkCheckoutRoute: NlButikkCheckoutRoute,
+  NlButikkTakkRoute: NlButikkTakkRoute,
+  NlProductHandleRoute: NlProductHandleRoute,
+  SvArtiklerSlugRoute: SvArtiklerSlugRoute,
+  SvButikkSlugRoute: SvButikkSlugRoute,
+  SvButikkCheckoutRoute: SvButikkCheckoutRoute,
+  SvButikkTakkRoute: SvButikkTakkRoute,
+  SvProductHandleRoute: SvProductHandleRoute,
+  DaArtiklerIndexRoute: DaArtiklerIndexRoute,
+  DaButikkIndexRoute: DaButikkIndexRoute,
+  DeArtiklerIndexRoute: DeArtiklerIndexRoute,
+  DeButikkIndexRoute: DeButikkIndexRoute,
+  EnArtiklerIndexRoute: EnArtiklerIndexRoute,
+  EnButikkIndexRoute: EnButikkIndexRoute,
+  FiArtiklerIndexRoute: FiArtiklerIndexRoute,
+  FiButikkIndexRoute: FiButikkIndexRoute,
+  NlArtiklerIndexRoute: NlArtiklerIndexRoute,
+  NlButikkIndexRoute: NlButikkIndexRoute,
+  SvArtiklerIndexRoute: SvArtiklerIndexRoute,
+  SvButikkIndexRoute: SvButikkIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

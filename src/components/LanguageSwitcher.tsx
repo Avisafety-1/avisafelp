@@ -7,7 +7,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { isEnglishPath, switchTargetFor } from "@/lib/alternates";
+import { LANGUAGES, LANGUAGE_NAMES, LANGUAGE_FLAGS, localeForPath, pathForLocale } from "@/lib/locales";
+import { Button } from "@/components/ui/button";
 
 interface Props {
   className?: string;
@@ -18,33 +19,21 @@ interface Props {
 const LanguageSwitcher = ({ className = "", variant = "light" }: Props) => {
   const { t } = useTranslation();
   const { pathname } = useLocation();
-  const onEnglish = isEnglishPath(pathname);
-  const target = switchTargetFor(pathname);
-
-  const triggerClasses =
-    variant === "dark"
-      ? "bg-white/10 hover:bg-white/20 text-white border-white/20"
-      : "bg-card/80 hover:bg-card text-foreground border-border/50";
+  const active = localeForPath(pathname);
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger
-        aria-label={t("language.label")}
-        className={`inline-flex items-center justify-center rounded-full border p-2 backdrop-blur-xs transition-colors ${triggerClasses} ${className}`}
-      >
-        <Globe className="h-4 w-4" />
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline" size="icon" aria-label={t("language.label")} className={`rounded-full backdrop-blur-xs ${className}`}>
+          <Globe className="h-4 w-4" />
+        </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="min-w-[8rem]">
-        <DropdownMenuItem asChild className={!onEnglish ? "font-semibold" : ""}>
-          <Link to={onEnglish ? target : pathname}>
-            <span className="mr-2">🇳🇴</span>Norsk
+        {LANGUAGES.map((lang) => <DropdownMenuItem key={lang} asChild className={active === lang ? "font-semibold" : ""}>
+          <Link to={pathForLocale(pathname, lang)} preserveLanguage onClick={() => { document.cookie = `avisafe-language=${lang}; Path=/; Max-Age=31536000; SameSite=Lax`; }} lang={lang === "no" ? "nb" : lang}>
+            <span className="mr-2" data-no-translate>{LANGUAGE_FLAGS[lang]}</span><span data-no-translate>{LANGUAGE_NAMES[lang]}</span>
           </Link>
-        </DropdownMenuItem>
-        <DropdownMenuItem asChild className={onEnglish ? "font-semibold" : ""}>
-          <Link to={onEnglish ? pathname : target}>
-            <span className="mr-2">🇬🇧</span>English
-          </Link>
-        </DropdownMenuItem>
+        </DropdownMenuItem>)}
       </DropdownMenuContent>
     </DropdownMenu>
   );

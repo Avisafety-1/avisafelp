@@ -134,7 +134,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const htmlLang = languageForPath(pathname) === "en" ? "en" : "nb";
+  const language = languageForPath(pathname);
+  const htmlLang = language === "no" ? "nb" : language;
   return (
     <html lang={htmlLang} suppressHydrationWarning>
       <head>
@@ -158,7 +159,6 @@ function AppChrome() {
       {!hideHeader && <SiteHeader />}
       <Outlet />
       {!hideHeader && <SiteFooter />}
-      <LanguageBanner />
       <CookieBanner />
       <ShopCartDrawer />
     </>

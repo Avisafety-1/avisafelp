@@ -1,5 +1,11 @@
 # Roadmap – AI/SEO-lesbarhet
 
+## Språkutvidelse
+- [x] Oversett alle nettsider til nederlandsk, tysk, dansk, svensk og finsk. Opplastede PDF-er og tekst inne i bilder/video beholdes som originaldokumenter.
+- [x] Oppdater språkvelger, språklenker og søkemetadata.
+- [x] Velg førstegangsspråk etter IP-region og bevar manuelle valg.
+- [x] Kontroller språk og navigasjon på PC og mobil.
+
 - [x] Steg 0: ny llms.txt (engelsk) + søk etter feil beskrivelser (aviser/mediehus)
 - [x] Migrering til TanStack Start
 - [x] Testliste etter migrering – godkjent av bruker
