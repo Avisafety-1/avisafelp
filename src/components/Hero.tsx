@@ -14,7 +14,7 @@ import johanBojerLogo from "@/assets/johan-bojer-v5.png.asset.json";
 import tensioLogo from "@/assets/tensio-logo.png";
 import breiliDriftLogo from "@/assets/breili-drift-logo.png";
 import trondheimLogo from "@/assets/trondheim-kommune-logo.png.asset.json";
-import grenlandLogo from "@/assets/grenland-brann-og-redning-logo.png.asset.json";
+import iuaLogo from "@/assets/iua-region-telemark-logo.png.asset.json";
 import ScrollExpandMedia from "@/components/ui/scroll-expand-media";
 import AppPreviewPhone from "@/components/AppPreviewPhone";
 
@@ -56,7 +56,7 @@ const Hero = () => {
               <img src={dronenordLogoWhite.url} alt="Dronenord" className="h-9 w-auto" />
               <img src={breiliDriftLogo} alt="Breili Drift" className="h-9 w-auto" />
               <img src={trondheimLogo.url} alt="Trondheim kommune" className="h-8 w-auto" />
-              <img src={grenlandLogo.url} alt="Grenland brann og redning IKS" className="h-8 w-auto" />
+              <img src={iuaLogo.url} alt="Interkommunalt utvalg akutt forurensing Region Telemark" className="h-10 w-auto" />
             </div>
             <div className="sm:hidden flex animate-marquee w-max">
               {[...Array(2)].map((_, i) => (
@@ -69,7 +69,7 @@ const Hero = () => {
                   <img src={dronenordLogoWhite.url} alt="Dronenord" className="h-9 w-auto" />
                   <img src={breiliDriftLogo} alt="Breili Drift" className="h-7 w-auto" />
                   <img src={trondheimLogo.url} alt="Trondheim kommune" className="h-7 w-auto" />
-                  <img src={grenlandLogo.url} alt="Grenland brann og redning IKS" className="h-7 w-auto" />
+                  <img src={iuaLogo.url} alt="Interkommunalt utvalg akutt forurensing Region Telemark" className="h-9 w-auto" />
                 </div>
               ))}
             </div>
