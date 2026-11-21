@@ -228,7 +228,7 @@ const ScrollExpandMedia = ({
   }, [mediaSrc, webmSrc]);
 
   const headerHeightPx = isMobileState ? 64 : 80;
-  const minHeightPx = headerHeightPx;
+  const minHeightPx = 0;
   const maxHeightVh = isMobileState ? 70 : 85;
   const textTranslateX = scrollProgress * (isMobileState ? 30 : 40);
   const videoHeight = `calc(${minHeightPx}px + ${scrollProgress} * (${maxHeightVh}vh - ${minHeightPx}px))`;
@@ -240,7 +240,7 @@ const ScrollExpandMedia = ({
             section (which also contains the customer logos and phone). */}
         <motion.div
           className="hidden sm:block absolute inset-x-0 z-0 bg-hero-bg"
-          style={{ top: headerHeightPx * 2, height: `calc(100svh - ${headerHeightPx * 2}px)` }}
+          style={{ top: headerHeightPx, height: `calc(100svh - ${headerHeightPx}px)` }}
           initial={{ opacity: 1 }}
           animate={{ opacity: 1 - scrollProgress }}
           transition={{ duration: 0.1 }}
@@ -248,7 +248,7 @@ const ScrollExpandMedia = ({
           <img
             src={bgImageSrc}
             alt=""
-            className="w-full h-full object-contain object-center"
+            className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-black/10" />
         </motion.div>
@@ -256,7 +256,7 @@ const ScrollExpandMedia = ({
         {/* Mobile background image — full width, original size, edge to edge */}
         <motion.div
           className="sm:hidden absolute inset-x-0 z-0 overflow-hidden bg-hero-bg flex flex-col"
-          style={{ top: headerHeightPx * 2, height: `calc(100svh - ${headerHeightPx * 2}px)` }}
+          style={{ top: headerHeightPx, height: `calc(100svh - ${headerHeightPx}px)` }}
           initial={{ opacity: 1 }}
           animate={{ opacity: 1 - scrollProgress }}
           transition={{ duration: 0.1 }}
@@ -264,7 +264,7 @@ const ScrollExpandMedia = ({
           <img
             src={mobileBgImageSrc || bgImageSrc}
             alt=""
-            className="w-full h-full object-contain object-center block"
+            className="w-full h-full object-cover object-center block"
           />
           <div className="absolute inset-0 bg-black/10" />
         </motion.div>
@@ -283,7 +283,7 @@ const ScrollExpandMedia = ({
           </motion.h2>
         </div>
 
-        {/* Video — starts at header height right under header, grows downward */}
+        {/* Video is hidden initially and grows below the header on scroll. */}
         <div
           className="relative z-10 w-full mt-0 shrink-0"
           style={{ marginTop: `${headerHeightPx}px` }}
@@ -326,7 +326,7 @@ const ScrollExpandMedia = ({
         {/* titleTop — placed right under the video */}
         <motion.h2
           className="relative z-20 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold px-4 text-center pointer-events-none"
-          style={{ marginTop: scrollProgress > 0.1 ? "40px" : "16px" }}
+          style={{ marginTop: scrollProgress > 0.1 ? "40px" : "24px" }}
           animate={{
             color: scrollProgress > 0.1 ? "hsl(210, 45%, 12%)" : "#ffffff",
           }}
