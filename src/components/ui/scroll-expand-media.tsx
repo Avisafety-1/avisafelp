@@ -236,9 +236,11 @@ const ScrollExpandMedia = ({
   return (
     <div className="transition-colors duration-700 ease-in-out overflow-x-hidden">
       <section className="relative flex flex-col items-center min-h-[100dvh]">
-        {/* Desktop background image — full cover */}
+        {/* Keep the opening image inside the visible viewport, not the full
+            section (which also contains the customer logos and phone). */}
         <motion.div
-          className="hidden sm:block absolute inset-0 z-0"
+          className="hidden sm:block absolute inset-x-0 z-0 bg-hero-bg"
+          style={{ top: headerHeightPx * 2, height: `calc(100svh - ${headerHeightPx * 2}px)` }}
           initial={{ opacity: 1 }}
           animate={{ opacity: 1 - scrollProgress }}
           transition={{ duration: 0.1 }}
@@ -246,14 +248,15 @@ const ScrollExpandMedia = ({
           <img
             src={bgImageSrc}
             alt=""
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-contain object-center"
           />
           <div className="absolute inset-0 bg-black/10" />
         </motion.div>
 
         {/* Mobile background image — full width, original size, edge to edge */}
         <motion.div
-          className="sm:hidden absolute inset-0 z-0 overflow-hidden bg-[#0d0d0d] flex flex-col"
+          className="sm:hidden absolute inset-x-0 z-0 overflow-hidden bg-hero-bg flex flex-col"
+          style={{ top: headerHeightPx * 2, height: `calc(100svh - ${headerHeightPx * 2}px)` }}
           initial={{ opacity: 1 }}
           animate={{ opacity: 1 - scrollProgress }}
           transition={{ duration: 0.1 }}
@@ -261,18 +264,18 @@ const ScrollExpandMedia = ({
           <img
             src={mobileBgImageSrc || bgImageSrc}
             alt=""
-            className="w-full h-auto block"
+            className="w-full h-full object-contain object-center block"
           />
           <div className="absolute inset-0 bg-black/10" />
         </motion.div>
 
         {/* Text lines — centered, moves upward on scroll */}
         <div
-          className="absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-none"
+          className="absolute inset-x-0 top-0 z-20 flex flex-col items-center justify-end pb-6 pointer-events-none"
+          style={{ height: "100svh" }}
         >
           <motion.h2
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white max-w-4xl px-4 mix-blend-difference"
-            style={{ marginTop: "50px" }}
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white max-w-4xl px-4 text-center mix-blend-difference"
             animate={{ y: -scrollProgress * 500 }}
             transition={{ duration: 0.3 }}
           >
@@ -323,7 +326,7 @@ const ScrollExpandMedia = ({
         {/* titleTop — placed right under the video */}
         <motion.h2
           className="relative z-20 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold px-4 text-center pointer-events-none"
-          style={{ marginTop: "40px" }}
+          style={{ marginTop: scrollProgress > 0.1 ? "40px" : "16px" }}
           animate={{
             color: scrollProgress > 0.1 ? "hsl(210, 45%, 12%)" : "#ffffff",
           }}

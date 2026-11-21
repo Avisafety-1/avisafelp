@@ -12,3 +12,4 @@
 - `/sitemap.xml` is a server route built from each route's required `staticData.sitemap` plus published articles; why: stays in sync with routes and content automatically.
 - Hidden pages use per-route `noindex` meta, not robots.txt Disallow; why: crawlers must be able to fetch a page to see its noindex.
 - English landing pages use `src/pages/en/LandingTemplate.tsx` with content in `src/content/en/*`; About/Partners content in `src/content/company.ts`; why: copy can be reviewed and edited without touching layout.
+- Size the opening hero photo and overlay to the visible viewport, independently of the section's children, and contain the photo; why: tall downstream content must not enlarge or crop the drone on shorter screens.
