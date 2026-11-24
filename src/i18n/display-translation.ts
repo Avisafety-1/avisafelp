@@ -3,7 +3,8 @@ import de from "./translations/de.json";
 import da from "./translations/da.json";
 import sv from "./translations/sv.json";
 import fi from "./translations/fi.json";
-const dictionaries: Record<string, Record<string, string>> = { nl, de, da, sv, fi };
+import pl from "./translations/pl.json";
+const dictionaries: Record<string, Record<string, string>> = { nl, de, da, sv, fi, pl };
 const translatedValues = Object.fromEntries(Object.entries(dictionaries).map(([lang, dict]) => [lang, new Set(Object.values(dict))]));
 export function translateDisplay(text: string, language: string): string {
   const dictionary = dictionaries[language];

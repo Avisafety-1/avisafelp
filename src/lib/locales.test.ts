@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { initialLocale, localeForCountry, localeForPath, pathForLocale, hasLocalePath } from "./locales";
 describe('language selection', () => {
-  it.each([['NL','nl'],['DE','de'],['DK','da'],['SE','sv'],['FI','fi'],['NO','no'],['FR','en']])('maps country %s to %s', (country, lang) => expect(localeForCountry(country)).toBe(lang));
+  it.each([['NL','nl'],['DE','de'],['DK','da'],['SE','sv'],['FI','fi'],['PL','pl'],['NO','no'],['FR','en']])('maps country %s to %s', (country, lang) => expect(localeForCountry(country)).toBe(lang));
   it('keeps an explicit language address over region', () => expect(initialLocale('/fi/security','DE')).toBe('fi'));
   it('keeps a manual Norwegian choice over region', () => expect(initialLocale('/','DE','no')).toBe('no'));
   it('uses region on first visit', () => expect(initialLocale('/','NL')).toBe('nl'));

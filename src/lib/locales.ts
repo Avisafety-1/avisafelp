@@ -1,8 +1,8 @@
 import { LOCALE_ROUTE_PATHS } from "./locale-route-paths";
-export const LANGUAGES = ["no", "en", "nl", "de", "da", "sv", "fi"] as const;
+export const LANGUAGES = ["no", "en", "nl", "de", "da", "sv", "fi", "pl"] as const;
 export type Locale = (typeof LANGUAGES)[number];
-export const LANGUAGE_NAMES: Record<Locale, string> = { no: "Norsk", en: "English", nl: "Nederlands", de: "Deutsch", da: "Dansk", sv: "Svenska", fi: "Suomi" };
-export const LANGUAGE_FLAGS: Record<Locale, string> = { no: "🇳🇴", en: "🇬🇧", nl: "🇳🇱", de: "🇩🇪", da: "🇩🇰", sv: "🇸🇪", fi: "🇫🇮" };
+export const LANGUAGE_NAMES: Record<Locale, string> = { no: "Norsk", en: "English", nl: "Nederlands", de: "Deutsch", da: "Dansk", sv: "Svenska", fi: "Suomi", pl: "Polski" };
+export const LANGUAGE_FLAGS: Record<Locale, string> = { no: "🇳🇴", en: "🇬🇧", nl: "🇳🇱", de: "🇩🇪", da: "🇩🇰", sv: "🇸🇪", fi: "🇫🇮", pl: "🇵🇱" };
 export const LANGUAGE_PAIRS = [
   { nb: "/", en: "/en" }, { nb: "/om-oss", en: "/en/about" },
   { nb: "/partnere", en: "/en/partners" }, { nb: "/compliance", en: "/en/compliance" },
@@ -26,7 +26,7 @@ export function pathForLocale(path: string, target: Locale): string {
   return `/${target}${slug === "/" ? "" : slug}`;
 }
 export function localeForCountry(country: string | null | undefined): Locale {
-  const groups: Record<string, Locale> = { NO: "no", NL: "nl", BE: "nl", DE: "de", AT: "de", CH: "de", DK: "da", SE: "sv", FI: "fi" };
+  const groups: Record<string, Locale> = { NO: "no", NL: "nl", BE: "nl", DE: "de", AT: "de", CH: "de", DK: "da", SE: "sv", FI: "fi", PL: "pl" };
   return country ? groups[country.toUpperCase()] ?? "en" : "en";
 }
 export function hasLocalePath(path: string): boolean {

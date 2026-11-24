@@ -142,6 +142,28 @@ import { Route as NlSoraRouteImport } from './routes/nl.sora'
 import { Route as NlSoraProsessRouteImport } from './routes/nl.sora-prosess'
 import { Route as NlSoraRiskAssessmentRouteImport } from './routes/nl.sora-risk-assessment'
 import { Route as NlStatistikkRouteImport } from './routes/nl.statistikk'
+import { Route as PlIndexRouteImport } from './routes/pl.index'
+import { Route as PlAboutRouteImport } from './routes/pl.about'
+import { Route as PlAviopsRouteImport } from './routes/pl.aviops'
+import { Route as PlComplianceRouteImport } from './routes/pl.compliance'
+import { Route as PlDroneFleetManagementRouteImport } from './routes/pl.drone-fleet-management'
+import { Route as PlDroneSafetyManagementSystemRouteImport } from './routes/pl.drone-safety-management-system'
+import { Route as PlGalleriRouteImport } from './routes/pl.galleri'
+import { Route as PlIntegrasjonerRouteImport } from './routes/pl.integrasjoner'
+import { Route as PlLiveAirspaceAwarenessRouteImport } from './routes/pl.live-airspace-awareness'
+import { Route as PlLoggRouteImport } from './routes/pl.logg'
+import { Route as PlOccurrenceReportingRouteImport } from './routes/pl.occurrence-reporting'
+import { Route as PlOperasjonerRouteImport } from './routes/pl.operasjoner'
+import { Route as PlOperasjonsdashbordRouteImport } from './routes/pl.operasjonsdashbord'
+import { Route as PlOperationsRouteImport } from './routes/pl.operations'
+import { Route as PlOpsDashboardRouteImport } from './routes/pl.ops-dashboard'
+import { Route as PlPartnersRouteImport } from './routes/pl.partners'
+import { Route as PlPersonvernRouteImport } from './routes/pl.personvern'
+import { Route as PlSecurityRouteImport } from './routes/pl.security'
+import { Route as PlSoraRouteImport } from './routes/pl.sora'
+import { Route as PlSoraProsessRouteImport } from './routes/pl.sora-prosess'
+import { Route as PlSoraRiskAssessmentRouteImport } from './routes/pl.sora-risk-assessment'
+import { Route as PlStatistikkRouteImport } from './routes/pl.statistikk'
 import { Route as ProductHandleRouteImport } from './routes/product.$handle'
 import { Route as SvIndexRouteImport } from './routes/sv.index'
 import { Route as SvAboutRouteImport } from './routes/sv.about'
@@ -200,6 +222,13 @@ import { Route as NlButikkSlugRouteImport } from './routes/nl.butikk.$slug'
 import { Route as NlButikkCheckoutRouteImport } from './routes/nl.butikk.checkout'
 import { Route as NlButikkTakkRouteImport } from './routes/nl.butikk.takk'
 import { Route as NlProductHandleRouteImport } from './routes/nl.product.$handle'
+import { Route as PlArtiklerIndexRouteImport } from './routes/pl.artikler.index'
+import { Route as PlArtiklerSlugRouteImport } from './routes/pl.artikler.$slug'
+import { Route as PlButikkIndexRouteImport } from './routes/pl.butikk.index'
+import { Route as PlButikkSlugRouteImport } from './routes/pl.butikk.$slug'
+import { Route as PlButikkCheckoutRouteImport } from './routes/pl.butikk.checkout'
+import { Route as PlButikkTakkRouteImport } from './routes/pl.butikk.takk'
+import { Route as PlProductHandleRouteImport } from './routes/pl.product.$handle'
 import { Route as SvArtiklerIndexRouteImport } from './routes/sv.artikler.index'
 import { Route as SvArtiklerSlugRouteImport } from './routes/sv.artikler.$slug'
 import { Route as SvButikkIndexRouteImport } from './routes/sv.butikk.index'
@@ -878,6 +907,117 @@ const NlStatistikkRoute = NlStatistikkRouteImport.update({
   path: '/nl/statistikk',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PlIndexRoute = PlIndexRouteImport.update({
+  id: '/pl/',
+  path: '/pl/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlAboutRoute = PlAboutRouteImport.update({
+  id: '/pl/about',
+  path: '/pl/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlAviopsRoute = PlAviopsRouteImport.update({
+  id: '/pl/aviops',
+  path: '/pl/aviops',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlComplianceRoute = PlComplianceRouteImport.update({
+  id: '/pl/compliance',
+  path: '/pl/compliance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlDroneFleetManagementRoute = PlDroneFleetManagementRouteImport.update({
+  id: '/pl/drone-fleet-management',
+  path: '/pl/drone-fleet-management',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlDroneSafetyManagementSystemRoute =
+  PlDroneSafetyManagementSystemRouteImport.update({
+    id: '/pl/drone-safety-management-system',
+    path: '/pl/drone-safety-management-system',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const PlGalleriRoute = PlGalleriRouteImport.update({
+  id: '/pl/galleri',
+  path: '/pl/galleri',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlIntegrasjonerRoute = PlIntegrasjonerRouteImport.update({
+  id: '/pl/integrasjoner',
+  path: '/pl/integrasjoner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlLiveAirspaceAwarenessRoute = PlLiveAirspaceAwarenessRouteImport.update({
+  id: '/pl/live-airspace-awareness',
+  path: '/pl/live-airspace-awareness',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlLoggRoute = PlLoggRouteImport.update({
+  id: '/pl/logg',
+  path: '/pl/logg',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlOccurrenceReportingRoute = PlOccurrenceReportingRouteImport.update({
+  id: '/pl/occurrence-reporting',
+  path: '/pl/occurrence-reporting',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlOperasjonerRoute = PlOperasjonerRouteImport.update({
+  id: '/pl/operasjoner',
+  path: '/pl/operasjoner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlOperasjonsdashbordRoute = PlOperasjonsdashbordRouteImport.update({
+  id: '/pl/operasjonsdashbord',
+  path: '/pl/operasjonsdashbord',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlOperationsRoute = PlOperationsRouteImport.update({
+  id: '/pl/operations',
+  path: '/pl/operations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlOpsDashboardRoute = PlOpsDashboardRouteImport.update({
+  id: '/pl/ops-dashboard',
+  path: '/pl/ops-dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlPartnersRoute = PlPartnersRouteImport.update({
+  id: '/pl/partners',
+  path: '/pl/partners',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlPersonvernRoute = PlPersonvernRouteImport.update({
+  id: '/pl/personvern',
+  path: '/pl/personvern',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlSecurityRoute = PlSecurityRouteImport.update({
+  id: '/pl/security',
+  path: '/pl/security',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlSoraRoute = PlSoraRouteImport.update({
+  id: '/pl/sora',
+  path: '/pl/sora',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlSoraProsessRoute = PlSoraProsessRouteImport.update({
+  id: '/pl/sora-prosess',
+  path: '/pl/sora-prosess',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlSoraRiskAssessmentRoute = PlSoraRiskAssessmentRouteImport.update({
+  id: '/pl/sora-risk-assessment',
+  path: '/pl/sora-risk-assessment',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlStatistikkRoute = PlStatistikkRouteImport.update({
+  id: '/pl/statistikk',
+  path: '/pl/statistikk',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductHandleRoute = ProductHandleRouteImport.update({
   id: '/product/$handle',
   path: '/product/$handle',
@@ -1169,6 +1309,41 @@ const NlProductHandleRoute = NlProductHandleRouteImport.update({
   path: '/nl/product/$handle',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PlArtiklerIndexRoute = PlArtiklerIndexRouteImport.update({
+  id: '/pl/artikler/',
+  path: '/pl/artikler/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlArtiklerSlugRoute = PlArtiklerSlugRouteImport.update({
+  id: '/pl/artikler/$slug',
+  path: '/pl/artikler/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlButikkIndexRoute = PlButikkIndexRouteImport.update({
+  id: '/pl/butikk/',
+  path: '/pl/butikk/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlButikkSlugRoute = PlButikkSlugRouteImport.update({
+  id: '/pl/butikk/$slug',
+  path: '/pl/butikk/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlButikkCheckoutRoute = PlButikkCheckoutRouteImport.update({
+  id: '/pl/butikk/checkout',
+  path: '/pl/butikk/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlButikkTakkRoute = PlButikkTakkRouteImport.update({
+  id: '/pl/butikk/takk',
+  path: '/pl/butikk/takk',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlProductHandleRoute = PlProductHandleRouteImport.update({
+  id: '/pl/product/$handle',
+  path: '/pl/product/$handle',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SvArtiklerIndexRoute = SvArtiklerIndexRouteImport.update({
   id: '/sv/artikler/',
   path: '/sv/artikler/',
@@ -1332,6 +1507,27 @@ export interface FileRoutesByFullPath {
   '/nl/sora-prosess': typeof NlSoraProsessRoute
   '/nl/sora-risk-assessment': typeof NlSoraRiskAssessmentRoute
   '/nl/statistikk': typeof NlStatistikkRoute
+  '/pl/about': typeof PlAboutRoute
+  '/pl/aviops': typeof PlAviopsRoute
+  '/pl/compliance': typeof PlComplianceRoute
+  '/pl/drone-fleet-management': typeof PlDroneFleetManagementRoute
+  '/pl/drone-safety-management-system': typeof PlDroneSafetyManagementSystemRoute
+  '/pl/galleri': typeof PlGalleriRoute
+  '/pl/integrasjoner': typeof PlIntegrasjonerRoute
+  '/pl/live-airspace-awareness': typeof PlLiveAirspaceAwarenessRoute
+  '/pl/logg': typeof PlLoggRoute
+  '/pl/occurrence-reporting': typeof PlOccurrenceReportingRoute
+  '/pl/operasjoner': typeof PlOperasjonerRoute
+  '/pl/operasjonsdashbord': typeof PlOperasjonsdashbordRoute
+  '/pl/operations': typeof PlOperationsRoute
+  '/pl/ops-dashboard': typeof PlOpsDashboardRoute
+  '/pl/partners': typeof PlPartnersRoute
+  '/pl/personvern': typeof PlPersonvernRoute
+  '/pl/security': typeof PlSecurityRoute
+  '/pl/sora': typeof PlSoraRoute
+  '/pl/sora-prosess': typeof PlSoraProsessRoute
+  '/pl/sora-risk-assessment': typeof PlSoraRiskAssessmentRoute
+  '/pl/statistikk': typeof PlStatistikkRoute
   '/product/$handle': typeof ProductHandleRoute
   '/sv/about': typeof SvAboutRoute
   '/sv/aviops': typeof SvAviopsRoute
@@ -1361,6 +1557,7 @@ export interface FileRoutesByFullPath {
   '/en/': typeof EnIndexRoute
   '/fi/': typeof FiIndexRoute
   '/nl/': typeof NlIndexRoute
+  '/pl/': typeof PlIndexRoute
   '/sv/': typeof SvIndexRoute
   '/da/artikler/$slug': typeof DaArtiklerSlugRoute
   '/da/butikk/$slug': typeof DaButikkSlugRoute
@@ -1387,6 +1584,11 @@ export interface FileRoutesByFullPath {
   '/nl/butikk/checkout': typeof NlButikkCheckoutRoute
   '/nl/butikk/takk': typeof NlButikkTakkRoute
   '/nl/product/$handle': typeof NlProductHandleRoute
+  '/pl/artikler/$slug': typeof PlArtiklerSlugRoute
+  '/pl/butikk/$slug': typeof PlButikkSlugRoute
+  '/pl/butikk/checkout': typeof PlButikkCheckoutRoute
+  '/pl/butikk/takk': typeof PlButikkTakkRoute
+  '/pl/product/$handle': typeof PlProductHandleRoute
   '/sv/artikler/$slug': typeof SvArtiklerSlugRoute
   '/sv/butikk/$slug': typeof SvButikkSlugRoute
   '/sv/butikk/checkout': typeof SvButikkCheckoutRoute
@@ -1402,6 +1604,8 @@ export interface FileRoutesByFullPath {
   '/fi/butikk/': typeof FiButikkIndexRoute
   '/nl/artikler/': typeof NlArtiklerIndexRoute
   '/nl/butikk/': typeof NlButikkIndexRoute
+  '/pl/artikler/': typeof PlArtiklerIndexRoute
+  '/pl/butikk/': typeof PlButikkIndexRoute
   '/sv/artikler/': typeof SvArtiklerIndexRoute
   '/sv/butikk/': typeof SvButikkIndexRoute
 }
@@ -1532,6 +1736,27 @@ export interface FileRoutesByTo {
   '/nl/sora-prosess': typeof NlSoraProsessRoute
   '/nl/sora-risk-assessment': typeof NlSoraRiskAssessmentRoute
   '/nl/statistikk': typeof NlStatistikkRoute
+  '/pl/about': typeof PlAboutRoute
+  '/pl/aviops': typeof PlAviopsRoute
+  '/pl/compliance': typeof PlComplianceRoute
+  '/pl/drone-fleet-management': typeof PlDroneFleetManagementRoute
+  '/pl/drone-safety-management-system': typeof PlDroneSafetyManagementSystemRoute
+  '/pl/galleri': typeof PlGalleriRoute
+  '/pl/integrasjoner': typeof PlIntegrasjonerRoute
+  '/pl/live-airspace-awareness': typeof PlLiveAirspaceAwarenessRoute
+  '/pl/logg': typeof PlLoggRoute
+  '/pl/occurrence-reporting': typeof PlOccurrenceReportingRoute
+  '/pl/operasjoner': typeof PlOperasjonerRoute
+  '/pl/operasjonsdashbord': typeof PlOperasjonsdashbordRoute
+  '/pl/operations': typeof PlOperationsRoute
+  '/pl/ops-dashboard': typeof PlOpsDashboardRoute
+  '/pl/partners': typeof PlPartnersRoute
+  '/pl/personvern': typeof PlPersonvernRoute
+  '/pl/security': typeof PlSecurityRoute
+  '/pl/sora': typeof PlSoraRoute
+  '/pl/sora-prosess': typeof PlSoraProsessRoute
+  '/pl/sora-risk-assessment': typeof PlSoraRiskAssessmentRoute
+  '/pl/statistikk': typeof PlStatistikkRoute
   '/product/$handle': typeof ProductHandleRoute
   '/sv/about': typeof SvAboutRoute
   '/sv/aviops': typeof SvAviopsRoute
@@ -1561,6 +1786,7 @@ export interface FileRoutesByTo {
   '/en': typeof EnIndexRoute
   '/fi': typeof FiIndexRoute
   '/nl': typeof NlIndexRoute
+  '/pl': typeof PlIndexRoute
   '/sv': typeof SvIndexRoute
   '/da/artikler/$slug': typeof DaArtiklerSlugRoute
   '/da/butikk/$slug': typeof DaButikkSlugRoute
@@ -1587,6 +1813,11 @@ export interface FileRoutesByTo {
   '/nl/butikk/checkout': typeof NlButikkCheckoutRoute
   '/nl/butikk/takk': typeof NlButikkTakkRoute
   '/nl/product/$handle': typeof NlProductHandleRoute
+  '/pl/artikler/$slug': typeof PlArtiklerSlugRoute
+  '/pl/butikk/$slug': typeof PlButikkSlugRoute
+  '/pl/butikk/checkout': typeof PlButikkCheckoutRoute
+  '/pl/butikk/takk': typeof PlButikkTakkRoute
+  '/pl/product/$handle': typeof PlProductHandleRoute
   '/sv/artikler/$slug': typeof SvArtiklerSlugRoute
   '/sv/butikk/$slug': typeof SvButikkSlugRoute
   '/sv/butikk/checkout': typeof SvButikkCheckoutRoute
@@ -1602,6 +1833,8 @@ export interface FileRoutesByTo {
   '/fi/butikk': typeof FiButikkIndexRoute
   '/nl/artikler': typeof NlArtiklerIndexRoute
   '/nl/butikk': typeof NlButikkIndexRoute
+  '/pl/artikler': typeof PlArtiklerIndexRoute
+  '/pl/butikk': typeof PlButikkIndexRoute
   '/sv/artikler': typeof SvArtiklerIndexRoute
   '/sv/butikk': typeof SvButikkIndexRoute
 }
@@ -1733,6 +1966,27 @@ export interface FileRoutesById {
   '/nl/sora-prosess': typeof NlSoraProsessRoute
   '/nl/sora-risk-assessment': typeof NlSoraRiskAssessmentRoute
   '/nl/statistikk': typeof NlStatistikkRoute
+  '/pl/about': typeof PlAboutRoute
+  '/pl/aviops': typeof PlAviopsRoute
+  '/pl/compliance': typeof PlComplianceRoute
+  '/pl/drone-fleet-management': typeof PlDroneFleetManagementRoute
+  '/pl/drone-safety-management-system': typeof PlDroneSafetyManagementSystemRoute
+  '/pl/galleri': typeof PlGalleriRoute
+  '/pl/integrasjoner': typeof PlIntegrasjonerRoute
+  '/pl/live-airspace-awareness': typeof PlLiveAirspaceAwarenessRoute
+  '/pl/logg': typeof PlLoggRoute
+  '/pl/occurrence-reporting': typeof PlOccurrenceReportingRoute
+  '/pl/operasjoner': typeof PlOperasjonerRoute
+  '/pl/operasjonsdashbord': typeof PlOperasjonsdashbordRoute
+  '/pl/operations': typeof PlOperationsRoute
+  '/pl/ops-dashboard': typeof PlOpsDashboardRoute
+  '/pl/partners': typeof PlPartnersRoute
+  '/pl/personvern': typeof PlPersonvernRoute
+  '/pl/security': typeof PlSecurityRoute
+  '/pl/sora': typeof PlSoraRoute
+  '/pl/sora-prosess': typeof PlSoraProsessRoute
+  '/pl/sora-risk-assessment': typeof PlSoraRiskAssessmentRoute
+  '/pl/statistikk': typeof PlStatistikkRoute
   '/product/$handle': typeof ProductHandleRoute
   '/sv/about': typeof SvAboutRoute
   '/sv/aviops': typeof SvAviopsRoute
@@ -1762,6 +2016,7 @@ export interface FileRoutesById {
   '/en/': typeof EnIndexRoute
   '/fi/': typeof FiIndexRoute
   '/nl/': typeof NlIndexRoute
+  '/pl/': typeof PlIndexRoute
   '/sv/': typeof SvIndexRoute
   '/da/artikler/$slug': typeof DaArtiklerSlugRoute
   '/da/butikk/$slug': typeof DaButikkSlugRoute
@@ -1788,6 +2043,11 @@ export interface FileRoutesById {
   '/nl/butikk/checkout': typeof NlButikkCheckoutRoute
   '/nl/butikk/takk': typeof NlButikkTakkRoute
   '/nl/product/$handle': typeof NlProductHandleRoute
+  '/pl/artikler/$slug': typeof PlArtiklerSlugRoute
+  '/pl/butikk/$slug': typeof PlButikkSlugRoute
+  '/pl/butikk/checkout': typeof PlButikkCheckoutRoute
+  '/pl/butikk/takk': typeof PlButikkTakkRoute
+  '/pl/product/$handle': typeof PlProductHandleRoute
   '/sv/artikler/$slug': typeof SvArtiklerSlugRoute
   '/sv/butikk/$slug': typeof SvButikkSlugRoute
   '/sv/butikk/checkout': typeof SvButikkCheckoutRoute
@@ -1803,6 +2063,8 @@ export interface FileRoutesById {
   '/fi/butikk/': typeof FiButikkIndexRoute
   '/nl/artikler/': typeof NlArtiklerIndexRoute
   '/nl/butikk/': typeof NlButikkIndexRoute
+  '/pl/artikler/': typeof PlArtiklerIndexRoute
+  '/pl/butikk/': typeof PlButikkIndexRoute
   '/sv/artikler/': typeof SvArtiklerIndexRoute
   '/sv/butikk/': typeof SvButikkIndexRoute
 }
@@ -1935,6 +2197,27 @@ export interface FileRouteTypes {
     | '/nl/sora-prosess'
     | '/nl/sora-risk-assessment'
     | '/nl/statistikk'
+    | '/pl/about'
+    | '/pl/aviops'
+    | '/pl/compliance'
+    | '/pl/drone-fleet-management'
+    | '/pl/drone-safety-management-system'
+    | '/pl/galleri'
+    | '/pl/integrasjoner'
+    | '/pl/live-airspace-awareness'
+    | '/pl/logg'
+    | '/pl/occurrence-reporting'
+    | '/pl/operasjoner'
+    | '/pl/operasjonsdashbord'
+    | '/pl/operations'
+    | '/pl/ops-dashboard'
+    | '/pl/partners'
+    | '/pl/personvern'
+    | '/pl/security'
+    | '/pl/sora'
+    | '/pl/sora-prosess'
+    | '/pl/sora-risk-assessment'
+    | '/pl/statistikk'
     | '/product/$handle'
     | '/sv/about'
     | '/sv/aviops'
@@ -1964,6 +2247,7 @@ export interface FileRouteTypes {
     | '/en/'
     | '/fi/'
     | '/nl/'
+    | '/pl/'
     | '/sv/'
     | '/da/artikler/$slug'
     | '/da/butikk/$slug'
@@ -1990,6 +2274,11 @@ export interface FileRouteTypes {
     | '/nl/butikk/checkout'
     | '/nl/butikk/takk'
     | '/nl/product/$handle'
+    | '/pl/artikler/$slug'
+    | '/pl/butikk/$slug'
+    | '/pl/butikk/checkout'
+    | '/pl/butikk/takk'
+    | '/pl/product/$handle'
     | '/sv/artikler/$slug'
     | '/sv/butikk/$slug'
     | '/sv/butikk/checkout'
@@ -2005,6 +2294,8 @@ export interface FileRouteTypes {
     | '/fi/butikk/'
     | '/nl/artikler/'
     | '/nl/butikk/'
+    | '/pl/artikler/'
+    | '/pl/butikk/'
     | '/sv/artikler/'
     | '/sv/butikk/'
   fileRoutesByTo: FileRoutesByTo
@@ -2135,6 +2426,27 @@ export interface FileRouteTypes {
     | '/nl/sora-prosess'
     | '/nl/sora-risk-assessment'
     | '/nl/statistikk'
+    | '/pl/about'
+    | '/pl/aviops'
+    | '/pl/compliance'
+    | '/pl/drone-fleet-management'
+    | '/pl/drone-safety-management-system'
+    | '/pl/galleri'
+    | '/pl/integrasjoner'
+    | '/pl/live-airspace-awareness'
+    | '/pl/logg'
+    | '/pl/occurrence-reporting'
+    | '/pl/operasjoner'
+    | '/pl/operasjonsdashbord'
+    | '/pl/operations'
+    | '/pl/ops-dashboard'
+    | '/pl/partners'
+    | '/pl/personvern'
+    | '/pl/security'
+    | '/pl/sora'
+    | '/pl/sora-prosess'
+    | '/pl/sora-risk-assessment'
+    | '/pl/statistikk'
     | '/product/$handle'
     | '/sv/about'
     | '/sv/aviops'
@@ -2164,6 +2476,7 @@ export interface FileRouteTypes {
     | '/en'
     | '/fi'
     | '/nl'
+    | '/pl'
     | '/sv'
     | '/da/artikler/$slug'
     | '/da/butikk/$slug'
@@ -2190,6 +2503,11 @@ export interface FileRouteTypes {
     | '/nl/butikk/checkout'
     | '/nl/butikk/takk'
     | '/nl/product/$handle'
+    | '/pl/artikler/$slug'
+    | '/pl/butikk/$slug'
+    | '/pl/butikk/checkout'
+    | '/pl/butikk/takk'
+    | '/pl/product/$handle'
     | '/sv/artikler/$slug'
     | '/sv/butikk/$slug'
     | '/sv/butikk/checkout'
@@ -2205,6 +2523,8 @@ export interface FileRouteTypes {
     | '/fi/butikk'
     | '/nl/artikler'
     | '/nl/butikk'
+    | '/pl/artikler'
+    | '/pl/butikk'
     | '/sv/artikler'
     | '/sv/butikk'
   id:
@@ -2335,6 +2655,27 @@ export interface FileRouteTypes {
     | '/nl/sora-prosess'
     | '/nl/sora-risk-assessment'
     | '/nl/statistikk'
+    | '/pl/about'
+    | '/pl/aviops'
+    | '/pl/compliance'
+    | '/pl/drone-fleet-management'
+    | '/pl/drone-safety-management-system'
+    | '/pl/galleri'
+    | '/pl/integrasjoner'
+    | '/pl/live-airspace-awareness'
+    | '/pl/logg'
+    | '/pl/occurrence-reporting'
+    | '/pl/operasjoner'
+    | '/pl/operasjonsdashbord'
+    | '/pl/operations'
+    | '/pl/ops-dashboard'
+    | '/pl/partners'
+    | '/pl/personvern'
+    | '/pl/security'
+    | '/pl/sora'
+    | '/pl/sora-prosess'
+    | '/pl/sora-risk-assessment'
+    | '/pl/statistikk'
     | '/product/$handle'
     | '/sv/about'
     | '/sv/aviops'
@@ -2364,6 +2705,7 @@ export interface FileRouteTypes {
     | '/en/'
     | '/fi/'
     | '/nl/'
+    | '/pl/'
     | '/sv/'
     | '/da/artikler/$slug'
     | '/da/butikk/$slug'
@@ -2390,6 +2732,11 @@ export interface FileRouteTypes {
     | '/nl/butikk/checkout'
     | '/nl/butikk/takk'
     | '/nl/product/$handle'
+    | '/pl/artikler/$slug'
+    | '/pl/butikk/$slug'
+    | '/pl/butikk/checkout'
+    | '/pl/butikk/takk'
+    | '/pl/product/$handle'
     | '/sv/artikler/$slug'
     | '/sv/butikk/$slug'
     | '/sv/butikk/checkout'
@@ -2405,6 +2752,8 @@ export interface FileRouteTypes {
     | '/fi/butikk/'
     | '/nl/artikler/'
     | '/nl/butikk/'
+    | '/pl/artikler/'
+    | '/pl/butikk/'
     | '/sv/artikler/'
     | '/sv/butikk/'
   fileRoutesById: FileRoutesById
@@ -2536,6 +2885,27 @@ export interface RootRouteChildren {
   NlSoraProsessRoute: typeof NlSoraProsessRoute
   NlSoraRiskAssessmentRoute: typeof NlSoraRiskAssessmentRoute
   NlStatistikkRoute: typeof NlStatistikkRoute
+  PlAboutRoute: typeof PlAboutRoute
+  PlAviopsRoute: typeof PlAviopsRoute
+  PlComplianceRoute: typeof PlComplianceRoute
+  PlDroneFleetManagementRoute: typeof PlDroneFleetManagementRoute
+  PlDroneSafetyManagementSystemRoute: typeof PlDroneSafetyManagementSystemRoute
+  PlGalleriRoute: typeof PlGalleriRoute
+  PlIntegrasjonerRoute: typeof PlIntegrasjonerRoute
+  PlLiveAirspaceAwarenessRoute: typeof PlLiveAirspaceAwarenessRoute
+  PlLoggRoute: typeof PlLoggRoute
+  PlOccurrenceReportingRoute: typeof PlOccurrenceReportingRoute
+  PlOperasjonerRoute: typeof PlOperasjonerRoute
+  PlOperasjonsdashbordRoute: typeof PlOperasjonsdashbordRoute
+  PlOperationsRoute: typeof PlOperationsRoute
+  PlOpsDashboardRoute: typeof PlOpsDashboardRoute
+  PlPartnersRoute: typeof PlPartnersRoute
+  PlPersonvernRoute: typeof PlPersonvernRoute
+  PlSecurityRoute: typeof PlSecurityRoute
+  PlSoraRoute: typeof PlSoraRoute
+  PlSoraProsessRoute: typeof PlSoraProsessRoute
+  PlSoraRiskAssessmentRoute: typeof PlSoraRiskAssessmentRoute
+  PlStatistikkRoute: typeof PlStatistikkRoute
   ProductHandleRoute: typeof ProductHandleRoute
   SvAboutRoute: typeof SvAboutRoute
   SvAviopsRoute: typeof SvAviopsRoute
@@ -2565,6 +2935,7 @@ export interface RootRouteChildren {
   EnIndexRoute: typeof EnIndexRoute
   FiIndexRoute: typeof FiIndexRoute
   NlIndexRoute: typeof NlIndexRoute
+  PlIndexRoute: typeof PlIndexRoute
   SvIndexRoute: typeof SvIndexRoute
   DaArtiklerSlugRoute: typeof DaArtiklerSlugRoute
   DaButikkSlugRoute: typeof DaButikkSlugRoute
@@ -2591,6 +2962,11 @@ export interface RootRouteChildren {
   NlButikkCheckoutRoute: typeof NlButikkCheckoutRoute
   NlButikkTakkRoute: typeof NlButikkTakkRoute
   NlProductHandleRoute: typeof NlProductHandleRoute
+  PlArtiklerSlugRoute: typeof PlArtiklerSlugRoute
+  PlButikkSlugRoute: typeof PlButikkSlugRoute
+  PlButikkCheckoutRoute: typeof PlButikkCheckoutRoute
+  PlButikkTakkRoute: typeof PlButikkTakkRoute
+  PlProductHandleRoute: typeof PlProductHandleRoute
   SvArtiklerSlugRoute: typeof SvArtiklerSlugRoute
   SvButikkSlugRoute: typeof SvButikkSlugRoute
   SvButikkCheckoutRoute: typeof SvButikkCheckoutRoute
@@ -2606,6 +2982,8 @@ export interface RootRouteChildren {
   FiButikkIndexRoute: typeof FiButikkIndexRoute
   NlArtiklerIndexRoute: typeof NlArtiklerIndexRoute
   NlButikkIndexRoute: typeof NlButikkIndexRoute
+  PlArtiklerIndexRoute: typeof PlArtiklerIndexRoute
+  PlButikkIndexRoute: typeof PlButikkIndexRoute
   SvArtiklerIndexRoute: typeof SvArtiklerIndexRoute
   SvButikkIndexRoute: typeof SvButikkIndexRoute
 }
@@ -3543,6 +3921,160 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NlStatistikkRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pl/': {
+      id: '/pl/'
+      path: '/pl'
+      fullPath: '/pl/'
+      preLoaderRoute: typeof PlIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pl/about': {
+      id: '/pl/about'
+      path: '/pl/about'
+      fullPath: '/pl/about'
+      preLoaderRoute: typeof PlAboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pl/aviops': {
+      id: '/pl/aviops'
+      path: '/pl/aviops'
+      fullPath: '/pl/aviops'
+      preLoaderRoute: typeof PlAviopsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pl/compliance': {
+      id: '/pl/compliance'
+      path: '/pl/compliance'
+      fullPath: '/pl/compliance'
+      preLoaderRoute: typeof PlComplianceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pl/drone-fleet-management': {
+      id: '/pl/drone-fleet-management'
+      path: '/pl/drone-fleet-management'
+      fullPath: '/pl/drone-fleet-management'
+      preLoaderRoute: typeof PlDroneFleetManagementRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pl/drone-safety-management-system': {
+      id: '/pl/drone-safety-management-system'
+      path: '/pl/drone-safety-management-system'
+      fullPath: '/pl/drone-safety-management-system'
+      preLoaderRoute: typeof PlDroneSafetyManagementSystemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pl/galleri': {
+      id: '/pl/galleri'
+      path: '/pl/galleri'
+      fullPath: '/pl/galleri'
+      preLoaderRoute: typeof PlGalleriRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pl/integrasjoner': {
+      id: '/pl/integrasjoner'
+      path: '/pl/integrasjoner'
+      fullPath: '/pl/integrasjoner'
+      preLoaderRoute: typeof PlIntegrasjonerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pl/live-airspace-awareness': {
+      id: '/pl/live-airspace-awareness'
+      path: '/pl/live-airspace-awareness'
+      fullPath: '/pl/live-airspace-awareness'
+      preLoaderRoute: typeof PlLiveAirspaceAwarenessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pl/logg': {
+      id: '/pl/logg'
+      path: '/pl/logg'
+      fullPath: '/pl/logg'
+      preLoaderRoute: typeof PlLoggRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pl/occurrence-reporting': {
+      id: '/pl/occurrence-reporting'
+      path: '/pl/occurrence-reporting'
+      fullPath: '/pl/occurrence-reporting'
+      preLoaderRoute: typeof PlOccurrenceReportingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pl/operasjoner': {
+      id: '/pl/operasjoner'
+      path: '/pl/operasjoner'
+      fullPath: '/pl/operasjoner'
+      preLoaderRoute: typeof PlOperasjonerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pl/operasjonsdashbord': {
+      id: '/pl/operasjonsdashbord'
+      path: '/pl/operasjonsdashbord'
+      fullPath: '/pl/operasjonsdashbord'
+      preLoaderRoute: typeof PlOperasjonsdashbordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pl/operations': {
+      id: '/pl/operations'
+      path: '/pl/operations'
+      fullPath: '/pl/operations'
+      preLoaderRoute: typeof PlOperationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pl/ops-dashboard': {
+      id: '/pl/ops-dashboard'
+      path: '/pl/ops-dashboard'
+      fullPath: '/pl/ops-dashboard'
+      preLoaderRoute: typeof PlOpsDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pl/partners': {
+      id: '/pl/partners'
+      path: '/pl/partners'
+      fullPath: '/pl/partners'
+      preLoaderRoute: typeof PlPartnersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pl/personvern': {
+      id: '/pl/personvern'
+      path: '/pl/personvern'
+      fullPath: '/pl/personvern'
+      preLoaderRoute: typeof PlPersonvernRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pl/security': {
+      id: '/pl/security'
+      path: '/pl/security'
+      fullPath: '/pl/security'
+      preLoaderRoute: typeof PlSecurityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pl/sora': {
+      id: '/pl/sora'
+      path: '/pl/sora'
+      fullPath: '/pl/sora'
+      preLoaderRoute: typeof PlSoraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pl/sora-prosess': {
+      id: '/pl/sora-prosess'
+      path: '/pl/sora-prosess'
+      fullPath: '/pl/sora-prosess'
+      preLoaderRoute: typeof PlSoraProsessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pl/sora-risk-assessment': {
+      id: '/pl/sora-risk-assessment'
+      path: '/pl/sora-risk-assessment'
+      fullPath: '/pl/sora-risk-assessment'
+      preLoaderRoute: typeof PlSoraRiskAssessmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pl/statistikk': {
+      id: '/pl/statistikk'
+      path: '/pl/statistikk'
+      fullPath: '/pl/statistikk'
+      preLoaderRoute: typeof PlStatistikkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/product/$handle': {
       id: '/product/$handle'
       path: '/product/$handle'
@@ -3949,6 +4481,55 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NlProductHandleRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pl/artikler/': {
+      id: '/pl/artikler/'
+      path: '/pl/artikler'
+      fullPath: '/pl/artikler/'
+      preLoaderRoute: typeof PlArtiklerIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pl/artikler/$slug': {
+      id: '/pl/artikler/$slug'
+      path: '/pl/artikler/$slug'
+      fullPath: '/pl/artikler/$slug'
+      preLoaderRoute: typeof PlArtiklerSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pl/butikk/': {
+      id: '/pl/butikk/'
+      path: '/pl/butikk'
+      fullPath: '/pl/butikk/'
+      preLoaderRoute: typeof PlButikkIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pl/butikk/$slug': {
+      id: '/pl/butikk/$slug'
+      path: '/pl/butikk/$slug'
+      fullPath: '/pl/butikk/$slug'
+      preLoaderRoute: typeof PlButikkSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pl/butikk/checkout': {
+      id: '/pl/butikk/checkout'
+      path: '/pl/butikk/checkout'
+      fullPath: '/pl/butikk/checkout'
+      preLoaderRoute: typeof PlButikkCheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pl/butikk/takk': {
+      id: '/pl/butikk/takk'
+      path: '/pl/butikk/takk'
+      fullPath: '/pl/butikk/takk'
+      preLoaderRoute: typeof PlButikkTakkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pl/product/$handle': {
+      id: '/pl/product/$handle'
+      path: '/pl/product/$handle'
+      fullPath: '/pl/product/$handle'
+      preLoaderRoute: typeof PlProductHandleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sv/artikler/': {
       id: '/sv/artikler/'
       path: '/sv/artikler'
@@ -4128,6 +4709,27 @@ const rootRouteChildren: RootRouteChildren = {
   NlSoraProsessRoute: NlSoraProsessRoute,
   NlSoraRiskAssessmentRoute: NlSoraRiskAssessmentRoute,
   NlStatistikkRoute: NlStatistikkRoute,
+  PlAboutRoute: PlAboutRoute,
+  PlAviopsRoute: PlAviopsRoute,
+  PlComplianceRoute: PlComplianceRoute,
+  PlDroneFleetManagementRoute: PlDroneFleetManagementRoute,
+  PlDroneSafetyManagementSystemRoute: PlDroneSafetyManagementSystemRoute,
+  PlGalleriRoute: PlGalleriRoute,
+  PlIntegrasjonerRoute: PlIntegrasjonerRoute,
+  PlLiveAirspaceAwarenessRoute: PlLiveAirspaceAwarenessRoute,
+  PlLoggRoute: PlLoggRoute,
+  PlOccurrenceReportingRoute: PlOccurrenceReportingRoute,
+  PlOperasjonerRoute: PlOperasjonerRoute,
+  PlOperasjonsdashbordRoute: PlOperasjonsdashbordRoute,
+  PlOperationsRoute: PlOperationsRoute,
+  PlOpsDashboardRoute: PlOpsDashboardRoute,
+  PlPartnersRoute: PlPartnersRoute,
+  PlPersonvernRoute: PlPersonvernRoute,
+  PlSecurityRoute: PlSecurityRoute,
+  PlSoraRoute: PlSoraRoute,
+  PlSoraProsessRoute: PlSoraProsessRoute,
+  PlSoraRiskAssessmentRoute: PlSoraRiskAssessmentRoute,
+  PlStatistikkRoute: PlStatistikkRoute,
   ProductHandleRoute: ProductHandleRoute,
   SvAboutRoute: SvAboutRoute,
   SvAviopsRoute: SvAviopsRoute,
@@ -4157,6 +4759,7 @@ const rootRouteChildren: RootRouteChildren = {
   EnIndexRoute: EnIndexRoute,
   FiIndexRoute: FiIndexRoute,
   NlIndexRoute: NlIndexRoute,
+  PlIndexRoute: PlIndexRoute,
   SvIndexRoute: SvIndexRoute,
   DaArtiklerSlugRoute: DaArtiklerSlugRoute,
   DaButikkSlugRoute: DaButikkSlugRoute,
@@ -4183,6 +4786,11 @@ const rootRouteChildren: RootRouteChildren = {
   NlButikkCheckoutRoute: NlButikkCheckoutRoute,
   NlButikkTakkRoute: NlButikkTakkRoute,
   NlProductHandleRoute: NlProductHandleRoute,
+  PlArtiklerSlugRoute: PlArtiklerSlugRoute,
+  PlButikkSlugRoute: PlButikkSlugRoute,
+  PlButikkCheckoutRoute: PlButikkCheckoutRoute,
+  PlButikkTakkRoute: PlButikkTakkRoute,
+  PlProductHandleRoute: PlProductHandleRoute,
   SvArtiklerSlugRoute: SvArtiklerSlugRoute,
   SvButikkSlugRoute: SvButikkSlugRoute,
   SvButikkCheckoutRoute: SvButikkCheckoutRoute,
@@ -4198,6 +4806,8 @@ const rootRouteChildren: RootRouteChildren = {
   FiButikkIndexRoute: FiButikkIndexRoute,
   NlArtiklerIndexRoute: NlArtiklerIndexRoute,
   NlButikkIndexRoute: NlButikkIndexRoute,
+  PlArtiklerIndexRoute: PlArtiklerIndexRoute,
+  PlButikkIndexRoute: PlButikkIndexRoute,
   SvArtiklerIndexRoute: SvArtiklerIndexRoute,
   SvButikkIndexRoute: SvButikkIndexRoute,
 }
